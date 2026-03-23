@@ -241,9 +241,9 @@ export default function App() {
             { title: "The Reveal: Answer Key", page: "26", icon: <Search className="w-5 h-5" /> },
             { title: "Two Decades: A Retrospective", page: "27", icon: <Users className="w-5 h-5" /> },
             { title: "Moments of Solidarity", page: "28", icon: <Heart className="w-5 h-5" /> },
-            { title: "Class of 2004 Directory", page: "30", icon: <Users className="w-5 h-5" /> },
-            { title: "Throwback Gallery", page: "31", icon: <Camera className="w-5 h-5" /> },
-            { title: "Alumni Business Directory", page: "32", icon: <Briefcase className="w-5 h-5" /> },
+            { title: "Class of 2004 Directory", page: "31", icon: <Users className="w-5 h-5" /> },
+            { title: "Throwback Gallery", page: "32", icon: <Camera className="w-5 h-5" /> },
+            { title: "Alumni Business Directory", page: "33", icon: <Briefcase className="w-5 h-5" /> },
           ].map((item, i) => (
             <div key={i} className="flex items-center group cursor-default">
               <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -1588,15 +1588,17 @@ export default function App() {
       </Page>
 
       {/* 28. Moments of Solidarity - Page 1 */}
-      <Page className="bg-white">
-        <div className="mb-12">
+      <Page className="bg-white overflow-hidden">
+        <div className="mb-8">
           <h2 className="text-6xl font-serif font-black text-purple uppercase tracking-tighter">MOMENTS OF SOLIDARITY</h2>
-          <p className="text-pink font-serif italic text-2xl">UDOSA 04 Community Support for Ehis</p>
+          <p className="text-pink font-serif italic text-lg leading-tight">
+            UDOSA 04 Community Support for Cynthia, Osayowanbo, Owen, Ehis, and Ero during the burial ceremonies of their late parents.
+          </p>
           <div className="w-24 h-2 bg-gold mt-4" />
         </div>
         
-        <div className="grid grid-cols-2 gap-6 h-[700px]">
-          <div className="col-span-2 h-[350px] rounded-2xl overflow-hidden shadow-xl border-2 border-gold/20">
+        <div className="flex flex-col gap-6">
+          <div className="h-[280px] rounded-2xl overflow-hidden shadow-xl border-2 border-gold/20">
             <img 
               src={SOLIDARITY_PHOTOS[0]} 
               alt="Solidarity 1" 
@@ -1604,26 +1606,37 @@ export default function App() {
               referrerPolicy="no-referrer"
             />
           </div>
-          <div className="h-[300px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
-            <img 
-              src={SOLIDARITY_PHOTOS[1]} 
-              alt="Solidarity 2" 
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          <div className="h-[300px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
-            <img 
-              src={SOLIDARITY_PHOTOS[2]} 
-              alt="Solidarity 3" 
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
+          <div className="grid grid-cols-2 gap-6">
+            <div className="h-[200px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+              <img 
+                src={SOLIDARITY_PHOTOS[1]} 
+                alt="Solidarity 2" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="h-[200px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+              <img 
+                src={SOLIDARITY_PHOTOS[2]} 
+                alt="Solidarity 3" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
           </div>
         </div>
         
-        <div className="mt-8 grid grid-cols-2 gap-6">
-          <div className="h-[200px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+        <div className="mt-auto py-4 border-t border-stone-100 flex justify-center">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Community & Support
+          </p>
+        </div>
+      </Page>
+
+      {/* 29. Moments of Solidarity - Page 2 */}
+      <Page className="bg-white overflow-hidden">
+        <div className="flex flex-col gap-6 h-full">
+          <div className="h-[350px] rounded-2xl overflow-hidden shadow-xl border-2 border-gold/20">
             <img 
               src={SOLIDARITY_PHOTOS[3]} 
               alt="Solidarity 4" 
@@ -1631,45 +1644,55 @@ export default function App() {
               referrerPolicy="no-referrer"
             />
           </div>
-          <div className="h-[200px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
-            <img 
-              src={SOLIDARITY_PHOTOS[4]} 
-              alt="Solidarity 5" 
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
+          <div className="grid grid-cols-2 gap-6">
+            <div className="h-[250px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+              <img 
+                src={SOLIDARITY_PHOTOS[4]} 
+                alt="Solidarity 5" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="h-[250px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+              <img 
+                src={SOLIDARITY_PHOTOS[5]} 
+                alt="Solidarity 6" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+          
+          <div className="mt-auto py-4 border-t border-stone-100 flex justify-center">
+            <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+              UDOSA 04 | Community & Support
+            </p>
           </div>
         </div>
       </Page>
 
-      {/* 29. Moments of Solidarity - Page 2 */}
-      <Page className="bg-white">
-        <div className="grid grid-cols-2 gap-6 h-[800px]">
-          <div className="aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
-            <img 
-              src={SOLIDARITY_PHOTOS[5]} 
-              alt="Solidarity 6" 
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
+      {/* 30. Moments of Solidarity - Page 3 */}
+      <Page className="bg-white overflow-hidden">
+        <div className="flex flex-col gap-6 h-full">
+          <div className="grid grid-cols-2 gap-6">
+            <div className="h-[250px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+              <img 
+                src={SOLIDARITY_PHOTOS[6]} 
+                alt="Solidarity 7" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="h-[250px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+              <img 
+                src={SOLIDARITY_PHOTOS[7]} 
+                alt="Solidarity 8" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
           </div>
-          <div className="aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
-            <img 
-              src={SOLIDARITY_PHOTOS[6]} 
-              alt="Solidarity 7" 
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          <div className="aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
-            <img 
-              src={SOLIDARITY_PHOTOS[7]} 
-              alt="Solidarity 8" 
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          <div className="aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+          <div className="h-[350px] rounded-2xl overflow-hidden shadow-xl border-2 border-gold/20">
             <img 
               src={SOLIDARITY_PHOTOS[8]} 
               alt="Solidarity 9" 
@@ -1677,14 +1700,20 @@ export default function App() {
               referrerPolicy="no-referrer"
             />
           </div>
-        </div>
-        
-        <div className="mt-12 p-8 bg-purple/5 rounded-3xl border-l-8 border-gold italic font-serif text-2xl text-purple leading-relaxed">
-          "True community is not just about celebrating together, but standing shoulder to shoulder in the moments that matter most. UDOSA 04 remains a family forever."
+          
+          <div className="mt-12 p-8 bg-purple/5 rounded-3xl border-l-8 border-gold italic font-serif text-2xl text-purple leading-relaxed">
+            "In times of sorrow, we find our greatest strength in each other. UDOSA 04—More than just classmates, we are family."
+          </div>
+
+          <div className="mt-auto py-4 border-t border-stone-100 flex justify-center">
+            <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+              UDOSA 04 | Community & Support
+            </p>
+          </div>
         </div>
       </Page>
 
-      {/* 30. Class Directory */}
+      {/* 31. Class Directory */}
       <Page className="bg-purple text-white">
         <div className="mb-12 flex justify-between items-start">
           <div>
@@ -1710,7 +1739,7 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 31. Throwback Gallery */}
+      {/* 32. Throwback Gallery */}
       <Page>
         <div className="mb-12 flex justify-between items-end border-b-4 border-purple pb-6">
           <div>
@@ -1748,7 +1777,7 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 32. Business Showcase */}
+      {/* 33. Business Showcase */}
       <Page>
         <div className="mb-16 text-center">
           <h2 className="text-6xl font-serif font-black text-purple mb-4">Business Directory</h2>
