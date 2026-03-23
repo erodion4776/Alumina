@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { Download, Mail, Phone, Globe, Award, Users, BookOpen, Camera, Briefcase, Quote, Brain, Eye, Wind, Activity, Filter, Droplets, Heart, Thermometer, Search } from 'lucide-react';
+import { Download, Mail, Phone, Globe, Award, Users, BookOpen, Camera, Briefcase, Quote, Brain, Eye, Wind, Activity, Filter, Droplets, Heart, Thermometer, Search, Anchor, Sun } from 'lucide-react';
 
 const LOGO_URL = "https://i.ibb.co/DHC0kvzR/1000773566-removebg-preview-1.png";
 
@@ -167,10 +167,11 @@ export default function App() {
             { title: "UDOSA 04 Challenge", page: "15", icon: <Search className="w-5 h-5" /> },
             { title: "UDOSA 04 Careers", page: "16", icon: <Briefcase className="w-5 h-5" /> },
             { title: "The Power of Connection", page: "17", icon: <Heart className="w-5 h-5" /> },
-            { title: "Two Decades: A Retrospective", page: "19", icon: <Users className="w-5 h-5" /> },
-            { title: "Class of 2004 Directory", page: "20", icon: <Users className="w-5 h-5" /> },
-            { title: "Throwback Gallery", page: "21", icon: <Camera className="w-5 h-5" /> },
-            { title: "Alumni Business Directory", page: "22", icon: <Briefcase className="w-5 h-5" /> },
+            { title: "Finding Peace Amidst Storms", page: "19", icon: <Sun className="w-5 h-5" /> },
+            { title: "Two Decades: A Retrospective", page: "21", icon: <Users className="w-5 h-5" /> },
+            { title: "Class of 2004 Directory", page: "22", icon: <Users className="w-5 h-5" /> },
+            { title: "Throwback Gallery", page: "23", icon: <Camera className="w-5 h-5" /> },
+            { title: "Alumni Business Directory", page: "24", icon: <Briefcase className="w-5 h-5" /> },
           ].map((item, i) => (
             <div key={i} className="flex items-center group cursor-default">
               <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -988,7 +989,138 @@ export default function App() {
         </div>
       </div>
 
-      {/* 19. Feature Article */}
+      {/* 19. Finding Peace Amidst Life's Storms - Page 19 */}
+      <div className="page-a4 overflow-hidden flex flex-col print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="bg-purple w-full h-24 flex items-center justify-center px-8 shrink-0 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
+          <img src={LOGO_URL} alt="UDOSA Logo" className="h-10 object-contain mr-6 relative z-10" referrerPolicy="no-referrer" />
+          <h2 className="text-2xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
+            Faith & <span className="text-gold italic">Inspiration</span>
+          </h2>
+        </div>
+
+        <div className="p-10 flex-grow overflow-hidden flex flex-col">
+          {/* Memory Verse Callout */}
+          <div className="mb-8 flex justify-center">
+            <div className="bg-white border-2 border-gold p-6 rounded-xl shadow-lg max-w-lg relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-white px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Memory Verse</div>
+              <p className="text-xl font-serif italic text-purple text-center leading-relaxed">
+                "Trust in the Lord with all your heart, and lean not on your own understanding; in all your ways acknowledge Him, and He shall direct your paths."
+              </p>
+              <p className="text-center text-gold font-bold mt-2 text-xs uppercase tracking-widest">— Proverbs 3:5-6 (NKJV)</p>
+            </div>
+          </div>
+
+          <div className="mb-6">
+            <h2 className="text-5xl font-serif font-black leading-tight tracking-tighter text-center bg-gradient-to-r from-purple via-pink to-purple bg-clip-text text-transparent uppercase">
+              Finding Peace <br />Amidst Life's Storms
+            </h2>
+            <p className="text-center text-gold font-serif italic text-lg mt-2">By Irene Ogbeide</p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 flex-grow">
+            <div className="space-y-6">
+              <p className="text-[15px] text-slate-700 leading-relaxed first-letter:text-6xl first-letter:font-serif first-letter:font-black first-letter:text-purple first-letter:float-left first-letter:mr-3 first-letter:mt-1">
+                Do you feel like the waves are crashing over you? Life has a way of throwing storms our way when we least expect them. Whether it's a career challenge, a personal loss, or the general uncertainty of the times we live in, it's easy to feel overwhelmed and adrift.
+              </p>
+              <p className="text-[15px] text-slate-700 leading-relaxed">
+                But in the midst of the chaos, there is a peace that surpasses all understanding. This peace isn't the absence of trouble, but the presence of God. Understanding God's sovereignty is the first step toward true tranquility. It means recognizing that He is in control, even when things seem completely out of control.
+              </p>
+              <p className="text-[15px] text-slate-700 leading-relaxed">
+                He is the anchor that holds us steady when the winds howl. When we stop trying to navigate the storm on our own and hand the wheel to the Creator of the seas, we find a rest that the world cannot give. His sovereignty is our security.
+              </p>
+            </div>
+
+            <div className="w-full h-48 rounded-2xl overflow-hidden shadow-2xl border-4 border-white relative">
+              <img 
+                src="https://images.unsplash.com/photo-1499209974431-9dac3adaf471?q=80&w=1000" 
+                alt="Peaceful Light" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-purple/40 to-transparent" />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-auto py-4 px-8 border-t border-stone-100 flex justify-center shrink-0">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Faith & Inspiration
+          </p>
+        </div>
+      </div>
+
+      {/* 20. Your Scriptural Anchor - Page 20 */}
+      <div className="page-a4 overflow-hidden flex flex-col print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="bg-purple w-full h-20 flex items-center justify-center px-8 shrink-0 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
+          <h2 className="text-xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
+            Your Scriptural <span className="text-gold italic">Anchor</span>
+          </h2>
+        </div>
+
+        <div className="p-10 flex-grow overflow-hidden flex flex-col">
+          <div className="mb-8 text-center">
+            <h3 className="text-2xl font-serif font-bold text-purple uppercase tracking-widest">A Scriptural Lifeline</h3>
+            <p className="text-pink font-serif italic text-base">20 Verses for Every Season</p>
+            <div className="w-20 h-1 bg-gold mx-auto mt-2" />
+          </div>
+
+          <div className="grid grid-cols-2 gap-x-12 gap-y-4 flex-grow overflow-hidden">
+            {[
+              { c: "When afraid", r: "Isaiah 43:1-5" },
+              { c: "When anxious", r: "Philippians 4:6-7" },
+              { c: "When lonely", r: "Psalm 23" },
+              { c: "When discouraged", r: "Joshua 1:9" },
+              { c: "When weak", r: "2 Corinthians 12:9" },
+              { c: "When needing peace", r: "John 14:27" },
+              { c: "When grieving", r: "Matthew 5:4" },
+              { c: "When tempted", r: "1 Corinthians 10:13" },
+              { c: "When needing guidance", r: "Proverbs 3:5-6" },
+              { c: "When tired", r: "Matthew 11:28-30" },
+              { c: "When feeling guilty", r: "1 John 1:9" },
+              { c: "When in trouble", r: "Psalm 46:1" },
+              { c: "When facing doubt", r: "Hebrews 11:1" },
+              { c: "When needing strength", r: "Philippians 4:13" },
+              { c: "When feeling unloved", r: "Romans 8:38-39" },
+              { c: "When worried about the future", r: "Jeremiah 29:11" },
+              { c: "When angry", r: "Ephesians 4:26-27" },
+              { c: "When needing wisdom", r: "James 1:5" },
+              { c: "When feeling defeated", r: "Romans 8:37" },
+              { c: "When needing hope", r: "Romans 15:13" }
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-2 border-b border-stone-100 pb-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-gold mt-1.5 shrink-0" />
+                <div className="text-[14px]">
+                  <span className="font-bold text-pink block leading-tight">{item.c}</span>
+                  <span className="text-purple italic">{item.r}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 space-y-6">
+            <div className="bg-pink/5 p-6 rounded-2xl border border-pink/10 shadow-inner">
+              <p className="text-[14px] text-slate-700 leading-relaxed text-center italic">
+                "Let these words be your anchor. No matter the height of the waves or the strength of the wind, the Word of God remains unshakable. Carry these promises in your heart, and you will find that the storm doesn't have the final say—He does."
+              </p>
+            </div>
+            <div className="text-right">
+              <p className="text-2xl font-serif italic text-purple" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                Irene Ogbeide
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-auto py-4 px-8 border-t border-stone-100 flex justify-center shrink-0">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Faith & Inspiration
+          </p>
+        </div>
+      </div>
+
+      {/* 21. Feature Article */}
       <Page>
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-4">
