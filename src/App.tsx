@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Download, Mail, Phone, Globe, Award, Users, BookOpen, Camera, Briefcase, Quote } from 'lucide-react';
+import { Download, Mail, Phone, Globe, Award, Users, BookOpen, Camera, Briefcase, Quote, Brain, Eye, Wind, Activity, Filter, Droplets, Heart, Thermometer } from 'lucide-react';
 
 const LOGO_URL = "https://i.ibb.co/DHC0kvzR/1000773566-removebg-preview-1.png";
 
@@ -14,21 +14,21 @@ const Header = () => (
   </div>
 );
 
-const Footer = () => (
+const Footer = ({ text = "UDOSA 04 | Celebrating 20 Years" }: { text?: string }) => (
   <div className="mt-auto py-4 px-8 border-t border-stone-100 flex justify-center shrink-0">
     <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
-      UDOSA 04 | Celebrating 20 Years
+      {text}
     </p>
   </div>
 );
 
-const Page = ({ children, className = "", showHeader = true, showFooter = true }: { children: React.ReactNode; className?: string; showHeader?: boolean; showFooter?: boolean }) => (
+const Page = ({ children, className = "", showHeader = true, showFooter = true, footerText }: { children: React.ReactNode; className?: string; showHeader?: boolean; showFooter?: boolean; footerText?: string }) => (
   <div className="page-a4">
     {showHeader && <Header />}
     <div className={`flex-grow flex flex-col p-12 ${className}`}>
       {children}
     </div>
-    {showFooter && <Footer />}
+    {showFooter && <Footer text={footerText} />}
   </div>
 );
 
@@ -77,10 +77,11 @@ export default function App() {
             { title: "The Chairman's Address", page: "03", icon: <Award className="w-5 h-5" /> },
             { title: "Editor's Perspective", page: "04", icon: <BookOpen className="w-5 h-5" /> },
             { title: "The Importance and Benefits of Karate", page: "05", icon: <Award className="w-5 h-5" /> },
-            { title: "Two Decades: A Retrospective", page: "08", icon: <Users className="w-5 h-5" /> },
-            { title: "Class of 2004 Directory", page: "09", icon: <Users className="w-5 h-5" /> },
-            { title: "Throwback Gallery", page: "10", icon: <Camera className="w-5 h-5" /> },
-            { title: "Alumni Business Directory", page: "11", icon: <Briefcase className="w-5 h-5" /> },
+            { title: "The Dark Side of Processed Sugar", page: "08", icon: <Activity className="w-5 h-5" /> },
+            { title: "Two Decades: A Retrospective", page: "12", icon: <Users className="w-5 h-5" /> },
+            { title: "Class of 2004 Directory", page: "13", icon: <Users className="w-5 h-5" /> },
+            { title: "Throwback Gallery", page: "14", icon: <Camera className="w-5 h-5" /> },
+            { title: "Alumni Business Directory", page: "15", icon: <Briefcase className="w-5 h-5" /> },
           ].map((item, i) => (
             <div key={i} className="flex items-center group cursor-default">
               <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -229,18 +230,10 @@ export default function App() {
           </div>
 
           <div className="flex-grow">
-            <div className="columns-3 gap-8 text-slate-700 leading-relaxed text-[14px] font-serif text-justify">
+            <div className="columns-2 gap-8 text-slate-700 leading-relaxed text-[14px] font-serif text-justify">
               <p className="mb-4">
                 <span className="text-6xl font-black text-purple float-left mr-3 leading-[0.8] mt-2">A</span>s a second-degree black belt with the Nigeria Karate Association (NKA) and Shotokan Karate International (SKI), I’ve spent years training in the art of karate, witnessing its transformative power firsthand. Karate is more than just a martial art—it’s a way of life that builds strength, sharpens the mind, and fosters a sense of community. Whether you’re a beginner stepping onto the dojo floor for the first time or a seasoned practitioner, the benefits of karate ripple through every aspect of your existence.
               </p>
-
-              <div className="[column-span:all] my-8 py-8 border-y-2 border-pink/20 bg-pink/5 text-center relative">
-                <Quote className="w-8 h-8 text-pink mb-3 mx-auto opacity-30" />
-                <p className="text-3xl font-serif italic text-pink leading-relaxed max-w-2xl mx-auto">
-                  "Karate is more than just a martial art—it’s a way of life"
-                </p>
-              </div>
-
               <p className="mb-4">
                 Let me share why this ancient discipline remains so vital today. Physical Fitness and Self-Defence: Karate is a full-body workout that hones strength, flexibility, and endurance. Every punch, kick, and block engage your muscles, improves coordination, and boosts cardiovascular health. Training sessions often combine high-intensity drills with precise techniques, making it an excellent way to stay fit while learning practical skills.
               </p>
@@ -249,24 +242,36 @@ export default function App() {
               </p>
             </div>
           </div>
+
+          <div className="mt-auto py-8 border-y-2 border-pink/20 bg-pink/5 text-center relative">
+            <Quote className="w-8 h-8 text-pink mb-3 mx-auto opacity-30" />
+            <p className="text-2xl font-serif italic text-pink leading-relaxed max-w-2xl mx-auto">
+              "Karate is more than just a martial art—it’s a way of life"
+            </p>
+          </div>
         </div>
       </Page>
 
       {/* 6. Karate Article - Page 2 */}
       <Page>
         <div className="flex flex-col h-full">
-          <div className="flex gap-8 mb-8">
-            <div className="w-1/2 h-40 bg-slate-100 rounded-2xl overflow-hidden shadow-xl transform -rotate-1 border-4 border-white">
+          <div className="mb-8">
+            <h3 className="text-3xl font-serif font-bold text-purple mb-2">The Discipline of Karate (Continued)</h3>
+            <div className="w-20 h-1 bg-gold" />
+          </div>
+
+          <div className="flex gap-8 mb-10">
+            <div className="w-1/2 h-56 bg-slate-100 rounded-2xl overflow-hidden border-2 border-gold shadow-[0_0_20px_rgba(219,39,119,0.2)]">
               <img 
-                src="https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?auto=format&fit=crop&q=80&w=600" 
+                src="https://i.ibb.co/BKcZxpf3/images-48.jpg" 
                 alt="Karate Action 1" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="w-1/2 h-40 bg-slate-100 rounded-2xl overflow-hidden shadow-xl transform rotate-1 border-4 border-white mt-4">
+            <div className="w-1/2 h-56 bg-slate-100 rounded-2xl overflow-hidden border-2 border-gold shadow-[0_0_20px_rgba(219,39,119,0.2)]">
               <img 
-                src="https://images.unsplash.com/photo-1509564324749-4739763d000c?auto=format&fit=crop&q=80&w=600" 
+                src="https://i.ibb.co/Xq8FYw6/download-62.jpg" 
                 alt="Karate Action 2" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
@@ -274,21 +279,20 @@ export default function App() {
             </div>
           </div>
 
-          <div className="columns-3 gap-8 text-slate-700 leading-relaxed text-[14px] font-serif text-justify flex-grow">
-            <p className="mb-4">
-              Mental Discipline and Resilience: Karate is as much a mental journey as it is a physical one. The dojo demands focus, patience, and perseverance. Learning complex techniques and memorizing katas sharpens your memory and concentration. As a black belt, I’ve learned that progress in karate comes through consistent effort and the humility to embrace mistakes as opportunities to grow.
+          <div className="columns-2 gap-8 text-slate-700 leading-relaxed text-[14px] font-serif text-justify flex-grow">
+            <p className="mb-6">
+              <span className="font-bold text-purple uppercase tracking-wider block mb-2">Mental Discipline and Resilience:</span>
+              Karate is as much a mental journey as it is a physical one. The dojo demands focus, patience, and perseverance. Learning complex techniques and memorizing katas sharpens your memory and concentration. As a black belt, I’ve learned that progress in karate comes through consistent effort and the humility to embrace mistakes as opportunities to grow.
             </p>
-            <p className="mb-4">
+            <p className="mb-6">
               The discipline cultivated in karate extends far beyond the dojo. It helps you tackle challenges in everyday life—whether it’s staying calm under pressure at work or pushing through personal setbacks. Karate instills a mindset of resilience, teaching you to rise after every fall, both literally and figuratively.
             </p>
-            <p className="mb-4">
-              Emotional Balance and Confidence: One of karate’s greatest gifts is emotional strength. Training provides a healthy outlet for stress, channeling energy into focused movement. The rhythmic flow of practicing techniques can feel meditative, helping you find balance in a hectic world. For me, stepping into the dojo is like hitting a reset button—it clears my mind and restores my sense of purpose.
+            <p className="mb-6">
+              <span className="font-bold text-purple uppercase tracking-wider block mb-2">Emotional Balance and Confidence:</span>
+              One of karate’s greatest gifts is emotional strength. Training provides a healthy outlet for stress, channeling energy into focused movement. The rhythmic flow of practicing techniques can feel meditative, helping you find balance in a hectic world. For me, stepping into the dojo is like hitting a reset button—it clears my mind and restores my sense of purpose.
             </p>
-            <p className="mb-4">
+            <p className="mb-6">
               Karate also builds unshakable confidence. As you progress through belt ranks, you gain a sense of achievement that boosts self-esteem. This isn’t about arrogance but about knowing your worth and capabilities. I’ve seen shy beginners transform into poised, self-assured individuals, carrying themselves with quiet strength.
-            </p>
-            <p className="mb-4">
-              Community and Respect: Karate fosters a deep sense of camaraderie. In the dojo, we train as a family, supporting each other’s growth. As an NKA and SKI practitioner, I’ve had the privilege of connecting with martial artists across Nigeria and beyond, united by a shared passion. This sense of belonging is especially meaningful in a world that can sometimes feel divided.
             </p>
           </div>
         </div>
@@ -297,16 +301,27 @@ export default function App() {
       {/* 7. Karate Article - Page 3 */}
       <Page>
         <div className="flex flex-col h-full">
-          <div className="columns-3 gap-8 text-slate-700 leading-relaxed text-[14px] font-serif text-justify flex-grow">
-            <p className="mb-4">
+          <div className="columns-2 gap-8 text-slate-700 leading-relaxed text-[14px] font-serif text-justify flex-grow">
+            <p className="mb-6">
+              <span className="font-bold text-purple uppercase tracking-wider block mb-2">Community and Respect:</span>
+              Karate fosters a deep sense of camaraderie. In the dojo, we train as a family, supporting each other’s growth. As an NKA and SKI practitioner, I’ve had the privilege of connecting with martial artists across Nigeria and beyond, united by a shared passion. This sense of belonging is especially meaningful in a world that can sometimes feel divided.
+            </p>
+            <p className="mb-6">
               Respect is at the core of karate’s philosophy. From bowing to your sensei to honouring your training partners, every interaction is steeped in mutual respect. These values shape you into a better person—someone who listens, empathizes, and uplifts others. For young people especially, karate provides a moral compass, guiding them toward integrity and compassion.
             </p>
-            <p className="mb-4">
-              A Lifelong Journey: Karate is not just for the young or the athletic—it’s for everyone. Whether you’re a child learning discipline, an adult seeking balance, or a senior staying active, karate adapts to your needs. As a second-degree black belt, I’m still learning, still growing. Each training session brings new insights, reminding me that the path of karate is a lifelong journey of self-improvement.
+            <p className="mb-6">
+              <span className="font-bold text-purple uppercase tracking-wider block mb-2">A Lifelong Journey:</span>
+              Karate is not just for the young or the athletic—it’s for everyone. Whether you’re a child learning discipline, an adult seeking balance, or a senior staying active, karate adapts to your needs. As a second-degree black belt, I’m still learning, still growing. Each training session brings new insights, reminding me that the path of karate is a lifelong journey of self-improvement.
             </p>
-            <p className="mb-4">
+            <p className="mb-6">
               In a world that often feels chaotic, karate offers structure, purpose, and peace. It strengthens your body, sharpens your mind, and enriches your spirit. If you’re considering starting or continuing your karate journey, know this: the dojo is a place where you’ll discover not just the art of fighting, but the art of living. So, step onto the mat. Tie your belt. And begin. The benefits of karate are waiting for you.
             </p>
+          </div>
+
+          {/* Signature Space */}
+          <div className="my-8 flex flex-col items-end">
+            <div className="w-48 h-px bg-slate-200 mb-2" />
+            <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Author's Signature</p>
           </div>
 
           {/* Meet the Author Box */}
@@ -331,7 +346,203 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 8. Feature Article */}
+      {/* 8. Medical Feature - Page 1 */}
+      <Page footerText="UDOSA 04 | Health & Wellbeing Section">
+        <div className="flex flex-col h-full">
+          <div className="mb-8">
+            <h1 className="text-5xl font-serif font-black text-purple leading-tight mb-4">
+              The Dark Side of Overindulgence: <br />
+              <span className="text-pink">Processed Sugar</span>
+            </h1>
+            <div className="bg-gold text-white px-6 py-3 inline-block rounded-r-full shadow-lg">
+              <p className="text-sm font-bold tracking-widest uppercase">
+                Dr. Irene O. Oseghale, B. Pharm, PhD (University of Benin)
+              </p>
+            </div>
+          </div>
+
+          <div className="w-full h-80 bg-slate-100 rounded-[3rem] overflow-hidden mb-10 shadow-2xl relative">
+            <img 
+              src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=1000" 
+              alt="Processed Sugar Hero" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-purple/40 to-transparent" />
+          </div>
+
+          <div className="columns-2 gap-12 text-slate-700 leading-relaxed text-[15px] font-serif text-justify flex-grow">
+            <p className="mb-4 drop-cap">
+              Food may be referred to as any substance or material consisting mainly of protein, carbohydrate, and fat which are ingested for nutritional support, energy, maintenance of life, or growth enhancement. It could be formulated, processed or eaten raw. There is a popular saying that "food is medicine". This is not only true because of the phytoconstituents contained in some foods which have medicinal properties but also true when the right types of food are combined in the right proportion in any diet.
+            </p>
+            <p className="mb-4">
+              Otherwise, food can become poison instead of medicine. Remember the old saying that you are what you eat? This is true because the kind of food eaten can either make a person sick or healthy. An individual becomes sick when a large proportion of their diet contains processed sugars. Some food containing high levels of processed sugar include sugary drinks such as energy drinks, some carbonated drinks, cakes, pies (meat or chicken), biscuits, scones, doughnuts, sandwiches, sweets, chocolate bars, chocolate tea, sweetened teas, sweetened yogurt, sweetened popcorn, salad dressings, ketchup and so many others too numerous to mention.
+            </p>
+            <p className="mb-4">
+              Resent trends have greatly influenced lifestyle and diet choices especially among children and young adults. The increasing rate of consumption of processed sugars is a serious public health issue because it has been linked to various disease conditions. The concern is no longer about brushing the teeth after eating food rich in processed sugar to avoid tooth decay and regular visits to the dentist but about the damage processed sugars are causing to internal body organs. Highlighted in this article are few of the effects of overindulgence in processed sugar on different organs of the body.
+            </p>
+          </div>
+        </div>
+      </Page>
+
+      {/* 9. Medical Feature - Page 2 */}
+      <Page footerText="UDOSA 04 | Health & Wellbeing Section">
+        <div className="flex flex-col h-full space-y-12">
+          {/* Brain Section */}
+          <div className="flex gap-8 items-start">
+            <div className="w-24 h-24 bg-purple/10 rounded-3xl flex items-center justify-center shrink-0 shadow-inner">
+              <Brain className="w-12 h-12 text-purple" />
+            </div>
+            <div className="flex-grow">
+              <h3 className="text-2xl font-serif font-bold text-pink mb-3 uppercase tracking-wider">The Brain</h3>
+              <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
+                The brain is a complex organ which forms the centre part of the central nervous system in the body. It contains numerous nerves and is sometimes referred to as the seat of intelligence because it controls thought processes, movement, speech, memory, emotion, sensation, vision, behaviour, breathing, temperature regulation and all processes involved in the regulation of the body. Excessive consumption of processed sugars can lead to sugar addiction due to overstimulation of dopamine neurotransmitter in the brain reward centre hence eliciting compulsive behaviours and cravings.
+              </p>
+            </div>
+          </div>
+
+          {/* Eyes Section */}
+          <div className="flex gap-8 items-start">
+            <div className="w-24 h-24 bg-purple/10 rounded-3xl flex items-center justify-center shrink-0 shadow-inner">
+              <Eye className="w-12 h-12 text-purple" />
+            </div>
+            <div className="flex-grow">
+              <h3 className="text-2xl font-serif font-bold text-pink mb-3 uppercase tracking-wider">The Eyes</h3>
+              <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
+                The eye is a sensory organ responsible for visual perception. Excessive consumption of processed sugars can cause build-up of sugar in blood vessels of the retina leading to a disorder known as diabetic retinopathy which may lead to blindness without timely intervention. High level of sugar in the blood may also cause the lens of the eyes to become cloudy resulting in vision blur which may escalate into a condition known as cataract. High sugar levels have also been linked to cases of glaucoma and macular degeneration.
+              </p>
+            </div>
+          </div>
+
+          {/* Lungs Section */}
+          <div className="flex gap-8 items-start">
+            <div className="w-24 h-24 bg-purple/10 rounded-3xl flex items-center justify-center shrink-0 shadow-inner">
+              <Wind className="w-12 h-12 text-purple" />
+            </div>
+            <div className="flex-grow">
+              <h3 className="text-2xl font-serif font-bold text-pink mb-3 uppercase tracking-wider">The Lungs</h3>
+              <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
+                The respiratory system's primary organs are the lungs. Excessive consumption of diet rich in processed sugar may elicit the production of free radicals which react aggressively with lung tissues eventually leading to damage. Oxidative stress caused by these free radicals also increases the rate of chronic inflammation which in turn increases cases of chronic obstructive pulmonary diseases (COPD) and bronchitis. The oxidative stress also aggravates crisis in asthmatic patients.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-auto bg-gold/10 p-6 rounded-3xl border-l-4 border-gold">
+            <p className="text-gold font-bold uppercase tracking-widest text-xs mb-2">Did you know?</p>
+            <p className="text-slate-800 font-serif italic text-sm">
+              Sugar can be as addictive as some drugs because it triggers the same reward centers in the brain, leading to a cycle of cravings and overconsumption.
+            </p>
+          </div>
+        </div>
+      </Page>
+
+      {/* 10. Medical Feature - Page 3 */}
+      <Page footerText="UDOSA 04 | Health & Wellbeing Section">
+        <div className="flex flex-col h-full">
+          <div className="mb-10 text-center">
+            <h2 className="text-4xl font-serif font-black text-purple uppercase tracking-tighter">Vital Organs <span className="text-pink">& Metabolism</span></h2>
+            <div className="w-32 h-1 bg-gold mx-auto mt-4" />
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 flex-grow">
+            {/* Liver */}
+            <div className="bg-purple/5 backdrop-blur-md border border-purple/10 p-8 rounded-[2rem] relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Activity className="w-24 h-24 text-purple" />
+              </div>
+              <h3 className="text-2xl font-serif font-bold text-pink mb-4 flex items-center gap-3">
+                <span className="w-10 h-10 bg-pink text-white rounded-full flex items-center justify-center text-sm">01</span>
+                The Liver
+              </h3>
+              <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify relative z-10">
+                The liver converts excess sugar in the blood into glycogen or fats which can be stored in the liver. The fat produced by the liver can then be stored in adipose tissues leading to excessive weight gain which may proceed to obesity if left unchecked. Non-alcoholic fatty liver disease, which is triggered by accumulated lipids in the liver, may advance into Non-Alcoholic Steatohepatitis if treatment is not commenced immediately.
+              </p>
+            </div>
+
+            {/* Pancreas */}
+            <div className="bg-purple/5 backdrop-blur-md border border-purple/10 p-8 rounded-[2rem] relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Thermometer className="w-24 h-24 text-purple" />
+              </div>
+              <h3 className="text-2xl font-serif font-bold text-pink mb-4 flex items-center gap-3">
+                <span className="w-10 h-10 bg-pink text-white rounded-full flex items-center justify-center text-sm">02</span>
+                The Pancreas
+              </h3>
+              <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify relative z-10">
+                Overindulgence in diet containing processed sugar causes stress on the pancreas because the organ is forced to work excessively to generate more insulin to mop up the excess sugar load in the blood. This action eventually leads to reduced pancreatic efficiency. If the situation goes unchecked, the pancreas may become inflamed leading to a condition called pancreatitis which may eventually damage the pancreas.
+              </p>
+            </div>
+
+            {/* Kidneys */}
+            <div className="bg-purple/5 backdrop-blur-md border border-purple/10 p-8 rounded-[2rem] relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Filter className="w-24 h-24 text-purple" />
+              </div>
+              <h3 className="text-2xl font-serif font-bold text-pink mb-4 flex items-center gap-3">
+                <span className="w-10 h-10 bg-pink text-white rounded-full flex items-center justify-center text-sm">03</span>
+                The Kidneys
+              </h3>
+              <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify relative z-10">
+                The kidneys are responsible for filtering the blood, removing toxic waste and excess fluid. Excess sugar in the blood causes damage to the tiny blood vessels in the kidneys referred to as glomeruli which are responsible for filtering toxic waste. This build-up may in turn lead to kidney failure if not resolved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Page>
+
+      {/* 11. Medical Feature - Page 4 */}
+      <Page footerText="UDOSA 04 | Health & Wellbeing Section">
+        <div className="flex flex-col h-full">
+          <div className="columns-2 gap-10 text-slate-700 leading-relaxed text-[14px] font-serif text-justify mb-10">
+            <div className="mb-8">
+              <h3 className="text-2xl font-serif font-bold text-pink mb-4 flex items-center gap-3">
+                <Droplets className="w-6 h-6 text-pink" />
+                The Skin
+              </h3>
+              <p>
+                The skin is believed to be the largest organ in the body. Excess sugar in the blood can expediate the ageing process and make the skin appear thick, dull, discoloured, and wrinkled. The presence of advanced glycation end products (AGEs) causes the adverse skin impact. When AGEs accumulate in the skin, they cause formation of wrinkles by stiffening collagen and elastin which in turn results in decreased skin elasticity.
+              </p>
+            </div>
+
+            <div className="mb-8">
+              <h3 className="text-2xl font-serif font-bold text-pink mb-4 flex items-center gap-3">
+                <Heart className="w-6 h-6 text-pink" />
+                Reproductive Organs
+              </h3>
+              <p>
+                The reproductive organs are responsible for procreation. Overindulgence in processed sugar may cause blockade or damage to the nerves required for normal erectile functions in males. In females, high blood sugar levels have been linked to abnormal levels of luteinizing hormone (LH), which play a role in egg maturation and ovulation. It has also been linked to irregular menstrual cycles and polycystic ovarian syndrome.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-pink/5 border-2 border-pink p-8 rounded-[2.5rem] mb-12 shadow-xl relative">
+            <Quote className="absolute -top-4 -left-4 w-12 h-12 text-pink bg-white rounded-full p-2 shadow-md" />
+            <h3 className="text-xl font-serif font-bold text-purple mb-4">Conclusion</h3>
+            <p className="text-[15px] text-slate-800 leading-relaxed font-serif italic">
+              "In conclusion, it is important to understand that as one gets older, diet choices need to be intentional. The next time one is tempted to overindulge in diets and snacks laden with processed sugars, it is essential to remember these dark sides and make healthy choices. Young children should be taught early about the importance of consuming healthy foods because overindulging in over processed sugars will not only cause addiction, but can also reduce brain activity and cognitive functions leading to poor academic performance."
+            </p>
+          </div>
+
+          <div className="mt-auto p-8 bg-slate-50 rounded-[3rem] border border-slate-200 flex items-center gap-8">
+            <div className="w-24 h-24 rounded-full border-4 border-gold p-1 shrink-0 shadow-lg">
+              <div className="w-full h-full rounded-full bg-purple/10 flex items-center justify-center overflow-hidden">
+                <Users className="w-12 h-12 text-purple opacity-40" />
+              </div>
+            </div>
+            <div>
+              <h4 className="text-xs font-bold text-gold uppercase tracking-[0.3em] mb-1">About the Author</h4>
+              <h3 className="text-xl font-serif font-bold text-purple mb-2">Dr. Irene O. Oseghale</h3>
+              <p className="text-[13px] text-slate-600 leading-relaxed font-serif">
+                B. Pharm, Pharm D, MSc, PhD. MPSN, MCPAN. <br />
+                Department of Pharmaceutical Chemistry, Faculty of Pharmacy, <br />
+                <span className="font-bold text-purple">University of Benin</span>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Page>
+
+      {/* 12. Feature Article */}
       <Page>
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-4">
