@@ -168,10 +168,11 @@ export default function App() {
             { title: "UDOSA 04 Careers", page: "16", icon: <Briefcase className="w-5 h-5" /> },
             { title: "The Power of Connection", page: "17", icon: <Heart className="w-5 h-5" /> },
             { title: "Finding Peace Amidst Storms", page: "19", icon: <Sun className="w-5 h-5" /> },
-            { title: "Two Decades: A Retrospective", page: "21", icon: <Users className="w-5 h-5" /> },
-            { title: "Class of 2004 Directory", page: "22", icon: <Users className="w-5 h-5" /> },
-            { title: "Throwback Gallery", page: "23", icon: <Camera className="w-5 h-5" /> },
-            { title: "Alumni Business Directory", page: "24", icon: <Briefcase className="w-5 h-5" /> },
+            { title: "Unlock Your Earning Potential", page: "21", icon: <Briefcase className="w-5 h-5" /> },
+            { title: "Two Decades: A Retrospective", page: "23", icon: <Users className="w-5 h-5" /> },
+            { title: "Class of 2004 Directory", page: "24", icon: <Users className="w-5 h-5" /> },
+            { title: "Throwback Gallery", page: "25", icon: <Camera className="w-5 h-5" /> },
+            { title: "Alumni Business Directory", page: "26", icon: <Briefcase className="w-5 h-5" /> },
           ].map((item, i) => (
             <div key={i} className="flex items-center group cursor-default">
               <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -1119,7 +1120,221 @@ export default function App() {
         </div>
       </div>
 
-      {/* 21. Feature Article */}
+      {/* 21. Unlock Your Earning Potential - Page 21 */}
+      <div className="page-a4 overflow-hidden flex flex-col print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="bg-purple w-full h-24 flex items-center justify-center px-8 shrink-0 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
+          <img src={LOGO_URL} alt="UDOSA Logo" className="h-10 object-contain mr-6 relative z-10" referrerPolicy="no-referrer" />
+          <h2 className="text-2xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
+            Career & <span className="text-gold italic">Finance</span>
+          </h2>
+        </div>
+
+        <div className="p-10 flex-grow overflow-hidden flex flex-col">
+          <div className="mb-8">
+            <h2 className="text-5xl font-serif font-black leading-tight tracking-tighter text-purple uppercase">
+              Unlock Your <br /><span className="text-gold">Earning Potential</span>
+            </h2>
+            <div className="w-24 h-2 bg-pink mt-4" />
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 flex-grow">
+            <div className="space-y-4">
+              <p className="text-[14px] text-slate-700 leading-relaxed font-serif italic border-l-4 border-pink pl-4">
+                In today's competitive job market, maximizing your earning potential requires strategic planning, skill development, and a proactive approach. Whether you're just starting your career or looking to advance, here are key strategies to help you unlock your full earning potential.
+              </p>
+            </div>
+
+            <div className="w-full h-56 rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+              <img 
+                src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1000" 
+                alt="Professional Workspace" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+
+            <div className="space-y-6">
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl font-serif font-black text-gold">1</span>
+                  <h3 className="text-lg font-bold text-purple uppercase tracking-widest">Invest in Continuous Learning</h3>
+                </div>
+                <p className="text-[14px] text-slate-600 leading-relaxed">
+                  The job market is constantly evolving, and staying relevant means continuously upgrading your skills. Consider:
+                </p>
+                <ul className="grid grid-cols-1 gap-2 pl-10">
+                  <li className="flex items-center gap-2 text-[13px] text-slate-600">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                    <span className="font-bold text-pink">Professional Certifications:</span> Enhance your qualifications in your field.
+                  </li>
+                  <li className="flex items-center gap-2 text-[13px] text-slate-600">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                    <span className="font-bold text-pink">Online Courses:</span> Platforms like Coursera, Udemy, and LinkedIn Learning.
+                  </li>
+                  <li className="flex items-center gap-2 text-[13px] text-slate-600">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                    <span className="font-bold text-pink">Networking:</span> Attend industry conferences, workshops, and seminars.
+                  </li>
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl font-serif font-black text-gold">2</span>
+                  <h3 className="text-lg font-bold text-purple uppercase tracking-widest">Identify High-Demand Skills</h3>
+                </div>
+                <p className="text-[14px] text-slate-600 leading-relaxed">
+                  Focus on acquiring skills that are in high demand in your industry:
+                </p>
+                <ul className="grid grid-cols-1 gap-2 pl-10">
+                  <li className="flex items-center gap-2 text-[13px] text-slate-600">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                    <span className="font-bold text-pink">Technical Skills:</span> Coding, data analysis, digital marketing, or cybersecurity.
+                  </li>
+                  <li className="flex items-center gap-2 text-[13px] text-slate-600">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                    <span className="font-bold text-pink">Soft Skills:</span> Leadership, communication, problem-solving, and teamwork.
+                  </li>
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl font-serif font-black text-gold">3</span>
+                  <h3 className="text-lg font-bold text-purple uppercase tracking-widest">Negotiate Your Salary</h3>
+                </div>
+                <p className="text-[14px] text-slate-600 leading-relaxed">
+                  Don’t be afraid to negotiate your salary or rates. Research market rates and highlight your value.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-auto py-4 px-8 border-t border-stone-100 flex justify-center shrink-0">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Career & Finance
+          </p>
+        </div>
+      </div>
+
+      {/* 22. Maximize Your Growth - Page 22 */}
+      <div className="page-a4 overflow-hidden flex flex-col print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="bg-purple w-full h-20 flex items-center justify-center px-8 shrink-0 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
+          <h2 className="text-xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
+            Maximize Your <span className="text-gold italic">Growth</span>
+          </h2>
+        </div>
+
+        <div className="p-10 flex-grow overflow-hidden flex flex-col">
+          <div className="grid grid-cols-2 gap-6 flex-grow">
+            {/* Strategy Card 4 */}
+            <div className="bg-purple/5 p-6 rounded-2xl border border-gold/30 shadow-sm flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl font-serif font-black text-gold">4</span>
+                <h3 className="text-sm font-bold text-purple uppercase tracking-widest">Explore Side Hustles</h3>
+              </div>
+              <p className="text-[13px] text-slate-600 leading-relaxed mb-4">
+                Supplement your income with side hustles that align with your skills:
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-[12px] text-slate-500">
+                  <div className="w-1 h-1 rounded-full bg-pink" />
+                  Freelancing on Upwork or Fiverr.
+                </li>
+                <li className="flex items-center gap-2 text-[12px] text-slate-500">
+                  <div className="w-1 h-1 rounded-full bg-pink" />
+                  Consulting using your expertise.
+                </li>
+              </ul>
+            </div>
+
+            {/* Strategy Card 5 */}
+            <div className="bg-purple/5 p-6 rounded-2xl border border-gold/30 shadow-sm flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl font-serif font-black text-gold">5</span>
+                <h3 className="text-sm font-bold text-purple uppercase tracking-widest">Build a Network</h3>
+              </div>
+              <p className="text-[13px] text-slate-600 leading-relaxed mb-4">
+                Networking can open doors to new opportunities:
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-[12px] text-slate-500">
+                  <div className="w-1 h-1 rounded-full bg-pink" />
+                  Optimize your LinkedIn profile.
+                </li>
+                <li className="flex items-center gap-2 text-[12px] text-slate-500">
+                  <div className="w-1 h-1 rounded-full bg-pink" />
+                  Seek mentors for career guidance.
+                </li>
+              </ul>
+            </div>
+
+            {/* Strategy Card 6 */}
+            <div className="bg-purple/5 p-6 rounded-2xl border border-gold/30 shadow-sm flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl font-serif font-black text-gold">6</span>
+                <h3 className="text-sm font-bold text-purple uppercase tracking-widest">Set Career Goals</h3>
+              </div>
+              <p className="text-[13px] text-slate-600 leading-relaxed mb-4">
+                Define your career goals and create a plan to achieve them:
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-[12px] text-slate-500">
+                  <div className="w-1 h-1 rounded-full bg-pink" />
+                  Focus on short-term immediate steps.
+                </li>
+                <li className="flex items-center gap-2 text-[12px] text-slate-500">
+                  <div className="w-1 h-1 rounded-full bg-pink" />
+                  Plan for future long-term roles.
+                </li>
+              </ul>
+            </div>
+
+            {/* Strategy Card 7 */}
+            <div className="bg-purple/5 p-6 rounded-2xl border border-gold/30 shadow-sm flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl font-serif font-black text-gold">7</span>
+                <h3 className="text-sm font-bold text-purple uppercase tracking-widest">Online Presence</h3>
+              </div>
+              <p className="text-[13px] text-slate-600 leading-relaxed mb-4">
+                A strong online presence can attract opportunities:
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-[12px] text-slate-500">
+                  <div className="w-1 h-1 rounded-full bg-pink" />
+                  Showcase work on a personal website.
+                </li>
+                <li className="flex items-center gap-2 text-[12px] text-slate-500">
+                  <div className="w-1 h-1 rounded-full bg-pink" />
+                  Develop a professional personal brand.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Conclusion Box */}
+          <div className="mt-8">
+            <div className="bg-pink p-8 rounded-2xl shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl" />
+              <h3 className="text-white font-serif font-bold text-xl uppercase tracking-widest mb-3 relative z-10">Conclusion</h3>
+              <p className="text-white text-[14px] leading-relaxed relative z-10">
+                Unlocking your earning potential requires a combination of skill development, strategic planning, and proactive efforts. By investing in yourself, identifying high-demand skills, negotiating effectively, and building a strong network, you can maximize your career growth and financial success. Start today, and watch your earning potential soar.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-auto py-4 px-8 border-t border-stone-100 flex justify-center shrink-0">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Career & Finance
+          </p>
+        </div>
+      </div>
+
+      {/* 23. Feature Article */}
       <Page>
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-4">
@@ -1173,7 +1388,7 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 9. Class Directory */}
+      {/* 24. Class Directory */}
       <Page className="bg-purple text-white">
         <div className="mb-12 flex justify-between items-start">
           <div>
@@ -1199,7 +1414,7 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 10. Throwback Gallery */}
+      {/* 25. Throwback Gallery */}
       <Page>
         <div className="mb-12 flex justify-between items-end border-b-4 border-purple pb-6">
           <div>
@@ -1237,7 +1452,7 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 11. Business Showcase */}
+      {/* 26. Business Showcase */}
       <Page>
         <div className="mb-16 text-center">
           <h2 className="text-6xl font-serif font-black text-purple mb-4">Business Directory</h2>
