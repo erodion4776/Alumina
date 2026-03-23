@@ -1031,14 +1031,13 @@ export default function App() {
               </p>
             </div>
 
-            <div className="w-full h-48 rounded-2xl overflow-hidden shadow-2xl border-4 border-white relative">
+            <div className="w-full h-56 rounded-2xl overflow-hidden shadow-lg border-2 border-gold relative mx-auto">
               <img 
-                src="https://images.unsplash.com/photo-1499209974431-9dac3adaf471?q=80&w=1000" 
+                src="https://i.ibb.co/fdGQJ2mh/images-49.jpg" 
                 alt="Peaceful Light" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-purple/40 to-transparent" />
             </div>
           </div>
         </div>
@@ -1066,7 +1065,7 @@ export default function App() {
             <div className="w-20 h-1 bg-gold mx-auto mt-2" />
           </div>
 
-          <div className="grid grid-cols-2 gap-x-12 gap-y-4 flex-grow overflow-hidden">
+          <div className="grid grid-cols-2 gap-x-12 gap-y-3 flex-grow overflow-hidden">
             {[
               { c: "When afraid", r: "Isaiah 43:1-5" },
               { c: "When anxious", r: "Philippians 4:6-7" },
@@ -1089,11 +1088,11 @@ export default function App() {
               { c: "When feeling defeated", r: "Romans 8:37" },
               { c: "When needing hope", r: "Romans 15:13" }
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-2 border-b border-stone-100 pb-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-gold mt-1.5 shrink-0" />
-                <div className="text-[14px]">
-                  <span className="font-bold text-pink block leading-tight">{item.c}</span>
-                  <span className="text-purple italic">{item.r}</span>
+              <div key={i} className="flex items-start gap-3 border-b border-stone-100 pb-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-gold mt-2 shrink-0" />
+                <div className="text-[14px] flex flex-col">
+                  <span className="font-bold text-pink uppercase tracking-tight leading-tight">{item.c}</span>
+                  <span className="text-purple italic font-medium">{item.r}</span>
                 </div>
               </div>
             ))}
