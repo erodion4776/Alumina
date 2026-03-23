@@ -503,34 +503,26 @@ export default function App() {
       </Page>
 
       {/* 12. Medical Feature - Page 5 (Skin, Reproductive, Conclusion, Bio) */}
-      <Page footerText="UDOSA 04 | Health & Wellbeing Section">
-        <div className="flex flex-col h-full">
-          <div className="grid grid-cols-2 gap-6 mb-6">
-            {/* Skin Section */}
-            <div className="bg-purple/5 p-5 rounded-[1.5rem] border border-purple/10 flex flex-col">
-              <h3 className="text-lg font-serif font-bold text-pink mb-2 flex items-center gap-2 shrink-0">
-                <Droplets className="w-5 h-5 text-pink" />
-                The Skin
-              </h3>
-              <p className="text-[13px] text-slate-700 leading-relaxed font-serif text-justify">
-                The skin is believed to be the largest organ in the body which serves as a protective barrier against external threats. It is involved in temperature regulation, vitamin D production and serves as a sensory as well as excretory organ for the body. Excess sugar in the blood can expediate the ageing process and make the skin appear dull, discoloured, and wrinkled. The presence of advanced glycation end products (AGEs) causes the adverse skin impact. The interaction between the reducing sugar’s carbonyl functional groups and the free amine functional groups in nucleic acids, lipids and proteins in the body results in AGEs. When AGEs accumulate in the skin, they cause formation of wrinkles by stiffening collagen and elastin which in turn results in decreased skin elasticity. Excess sugar in the blood may also cause slow wound healing processes and increase the skin’s susceptibility to infection as observed in diabetic patients.
-              </p>
-            </div>
-
-            {/* Reproductive Organs Section */}
-            <div className="bg-purple/5 p-5 rounded-[1.5rem] border border-purple/10 flex flex-col">
-              <h3 className="text-lg font-serif font-bold text-pink mb-2 flex items-center gap-2 shrink-0">
-                <Heart className="w-5 h-5 text-pink" />
-                The Reproductive Organs
-              </h3>
-              <p className="text-[13px] text-slate-700 leading-relaxed font-serif text-justify">
-                The reproductive organs are responsible for procreation in males and females. Overindulgence in processed sugar may cause blockade or damage to the nerves required for normal erectile functions in males typically leading to erectile dysfunction. Also, high levels of sugar in the blood have been linked to reduced sperm quality and motility hence leading to male infertility. In females, high blood sugar levels have been linked to abnormal levels of luteinizing hormone (LH), which play a role in egg maturation and ovulation. It has also been linked to irregular menstrual cycles and a condition known as polycystic ovarian syndrome, hence reducing fertility. Also, several studies have shown that females who overindulge in processed sugars have higher chances of giving birth to an autistic child than those who do not. This is because increased blood sugar levels during pregnancy may affect foetal brain development.
-              </p>
-            </div>
+      <Page footerText="UDOSA 04 | Health & Wellbeing Section" className="block overflow-hidden">
+        <div className="space-y-[20px]">
+          {/* Skin Section */}
+          <div className="bg-purple/5 p-6 rounded-[1.5rem] border border-purple/10">
+            <h3 className="text-xl font-serif font-bold text-purple mb-3">The Skin</h3>
+            <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
+              The skin is believed to be the largest organ in the body which serves as a protective barrier against external threats. It is involved in temperature regulation, vitamin D production and serves as a sensory as well as excretory organ for the body. Excess sugar in the blood can expediate the ageing process and make the skin appear dull, discoloured, and wrinkled. The presence of advanced glycation end products (AGEs) causes the adverse skin impact. The interaction between the reducing sugar’s carbonyl functional groups and the free amine functional groups in nucleic acids, lipids and proteins in the body results in AGEs. When AGEs accumulate in the skin, they cause formation of wrinkles by stiffening collagen and elastin which in turn results in decreased skin elasticity. Excess sugar in the blood may also cause slow wound healing processes and increase the skin’s susceptibility to infection as observed in diabetic patients.
+            </p>
           </div>
 
-          <div className="bg-pink text-white p-6 rounded-[2rem] mb-6 shadow-xl relative overflow-hidden">
-            <Quote className="absolute -top-4 -left-4 w-12 h-12 text-white/10" />
+          {/* Reproductive Organs Section */}
+          <div className="bg-purple/5 p-6 rounded-[1.5rem] border border-purple/10">
+            <h3 className="text-xl font-serif font-bold text-purple mb-3">The Reproductive Organs</h3>
+            <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
+              The reproductive organs are responsible for procreation in males and females. Overindulgence in processed sugar may cause blockade or damage to the nerves required for normal erectile functions in males typically leading to erectile dysfunction. Also, high levels of sugar in the blood have been linked to reduced sperm quality and motility hence leading to male infertility. In females, high blood sugar levels have been linked to abnormal levels of luteinizing hormone (LH), which play a role in egg maturation and ovulation. It has also been linked to irregular menstrual cycles and a condition known as polycystic ovarian syndrome, hence reducing fertility. Also, several studies have shown that females who overindulge in processed sugars have higher chances of giving birth to an autistic child than those who do not. This is because increased blood sugar levels during pregnancy may affect foetal brain development.
+            </p>
+          </div>
+
+          {/* Conclusion Box */}
+          <div className="bg-pink text-white p-6 rounded-[2rem] shadow-xl">
             <h3 className="text-xl font-serif font-bold mb-2">Conclusion</h3>
             <p className="text-[14px] leading-relaxed font-serif italic text-justify">
               In conclusion, it is important to understand that as one gets older, diet choices need to be intentional. The next time one is tempted to overindulge in diets and snacks laden with processed sugars, it is essential to remember these dark sides and make healthy choices. Young children should be taught early about the importance of consuming healthy foods because overindulging in over processed sugars will not only cause addiction, affect normal growth and development but can also reduce brain activity and cognitive functions leading to poor academic performance.
@@ -538,10 +530,9 @@ export default function App() {
           </div>
 
           {/* Author Bio Box */}
-          <div className="mt-auto p-6 bg-purple text-white rounded-[2.5rem] shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-pink/20 rounded-full -mr-16 -mt-16 blur-3xl" />
-            <div className="flex items-center gap-6 relative z-10">
-              <div className="w-20 h-20 rounded-full border-4 border-gold p-1 shrink-0 shadow-lg">
+          <div className="p-6 bg-purple text-white rounded-[2.5rem] shadow-2xl">
+            <div className="flex items-center gap-6">
+              <div className="w-20 h-20 rounded-full border-4 border-gold p-1 shrink-0">
                 <div className="w-full h-full rounded-full bg-white/10 flex items-center justify-center overflow-hidden">
                   <Users className="w-10 h-10 text-gold" />
                 </div>
