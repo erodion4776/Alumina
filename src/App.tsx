@@ -507,19 +507,19 @@ export default function App() {
         <div className="flex flex-col h-full">
           <div className="grid grid-cols-2 gap-6 mb-6">
             {/* Skin Section */}
-            <div className="bg-purple/5 p-5 rounded-[1.5rem] border border-purple/10">
-              <h3 className="text-lg font-serif font-bold text-pink mb-2 flex items-center gap-2">
+            <div className="bg-purple/5 p-5 rounded-[1.5rem] border border-purple/10 flex flex-col">
+              <h3 className="text-lg font-serif font-bold text-pink mb-2 flex items-center gap-2 shrink-0">
                 <Droplets className="w-5 h-5 text-pink" />
                 The Skin
               </h3>
               <p className="text-[13px] text-slate-700 leading-relaxed font-serif text-justify">
-                The skin is believed to be the largest organ in the body which serves as a protective barrier against external threats. It is involved in temperature regulation, vitamin D production and serves as a sensory as well as excretory organ for the body. Excess sugar in the blood can expediate the ageing process and make the skin appear thick, dull, discoloured, wrinkled and thick. The presence of advanced glycation end products (AGEs) causes the adverse skin impact. The interaction between the reducing sugar’s carbonyl functional groups and the free amine functional groups in nucleic acids, lipids and proteins in the body results in AGEs. When AGEs accumulate in the skin, they cause formation of wrinkles by stiffening collagen and elastin which in turn results in decreased skin elasticity. Excess sugar in the blood may also cause slow wound healing processes and increase the skin’s susceptibility to infection as observed in diabetic patients.
+                The skin is believed to be the largest organ in the body which serves as a protective barrier against external threats. It is involved in temperature regulation, vitamin D production and serves as a sensory as well as excretory organ for the body. Excess sugar in the blood can expediate the ageing process and make the skin appear dull, discoloured, and wrinkled. The presence of advanced glycation end products (AGEs) causes the adverse skin impact. The interaction between the reducing sugar’s carbonyl functional groups and the free amine functional groups in nucleic acids, lipids and proteins in the body results in AGEs. When AGEs accumulate in the skin, they cause formation of wrinkles by stiffening collagen and elastin which in turn results in decreased skin elasticity. Excess sugar in the blood may also cause slow wound healing processes and increase the skin’s susceptibility to infection as observed in diabetic patients.
               </p>
             </div>
 
             {/* Reproductive Organs Section */}
-            <div className="bg-purple/5 p-5 rounded-[1.5rem] border border-purple/10">
-              <h3 className="text-lg font-serif font-bold text-pink mb-2 flex items-center gap-2">
+            <div className="bg-purple/5 p-5 rounded-[1.5rem] border border-purple/10 flex flex-col">
+              <h3 className="text-lg font-serif font-bold text-pink mb-2 flex items-center gap-2 shrink-0">
                 <Heart className="w-5 h-5 text-pink" />
                 The Reproductive Organs
               </h3>
@@ -561,7 +561,7 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 12. Feature Article */}
+      {/* 13. Feature Article */}
       <Page>
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-4">
