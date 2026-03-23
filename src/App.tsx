@@ -76,9 +76,10 @@ export default function App() {
           {[
             { title: "The Chairman's Address", page: "03", icon: <Award className="w-5 h-5" /> },
             { title: "Editor's Perspective", page: "04", icon: <BookOpen className="w-5 h-5" /> },
-            { title: "Two Decades: A Retrospective", page: "05", icon: <Users className="w-5 h-5" /> },
-            { title: "Class of 2004 Directory", page: "07", icon: <Users className="w-5 h-5" /> },
-            { title: "Throwback Gallery", page: "08", icon: <Camera className="w-5 h-5" /> },
+            { title: "The Importance and Benefits of Karate", page: "05", icon: <Award className="w-5 h-5" /> },
+            { title: "Two Decades: A Retrospective", page: "07", icon: <Users className="w-5 h-5" /> },
+            { title: "Class of 2004 Directory", page: "08", icon: <Users className="w-5 h-5" /> },
+            { title: "Throwback Gallery", page: "09", icon: <Camera className="w-5 h-5" /> },
             { title: "Alumni Business Directory", page: "10", icon: <Briefcase className="w-5 h-5" /> },
           ].map((item, i) => (
             <div key={i} className="flex items-center group cursor-default">
@@ -203,7 +204,129 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 5. Feature Article */}
+      {/* 5. Karate Article - Page 1 */}
+      <Page>
+        <div className="flex flex-col h-full">
+          {/* Hero Image Placeholder */}
+          <div className="w-full h-80 bg-slate-100 rounded-3xl overflow-hidden mb-10 shadow-2xl relative">
+            <img 
+              src="https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&q=80&w=1200" 
+              alt="Karate Hero" 
+              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-purple/60 to-transparent" />
+            <div className="absolute bottom-8 left-8">
+              <p className="text-gold font-serif italic text-xl mb-2">Feature Article</p>
+              <h2 className="text-5xl font-serif font-black text-white uppercase tracking-tighter">The Art of <span className="text-pink italic">Discipline</span></h2>
+            </div>
+          </div>
+
+          <div className="mb-10">
+            <h2 className="text-6xl font-serif font-black text-purple leading-tight">
+              The Importance and <br />Benefits of <span className="text-pink italic">Karate</span>
+            </h2>
+            <p className="text-gold font-bold uppercase tracking-[0.3em] mt-4 text-sm">By Ehima Oziegbe, Second-Degree Black Belt, NKA, SKI</p>
+          </div>
+
+          <div className="relative flex-grow">
+            {/* Pull Quote */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full z-10 pointer-events-none">
+              <div className="max-w-md mx-auto text-center bg-white/90 backdrop-blur-sm p-10 border-y-2 border-pink/20">
+                <Quote className="w-8 h-8 text-pink mb-4 mx-auto opacity-40" />
+                <p className="text-3xl font-serif italic text-pink leading-relaxed">
+                  "Karate is more than just a martial art—it’s a way of life"
+                </p>
+              </div>
+            </div>
+
+            <div className="columns-3 gap-10 text-slate-700 leading-relaxed text-sm font-serif text-justify">
+              <p className="mb-4">
+                <span className="text-7xl font-black text-purple float-left mr-3 leading-[0.8] mt-2">A</span>s a second-degree black belt with the Nigeria Karate Association (NKA) and Shotokan Karate International (SKI), I’ve spent years training in the art of karate, witnessing its transformative power firsthand. Karate is more than just a martial art—it’s a way of life that builds strength, sharpens the mind, and fosters a sense of community. Whether you’re a beginner stepping onto the dojo floor for the first time or a seasoned practitioner, the benefits of karate ripple through every aspect of your existence.
+              </p>
+              <p className="mb-4">
+                Let me share why this ancient discipline remains so vital today. Physical Fitness and Self-Defence: Karate is a full-body workout that hones strength, flexibility, and endurance. Every punch, kick, and block engage your muscles, improves coordination, and boosts cardiovascular health. Training sessions often combine high-intensity drills with precise techniques, making it an excellent way to stay fit while learning practical skills.
+              </p>
+              <p className="mb-4">
+                Beyond fitness, karate equips you with the ability to protect yourself. As someone who has spent countless hours perfecting katas and sparring, I can attest to the confidence that comes with knowing you can defend yourself if needed. Karate teaches you not just how to strike but how to stay aware, anticipate threats, and respond with control. This empowerment is invaluable in today’s world.
+              </p>
+              <p className="mb-4">
+                Mental Discipline and Resilience: Karate is as much a mental journey as it is a physical one. The dojo demands focus, patience, and perseverance. Learning complex techniques and memorizing katas sharpens your memory and concentration. As a black belt, I’ve learned that progress in karate comes through consistent effort and the humility to embrace mistakes as opportunities to grow.
+              </p>
+              <p className="mb-4">
+                The discipline cultivated in karate extends far beyond the dojo. It helps you tackle challenges in everyday life—whether it’s staying calm under pressure at work or pushing through personal setbacks. Karate instills a mindset of resilience, teaching you to rise after every fall, both literally and figuratively.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Page>
+
+      {/* 6. Karate Article - Page 2 */}
+      <Page>
+        <div className="flex flex-col h-full">
+          <div className="flex gap-10 mb-10">
+            <div className="w-1/2 h-48 bg-slate-100 rounded-2xl overflow-hidden shadow-xl transform -rotate-2 border-4 border-white">
+              <img 
+                src="https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?auto=format&fit=crop&q=80&w=600" 
+                alt="Karate Action 1" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="w-1/2 h-48 bg-slate-100 rounded-2xl overflow-hidden shadow-xl transform rotate-2 border-4 border-white mt-8">
+              <img 
+                src="https://images.unsplash.com/photo-1509564324749-4739763d000c?auto=format&fit=crop&q=80&w=600" 
+                alt="Karate Action 2" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+
+          <div className="columns-3 gap-10 text-slate-700 leading-relaxed text-sm font-serif text-justify flex-grow">
+            <p className="mb-4">
+              Emotional Balance and Confidence: One of karate’s greatest gifts is emotional strength. Training provides a healthy outlet for stress, channeling energy into focused movement. The rhythmic flow of practicing techniques can feel meditative, helping you find balance in a hectic world. For me, stepping into the dojo is like hitting a reset button—it clears my mind and restores my sense of purpose.
+            </p>
+            <p className="mb-4">
+              Karate also builds unshakable confidence. As you progress through belt ranks, you gain a sense of achievement that boosts self-esteem. This isn’t about arrogance but about knowing your worth and capabilities. I’ve seen shy beginners transform into poised, self-assured individuals, carrying themselves with quiet strength.
+            </p>
+            <p className="mb-4">
+              Community and Respect: Karate fosters a deep sense of camaraderie. In the dojo, we train as a family, supporting each other’s growth. As an NKA and SKI practitioner, I’ve had the privilege of connecting with martial artists across Nigeria and beyond, united by a shared passion. This sense of belonging is especially meaningful in a world that can sometimes feel divided.
+            </p>
+            <p className="mb-4">
+              Respect is at the core of karate’s philosophy. From bowing to your sensei to honouring your training partners, every interaction is steeped in mutual respect. These values shape you into a better person—someone who listens, empathizes, and uplifts others. For young people especially, karate provides a moral compass, guiding them toward integrity and compassion.
+            </p>
+            <p className="mb-4">
+              A Lifelong Journey: Karate is not just for the young or the athletic—it’s for everyone. Whether you’re a child learning discipline, an adult seeking balance, or a senior staying active, karate adapts to your needs. As a second-degree black belt, I’m still learning, still growing. Each training session brings new insights, reminding me that the path of karate is a lifelong journey of self-improvement.
+            </p>
+            <p className="mb-4">
+              In a world that often feels chaotic, karate offers structure, purpose, and peace. It strengthens your body, sharpens your mind, and enriches your spirit. If you’re considering starting or continuing your karate journey, know this: the dojo is a place where you’ll discover not just the art of fighting, but the art of living. So, step onto the mat. Tie your belt. And begin. The benefits of karate are waiting for you.
+            </p>
+          </div>
+
+          {/* Meet the Author Box */}
+          <div className="mt-10 p-8 bg-purple/5 rounded-3xl border-2 border-purple/10 flex items-center gap-8">
+            <div className="w-24 h-24 rounded-full border-2 border-gold p-1 shrink-0">
+              <div className="w-full h-full rounded-full bg-slate-200 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" 
+                  alt="Ehima Oziegbe" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+            <div>
+              <h3 className="text-xl font-serif font-bold text-purple mb-2">Meet the Author</h3>
+              <p className="text-sm text-slate-600 leading-relaxed font-serif italic">
+                Ehima Oziegbe is a second-degree black belt with the Nigeria Karate Association (NKA) and Shotokan Karate International (SKI). Passionate about sharing the transformative power of karate, Ehima continues to train, teach, and inspire others through this timeless martial art.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Page>
+
+      {/* 7. Feature Article */}
       <Page>
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-4">
