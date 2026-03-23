@@ -78,10 +78,10 @@ export default function App() {
             { title: "Editor's Perspective", page: "04", icon: <BookOpen className="w-5 h-5" /> },
             { title: "The Importance and Benefits of Karate", page: "05", icon: <Award className="w-5 h-5" /> },
             { title: "The Dark Side of Processed Sugar", page: "08", icon: <Activity className="w-5 h-5" /> },
-            { title: "Two Decades: A Retrospective", page: "12", icon: <Users className="w-5 h-5" /> },
-            { title: "Class of 2004 Directory", page: "13", icon: <Users className="w-5 h-5" /> },
-            { title: "Throwback Gallery", page: "14", icon: <Camera className="w-5 h-5" /> },
-            { title: "Alumni Business Directory", page: "15", icon: <Briefcase className="w-5 h-5" /> },
+            { title: "Two Decades: A Retrospective", page: "13", icon: <Users className="w-5 h-5" /> },
+            { title: "Class of 2004 Directory", page: "14", icon: <Users className="w-5 h-5" /> },
+            { title: "Throwback Gallery", page: "15", icon: <Camera className="w-5 h-5" /> },
+            { title: "Alumni Business Directory", page: "16", icon: <Briefcase className="w-5 h-5" /> },
           ].map((item, i) => (
             <div key={i} className="flex items-center group cursor-default">
               <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -346,13 +346,13 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 8. Medical Feature - Page 1 */}
+      {/* 8. Medical Feature - Page 1 (Intro) */}
       <Page footerText="UDOSA 04 | Health & Wellbeing Section">
         <div className="flex flex-col h-full">
-          <div className="mb-8">
+          <div className="mb-6">
             <h1 className="text-5xl font-serif font-black text-purple leading-tight mb-4">
               The Dark Side of Overindulgence: <br />
-              <span className="text-pink">Processed Sugar</span>
+              <span className="text-pink font-bold">Processed Sugar</span>
             </h1>
             <div className="bg-gold text-white px-6 py-3 inline-block rounded-r-full shadow-lg">
               <p className="text-sm font-bold tracking-widest uppercase">
@@ -361,7 +361,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="w-full h-80 bg-slate-100 rounded-[3rem] overflow-hidden mb-10 shadow-2xl relative">
+          <div className="w-full h-72 bg-slate-100 rounded-[3rem] overflow-hidden mb-8 shadow-2xl relative">
             <img 
               src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=1000" 
               alt="Processed Sugar Hero" 
@@ -371,32 +371,34 @@ export default function App() {
             <div className="absolute inset-0 bg-gradient-to-t from-purple/40 to-transparent" />
           </div>
 
-          <div className="columns-2 gap-4 text-slate-700 leading-relaxed text-[15px] font-serif text-justify">
-            <p className="mb-4 drop-cap">
+          <div className="text-slate-700 leading-relaxed text-[15px] font-serif text-justify space-y-4">
+            <p className="drop-cap">
               Food may be referred to as any substance or material consisting mainly of protein, carbohydrate, and fat which are ingested for nutritional support, energy, maintenance of life, or growth enhancement. It could be formulated, processed or eaten raw. There is a popular saying that "food is medicine". This is not only true because of the phytoconstituents contained in some foods which have medicinal properties but also true when the right types of food are combined in the right proportion in any diet.
             </p>
-            <p className="mb-4">
+            <p>
               Otherwise, food can become poison instead of medicine. Remember the old saying that you are what you eat? This is true because the kind of food eaten can either make a person sick or healthy. An individual becomes sick when a large proportion of their diet contains processed sugars. Some food containing high levels of processed sugar include sugary drinks such as energy drinks, some carbonated drinks, cakes, pies (meat or chicken), biscuits, scones, doughnuts, sandwiches, sweets, chocolate bars, chocolate tea, sweetened teas, sweetened yogurt, sweetened popcorn, salad dressings, ketchup and so many others too numerous to mention.
             </p>
-            <p className="mb-4">
-              Resent trends have greatly influenced lifestyle and diet choices especially among children and young adults. The increasing rate of consumption of processed sugars is a serious public health issue because it has been linked to various disease conditions. The concern is no longer about brushing the teeth after eating food rich in processed sugar to avoid tooth decay and regular visits to the dentist but about the damage processed sugars are causing to internal body organs. Highlighted in this article are few of the effects of overindulgence in processed sugar on different organs of the body.
+            <p>
+              Recent trends have greatly influenced lifestyle and diet choices especially among children and young adults. The increasing rate of consumption of processed sugars is a serious public health issue because it has been linked to various disease conditions. The concern is no longer about brushing the teeth after eating food rich in processed sugar to avoid tooth decay and regular visits to the dentist but about the damage processed sugars are causing to internal body organs. Highlighted in this article are few of the effects of overindulgence in processed sugar on different organs of the body.
             </p>
           </div>
         </div>
       </Page>
 
-      {/* 9. Medical Feature - Page 2 */}
+      {/* 9. Medical Feature - Page 2 (Brain & Eyes) */}
       <Page footerText="UDOSA 04 | Health & Wellbeing Section">
-        <div className="flex flex-col h-full space-y-4">
+        <div className="flex flex-col h-full space-y-6">
           {/* Brain Section */}
-          <div className="bg-purple/5 p-5 rounded-3xl border border-purple/10">
-            <div className="flex gap-4 items-start">
-              <div className="w-12 h-12 bg-purple/10 rounded-xl flex items-center justify-center shrink-0">
-                <Brain className="w-6 h-6 text-purple" />
+          <div className="bg-purple/5 p-6 rounded-[2rem] border border-purple/10 relative">
+            <div className="flex gap-6 items-start">
+              <div className="w-16 h-16 bg-white rounded-full border-2 border-gold p-1 shrink-0 shadow-lg">
+                <div className="w-full h-full rounded-full bg-purple/10 flex items-center justify-center overflow-hidden">
+                  <Brain className="w-8 h-8 text-purple" />
+                </div>
               </div>
               <div className="flex-grow">
-                <h3 className="text-lg font-serif font-bold text-pink mb-1 uppercase tracking-wider">The Brain</h3>
-                <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
+                <h3 className="text-xl font-serif font-bold text-pink mb-2 uppercase tracking-wider">The Brain</h3>
+                <p className="text-[15px] text-slate-700 leading-relaxed font-serif text-justify">
                   The brain is a complex organ which forms the centre part of the central nervous system in the body. It contains numerous nerves and is sometimes referred to as the seat of intelligence because it controls thought processes, movement, speech, memory, emotion, sensation, vision, behaviour, breathing, temperature regulation and all processes involved in the regulation of the body. Excessive consumption of processed sugars contained in many unhealthy foods and snacks can lead to sugar addiction due to overstimulation of dopamine neurotransmitter in the brain reward centre hence eliciting compulsive behaviours and cravings for more of the sweet stuff. The increased intake results in the release of free radicals which initiates inflammatory processes in the brain causing brain atrophy if not checked. These series of events can result in memory impairment and reduced cognitive functions. An individual who overindulges in diets containing high level of processed sugar is more susceptible to memory decline (as seen in cases of dementia and Alzheimer's disease), anxiety, depression, mood swings and emotional problems.
                 </p>
               </div>
@@ -404,30 +406,17 @@ export default function App() {
           </div>
 
           {/* Eyes Section */}
-          <div className="bg-purple/5 p-5 rounded-3xl border border-purple/10">
-            <div className="flex gap-4 items-start">
-              <div className="w-12 h-12 bg-purple/10 rounded-xl flex items-center justify-center shrink-0">
-                <Eye className="w-6 h-6 text-purple" />
+          <div className="bg-purple/5 p-6 rounded-[2rem] border border-purple/10 relative">
+            <div className="flex gap-6 items-start">
+              <div className="w-16 h-16 bg-white rounded-full border-2 border-gold p-1 shrink-0 shadow-lg">
+                <div className="w-full h-full rounded-full bg-purple/10 flex items-center justify-center overflow-hidden">
+                  <Eye className="w-8 h-8 text-purple" />
+                </div>
               </div>
               <div className="flex-grow">
-                <h3 className="text-lg font-serif font-bold text-pink mb-1 uppercase tracking-wider">The Eyes</h3>
-                <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
+                <h3 className="text-xl font-serif font-bold text-pink mb-2 uppercase tracking-wider">The Eyes</h3>
+                <p className="text-[15px] text-slate-700 leading-relaxed font-serif text-justify">
                   The eye is a sensory organ located in the head which is responsible for visual perception. It consists of the cornea, iris, lens, retina, macula and optic nerves. The different parts of the eye work together to collect light from the environment, which is focused into an image by the cornea, lens, and retina. This image is then converted into electrochemical impulses by the retina's photoreceptors. These impulses are transmitted to the brain through the optic nerve, where they are processed in the visual cortex and other parts of the brain, enabling perception and interpretation of visual information. Excessive consumption of processed sugars can cause build-up of sugar in blood vessels of the retina leading to a disorder known as diabetic retinopathy which may lead to blindness without timely intervention. High level of sugar in the blood may also cause the lens of the eyes to become cloudy resulting in vision blur which may escalate into a condition known as cataract. Without timely intervention, the cataract may slowly progress into permanent loss of vision. High sugar levels in the blood have also been linked to cases of glaucoma and macular degeneration.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Lungs Section */}
-          <div className="bg-purple/5 p-5 rounded-3xl border border-purple/10">
-            <div className="flex gap-4 items-start">
-              <div className="w-12 h-12 bg-purple/10 rounded-xl flex items-center justify-center shrink-0">
-                <Wind className="w-6 h-6 text-purple" />
-              </div>
-              <div className="flex-grow">
-                <h3 className="text-lg font-serif font-bold text-pink mb-1 uppercase tracking-wider">The Lungs</h3>
-                <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
-                  The respiratory system's primary organs are the lungs, which are pyramid shaped and located in the thoracic cavity of humans. They are responsible for the intake of oxygen in the environment and the expulsion of carbon iv oxide from the body. The lungs' blood supply is crucial to the gaseous exchange process because deoxygenated blood from the pulmonary artery enters the lungs, where red blood cells collect oxygen and transfer it to the heart through the pulmonary veins. The heart in turn pumps the blood into tissues all over the body. Excessive consumption of diet rich in processed sugar may elicit the production of free radicals which react aggressively with lung tissues eventually leading to damage. Oxidative stress caused by these free radicals also increases the rate of chronic inflammation which in turn increases cases of chronic obstructive pulmonary diseases (COPD) and bronchitis. The oxidative stress also aggravates crisis in asthmatic patients. Excessive sugar in the blood also weakens the immune system causing the lungs to be more susceptible to infections.
                 </p>
               </div>
             </div>
@@ -435,33 +424,59 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 10. Medical Feature - Page 3 */}
+      {/* 10. Medical Feature - Page 3 (Lungs & Liver) */}
       <Page footerText="UDOSA 04 | Health & Wellbeing Section">
-        <div className="flex flex-col h-full space-y-4">
-          {/* Liver Section */}
-          <div className="bg-purple/5 p-6 rounded-[2rem] border border-purple/10 relative overflow-hidden">
-            <div className="flex gap-4 items-start">
-              <div className="w-12 h-12 bg-purple/10 rounded-xl flex items-center justify-center shrink-0">
-                <Activity className="w-6 h-6 text-purple" />
+        <div className="flex flex-col h-full space-y-6">
+          {/* Lungs Section */}
+          <div className="bg-purple/5 p-6 rounded-[2rem] border border-purple/10 relative">
+            <div className="flex gap-6 items-start">
+              <div className="w-16 h-16 bg-white rounded-full border-2 border-gold p-1 shrink-0 shadow-lg">
+                <div className="w-full h-full rounded-full bg-purple/10 flex items-center justify-center overflow-hidden">
+                  <Wind className="w-8 h-8 text-purple" />
+                </div>
               </div>
               <div className="flex-grow">
-                <h3 className="text-xl font-serif font-bold text-pink mb-2 uppercase tracking-wider">The Liver</h3>
-                <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
-                  An essential organ in the body is the liver which is involved in digestion, metabolism, bile production, and detoxification. The liver converts excess sugar in the blood into glycogen or fats which can be stored in the liver. The fat produced by the liver can then be stored in adipose tissues leading to excessive weight gain which may proceed to obesity if left unchecked. Non-alcoholic fatty liver disease, which is triggered by accumulated lipids in the liver, may advance into Non-Alcoholic Steatohepatitis if treatment is not commenced immediately. Without timely intervention, these conditions can further lead to liver cirrhosis and progress further into cancer of the liver.
+                <h3 className="text-xl font-serif font-bold text-pink mb-2 uppercase tracking-wider">The Lungs</h3>
+                <p className="text-[15px] text-slate-700 leading-relaxed font-serif text-justify">
+                  The respiratory system's primary organs are the lungs, which are pyramid shaped and located in the thoracic cavity of humans. They are responsible for the intake of oxygen in the environment and the expulsion of carbon iv oxide from the body. The lungs' blood supply is crucial to the gaseous exchange process because deoxygenated blood from the pulmonary artery enters the lungs, where red blood cells collect oxygen and transfer it to the heart through the pulmonary veins. The heart in turn pumps the blood into tissues all over the body. Excessive consumption of diet rich in processed sugar may elicit the production of free radicals which react aggressively with lung tissues eventually leading to damage. Oxidative stress caused by these free radicals also increases the rate of chronic inflammation which in turn increases cases of chronic obstructive pulmonary diseases (COPD) and bronchitis. The oxidative stress also aggravates crisis in asthmatic patients. Excessive sugar in the blood also weakens the immune system causing the lungs to be more susceptible to infections.
                 </p>
               </div>
             </div>
           </div>
 
+          {/* Liver Section */}
+          <div className="bg-purple/5 p-6 rounded-[2rem] border border-purple/10 relative">
+            <div className="flex gap-6 items-start">
+              <div className="w-16 h-16 bg-white rounded-full border-2 border-gold p-1 shrink-0 shadow-lg">
+                <div className="w-full h-full rounded-full bg-purple/10 flex items-center justify-center overflow-hidden">
+                  <Activity className="w-8 h-8 text-purple" />
+                </div>
+              </div>
+              <div className="flex-grow">
+                <h3 className="text-xl font-serif font-bold text-pink mb-2 uppercase tracking-wider">The Liver</h3>
+                <p className="text-[15px] text-slate-700 leading-relaxed font-serif text-justify">
+                  An essential organ in the body is the liver which is involved in digestion, metabolism, bile production, and detoxification. The liver converts excess sugar in the blood into glycogen or fats which can be stored in the liver. The fat produced by the liver can then be stored in adipose tissues leading to excessive weight gain which may proceed to obesity if left unchecked. Non-alcoholic fatty liver disease, which is triggered by accumulated lipids in the liver, may advance into Non-Alcoholic Steatohepatitis if treatment is not commenced immediately. Without timely intervention, these conditions can further lead to liver cirrhosis and progress further into cancer of the liver.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Page>
+
+      {/* 11. Medical Feature - Page 4 (Pancreas & Kidneys) */}
+      <Page footerText="UDOSA 04 | Health & Wellbeing Section">
+        <div className="flex flex-col h-full space-y-6">
           {/* Pancreas Section */}
-          <div className="bg-purple/5 p-6 rounded-[2rem] border border-purple/10 relative overflow-hidden">
-            <div className="flex gap-4 items-start">
-              <div className="w-12 h-12 bg-purple/10 rounded-xl flex items-center justify-center shrink-0">
-                <Thermometer className="w-6 h-6 text-purple" />
+          <div className="bg-purple/5 p-6 rounded-[2rem] border border-purple/10 relative">
+            <div className="flex gap-6 items-start">
+              <div className="w-16 h-16 bg-white rounded-full border-2 border-gold p-1 shrink-0 shadow-lg">
+                <div className="w-full h-full rounded-full bg-purple/10 flex items-center justify-center overflow-hidden">
+                  <Thermometer className="w-8 h-8 text-purple" />
+                </div>
               </div>
               <div className="flex-grow">
                 <h3 className="text-xl font-serif font-bold text-pink mb-2 uppercase tracking-wider">The Pancreas</h3>
-                <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
+                <p className="text-[15px] text-slate-700 leading-relaxed font-serif text-justify">
                   The pancreas is an organ in the body that releases enzymes called pancreatic juice which aids digestion of food. The islet cells of the pancreas also secrete the hormone insulin responsible for the uptake of glucose into cells and tissues thereby controlling blood sugar levels. Overindulgence in diet containing processed sugar causes stress on the pancreas because the organ is forced to work excessively to generate more insulin to mop up the excess sugar load in the blood. This action eventually leads to reduced pancreatic efficiency. The pancreas is further overworked when insulin resistance develops in the cells (as observed in people who are overweight) making them less responsive to the insulin produced by the islet cells, the pancreas must produce more insulin to compensate. If the situation goes unchecked, the pancreas may become inflamed leading to a condition called pancreatitis which may eventually damage the pancreas. When the ability of the pancreas to produce insulin is eventually compromised, a condition referred to as diabetes ensues. This is a condition in which the body is unable to effectively regulate blood sugar.
                 </p>
               </div>
@@ -469,14 +484,16 @@ export default function App() {
           </div>
 
           {/* Kidneys Section */}
-          <div className="bg-purple/5 p-6 rounded-[2rem] border border-purple/10 relative overflow-hidden">
-            <div className="flex gap-4 items-start">
-              <div className="w-12 h-12 bg-purple/10 rounded-xl flex items-center justify-center shrink-0">
-                <Filter className="w-6 h-6 text-purple" />
+          <div className="bg-purple/5 p-6 rounded-[2rem] border border-purple/10 relative">
+            <div className="flex gap-6 items-start">
+              <div className="w-16 h-16 bg-white rounded-full border-2 border-gold p-1 shrink-0 shadow-lg">
+                <div className="w-full h-full rounded-full bg-purple/10 flex items-center justify-center overflow-hidden">
+                  <Filter className="w-8 h-8 text-purple" />
+                </div>
               </div>
               <div className="flex-grow">
                 <h3 className="text-xl font-serif font-bold text-pink mb-2 uppercase tracking-wider">The Kidneys</h3>
-                <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
+                <p className="text-[15px] text-slate-700 leading-relaxed font-serif text-justify">
                   The kidneys are organs responsible for filtering the blood, removing toxic waste and excess fluid in the body. They also help to maintain normal blood pressure and produce certain hormones called erythropoietin required for the formation of healthy red blood cells. Activation of vitamin D which is essential for bone health also takes place in the kidney. Excess sugar in the blood due to overindulgence in sugar rich foods causes damage to the tiny blood vessels in the kidneys referred to as glomeruli which are responsible for filtering toxic waste and removing excess fluid in the blood hence leading to build up of fluid and waste. This build-up may in turn lead to kidney failure if not resolved.
                 </p>
               </div>
@@ -485,37 +502,37 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 11. Medical Feature - Page 4 */}
+      {/* 12. Medical Feature - Page 5 (Skin, Reproductive, Conclusion, Bio) */}
       <Page footerText="UDOSA 04 | Health & Wellbeing Section">
         <div className="flex flex-col h-full">
-          <div className="grid grid-cols-1 gap-6 mb-6">
+          <div className="grid grid-cols-2 gap-6 mb-6">
             {/* Skin Section */}
-            <div className="bg-purple/5 p-5 rounded-3xl border border-purple/10">
-              <h3 className="text-xl font-serif font-bold text-pink mb-2 flex items-center gap-3">
+            <div className="bg-purple/5 p-5 rounded-[1.5rem] border border-purple/10">
+              <h3 className="text-lg font-serif font-bold text-pink mb-2 flex items-center gap-2">
                 <Droplets className="w-5 h-5 text-pink" />
                 The Skin
               </h3>
-              <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
+              <p className="text-[13px] text-slate-700 leading-relaxed font-serif text-justify">
                 The skin is believed to be the largest organ in the body which serves as a protective barrier against external threats. It is involved in temperature regulation, vitamin D production and serves as a sensory as well as excretory organ for the body. Excess sugar in the blood can expediate the ageing process and make the skin appear thick, dull, discoloured, wrinkled and thick. The presence of advanced glycation end products (AGEs) causes the adverse skin impact. The interaction between the reducing sugar’s carbonyl functional groups and the free amine functional groups in nucleic acids, lipids and proteins in the body results in AGEs. When AGEs accumulate in the skin, they cause formation of wrinkles by stiffening collagen and elastin which in turn results in decreased skin elasticity. Excess sugar in the blood may also cause slow wound healing processes and increase the skin’s susceptibility to infection as observed in diabetic patients.
               </p>
             </div>
 
             {/* Reproductive Organs Section */}
-            <div className="bg-purple/5 p-5 rounded-3xl border border-purple/10">
-              <h3 className="text-xl font-serif font-bold text-pink mb-2 flex items-center gap-3">
+            <div className="bg-purple/5 p-5 rounded-[1.5rem] border border-purple/10">
+              <h3 className="text-lg font-serif font-bold text-pink mb-2 flex items-center gap-2">
                 <Heart className="w-5 h-5 text-pink" />
-                Reproductive Organs
+                The Reproductive Organs
               </h3>
-              <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
+              <p className="text-[13px] text-slate-700 leading-relaxed font-serif text-justify">
                 The reproductive organs are responsible for procreation in males and females. Overindulgence in processed sugar may cause blockade or damage to the nerves required for normal erectile functions in males typically leading to erectile dysfunction. Also, high levels of sugar in the blood have been linked to reduced sperm quality and motility hence leading to male infertility. In females, high blood sugar levels have been linked to abnormal levels of luteinizing hormone (LH), which play a role in egg maturation and ovulation. It has also been linked to irregular menstrual cycles and a condition known as polycystic ovarian syndrome, hence reducing fertility. Also, several studies have shown that females who overindulge in processed sugars have higher chances of giving birth to an autistic child than those who do not. This is because increased blood sugar levels during pregnancy may affect foetal brain development.
               </p>
             </div>
           </div>
 
-          <div className="bg-pink/5 border-2 border-pink p-6 rounded-[2rem] mb-6 shadow-xl relative">
-            <Quote className="absolute -top-3 -left-3 w-10 h-10 text-pink bg-white rounded-full p-2 shadow-md" />
-            <h3 className="text-lg font-serif font-bold text-purple mb-2">Conclusion</h3>
-            <p className="text-[14px] text-slate-800 leading-relaxed font-serif italic text-justify">
+          <div className="bg-pink text-white p-6 rounded-[2rem] mb-6 shadow-xl relative overflow-hidden">
+            <Quote className="absolute -top-4 -left-4 w-12 h-12 text-white/10" />
+            <h3 className="text-xl font-serif font-bold mb-2">Conclusion</h3>
+            <p className="text-[14px] leading-relaxed font-serif italic text-justify">
               In conclusion, it is important to understand that as one gets older, diet choices need to be intentional. The next time one is tempted to overindulge in diets and snacks laden with processed sugars, it is essential to remember these dark sides and make healthy choices. Young children should be taught early about the importance of consuming healthy foods because overindulging in over processed sugars will not only cause addiction, affect normal growth and development but can also reduce brain activity and cognitive functions leading to poor academic performance.
             </p>
           </div>
@@ -532,9 +549,9 @@ export default function App() {
               <div>
                 <h4 className="text-[10px] font-bold text-gold uppercase tracking-[0.3em] mb-1">About the Author</h4>
                 <h3 className="text-xl font-serif font-bold mb-1">Dr. Irene O Oseghale</h3>
-                <p className="text-[12px] text-purple-100 leading-tight font-serif">
+                <p className="text-[12px] text-purple-100 leading-relaxed font-serif">
                   B. Pharm, Pharm D, MSc, PhD. MPSN, MCPAN. <br />
-                  Dept. of Pharmaceutical Chemistry, Faculty of Pharmacy, <br />
+                  Department of Pharmaceutical Chemistry, Faculty of Pharmacy, <br />
                   University of Benin. <br />
                   <span className="text-gold font-bold">Irene.oseghale@uniben.edu</span>
                 </p>
