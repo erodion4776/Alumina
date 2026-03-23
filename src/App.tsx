@@ -108,56 +108,62 @@ export default function App() {
         <div className="flex h-full gap-16">
           <div className="w-1/3 flex flex-col items-center">
             <div className="relative">
-              <div className="w-56 h-56 rounded-full border-8 border-gold/20 p-2 overflow-hidden shadow-2xl">
-                <div className="w-full h-full rounded-full border-4 border-gold overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600" 
-                    alt="Chairman" 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
+              <div className="w-56 h-56 rounded-2xl border-2 border-gold p-1 overflow-hidden shadow-2xl bg-white">
+                <img 
+                  src="https://i.ibb.co/JwwLbzy4/IMG-20250204-WA0000.jpg" 
+                  alt="Chairman Owen Ojo" 
+                  className="w-full h-full object-cover rounded-xl"
+                  referrerPolicy="no-referrer"
+                />
               </div>
               <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-purple text-gold border-2 border-gold px-6 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] shadow-xl">
                 Chairman
               </div>
             </div>
             <div className="mt-16 text-center">
-              <h3 className="text-2xl font-serif font-bold text-purple">Dr. Emmanuel Okoro</h3>
+              <h3 className="text-2xl font-serif font-bold text-purple">Owen Ojo</h3>
               <p className="text-sm text-pink font-bold uppercase tracking-widest mt-2">Set of 2004</p>
               <div className="mt-8 space-y-2 text-slate-400 text-[10px] uppercase tracking-widest">
-                <p>Consultant Cardiologist</p>
+                <p>Leadership & Strategy</p>
                 <p>Philanthropist</p>
-                <p>UDOSA Global Ambassador</p>
+                <p>UDOSA 04 Chairman</p>
               </div>
             </div>
           </div>
           <div className="w-2/3 flex flex-col">
-            <div className="mb-10">
-              <h2 className="text-6xl font-serif font-black text-purple leading-tight">
+            <div className="mb-8">
+              <h2 className="text-5xl font-serif font-black text-purple leading-tight">
                 A Message from <br />the <span className="text-pink italic">Chairman</span>
               </h2>
               <div className="w-20 h-1 bg-gold mt-4" />
             </div>
-            <div className="space-y-8 text-slate-700 leading-relaxed text-xl italic font-light font-serif">
+            <div className="space-y-4 text-slate-700 leading-relaxed text-base font-serif overflow-y-auto pr-4 custom-scrollbar">
+              <p className="font-bold text-purple italic">Dear Fellow Alumni,</p>
               <p>
-                "Twenty years ago, we walked out of the gates of UBDS with dreams in our eyes and fire in our hearts. Today, seeing the heights each of you has attained fills me with immense pride."
+                It is with immense pride and a deep sense of gratitude that I address you all. Our time at the University of Benin Demonstration Secondary School was more than just an academic journey; it was the crucible that forged a lifelong community—a family that continues to stand strong two decades later.
               </p>
               <p>
-                "This digital magazine is a bridge connecting our shared past to our brilliant future. It is a testament to the enduring spirit of the UDOSA 04 set."
+                This past year has been a testament to our collective strength. From heartfelt reunions to impactful charitable contributions, your dedication to the UDOSA 04 platform has yielded tangible results. I am particularly moved by our scholarship program, which is already changing the lives of deserving students. 
               </p>
               <p>
-                "As we celebrate this milestone, let us remember that our strength lies in our unity. Together, we continue to demonstrate excellence in every corner of the globe."
+                Furthermore, our recent contributions—including the installation of the water pump, the provision of first-aid kits, the complete renovation of the school’s football pitch, and the donation of soccer jerseys—have left an indelible mark on our alma mater.
+              </p>
+              <p>
+                Looking ahead, we are committed to expanding our reach, hosting more inclusive reunions, and upholding the values we all cherish. I invite each of you to remain engaged—whether by volunteering your time, attending our events, or simply reaching out to reconnect with an old classmate.
+              </p>
+              <p>
+                Together, let us keep the UDOSA 04 legacy burning bright.
               </p>
             </div>
-            <div className="mt-auto pt-12 flex items-end justify-between">
+            <div className="mt-auto pt-8 flex items-end justify-between">
               <div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Jon_Kirsch%27s_Signature.png" alt="Signature" className="h-16 opacity-60 grayscale invert mb-4" />
-                <p className="font-serif font-bold text-purple text-xl">Emmanuel Okoro, Ph.D.</p>
-                <p className="text-xs text-slate-400 uppercase tracking-widest">Global President, UDOSA 04</p>
+                <p className="font-serif italic text-slate-500 mb-2">Warm regards,</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Jon_Kirsch%27s_Signature.png" alt="Signature" className="h-12 opacity-60 grayscale invert mb-2" />
+                <p className="font-serif font-bold text-purple text-xl">Owen Ojo</p>
+                <p className="text-xs text-slate-400 uppercase tracking-widest">Chairman, UDOSA 04</p>
               </div>
-              <div className="w-24 h-24 border-2 border-gold/20 rounded-full flex items-center justify-center">
-                <Award className="w-10 h-10 text-gold/30" />
+              <div className="w-20 h-20 border-2 border-gold/20 rounded-full flex items-center justify-center">
+                <Award className="w-8 h-8 text-gold/30" />
               </div>
             </div>
           </div>
