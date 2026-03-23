@@ -464,103 +464,71 @@ export default function App() {
       </Page>
 
       {/* 11. Medical Feature - Page 4 (Pancreas, Kidneys & Skin) */}
-      <Page footerText="UDOSA 04 | Health & Wellbeing Section">
-        <div className="grid grid-cols-3 gap-4 h-full">
-          {/* Pancreas Section */}
-          <div className="bg-purple/5 p-4 rounded-[1.5rem] border border-purple/10 flex flex-col">
-            <div className="flex flex-col items-center text-center mb-3">
-              <div className="w-12 h-12 bg-white rounded-full border-2 border-gold p-1 mb-2 shadow-md">
-                <div className="w-full h-full rounded-full bg-purple/10 flex items-center justify-center">
-                  <Thermometer className="w-6 h-6 text-purple" />
-                </div>
-              </div>
-              <h3 className="text-lg font-serif font-bold text-pink uppercase tracking-wider">The Pancreas</h3>
-            </div>
+      <div className="bg-white h-[297mm] w-[210mm] p-10 overflow-hidden mx-auto shadow-2xl mb-10 flex flex-col print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-2xl font-serif font-bold text-purple mb-4">The Pancreas</h2>
             <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
               The pancreas is an organ in the body that releases enzymes called pancreatic juice which aids digestion of food. The islet cells of the pancreas also secrete the hormone insulin responsible for the uptake of glucose into cells and tissues thereby controlling blood sugar levels. Overindulgence in diet containing processed sugar causes stress on the pancreas because the organ is forced to work excessively to generate more insulin to mop up the excess sugar load in the blood. This action eventually leads to reduced pancreatic efficiency. The pancreas is further overworked when insulin resistance develops in the cells (as observed in people who are overweight) making them less responsive to the insulin produced by the islet cells, the pancreas must produce more insulin to compensate. If the situation goes unchecked, the pancreas may become inflamed leading to a condition called pancreatitis which may eventually damage the pancreas. When the ability of the pancreas to produce insulin is eventually compromised, a condition referred to as diabetes ensues. This is a condition in which the body is unable to effectively regulate blood sugar.
             </p>
           </div>
-
-          {/* Kidneys Section */}
-          <div className="bg-purple/5 p-4 rounded-[1.5rem] border border-purple/10 flex flex-col">
-            <div className="flex flex-col items-center text-center mb-3">
-              <div className="w-12 h-12 bg-white rounded-full border-2 border-gold p-1 mb-2 shadow-md">
-                <div className="w-full h-full rounded-full bg-purple/10 flex items-center justify-center">
-                  <Filter className="w-6 h-6 text-purple" />
-                </div>
-              </div>
-              <h3 className="text-lg font-serif font-bold text-pink uppercase tracking-wider">The Kidneys</h3>
-            </div>
+          <div>
+            <h2 className="text-2xl font-serif font-bold text-purple mb-4">The Kidneys</h2>
             <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
               The kidneys are organs responsible for filtering the blood, removing toxic waste and excess fluid in the body. They also help to maintain normal blood pressure and produce certain hormones called erythropoietin required for the formation of healthy red blood cells. Activation of vitamin D which is essential for bone health also takes place in the kidney. Excess sugar in the blood due to overindulgence in sugar rich foods causes damage to the tiny blood vessels in the kidneys referred to as glomeruli which are responsible for filtering toxic waste and removing excess fluid in the blood hence leading to build up of fluid and waste. This build-up may in turn lead to kidney failure if not resolved.
             </p>
           </div>
-
-          {/* Skin Section */}
-          <div className="bg-purple/5 p-4 rounded-[1.5rem] border border-purple/10 flex flex-col">
-            <div className="flex flex-col items-center text-center mb-3">
-              <div className="w-12 h-12 bg-white rounded-full border-2 border-gold p-1 mb-2 shadow-md">
-                <div className="w-full h-full rounded-full bg-purple/10 flex items-center justify-center">
-                  <Droplets className="w-6 h-6 text-purple" />
-                </div>
-              </div>
-              <h3 className="text-lg font-serif font-bold text-pink uppercase tracking-wider">The Skin</h3>
-            </div>
+          <div>
+            <h2 className="text-2xl font-serif font-bold text-purple mb-4">The Skin</h2>
             <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
               The skin is believed to be the largest organ in the body which serves as a protective barrier against external threats. It is involved in temperature regulation, vitamin D production and serves as a sensory as well as excretory organ for the body. Excess sugar in the blood can expediate the ageing process and make the skin appear dull, discoloured, and wrinkled. The presence of advanced glycation end products (AGEs) causes the adverse skin impact. The interaction between the reducing sugar’s carbonyl functional groups and the free amine functional groups in nucleic acids, lipids and proteins in the body results in AGEs. When AGEs accumulate in the skin, they cause formation of wrinkles by stiffening collagen and elastin which in turn results in decreased skin elasticity. Excess sugar in the blood may also cause slow wound healing processes and increase the skin’s susceptibility to infection as observed in diabetic patients.
             </p>
           </div>
         </div>
-      </Page>
+      </div>
 
       {/* 12. Medical Feature - Page 5 (Reproductive, Conclusion, Bio) */}
-      <Page footerText="UDOSA 04 | Health & Wellbeing Section" className="block overflow-hidden">
-        <div className="flex flex-col h-full">
-          <div className="space-y-[15px] flex-grow">
-            {/* Reproductive Organs Section */}
-            <div className="bg-purple/5 p-6 rounded-[1.5rem] border border-purple/10">
-              <h3 className="text-xl font-serif font-bold text-purple mb-2">The Reproductive Organs</h3>
-              <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
-                The reproductive organs are responsible for procreation in males and females. Overindulgence in processed sugar may cause blockade or damage to the nerves required for normal erectile functions in males typically leading to erectile dysfunction. Also, high levels of sugar in the blood have been linked to reduced sperm quality and motility hence leading to male infertility. In females, high blood sugar levels have been linked to abnormal levels of luteinizing hormone (LH), which play a role in egg maturation and ovulation. It has also been linked to irregular menstrual cycles and a condition known as polycystic ovarian syndrome, hence reducing fertility. Also, several studies have shown that females who overindulge in processed sugars have higher chances of giving birth to an autistic child than those who do not. This is because increased blood sugar levels during pregnancy may affect foetal brain development.
-              </p>
-            </div>
-
-            {/* Conclusion Box */}
-            <div className="bg-pink text-white p-4 rounded-[1.5rem] shadow-xl">
-              <h3 className="text-lg font-serif font-bold mb-1">Conclusion</h3>
-              <p className="text-[14px] leading-relaxed font-serif italic text-justify">
-                In conclusion, it is important to understand that as one gets older, diet choices need to be intentional. The next time one is tempted to overindulge in diets and snacks laden with processed sugars, it is essential to remember these dark sides and make healthy choices. Young children should be taught early about the importance of consuming healthy foods because overindulging in over processed sugars will not only cause addiction, affect normal growth and development but can also reduce brain activity and cognitive functions leading to poor academic performance.
-              </p>
-            </div>
+      <div className="bg-white h-[297mm] w-[210mm] p-10 overflow-hidden mx-auto shadow-2xl mb-10 flex flex-col print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="space-y-8 flex-grow">
+          <div>
+            <h2 className="text-2xl font-serif font-bold text-purple mb-4">The Reproductive Organs</h2>
+            <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
+              The reproductive organs are responsible for procreation in males and females. Overindulgence in processed sugar may cause blockade or damage to the nerves required for normal erectile functions in males typically leading to erectile dysfunction. Also, high levels of sugar in the blood have been linked to reduced sperm quality and motility hence leading to male infertility. In females, high blood sugar levels have been linked to abnormal levels of luteinizing hormone (LH), which play a role in egg maturation and ovulation. It has also been linked to irregular menstrual cycles and a condition known as polycystic ovarian syndrome, hence reducing fertility. Also, several studies have shown that females who overindulge in processed sugars have higher chances of giving birth to an autistic child than those who do not. This is because increased blood sugar levels during pregnancy may affect foetal brain development.
+            </p>
           </div>
 
-          {/* Author Bio Box - Pinned to bottom */}
-          <div className="p-6 bg-purple text-white rounded-[2rem] shadow-2xl mt-6">
-            <div className="flex items-center gap-6">
-              <div className="w-24 h-24 rounded-full border-4 border-gold p-1 shrink-0 shadow-lg">
-                <div className="w-full h-full rounded-full bg-white overflow-hidden">
-                  <img 
-                    src="https://i.ibb.co/JWrZXgnp/IMG-20191120-072210-1-2.jpg" 
-                    alt="Dr. Irene Ogbeide" 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
+          <div className="bg-pink text-white p-6 rounded-xl shadow-lg">
+            <h3 className="text-xl font-serif font-bold mb-2">Conclusion</h3>
+            <p className="text-[14px] leading-relaxed font-serif italic text-justify">
+              In conclusion, it is important to understand that as one gets older, diet choices need to be intentional. The next time one is tempted to overindulge in diets and snacks laden with processed sugars, it is essential to remember these dark sides and make healthy choices. Young children should be taught early about the importance of consuming healthy foods because overindulging in over processed sugars will not only cause addiction, affect normal growth and development but can also reduce brain activity and cognitive functions leading to poor academic performance.
+            </p>
+          </div>
+        </div>
+
+        <div className="p-8 bg-purple text-white rounded-2xl shadow-xl mt-auto">
+          <div className="flex items-center gap-8">
+            <div className="w-28 h-28 rounded-full border-4 border-gold p-1 shrink-0 shadow-lg">
+              <div className="w-full h-full rounded-full bg-white overflow-hidden">
+                <img 
+                  src="https://i.ibb.co/JWrZXgnp/IMG-20191120-072210-1-2.jpg" 
+                  alt="Dr. Irene Ogbeide" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
               </div>
-              <div>
-                <h4 className="text-[10px] font-bold text-gold uppercase tracking-[0.3em] mb-1">About the Author</h4>
-                <h3 className="text-xl font-serif font-bold mb-1">Dr. Irene Ogbeide</h3>
-                <p className="text-[12px] text-purple-100 leading-relaxed font-serif">
-                  B. Pharm, Pharm D, MSc, PhD. MPSN, MCPAN. <br />
-                  Department of Pharmaceutical Chemistry, Faculty of Pharmacy, <br />
-                  University of Benin. <br />
-                  <span className="text-gold font-bold">Irene.oseghale@uniben.edu</span>
-                </p>
-              </div>
+            </div>
+            <div>
+              <h4 className="text-xs font-bold text-gold uppercase tracking-[0.3em] mb-2">About the Author</h4>
+              <h3 className="text-2xl font-serif font-bold mb-2">Irene Ogbeide</h3>
+              <p className="text-[13px] text-purple-100 leading-relaxed font-serif">
+                B. Pharm, Pharm D, MSc, PhD. MPSN, MCPAN. <br />
+                Dept of Pharmaceutical Chemistry, UNIBEN. <br />
+                <span className="text-gold font-bold">Irene.oseghale@uniben.edu</span>
+              </p>
             </div>
           </div>
         </div>
-      </Page>
+      </div>
 
       {/* 13. Feature Article */}
       <Page>
