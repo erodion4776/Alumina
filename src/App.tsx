@@ -85,6 +85,62 @@ const RIDDLES = [
   { q: "What has words, but never speaks?", a: "A book" }
 ];
 
+const GALLERY_PHOTOS = [
+  "https://i.ibb.co/GQ0cBV8N/1716787836207.jpg",
+  "https://i.ibb.co/v4vZ7hDF/IMG-20250321-WA0074.jpg",
+  "https://i.ibb.co/9m7JjMsH/toige-37.jpg",
+  "https://i.ibb.co/5d1VcQh/IMG-20250306-WA0054-2.jpg",
+  "https://i.ibb.co/gqBw69p/Screenshot-20250208-100512-Facebook.png",
+  "https://i.ibb.co/TBx5vcyv/IMG-20230527-152546-192.jpg",
+  "https://i.ibb.co/5ZG9PtR/FB-IMG-1708102178590.jpg",
+  "https://i.ibb.co/v6BYYQH3/7d381bd4-25ed-4c06-85d2-e54306f300c4.jpg",
+  "https://i.ibb.co/tfXKqkF/wx6n89.jpg",
+  "https://i.ibb.co/kgYSVC0z/IMG20241205102822.jpg",
+  "https://i.ibb.co/r2MTTqvL/IMG-1821-1.jpg",
+  "https://i.ibb.co/JWrZXgnp/IMG-20191120-072210-1-2.jpg",
+  "https://i.ibb.co/8n8zT5kR/IMG-20240521-080543-420.jpg",
+  "https://i.ibb.co/0pDgpLy9/IMG-9094-1.jpg",
+  "https://i.ibb.co/350S09WN/285318-AF-100-F-487-C-824-E-50-DC5314-B7-FA.jpg",
+  "https://i.ibb.co/Dfn2SbBx/IMG-20250308-101418-4.jpg",
+  "https://i.ibb.co/QtzyXF9/701-C2184-7-B61-4-C1-F-8936-61-A51-BF08405.jpg",
+  "https://i.ibb.co/TMYDCZTD/IMG-20250409-WA0011-1.jpg",
+  "https://i.ibb.co/0j1G5Hgx/IMG-0280-1.jpg",
+  "https://i.ibb.co/0RxB0Br7/IMG-20241228-181727-517.jpg",
+  "https://i.ibb.co/rGp6Y1Q9/20231230-145841-3.jpg"
+];
+
+const GalleryItem = ({ src, number, name }: { src: string; number: number; name: string }) => {
+  const [revealed, setRevealed] = useState(false);
+  return (
+    <div 
+      className="relative group cursor-pointer overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg transition-all duration-500 hover:scale-[1.02] hover:border-gold h-full"
+      onClick={() => setRevealed(!revealed)}
+    >
+      <img 
+        src={src} 
+        alt={`UDOSA Face ${number}`} 
+        className="w-full h-full object-cover"
+        referrerPolicy="no-referrer"
+      />
+      <div className="absolute top-2 left-2 bg-gold text-purple w-8 h-8 rounded-full flex items-center justify-center font-black text-sm shadow-md z-10">
+        {number}
+      </div>
+      
+      {/* Reveal Overlay */}
+      <div className={`absolute inset-0 bg-purple/80 backdrop-blur-sm flex flex-col items-center justify-center p-4 transition-opacity duration-300 ${revealed ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'}`}>
+        <p className="text-gold text-[10px] uppercase tracking-widest font-bold mb-2">
+          {revealed ? 'Revealed' : 'Click to Reveal'}
+        </p>
+        {revealed && (
+          <p className="text-white font-serif font-bold text-lg text-center leading-tight">
+            {name}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const Header = () => (
   <div className="bg-purple w-full h-20 flex items-center justify-center px-8 shrink-0">
     <img src={LOGO_URL} alt="UDOSA Logo" className="h-14 object-contain" referrerPolicy="no-referrer" />
@@ -169,10 +225,12 @@ export default function App() {
             { title: "The Power of Connection", page: "17", icon: <Heart className="w-5 h-5" /> },
             { title: "Finding Peace Amidst Storms", page: "19", icon: <Sun className="w-5 h-5" /> },
             { title: "Unlock Your Earning Potential", page: "21", icon: <Briefcase className="w-5 h-5" /> },
-            { title: "Two Decades: A Retrospective", page: "23", icon: <Users className="w-5 h-5" /> },
-            { title: "Class of 2004 Directory", page: "24", icon: <Users className="w-5 h-5" /> },
-            { title: "Throwback Gallery", page: "25", icon: <Camera className="w-5 h-5" /> },
-            { title: "Alumni Business Directory", page: "26", icon: <Briefcase className="w-5 h-5" /> },
+            { title: "WHO’S WHO? Face Challenge", page: "23", icon: <Camera className="w-5 h-5" /> },
+            { title: "The Reveal: Answer Key", page: "26", icon: <Search className="w-5 h-5" /> },
+            { title: "Two Decades: A Retrospective", page: "27", icon: <Users className="w-5 h-5" /> },
+            { title: "Class of 2004 Directory", page: "28", icon: <Users className="w-5 h-5" /> },
+            { title: "Throwback Gallery", page: "29", icon: <Camera className="w-5 h-5" /> },
+            { title: "Alumni Business Directory", page: "30", icon: <Briefcase className="w-5 h-5" /> },
           ].map((item, i) => (
             <div key={i} className="flex items-center group cursor-default">
               <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -1334,7 +1392,166 @@ export default function App() {
         </div>
       </div>
 
-      {/* 23. Feature Article */}
+      {/* 23. WHO’S WHO? Face Challenge - Page 23 */}
+      <div className="page-a4 overflow-hidden flex flex-col bg-[#1a0b2e] print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="bg-purple/30 w-full h-20 flex items-center justify-center px-8 shrink-0 border-b border-gold/20">
+          <h2 className="text-2xl font-serif font-black tracking-[0.3em] text-gold uppercase">
+            WHO’S <span className="text-white">WHO?</span>
+          </h2>
+        </div>
+
+        <div className="p-10 flex-grow overflow-hidden flex flex-col">
+          <div className="mb-6 text-center">
+            <h3 className="text-3xl font-serif font-bold text-white mb-2 italic">The UDOSA 04 Face Challenge</h3>
+            <p className="text-gold/60 text-xs uppercase tracking-widest">Can you recognize these legends after 20 years?</p>
+          </div>
+
+          <div className="grid grid-cols-3 grid-rows-3 gap-4 flex-grow">
+            <div className="col-span-2 row-span-2">
+              <GalleryItem src={GALLERY_PHOTOS[0]} number={1} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[1]} number={2} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[2]} number={3} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[3]} number={4} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[4]} number={5} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[5]} number={6} name="[Name Here]" />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-auto py-4 px-8 border-t border-gold/10 flex justify-center shrink-0">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Memory Lane Gallery
+          </p>
+        </div>
+      </div>
+
+      {/* 24. WHO’S WHO? Face Challenge - Page 24 */}
+      <div className="page-a4 overflow-hidden flex flex-col bg-[#1a0b2e] print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="bg-purple/30 w-full h-20 flex items-center justify-center px-8 shrink-0 border-b border-gold/20">
+          <h2 className="text-2xl font-serif font-black tracking-[0.3em] text-gold uppercase">
+            WHO’S <span className="text-white">WHO?</span>
+          </h2>
+        </div>
+
+        <div className="p-10 flex-grow overflow-hidden flex flex-col">
+          <div className="grid grid-cols-3 grid-rows-3 gap-4 flex-grow">
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[6]} number={7} name="[Name Here]" />
+            </div>
+            <div className="col-span-2 row-span-2">
+              <GalleryItem src={GALLERY_PHOTOS[7]} number={8} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[8]} number={9} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[9]} number={10} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[10]} number={11} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[11]} number={12} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[12]} number={13} name="[Name Here]" />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-auto py-4 px-8 border-t border-gold/10 flex justify-center shrink-0">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Memory Lane Gallery
+          </p>
+        </div>
+      </div>
+
+      {/* 25. WHO’S WHO? Face Challenge - Page 25 */}
+      <div className="page-a4 overflow-hidden flex flex-col bg-[#1a0b2e] print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="bg-purple/30 w-full h-20 flex items-center justify-center px-8 shrink-0 border-b border-gold/20">
+          <h2 className="text-2xl font-serif font-black tracking-[0.3em] text-gold uppercase">
+            WHO’S <span className="text-white">WHO?</span>
+          </h2>
+        </div>
+
+        <div className="p-10 flex-grow overflow-hidden flex flex-col">
+          <div className="grid grid-cols-3 grid-rows-3 gap-4 flex-grow">
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[13]} number={14} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[14]} number={15} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[15]} number={16} name="[Name Here]" />
+            </div>
+            <div className="col-span-2 row-span-2">
+              <GalleryItem src={GALLERY_PHOTOS[16]} number={17} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[17]} number={18} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[18]} number={19} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[19]} number={20} name="[Name Here]" />
+            </div>
+            <div className="col-span-1 row-span-1">
+              <GalleryItem src={GALLERY_PHOTOS[20]} number={21} name="[Name Here]" />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-auto py-4 px-8 border-t border-gold/10 flex justify-center shrink-0">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Memory Lane Gallery
+          </p>
+        </div>
+      </div>
+
+      {/* 26. The Reveal: Answer Key - Page 26 */}
+      <div className="page-a4 overflow-hidden flex flex-col bg-purple print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="p-12 flex-grow flex flex-col">
+          <div className="mb-10 text-center">
+            <h2 className="text-5xl font-serif font-black text-gold uppercase tracking-tighter mb-2">The Reveal</h2>
+            <p className="text-white/60 text-sm uppercase tracking-[0.3em]">Answer Key</p>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-xl rounded-[2.5rem] p-10 border border-white/20 shadow-2xl flex-grow overflow-hidden">
+            <div className="grid grid-cols-2 gap-x-12 gap-y-4 h-full content-start">
+              {Array.from({ length: 21 }).map((_, i) => (
+                <div key={i} className="flex items-center gap-4 border-b border-white/10 pb-2">
+                  <span className="text-gold font-black text-lg w-8">{i + 1}.</span>
+                  <span className="text-white/40 font-serif italic text-sm">[Name Here]</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 text-center">
+            <p className="text-gold/80 font-serif italic text-sm">"Time changes faces, but memories remain forever."</p>
+          </div>
+        </div>
+
+        <div className="mt-auto py-4 px-8 border-t border-white/10 flex justify-center shrink-0">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Memory Lane Gallery
+          </p>
+        </div>
+      </div>
+
+      {/* 27. Feature Article */}
       <Page>
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-4">
@@ -1388,7 +1605,7 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 24. Class Directory */}
+      {/* 28. Class Directory */}
       <Page className="bg-purple text-white">
         <div className="mb-12 flex justify-between items-start">
           <div>
@@ -1414,7 +1631,7 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 25. Throwback Gallery */}
+      {/* 29. Throwback Gallery */}
       <Page>
         <div className="mb-12 flex justify-between items-end border-b-4 border-purple pb-6">
           <div>
@@ -1452,7 +1669,7 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 26. Business Showcase */}
+      {/* 30. Business Showcase */}
       <Page>
         <div className="mb-16 text-center">
           <h2 className="text-6xl font-serif font-black text-purple mb-4">Business Directory</h2>
