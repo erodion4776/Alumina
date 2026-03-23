@@ -8,6 +8,34 @@ import { Download, Mail, Phone, Globe, Award, Users, BookOpen, Camera, Briefcase
 
 const LOGO_URL = "https://i.ibb.co/DHC0kvzR/1000773566-removebg-preview-1.png";
 
+const RIDDLES = [
+  { q: "What has keys but can't open locks?", a: "A piano" },
+  { q: "What has to be broken before you can use it?", a: "An egg" },
+  { q: "I’m tall when I’m young, and I’m short when I’m old. What am I?", a: "A candle" },
+  { q: "What month of the year has 28 days?", a: "All of them" },
+  { q: "What is full of holes but still holds water?", a: "A sponge" },
+  { q: "What question can you never answer yes to?", a: "Are you asleep yet?" },
+  { q: "What is always in front of you but can’t be seen?", a: "The future" },
+  { q: "What color are the stairs in a yellow one-story house?", a: "There aren't any" },
+  { q: "What can you break, even if you never pick it up or touch it?", a: "A promise" },
+  { q: "What goes up but never comes down?", a: "Your age" },
+  { q: "A man dies of old age on his 25th birthday. How?", a: "Born on Feb 29" },
+  { q: "I have branches, but no fruit, trunk, or leaves. What am I?", a: "A bank" },
+  { q: "What can’t talk but will reply when spoken to?", a: "An echo" },
+  { q: "The more of this there is, the less you see. What is it?", a: "Darkness" },
+  { q: "I follow you all day, but at night I’m gone. What am I?", a: "Your shadow" },
+  { q: "What has a neck but no head?", a: "A bottle" },
+  { q: "What has a thumb and four fingers, but is not a hand?", a: "A glove" },
+  { q: "What has many teeth, but cannot bite?", a: "A comb" },
+  { q: "What goes where you go, but stays where it is?", a: "A road" },
+  { q: "What has one eye, but can’t see?", a: "A needle" },
+  { q: "What has a head and a tail but no body?", a: "A coin" },
+  { q: "What building has the most stories?", a: "The library" },
+  { q: "What can travel the world without leaving its corner?", a: "A stamp" },
+  { q: "What has hands, but can’t clap?", a: "A clock" },
+  { q: "What has words, but never speaks?", a: "A book" }
+];
+
 const Header = () => (
   <div className="bg-purple w-full h-20 flex items-center justify-center px-8 shrink-0">
     <img src={LOGO_URL} alt="UDOSA Logo" className="h-14 object-contain" referrerPolicy="no-referrer" />
@@ -78,10 +106,11 @@ export default function App() {
             { title: "Editor's Perspective", page: "04", icon: <BookOpen className="w-5 h-5" /> },
             { title: "The Importance and Benefits of Karate", page: "05", icon: <Award className="w-5 h-5" /> },
             { title: "The Dark Side of Processed Sugar", page: "08", icon: <Activity className="w-5 h-5" /> },
-            { title: "Two Decades: A Retrospective", page: "13", icon: <Users className="w-5 h-5" /> },
-            { title: "Class of 2004 Directory", page: "14", icon: <Users className="w-5 h-5" /> },
-            { title: "Throwback Gallery", page: "15", icon: <Camera className="w-5 h-5" /> },
-            { title: "Alumni Business Directory", page: "16", icon: <Briefcase className="w-5 h-5" /> },
+            { title: "The UDOSA 04 Mind Gym", page: "13", icon: <Brain className="w-5 h-5" /> },
+            { title: "Two Decades: A Retrospective", page: "14", icon: <Users className="w-5 h-5" /> },
+            { title: "Class of 2004 Directory", page: "15", icon: <Users className="w-5 h-5" /> },
+            { title: "Throwback Gallery", page: "16", icon: <Camera className="w-5 h-5" /> },
+            { title: "Alumni Business Directory", page: "17", icon: <Briefcase className="w-5 h-5" /> },
           ].map((item, i) => (
             <div key={i} className="flex items-center group cursor-default">
               <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -530,7 +559,44 @@ export default function App() {
         </div>
       </div>
 
-      {/* 13. Feature Article */}
+      {/* 13. Mind Gym - Page 6 (Riddles) */}
+      <div className="bg-white h-[297mm] w-[210mm] p-0 overflow-hidden mx-auto shadow-2xl mb-10 flex flex-col print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="bg-purple w-full h-24 flex flex-col items-center justify-center px-8 shrink-0 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
+          <img src={LOGO_URL} alt="UDOSA Logo" className="h-10 object-contain mb-1 relative z-10" referrerPolicy="no-referrer" />
+          <h2 className="text-2xl font-serif font-black tracking-[0.3em] relative z-10">
+            <span className="text-pink">MIND</span> <span className="text-gold">GYM</span>
+          </h2>
+        </div>
+
+        <div className="p-8 flex-grow overflow-hidden flex flex-col">
+          <div className="mb-6 text-center">
+            <h3 className="text-xl font-serif font-bold text-purple uppercase tracking-widest">The UDOSA 04 Mind Gym: Riddles & Brain Teasers</h3>
+            <div className="w-20 h-1 bg-gold mx-auto mt-2" />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 flex-grow overflow-hidden">
+            {RIDDLES.map((riddle, i) => (
+              <div key={i} className="bg-pink/5 border border-purple/20 p-3 rounded-lg flex flex-col justify-between">
+                <p className="text-[13px] font-bold text-purple leading-tight">
+                  {i + 1}. {riddle.q}
+                </p>
+                <p className="text-[11px] italic text-gold mt-2 self-end transform rotate-180 origin-center">
+                  Ans: {riddle.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-auto py-4 px-8 border-t border-stone-100 flex justify-center shrink-0">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Mental Fitness & Fun
+          </p>
+        </div>
+      </div>
+
+      {/* 14. Feature Article */}
       <Page>
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-4">
