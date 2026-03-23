@@ -228,20 +228,19 @@ export default function App() {
             <p className="text-gold font-bold uppercase tracking-[0.3em] mt-2 text-xs">By Ehima Oziegbe, Second-Degree Black Belt, NKA, SKI</p>
           </div>
 
-          <div className="relative flex-grow">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full z-10 pointer-events-none">
-              <div className="max-w-xs mx-auto text-center bg-white/95 backdrop-blur-sm p-6 border-y-2 border-pink/20 shadow-xl">
-                <Quote className="w-6 h-6 text-pink mb-2 mx-auto opacity-40" />
-                <p className="text-xl font-serif italic text-pink leading-relaxed">
-                  "Karate is more than just a martial art—it’s a way of life"
-                </p>
-              </div>
-            </div>
-
+          <div className="flex-grow">
             <div className="columns-3 gap-8 text-slate-700 leading-relaxed text-[14px] font-serif text-justify">
               <p className="mb-4">
                 <span className="text-6xl font-black text-purple float-left mr-3 leading-[0.8] mt-2">A</span>s a second-degree black belt with the Nigeria Karate Association (NKA) and Shotokan Karate International (SKI), I’ve spent years training in the art of karate, witnessing its transformative power firsthand. Karate is more than just a martial art—it’s a way of life that builds strength, sharpens the mind, and fosters a sense of community. Whether you’re a beginner stepping onto the dojo floor for the first time or a seasoned practitioner, the benefits of karate ripple through every aspect of your existence.
               </p>
+
+              <div className="[column-span:all] my-8 py-8 border-y-2 border-pink/20 bg-pink/5 text-center relative">
+                <Quote className="w-8 h-8 text-pink mb-3 mx-auto opacity-30" />
+                <p className="text-3xl font-serif italic text-pink leading-relaxed max-w-2xl mx-auto">
+                  "Karate is more than just a martial art—it’s a way of life"
+                </p>
+              </div>
+
               <p className="mb-4">
                 Let me share why this ancient discipline remains so vital today. Physical Fitness and Self-Defence: Karate is a full-body workout that hones strength, flexibility, and endurance. Every punch, kick, and block engage your muscles, improves coordination, and boosts cardiovascular health. Training sessions often combine high-intensity drills with precise techniques, making it an excellent way to stay fit while learning practical skills.
               </p>
