@@ -107,10 +107,10 @@ export default function App() {
             { title: "The Importance and Benefits of Karate", page: "05", icon: <Award className="w-5 h-5" /> },
             { title: "The Dark Side of Processed Sugar", page: "08", icon: <Activity className="w-5 h-5" /> },
             { title: "The UDOSA 04 Mind Gym", page: "13", icon: <Brain className="w-5 h-5" /> },
-            { title: "Two Decades: A Retrospective", page: "14", icon: <Users className="w-5 h-5" /> },
-            { title: "Class of 2004 Directory", page: "15", icon: <Users className="w-5 h-5" /> },
-            { title: "Throwback Gallery", page: "16", icon: <Camera className="w-5 h-5" /> },
-            { title: "Alumni Business Directory", page: "17", icon: <Briefcase className="w-5 h-5" /> },
+            { title: "Two Decades: A Retrospective", page: "15", icon: <Users className="w-5 h-5" /> },
+            { title: "Class of 2004 Directory", page: "16", icon: <Users className="w-5 h-5" /> },
+            { title: "Throwback Gallery", page: "17", icon: <Camera className="w-5 h-5" /> },
+            { title: "Alumni Business Directory", page: "18", icon: <Briefcase className="w-5 h-5" /> },
           ].map((item, i) => (
             <div key={i} className="flex items-center group cursor-default">
               <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -559,8 +559,8 @@ export default function App() {
         </div>
       </div>
 
-      {/* 13. Mind Gym - Page 6 (Riddles) */}
-      <div className="bg-white h-[297mm] w-[210mm] p-0 overflow-hidden mx-auto shadow-2xl mb-10 flex flex-col print:m-0 print:shadow-none print:page-break-after-always">
+      {/* 13. Mind Gym - Page 6 (Riddles Part 1) */}
+      <div className="page-a4 overflow-hidden flex flex-col print:m-0 print:shadow-none print:page-break-after-always">
         <div className="bg-purple w-full h-24 flex flex-col items-center justify-center px-8 shrink-0 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
           <img src={LOGO_URL} alt="UDOSA Logo" className="h-10 object-contain mb-1 relative z-10" referrerPolicy="no-referrer" />
@@ -576,12 +576,43 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-2 gap-3 flex-grow overflow-hidden">
-            {RIDDLES.map((riddle, i) => (
-              <div key={i} className="bg-pink/5 border border-purple/20 p-3 rounded-lg flex flex-col justify-between">
-                <p className="text-[13px] font-bold text-purple leading-tight">
+            {RIDDLES.slice(0, 13).map((riddle, i) => (
+              <div key={i} className="bg-pink/5 border border-purple/20 p-3 py-2 rounded-lg flex flex-col justify-between">
+                <p className="text-[14px] font-bold text-purple leading-tight">
                   {i + 1}. {riddle.q}
                 </p>
-                <p className="text-[11px] italic text-gold mt-2 self-end transform rotate-180 origin-center">
+                <p className="text-[12px] italic text-gold mt-2 self-end transform rotate-180 origin-center">
+                  Ans: {riddle.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-auto py-4 px-8 border-t border-stone-100 flex justify-center shrink-0">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Mental Fitness & Fun
+          </p>
+        </div>
+      </div>
+
+      {/* 14. Mind Gym - Page 7 (Riddles Part 2) */}
+      <div className="page-a4 overflow-hidden flex flex-col print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="bg-purple w-full h-20 flex flex-col items-center justify-center px-8 shrink-0 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
+          <h2 className="text-xl font-serif font-black tracking-[0.3em] relative z-10 text-white">
+            MIND GYM: <span className="text-gold">CONTINUED</span>
+          </h2>
+        </div>
+
+        <div className="p-8 flex-grow overflow-hidden flex flex-col">
+          <div className="grid grid-cols-2 gap-3 flex-grow overflow-hidden">
+            {RIDDLES.slice(13).map((riddle, i) => (
+              <div key={i + 13} className="bg-pink/5 border border-purple/20 p-3 py-2 rounded-lg flex flex-col justify-between">
+                <p className="text-[14px] font-bold text-purple leading-tight">
+                  {i + 14}. {riddle.q}
+                </p>
+                <p className="text-[12px] italic text-gold mt-2 self-end transform rotate-180 origin-center">
                   Ans: {riddle.a}
                 </p>
               </div>
