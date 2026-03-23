@@ -356,7 +356,7 @@ export default function App() {
             </h1>
             <div className="bg-gold text-white px-6 py-3 inline-block rounded-r-full shadow-lg">
               <p className="text-sm font-bold tracking-widest uppercase">
-                Dr. Irene O. Oseghale, B. Pharm, PhD (University of Benin)
+                Dr. Irene Ogbeide, B. Pharm, PhD (University of Benin)
               </p>
             </div>
           </div>
@@ -504,10 +504,10 @@ export default function App() {
 
       {/* 12. Medical Feature - Page 5 (Skin, Reproductive, Conclusion, Bio) */}
       <Page footerText="UDOSA 04 | Health & Wellbeing Section" className="block overflow-hidden">
-        <div className="space-y-[20px]">
+        <div className="space-y-[15px]">
           {/* Skin Section */}
           <div className="bg-purple/5 p-6 rounded-[1.5rem] border border-purple/10">
-            <h3 className="text-xl font-serif font-bold text-purple mb-3">The Skin</h3>
+            <h3 className="text-xl font-serif font-bold text-purple mb-2">The Skin</h3>
             <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
               The skin is believed to be the largest organ in the body which serves as a protective barrier against external threats. It is involved in temperature regulation, vitamin D production and serves as a sensory as well as excretory organ for the body. Excess sugar in the blood can expediate the ageing process and make the skin appear dull, discoloured, and wrinkled. The presence of advanced glycation end products (AGEs) causes the adverse skin impact. The interaction between the reducing sugar’s carbonyl functional groups and the free amine functional groups in nucleic acids, lipids and proteins in the body results in AGEs. When AGEs accumulate in the skin, they cause formation of wrinkles by stiffening collagen and elastin which in turn results in decreased skin elasticity. Excess sugar in the blood may also cause slow wound healing processes and increase the skin’s susceptibility to infection as observed in diabetic patients.
             </p>
@@ -515,7 +515,7 @@ export default function App() {
 
           {/* Reproductive Organs Section */}
           <div className="bg-purple/5 p-6 rounded-[1.5rem] border border-purple/10">
-            <h3 className="text-xl font-serif font-bold text-purple mb-3">The Reproductive Organs</h3>
+            <h3 className="text-xl font-serif font-bold text-purple mb-2">The Reproductive Organs</h3>
             <p className="text-[14px] text-slate-700 leading-relaxed font-serif text-justify">
               The reproductive organs are responsible for procreation in males and females. Overindulgence in processed sugar may cause blockade or damage to the nerves required for normal erectile functions in males typically leading to erectile dysfunction. Also, high levels of sugar in the blood have been linked to reduced sperm quality and motility hence leading to male infertility. In females, high blood sugar levels have been linked to abnormal levels of luteinizing hormone (LH), which play a role in egg maturation and ovulation. It has also been linked to irregular menstrual cycles and a condition known as polycystic ovarian syndrome, hence reducing fertility. Also, several studies have shown that females who overindulge in processed sugars have higher chances of giving birth to an autistic child than those who do not. This is because increased blood sugar levels during pregnancy may affect foetal brain development.
             </p>
@@ -532,14 +532,19 @@ export default function App() {
           {/* Author Bio Box */}
           <div className="p-6 bg-purple text-white rounded-[2.5rem] shadow-2xl">
             <div className="flex items-center gap-6">
-              <div className="w-20 h-20 rounded-full border-4 border-gold p-1 shrink-0">
-                <div className="w-full h-full rounded-full bg-white/10 flex items-center justify-center overflow-hidden">
-                  <Users className="w-10 h-10 text-gold" />
+              <div className="w-24 h-24 rounded-full border-4 border-gold p-1 shrink-0 shadow-lg">
+                <div className="w-full h-full rounded-full bg-white overflow-hidden">
+                  <img 
+                    src="https://i.ibb.co/JWrZXgnp/IMG-20191120-072210-1-2.jpg" 
+                    alt="Dr. Irene Ogbeide" 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
               </div>
               <div>
                 <h4 className="text-[10px] font-bold text-gold uppercase tracking-[0.3em] mb-1">About the Author</h4>
-                <h3 className="text-xl font-serif font-bold mb-1">Dr. Irene O Oseghale</h3>
+                <h3 className="text-xl font-serif font-bold mb-1">Dr. Irene Ogbeide</h3>
                 <p className="text-[12px] text-purple-100 leading-relaxed font-serif">
                   B. Pharm, Pharm D, MSc, PhD. MPSN, MCPAN. <br />
                   Department of Pharmaceutical Chemistry, Faculty of Pharmacy, <br />
