@@ -33,6 +33,30 @@ const WORD_SEARCH_GRID = [
   ['S', 'C', 'H', 'O', 'O', 'L', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X']
 ];
 
+const CAREERS_WORDS = [
+  "ACTOR", "ARCHITECT", "ARTIST", "CHEF", "COACH", "DOCTOR", "ENGINEER", 
+  "EVENT PLANNER", "FASHION DESIGNER", "FREELANCER", "INFLUENCER", "LAWYER", 
+  "NURSE", "PHARMACIST", "POLICE", "SOLDIER", "TEACHER", "TRANSPORTER", "WRITER"
+];
+
+const CAREERS_GRID = [
+  ['F', 'A', 'S', 'H', 'I', 'O', 'N', 'D', 'E', 'S', 'I', 'G', 'N', 'E', 'R'],
+  ['R', 'E', 'V', 'E', 'N', 'T', 'P', 'L', 'A', 'N', 'N', 'E', 'R', 'A', 'B'],
+  ['E', 'P', 'H', 'A', 'R', 'M', 'A', 'C', 'I', 'S', 'T', 'C', 'D', 'E', 'F'],
+  ['E', 'I', 'N', 'F', 'L', 'U', 'E', 'N', 'C', 'E', 'R', 'G', 'H', 'I', 'J'],
+  ['L', 'T', 'R', 'A', 'N', 'S', 'P', 'O', 'R', 'T', 'E', 'R', 'K', 'L', 'M'],
+  ['A', 'R', 'C', 'H', 'I', 'T', 'E', 'C', 'T', 'N', 'O', 'P', 'Q', 'R', 'S'],
+  ['N', 'U', 'R', 'S', 'E', 'T', 'E', 'A', 'C', 'H', 'E', 'R', 'T', 'U', 'V'],
+  ['C', 'O', 'A', 'C', 'H', 'W', 'X', 'Y', 'Z', 'A', 'B', 'C', 'D', 'E', 'F'],
+  ['E', 'N', 'G', 'I', 'N', 'E', 'E', 'R', 'G', 'H', 'I', 'J', 'K', 'L', 'M'],
+  ['R', 'A', 'R', 'T', 'I', 'S', 'T', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'],
+  ['D', 'O', 'C', 'T', 'O', 'R', 'V', 'W', 'X', 'Y', 'Z', 'A', 'B', 'C', 'D'],
+  ['L', 'A', 'W', 'Y', 'E', 'R', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'],
+  ['P', 'O', 'L', 'I', 'C', 'E', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'],
+  ['S', 'O', 'L', 'D', 'I', 'E', 'R', 'W', 'X', 'Y', 'Z', 'A', 'B', 'C', 'D'],
+  ['A', 'C', 'T', 'O', 'R', 'W', 'R', 'I', 'T', 'E', 'R', 'E', 'F', 'G', 'H']
+];
+
 const RIDDLES = [
   { q: "What has keys but can't open locks?", a: "A piano" },
   { q: "What has to be broken before you can use it?", a: "An egg" },
@@ -141,10 +165,11 @@ export default function App() {
             { title: "The Dark Side of Processed Sugar", page: "08", icon: <Activity className="w-5 h-5" /> },
             { title: "The UDOSA 04 Mind Gym", page: "13", icon: <Brain className="w-5 h-5" /> },
             { title: "UDOSA 04 Challenge", page: "15", icon: <Search className="w-5 h-5" /> },
-            { title: "Two Decades: A Retrospective", page: "16", icon: <Users className="w-5 h-5" /> },
-            { title: "Class of 2004 Directory", page: "17", icon: <Users className="w-5 h-5" /> },
-            { title: "Throwback Gallery", page: "18", icon: <Camera className="w-5 h-5" /> },
-            { title: "Alumni Business Directory", page: "19", icon: <Briefcase className="w-5 h-5" /> },
+            { title: "UDOSA 04 Careers", page: "16", icon: <Briefcase className="w-5 h-5" /> },
+            { title: "Two Decades: A Retrospective", page: "17", icon: <Users className="w-5 h-5" /> },
+            { title: "Class of 2004 Directory", page: "18", icon: <Users className="w-5 h-5" /> },
+            { title: "Throwback Gallery", page: "19", icon: <Camera className="w-5 h-5" /> },
+            { title: "Alumni Business Directory", page: "20", icon: <Briefcase className="w-5 h-5" /> },
           ].map((item, i) => (
             <div key={i} className="flex items-center group cursor-default">
               <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -721,7 +746,68 @@ export default function App() {
         </div>
       </div>
 
-      {/* 16. Feature Article */}
+      {/* 16. Word Search: Careers - Page 16 */}
+      <div className="page-a4 overflow-hidden flex flex-col print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="bg-purple w-full h-24 flex flex-col items-center justify-center px-8 shrink-0 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
+          <img src={LOGO_URL} alt="UDOSA Logo" className="h-10 object-contain mb-1 relative z-10" referrerPolicy="no-referrer" />
+          <h2 className="text-2xl font-serif font-black tracking-[0.3em] relative z-10">
+            <span className="text-pink">UDOSA 04</span> <span className="text-gold">CAREERS</span>
+          </h2>
+        </div>
+
+        <div className="p-8 flex-grow overflow-hidden flex flex-col">
+          <div className="mb-6 text-center">
+            <h3 className="text-xl font-serif font-bold text-purple uppercase tracking-widest">Alumni Word Search: Our Professional Paths</h3>
+            <p className="text-pink font-serif italic text-sm mt-1">Finding the leaders of today within our batch.</p>
+            <div className="w-20 h-1 bg-gold mx-auto mt-2" />
+          </div>
+
+          <div className="flex flex-col items-center gap-8 flex-grow overflow-hidden">
+            {/* Grid */}
+            <div className="grid grid-cols-15 gap-1 bg-pink/10 p-2 rounded-lg shadow-inner">
+              {CAREERS_GRID.map((row, rowIndex) => (
+                row.map((letter, colIndex) => (
+                  <div 
+                    key={`${rowIndex}-${colIndex}`} 
+                    className="w-8 h-8 bg-white border border-pink/20 flex items-center justify-center text-[16px] font-bold text-purple rounded-sm shadow-sm"
+                  >
+                    {letter}
+                  </div>
+                ))
+              ))}
+            </div>
+
+            {/* Word List */}
+            <div className="w-full bg-purple/5 p-6 rounded-2xl border border-pink/10">
+              <p className="text-center text-xs font-bold text-purple uppercase tracking-widest mb-4">Occupations to Find</p>
+              <div className="grid grid-cols-3 gap-x-4 gap-y-2">
+                {CAREERS_WORDS.map((word, i) => (
+                  <button
+                    key={i}
+                    onClick={() => toggleWord(word)}
+                    className={`text-[11px] font-bold text-left transition-all duration-300 ${
+                      foundWords.includes(word) 
+                        ? "text-slate-300 line-through decoration-gold decoration-2" 
+                        : "text-purple hover:text-pink"
+                    }`}
+                  >
+                    {word}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-auto py-4 px-8 border-t border-stone-100 flex justify-center shrink-0">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Celebrating Our Diverse Careers
+          </p>
+        </div>
+      </div>
+
+      {/* 17. Feature Article */}
       <Page>
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-4">
