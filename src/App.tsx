@@ -166,10 +166,11 @@ export default function App() {
             { title: "The UDOSA 04 Mind Gym", page: "13", icon: <Brain className="w-5 h-5" /> },
             { title: "UDOSA 04 Challenge", page: "15", icon: <Search className="w-5 h-5" /> },
             { title: "UDOSA 04 Careers", page: "16", icon: <Briefcase className="w-5 h-5" /> },
-            { title: "Two Decades: A Retrospective", page: "17", icon: <Users className="w-5 h-5" /> },
-            { title: "Class of 2004 Directory", page: "18", icon: <Users className="w-5 h-5" /> },
-            { title: "Throwback Gallery", page: "19", icon: <Camera className="w-5 h-5" /> },
-            { title: "Alumni Business Directory", page: "20", icon: <Briefcase className="w-5 h-5" /> },
+            { title: "The Power of Connection", page: "17", icon: <Heart className="w-5 h-5" /> },
+            { title: "Two Decades: A Retrospective", page: "19", icon: <Users className="w-5 h-5" /> },
+            { title: "Class of 2004 Directory", page: "20", icon: <Users className="w-5 h-5" /> },
+            { title: "Throwback Gallery", page: "21", icon: <Camera className="w-5 h-5" /> },
+            { title: "Alumni Business Directory", page: "22", icon: <Briefcase className="w-5 h-5" /> },
           ].map((item, i) => (
             <div key={i} className="flex items-center group cursor-default">
               <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -807,7 +808,187 @@ export default function App() {
         </div>
       </div>
 
-      {/* 17. Feature Article */}
+      {/* 17. The Power of Connection - Page 17 */}
+      <div className="page-a4 overflow-hidden flex flex-col print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="bg-purple w-full h-24 flex items-center justify-center px-8 shrink-0 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
+          <img src={LOGO_URL} alt="UDOSA Logo" className="h-10 object-contain mr-6 relative z-10" referrerPolicy="no-referrer" />
+          <h2 className="text-3xl font-serif font-black tracking-tight relative z-10 text-white">
+            The Power of <span className="text-pink italic font-serif">Connection</span>
+          </h2>
+        </div>
+
+        <div className="p-10 flex-grow overflow-hidden flex flex-col">
+          {/* Hero Image */}
+          <div className="w-full h-64 rounded-2xl overflow-hidden mb-8 shadow-xl border-4 border-white">
+            <img 
+              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000" 
+              alt="Alumni Connection" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 gap-8">
+            <div className="space-y-4">
+              <h3 className="text-[18px] font-serif font-bold text-purple uppercase tracking-widest border-b-2 border-pink w-fit pb-1">The Importance of Social Life</h3>
+              <p className="text-[15px] text-slate-700 leading-relaxed">
+                <span className="text-5xl font-serif font-black text-purple float-left mr-3 mt-1 leading-[0.8]">I</span>n today's fast-paced world, maintaining a healthy social life is crucial for our emotional and mental well-being. Social connections play a significant role in shaping our identities, providing support networks, and enhancing our overall quality of life.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              <h3 className="text-[18px] font-serif font-bold text-purple uppercase tracking-widest border-b-2 border-pink w-fit pb-1">Benefits of Social Life</h3>
+              <div className="grid grid-cols-3 gap-4">
+                {[
+                  { title: "Reduced Stress", icon: <Wind className="w-6 h-6" />, desc: "Socializing can help alleviate stress and anxiety." },
+                  { title: "Improved Mental Health", icon: <Heart className="w-6 h-6" />, desc: "Strong connections reduce symptoms of depression." },
+                  { title: "Increased Opportunities", icon: <Briefcase className="w-6 h-6" />, desc: "Networks lead to career and personal growth." }
+                ].map((benefit, i) => (
+                  <div key={i} className="flex flex-col items-center text-center p-4 bg-pink/5 rounded-2xl border border-pink/10">
+                    <div className="w-12 h-12 rounded-full bg-pink text-white flex items-center justify-center mb-3 shadow-lg shadow-pink/20">
+                      {benefit.icon}
+                    </div>
+                    <h4 className="text-xs font-bold text-purple uppercase tracking-tighter mb-1">{benefit.title}</h4>
+                    <p className="text-[10px] text-slate-500 leading-tight">{benefit.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white border-2 border-gold/30 p-6 rounded-2xl shadow-inner relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gold/5 rounded-full -mr-12 -mt-12" />
+              <h3 className="text-[18px] font-serif font-bold text-purple uppercase tracking-widest mb-4 relative z-10">Nurturing Social Connections</h3>
+              <ul className="space-y-3 relative z-10">
+                {[
+                  { t: "Join Clubs or Groups", d: "Engage in activities that align with your interests to meet like-minded people." },
+                  { t: "Volunteer", d: "Participate in community service to build connections while giving back." },
+                  { t: "Attend Events", d: "Expand your social circle by attending concerts, festivals, or networking events." }
+                ].map((tip, i) => (
+                  <li key={i} className="flex gap-3">
+                    <div className="w-5 h-5 rounded-full bg-gold text-white flex items-center justify-center shrink-0 text-[10px] font-bold mt-1">{i+1}</div>
+                    <div>
+                      <span className="text-[15px] font-bold text-purple">{tip.t}:</span>
+                      <span className="text-[14px] text-slate-600 ml-1">{tip.d}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-auto py-4 px-8 border-t border-stone-100 flex justify-center shrink-0">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Lifestyle & Wellness
+          </p>
+        </div>
+      </div>
+
+      {/* 18. Social Life vs. Socialization - Page 18 */}
+      <div className="page-a4 overflow-hidden flex flex-col print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="bg-purple w-full h-20 flex items-center justify-center px-8 shrink-0 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
+          <h2 className="text-xl font-serif font-black tracking-[0.3em] relative z-10 text-white uppercase">
+            Social Life <span className="text-gold italic font-serif lowercase">vs.</span> Socialization
+          </h2>
+        </div>
+
+        <div className="flex-grow flex flex-col overflow-hidden">
+          <div className="flex flex-grow overflow-hidden">
+            {/* Left Side: Social Life */}
+            <div className="w-1/2 bg-pink/5 p-10 flex flex-col border-r border-gold/10">
+              <div className="mb-8">
+                <h3 className="text-4xl font-serif font-black text-pink uppercase tracking-tighter mb-2">Social Life</h3>
+                <div className="w-12 h-1 bg-pink" />
+              </div>
+              
+              <div className="space-y-8">
+                <div>
+                  <p className="text-[12px] font-bold text-pink uppercase tracking-widest mb-2">Focus</p>
+                  <p className="text-[15px] text-slate-700 leading-relaxed">
+                    Refers to the overall pattern of social interactions, relationships, and activities that an individual engages in. It's the broader picture of how someone connects with others.
+                  </p>
+                </div>
+                
+                <div>
+                  <p className="text-[12px] font-bold text-pink uppercase tracking-widest mb-2">Emphasis</p>
+                  <p className="text-[15px] text-slate-700 leading-relaxed font-bold italic">
+                    The experience and outcomes of being social.
+                  </p>
+                </div>
+                
+                <div className="p-4 bg-white rounded-xl border border-pink/20 shadow-sm">
+                  <p className="text-[12px] font-bold text-pink uppercase tracking-widest mb-1 italic">Example</p>
+                  <p className="text-[14px] text-slate-600 italic">
+                    "She has a very active social life, with frequent gatherings and outings."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side: Socialization */}
+            <div className="w-1/2 bg-purple/[0.02] p-10 flex flex-col">
+              <div className="mb-8 text-right">
+                <h3 className="text-4xl font-serif font-black text-purple uppercase tracking-tighter mb-2">Socialization</h3>
+                <div className="w-12 h-1 bg-purple ml-auto" />
+              </div>
+              
+              <div className="space-y-8 text-right">
+                <div>
+                  <p className="text-[12px] font-bold text-purple uppercase tracking-widest mb-2">Focus</p>
+                  <p className="text-[15px] text-slate-700 leading-relaxed">
+                    Refers to the process by which individuals learn and internalize the norms, values, beliefs, and behaviors of a society. It's the learning process that enables functioning.
+                  </p>
+                </div>
+                
+                <div>
+                  <p className="text-[12px] font-bold text-purple uppercase tracking-widest mb-2">Emphasis</p>
+                  <p className="text-[15px] text-slate-700 leading-relaxed font-bold italic">
+                    The process of learning and adaptation.
+                  </p>
+                </div>
+                
+                <div className="p-4 bg-white rounded-xl border border-purple/20 shadow-sm">
+                  <p className="text-[12px] font-bold text-purple uppercase tracking-widest mb-1 italic">Example</p>
+                  <p className="text-[14px] text-slate-600 italic">
+                    "Early childhood socialization plays a crucial role in shaping an individual's personality."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Center Pull Quote */}
+          <div className="relative h-32 flex items-center justify-center px-12">
+            <div className="absolute inset-0 flex items-center justify-center opacity-5">
+              <Quote className="w-48 h-48 text-gold" />
+            </div>
+            <p className="text-2xl font-serif italic text-gold text-center relative z-10 leading-tight">
+              "You undergo socialization to have a social life."
+            </p>
+          </div>
+
+          {/* Conclusion Box */}
+          <div className="p-8 px-12">
+            <div className="bg-gradient-to-r from-pink to-pink/80 p-6 rounded-2xl shadow-lg relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
+              <h3 className="text-white font-serif font-bold text-lg uppercase tracking-widest mb-2 relative z-10">Conclusion</h3>
+              <p className="text-white text-[15px] leading-relaxed relative z-10">
+                Prioritizing social life can have a profound impact on our well-being and happiness. By nurturing our social connections, we can build stronger relationships, reduce stress, and enhance our overall quality of life.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-auto py-4 px-8 border-t border-stone-100 flex justify-center shrink-0">
+          <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
+            UDOSA 04 | Lifestyle & Wellness
+          </p>
+        </div>
+      </div>
+
+      {/* 19. Feature Article */}
       <Page>
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-4">
