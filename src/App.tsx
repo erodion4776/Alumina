@@ -131,13 +131,13 @@ export default function App() {
             </div>
           </div>
           <div className="w-2/3 flex flex-col">
-            <div className="mb-8">
+            <div className="mb-4">
               <h2 className="text-5xl font-serif font-black text-purple leading-tight">
                 A Message from <br />the <span className="text-pink italic">Chairman</span>
               </h2>
-              <div className="w-20 h-1 bg-gold mt-4" />
+              <div className="w-20 h-1 bg-gold mt-2" />
             </div>
-            <div className="space-y-4 text-slate-700 leading-relaxed text-base font-serif overflow-y-auto pr-4 custom-scrollbar">
+            <div className="space-y-3 text-slate-700 leading-relaxed text-[15px] font-serif">
               <p className="font-bold text-purple italic">Dear Fellow Alumni,</p>
               <p>
                 It is with immense pride and a deep sense of gratitude that I address you all. Our time at the University of Benin Demonstration Secondary School was more than just an academic journey; it was the crucible that forged a lifelong community—a family that continues to stand strong two decades later.
@@ -155,15 +155,15 @@ export default function App() {
                 Together, let us keep the UDOSA 04 legacy burning bright.
               </p>
             </div>
-            <div className="mt-auto pt-8 flex items-end justify-between">
+            <div className="mt-auto pt-4 flex items-end justify-between">
               <div>
-                <p className="font-serif italic text-slate-500 mb-2">Warm regards,</p>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Jon_Kirsch%27s_Signature.png" alt="Signature" className="h-12 opacity-60 grayscale invert mb-2" />
-                <p className="font-serif font-bold text-purple text-xl">Owen Ojo</p>
-                <p className="text-xs text-slate-400 uppercase tracking-widest">Chairman, UDOSA 04</p>
+                <p className="font-serif italic text-slate-500 mb-1 text-sm">Warm regards,</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Jon_Kirsch%27s_Signature.png" alt="Signature" className="h-10 opacity-60 grayscale invert mb-1" />
+                <p className="font-serif font-bold text-purple text-lg">Owen Ojo</p>
+                <p className="text-[10px] text-slate-400 uppercase tracking-widest">Chairman, UDOSA 04</p>
               </div>
-              <div className="w-20 h-20 border-2 border-gold/20 rounded-full flex items-center justify-center">
-                <Award className="w-8 h-8 text-gold/30" />
+              <div className="w-16 h-16 border-2 border-gold/20 rounded-full flex items-center justify-center">
+                <Award className="w-6 h-6 text-gold/30" />
               </div>
             </div>
           </div>
