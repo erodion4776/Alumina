@@ -1535,46 +1535,46 @@ export default function App() {
 
       {/* 27. Feature Article */}
       <Page>
-        <div className="mb-16">
-          <div className="flex items-center gap-4 mb-4">
+        <div className="mb-6">
+          <div className="flex items-center gap-4 mb-2">
             <div className="h-px flex-grow bg-gold/30" />
-            <p className="text-pink font-serif italic text-2xl shrink-0">Special Anniversary Feature</p>
+            <p className="text-pink font-serif italic text-lg shrink-0">Special Anniversary Feature</p>
             <div className="h-px flex-grow bg-gold/30" />
           </div>
-          <h2 className="text-8xl font-serif font-black text-purple leading-[0.85] uppercase tracking-tighter text-center">
+          <h2 className="text-6xl font-serif font-black text-purple leading-[0.85] uppercase tracking-tighter text-center">
             Two Decades <br /><span className="text-pink">of Impact</span>
           </h2>
         </div>
-        <div className="grid grid-cols-2 gap-16 text-slate-600 leading-relaxed text-base">
-          <div className="space-y-8">
-            <p className="drop-cap text-lg">
+        <div className="grid grid-cols-2 gap-8 text-slate-600 leading-relaxed text-[13px]">
+          <div className="space-y-4">
+            <p className="drop-cap text-sm">
               It has been exactly twenty years since the Class of 2004 bid farewell to the familiar corridors of University of Benin Demonstration Secondary School. The world we entered then was vastly different from the one we inhabit today, yet the values instilled in us remain our North Star.
             </p>
             <p>
               The journey from the classrooms of Benin to the various global stages we now occupy has been marked by resilience and innovation. Our set has produced leaders in medicine, technology, law, and the arts, each carrying the UDOSA torch with distinction.
             </p>
-            <div className="py-12 px-10 bg-gradient-to-br from-purple to-[#3b0764] rounded-3xl my-12 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-pink/10 rounded-full -mr-16 -mt-16 blur-3xl" />
-              <Quote className="w-12 h-12 text-gold mb-6 opacity-30" />
-              <p className="text-2xl font-serif italic text-white leading-relaxed relative z-10">
+            <div className="py-6 px-6 bg-gradient-to-br from-purple to-[#3b0764] rounded-3xl my-4 shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-pink/10 rounded-full -mr-12 -mt-12 blur-3xl" />
+              <Quote className="w-8 h-8 text-gold mb-3 opacity-30" />
+              <p className="text-lg font-serif italic text-white leading-relaxed relative z-10">
                 "We didn't just graduate; we launched a movement of excellence that continues to ripple across the globe."
               </p>
-              <p className="text-gold font-bold text-xs uppercase tracking-widest mt-6">— Class of 2004 Mantra</p>
+              <p className="text-gold font-bold text-[9px] uppercase tracking-widest mt-3">— Class of 2004 Mantra</p>
             </div>
             <p>
               Reflecting on our time at UBDS, it wasn't just the academic rigor that shaped us, but the community. The friendships formed during those formative years have proven to be unbreakable, surviving the tests of time and distance.
             </p>
           </div>
-          <div className="space-y-8">
-            <div className="aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border-8 border-white mb-10 transform rotate-2">
+          <div className="space-y-4">
+            <div className="aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] border-4 border-white mb-4 transform rotate-1">
               <img 
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800" 
-                alt="Alumni" 
+                src="https://i.ibb.co/dwjz8Bdh/IMG-20260323-WA0003.jpg" 
+                alt="Alumni Feature" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
             </div>
-            <p className="font-serif text-lg italic text-purple">
+            <p className="font-serif text-sm italic text-purple">
               "As we look to the next twenty years, the challenge remains the same: to lead with integrity and to lift as we climb."
             </p>
             <p>
@@ -1701,7 +1701,7 @@ export default function App() {
             />
           </div>
           
-          <div className="mt-12 p-8 bg-purple/5 rounded-3xl border-l-8 border-gold italic font-serif text-2xl text-purple leading-relaxed">
+          <div className="mt-6 p-6 bg-purple/5 rounded-3xl border-l-8 border-gold italic font-serif text-xl text-purple leading-relaxed">
             "In times of sorrow, we find our greatest strength in each other. UDOSA 04—More than just classmates, we are family."
           </div>
 
