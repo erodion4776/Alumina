@@ -113,7 +113,7 @@ const GalleryItem = ({ src, number, name }: { src: string; number: number; name:
   const [revealed, setRevealed] = useState(false);
   return (
     <div 
-      className="relative group cursor-pointer overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg transition-all duration-500 hover:scale-[1.02] hover:border-gold h-full"
+      className="relative group cursor-pointer overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg transition-all duration-500 hover:scale-[1.02] hover:border-gold h-[240px]"
       onClick={() => setRevealed(!revealed)}
     >
       <img 
@@ -1406,25 +1406,13 @@ export default function App() {
             <p className="text-gold/60 text-xs uppercase tracking-widest">Can you recognize these legends after 20 years?</p>
           </div>
 
-          <div className="grid grid-cols-3 grid-rows-3 gap-4 flex-grow">
-            <div className="col-span-2 row-span-2">
-              <GalleryItem src={GALLERY_PHOTOS[0]} number={1} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[1]} number={2} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[2]} number={3} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[3]} number={4} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[4]} number={5} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[5]} number={6} name="[Name Here]" />
-            </div>
+          <div className="grid grid-cols-2 gap-4">
+            <GalleryItem src={GALLERY_PHOTOS[0]} number={1} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[1]} number={2} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[2]} number={3} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[3]} number={4} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[4]} number={5} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[5]} number={6} name="[Name Here]" />
           </div>
         </div>
 
@@ -1444,28 +1432,13 @@ export default function App() {
         </div>
 
         <div className="p-10 flex-grow overflow-hidden flex flex-col">
-          <div className="grid grid-cols-3 grid-rows-3 gap-4 flex-grow">
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[6]} number={7} name="[Name Here]" />
-            </div>
-            <div className="col-span-2 row-span-2">
-              <GalleryItem src={GALLERY_PHOTOS[7]} number={8} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[8]} number={9} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[9]} number={10} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[10]} number={11} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[11]} number={12} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[12]} number={13} name="[Name Here]" />
-            </div>
+          <div className="grid grid-cols-2 gap-4">
+            <GalleryItem src={GALLERY_PHOTOS[6]} number={7} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[7]} number={8} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[8]} number={9} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[9]} number={10} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[10]} number={11} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[11]} number={12} name="[Name Here]" />
           </div>
         </div>
 
@@ -1485,31 +1458,13 @@ export default function App() {
         </div>
 
         <div className="p-10 flex-grow overflow-hidden flex flex-col">
-          <div className="grid grid-cols-3 grid-rows-3 gap-4 flex-grow">
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[13]} number={14} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[14]} number={15} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[15]} number={16} name="[Name Here]" />
-            </div>
-            <div className="col-span-2 row-span-2">
-              <GalleryItem src={GALLERY_PHOTOS[16]} number={17} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[17]} number={18} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[18]} number={19} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[19]} number={20} name="[Name Here]" />
-            </div>
-            <div className="col-span-1 row-span-1">
-              <GalleryItem src={GALLERY_PHOTOS[20]} number={21} name="[Name Here]" />
-            </div>
+          <div className="grid grid-cols-2 gap-4">
+            <GalleryItem src={GALLERY_PHOTOS[12]} number={13} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[13]} number={14} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[14]} number={15} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[15]} number={16} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[16]} number={17} name="[Name Here]" />
+            <GalleryItem src={GALLERY_PHOTOS[17]} number={18} name="[Name Here]" />
           </div>
         </div>
 
@@ -1520,31 +1475,45 @@ export default function App() {
         </div>
       </div>
 
-      {/* 26. The Reveal: Answer Key - Page 26 */}
-      <div className="page-a4 overflow-hidden flex flex-col bg-purple print:m-0 print:shadow-none print:page-break-after-always">
-        <div className="p-12 flex-grow flex flex-col">
-          <div className="mb-10 text-center">
-            <h2 className="text-5xl font-serif font-black text-gold uppercase tracking-tighter mb-2">The Reveal</h2>
-            <p className="text-white/60 text-sm uppercase tracking-[0.3em]">Answer Key</p>
-          </div>
+      {/* 26. WHO’S WHO? Face Challenge & Answer Key - Page 26 */}
+      <div className="page-a4 overflow-hidden flex flex-col bg-[#1a0b2e] print:m-0 print:shadow-none print:page-break-after-always">
+        <div className="bg-purple/30 w-full h-20 flex items-center justify-center px-8 shrink-0 border-b border-gold/20">
+          <h2 className="text-2xl font-serif font-black tracking-[0.3em] text-gold uppercase">
+            WHO’S <span className="text-white">WHO?</span>
+          </h2>
+        </div>
 
-          <div className="bg-white/10 backdrop-blur-xl rounded-[2.5rem] p-10 border border-white/20 shadow-2xl flex-grow overflow-hidden">
-            <div className="grid grid-cols-2 gap-x-12 gap-y-4 h-full content-start">
-              {Array.from({ length: 21 }).map((_, i) => (
-                <div key={i} className="flex items-center gap-4 border-b border-white/10 pb-2">
-                  <span className="text-gold font-black text-lg w-8">{i + 1}.</span>
-                  <span className="text-white/40 font-serif italic text-sm">[Name Here]</span>
-                </div>
-              ))}
+        <div className="p-10 flex-grow overflow-hidden flex flex-col">
+          <div className="grid grid-cols-2 gap-4 h-full">
+            <div className="space-y-4">
+              <GalleryItem src={GALLERY_PHOTOS[18]} number={19} name="[Name Here]" />
+              <GalleryItem src={GALLERY_PHOTOS[19]} number={20} name="[Name Here]" />
+              <GalleryItem src={GALLERY_PHOTOS[20]} number={21} name="[Name Here]" />
             </div>
-          </div>
+            
+            <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl flex flex-col h-full">
+              <div className="mb-4 text-center">
+                <h2 className="text-2xl font-serif font-black text-gold uppercase tracking-tighter">The Reveal</h2>
+                <p className="text-white/60 text-[8px] uppercase tracking-[0.3em]">Answer Key</p>
+              </div>
 
-          <div className="mt-10 text-center">
-            <p className="text-gold/80 font-serif italic text-sm">"Time changes faces, but memories remain forever."</p>
+              <div className="grid grid-cols-1 gap-y-1.5 overflow-hidden">
+                {Array.from({ length: 21 }).map((_, i) => (
+                  <div key={i} className="flex items-center gap-2 border-b border-white/5 pb-1">
+                    <span className="text-gold font-black text-xs w-5">{i + 1}.</span>
+                    <span className="text-white/40 font-serif italic text-[10px]">[Name Here]</span>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-auto pt-4 text-center">
+                <p className="text-gold/60 font-serif italic text-[9px]">"Time changes faces, but memories remain forever."</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-auto py-4 px-8 border-t border-white/10 flex justify-center shrink-0">
+        <div className="mt-auto py-4 px-8 border-t border-gold/10 flex justify-center shrink-0">
           <p className="text-[10px] font-serif tracking-[0.3em] text-gold uppercase font-bold">
             UDOSA 04 | Memory Lane Gallery
           </p>
