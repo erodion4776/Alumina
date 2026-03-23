@@ -109,6 +109,18 @@ const GALLERY_PHOTOS = [
   "https://i.ibb.co/rGp6Y1Q9/20231230-145841-3.jpg"
 ];
 
+const SOLIDARITY_PHOTOS = [
+  "https://i.ibb.co/dsXybKG4/IMG-20260323-WA0020.jpg",
+  "https://i.ibb.co/5X5B0rhc/IMG-20260323-WA0018.jpg",
+  "https://i.ibb.co/WvcD4D5C/IMG-20260323-WA0016.jpg",
+  "https://i.ibb.co/GvbwNMbW/IMG-20260323-WA0015.jpg",
+  "https://i.ibb.co/WN98sZcf/IMG-20260323-WA0012.jpg",
+  "https://i.ibb.co/zH4x0JSd/IMG-20260323-WA0010.jpg",
+  "https://i.ibb.co/CpzVJKsp/IMG-20260323-WA0009.jpg",
+  "https://i.ibb.co/2Yj8H5B8/IMG-20260323-WA0006.jpg",
+  "https://i.ibb.co/5W0cfthc/IMG-20260323-WA0004.jpg"
+];
+
 const GalleryItem = ({ src, number, name }: { src: string; number: number; name: string }) => {
   const [revealed, setRevealed] = useState(false);
   return (
@@ -228,9 +240,10 @@ export default function App() {
             { title: "WHO’S WHO? Face Challenge", page: "23", icon: <Camera className="w-5 h-5" /> },
             { title: "The Reveal: Answer Key", page: "26", icon: <Search className="w-5 h-5" /> },
             { title: "Two Decades: A Retrospective", page: "27", icon: <Users className="w-5 h-5" /> },
-            { title: "Class of 2004 Directory", page: "28", icon: <Users className="w-5 h-5" /> },
-            { title: "Throwback Gallery", page: "29", icon: <Camera className="w-5 h-5" /> },
-            { title: "Alumni Business Directory", page: "30", icon: <Briefcase className="w-5 h-5" /> },
+            { title: "Moments of Solidarity", page: "28", icon: <Heart className="w-5 h-5" /> },
+            { title: "Class of 2004 Directory", page: "30", icon: <Users className="w-5 h-5" /> },
+            { title: "Throwback Gallery", page: "31", icon: <Camera className="w-5 h-5" /> },
+            { title: "Alumni Business Directory", page: "32", icon: <Briefcase className="w-5 h-5" /> },
           ].map((item, i) => (
             <div key={i} className="flex items-center group cursor-default">
               <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -1574,7 +1587,104 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 28. Class Directory */}
+      {/* 28. Moments of Solidarity - Page 1 */}
+      <Page className="bg-white">
+        <div className="mb-12">
+          <h2 className="text-6xl font-serif font-black text-purple uppercase tracking-tighter">MOMENTS OF SOLIDARITY</h2>
+          <p className="text-pink font-serif italic text-2xl">UDOSA 04 Community Support for Ehis</p>
+          <div className="w-24 h-2 bg-gold mt-4" />
+        </div>
+        
+        <div className="grid grid-cols-2 gap-6 h-[700px]">
+          <div className="col-span-2 h-[350px] rounded-2xl overflow-hidden shadow-xl border-2 border-gold/20">
+            <img 
+              src={SOLIDARITY_PHOTOS[0]} 
+              alt="Solidarity 1" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="h-[300px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+            <img 
+              src={SOLIDARITY_PHOTOS[1]} 
+              alt="Solidarity 2" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="h-[300px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+            <img 
+              src={SOLIDARITY_PHOTOS[2]} 
+              alt="Solidarity 3" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+        </div>
+        
+        <div className="mt-8 grid grid-cols-2 gap-6">
+          <div className="h-[200px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+            <img 
+              src={SOLIDARITY_PHOTOS[3]} 
+              alt="Solidarity 4" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="h-[200px] rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+            <img 
+              src={SOLIDARITY_PHOTOS[4]} 
+              alt="Solidarity 5" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+        </div>
+      </Page>
+
+      {/* 29. Moments of Solidarity - Page 2 */}
+      <Page className="bg-white">
+        <div className="grid grid-cols-2 gap-6 h-[800px]">
+          <div className="aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+            <img 
+              src={SOLIDARITY_PHOTOS[5]} 
+              alt="Solidarity 6" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+            <img 
+              src={SOLIDARITY_PHOTOS[6]} 
+              alt="Solidarity 7" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+            <img 
+              src={SOLIDARITY_PHOTOS[7]} 
+              alt="Solidarity 8" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-gold/10">
+            <img 
+              src={SOLIDARITY_PHOTOS[8]} 
+              alt="Solidarity 9" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+        </div>
+        
+        <div className="mt-12 p-8 bg-purple/5 rounded-3xl border-l-8 border-gold italic font-serif text-2xl text-purple leading-relaxed">
+          "True community is not just about celebrating together, but standing shoulder to shoulder in the moments that matter most. UDOSA 04 remains a family forever."
+        </div>
+      </Page>
+
+      {/* 30. Class Directory */}
       <Page className="bg-purple text-white">
         <div className="mb-12 flex justify-between items-start">
           <div>
@@ -1600,7 +1710,7 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 29. Throwback Gallery */}
+      {/* 31. Throwback Gallery */}
       <Page>
         <div className="mb-12 flex justify-between items-end border-b-4 border-purple pb-6">
           <div>
@@ -1638,7 +1748,7 @@ export default function App() {
         </div>
       </Page>
 
-      {/* 30. Business Showcase */}
+      {/* 32. Business Showcase */}
       <Page>
         <div className="mb-16 text-center">
           <h2 className="text-6xl font-serif font-black text-purple mb-4">Business Directory</h2>
