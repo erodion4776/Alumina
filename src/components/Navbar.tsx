@@ -51,8 +51,19 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, onViewChange }) => {
         </div>
       </nav>
 
+      {/* Mobile Top Branding (Centered Logo) */}
+      <div className="md:hidden sticky top-0 z-[100] bg-purple w-full h-16 flex items-center justify-center shadow-lg border-b border-gold/20">
+        <img 
+          src={LOGO_URL} 
+          alt="UDOSA Logo" 
+          className="h-10 object-contain cursor-pointer" 
+          referrerPolicy="no-referrer" 
+          onClick={() => onViewChange('home')}
+        />
+      </div>
+
       {/* Mobile Bottom Nav */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-purple border-t border-gold/20 px-2 py-3 flex justify-around items-center shadow-[0_-10px_30px_rgba(0,0,0,0.3)]">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-purple border-t border-gold/20 px-2 pt-3 pb-[calc(12px+env(safe-area-inset-bottom))] flex justify-around items-center shadow-[0_-10px_30px_rgba(0,0,0,0.3)]">
         {navItems.map((item) => (
           <button
             key={item.id}

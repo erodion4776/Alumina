@@ -37,16 +37,16 @@ export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord
   }, [currentPage]);
 
   return (
-    <div className="relative min-h-[calc(100vh-80px)] bg-stone-100 flex flex-col items-center py-12 px-4 pb-32 md:pb-12">
+    <div className="relative min-h-[calc(100vh-144px)] md:min-h-[calc(100vh-80px)] bg-stone-100 flex flex-col items-center py-8 md:py-12 px-4 pb-32 md:pb-12 overflow-x-hidden">
       {/* Page Indicator */}
-      <div className="mb-8 flex flex-col items-center gap-2">
+      <div className="mb-6 md:mb-8 flex flex-col items-center gap-2 w-full max-w-xs">
         <div className="flex items-center gap-3 bg-purple text-gold px-6 py-2 rounded-full shadow-lg border border-gold/30">
           <BookOpen className="w-4 h-4" />
-          <span className="font-serif font-bold tracking-[0.2em] text-xs uppercase">
+          <span className="font-serif font-bold tracking-[0.2em] text-[10px] md:text-xs uppercase">
             Page {currentPage + 1} of {totalPages}
           </span>
         </div>
-        <div className="w-64 h-1 bg-stone-200 rounded-full overflow-hidden">
+        <div className="w-full h-1 bg-stone-200 rounded-full overflow-hidden">
           <motion.div 
             initial={{ width: 0 }}
             animate={{ width: `${((currentPage + 1) / totalPages) * 100}%` }}
@@ -57,24 +57,24 @@ export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord
 
       {/* Slide Viewer */}
       <div className="relative w-full max-w-5xl flex items-center justify-center">
-        {/* Navigation Arrows */}
+        {/* Desktop Navigation Arrows */}
         <button 
           onClick={prevPage}
           disabled={currentPage === 0}
-          className={`absolute -left-16 lg:-left-24 z-10 p-4 rounded-full bg-white shadow-xl border-2 border-gold text-purple transition-all hover:scale-110 active:scale-95 disabled:opacity-30 disabled:hover:scale-100 hidden md:block`}
+          className="absolute -left-16 lg:-left-24 z-10 p-4 rounded-full bg-white shadow-xl border-2 border-gold text-purple transition-all hover:scale-110 active:scale-95 disabled:opacity-30 disabled:hover:scale-100 hidden md:block"
         >
           <ChevronLeft className="w-8 h-8" />
         </button>
 
-        <div className="w-full overflow-hidden flex justify-center">
+        <div className="w-full flex justify-center overflow-hidden px-2 md:px-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentPage}
-              initial={{ opacity: 0, x: 100 }}
+              initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="shadow-[0_40px_100px_rgba(0,0,0,0.2)] rounded-xl overflow-hidden"
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="shadow-[0_20px_60px_rgba(0,0,0,0.15)] rounded-xl overflow-hidden scale-[0.85] sm:scale-90 md:scale-100 origin-top"
             >
               {pages[currentPage]}
             </motion.div>
@@ -84,27 +84,27 @@ export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord
         <button 
           onClick={nextPage}
           disabled={currentPage === totalPages - 1}
-          className={`absolute -right-16 lg:-right-24 z-10 p-4 rounded-full bg-white shadow-xl border-2 border-gold text-purple transition-all hover:scale-110 active:scale-95 disabled:opacity-30 disabled:hover:scale-100 hidden md:block`}
+          className="absolute -right-16 lg:-right-24 z-10 p-4 rounded-full bg-white shadow-xl border-2 border-gold text-purple transition-all hover:scale-110 active:scale-95 disabled:opacity-30 disabled:hover:scale-100 hidden md:block"
         >
           <ChevronRight className="w-8 h-8" />
         </button>
       </div>
 
-      {/* Mobile Controls */}
-      <div className="flex md:hidden gap-8 mt-8">
+      {/* Mobile Controls - Enhanced for touch */}
+      <div className="flex md:hidden gap-12 mt-4 items-center">
         <button 
           onClick={prevPage}
           disabled={currentPage === 0}
-          className="p-4 rounded-full bg-white shadow-lg border-2 border-gold text-purple disabled:opacity-30"
+          className="w-16 h-16 flex items-center justify-center rounded-full bg-purple text-gold shadow-2xl border-2 border-gold/50 active:scale-90 transition-transform disabled:opacity-20"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-8 h-8" />
         </button>
         <button 
           onClick={nextPage}
           disabled={currentPage === totalPages - 1}
-          className="p-4 rounded-full bg-white shadow-lg border-2 border-gold text-purple disabled:opacity-30"
+          className="w-16 h-16 flex items-center justify-center rounded-full bg-purple text-gold shadow-2xl border-2 border-gold/50 active:scale-90 transition-transform disabled:opacity-20"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-8 h-8" />
         </button>
       </div>
 

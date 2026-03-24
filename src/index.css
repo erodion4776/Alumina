@@ -10,12 +10,15 @@
 }
 
 @layer base {
-  body {
-    @apply bg-stone-100 text-slate-900 font-sans antialiased;
+  html, body {
+    @apply bg-stone-100 text-slate-900 font-sans antialiased overflow-x-hidden max-w-full;
   }
 }
 
 @layer utilities {
+  .bg-portal-gradient {
+    background: linear-gradient(135deg, #581c87 0%, #3b0764 50%, #db2777 100%);
+  }
   .page-a4 {
     width: 210mm;
     height: 297mm;

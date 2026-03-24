@@ -29,31 +29,31 @@ import {
 export const Home = () => (
   <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
     {/* Hero Section */}
-    <section className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+    <section className="relative h-[600px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
       <img 
         src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=2000" 
         alt="Alumni Reunion" 
         className="w-full h-full object-cover"
         referrerPolicy="no-referrer"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-purple via-purple/40 to-transparent flex flex-col justify-end p-12">
+      <div className="absolute inset-0 bg-gradient-to-t from-purple via-purple/60 to-pink/20 flex flex-col justify-end p-6 md:p-12 pt-20 md:pt-12">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-2xl"
+          className="max-w-2xl text-center md:text-left mx-auto md:mx-0"
         >
-          <h1 className="text-6xl font-serif font-black text-white mb-4 leading-tight">
-            Welcome Back, <span className="text-gold">Class of 2004</span>
+          <h1 className="text-4xl md:text-6xl font-serif font-black text-white mb-4 leading-tight">
+            Welcome Back, <br className="md:hidden" /> <span className="text-gold">Class of 2004</span>
           </h1>
-          <p className="text-xl text-white/90 font-serif italic mb-8">
+          <p className="text-lg md:text-xl text-white/90 font-serif italic mb-8">
             Celebrating two decades of excellence, friendship, and impact across the globe.
           </p>
-          <div className="flex gap-4">
-            <button className="bg-gold text-purple px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white transition-colors">
+          <div className="flex flex-col md:flex-row gap-4 items-center md:items-start">
+            <button className="w-full md:w-auto max-w-[280px] bg-gold text-purple px-8 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-white transition-colors shadow-lg">
               Join the Celebration
             </button>
-            <button className="bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white/30 transition-colors">
+            <button className="w-full md:w-auto max-w-[280px] bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-white/30 transition-colors">
               Read Our Story
             </button>
           </div>
@@ -63,10 +63,10 @@ export const Home = () => (
 
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
       {/* Latest News */}
-      <div className="lg:col-span-2 space-y-8">
+      <div className="lg:col-span-2 space-y-8 bg-white/50 rounded-3xl px-6 py-10 md:p-0 md:bg-transparent">
         <div className="flex items-center gap-4 border-b-2 border-gold pb-4">
           <Newspaper className="text-purple w-8 h-8" />
-          <h2 className="text-3xl font-serif font-black text-purple uppercase">Latest News</h2>
+          <h2 className="text-2xl md:text-3xl font-serif font-black text-purple uppercase">Latest News</h2>
         </div>
         <div className="grid gap-6">
           {LATEST_NEWS.map((news) => (
@@ -129,8 +129,8 @@ export const SolidarityHub = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
       <div className="text-center space-y-4">
-        <h1 className="text-6xl font-serif font-black text-purple uppercase tracking-tighter">Solidarity Hub</h1>
-        <p className="text-xl text-pink font-serif italic">Connecting hearts, voices, and memories.</p>
+        <h1 className="text-4xl md:text-6xl font-serif font-black text-purple uppercase tracking-tighter">Solidarity Hub</h1>
+        <p className="text-lg md:text-xl text-pink font-serif italic">Connecting hearts, voices, and memories.</p>
         <div className="w-24 h-1 bg-gold mx-auto" />
       </div>
 
