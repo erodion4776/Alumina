@@ -115,3 +115,42 @@ export const SOLIDARITY_PHOTOS = [
   { src: "https://i.ibb.co/5X5B0rhc/IMG-20260323-WA0018.jpg", caption: "A testament to the bonds of 2004." },
   { src: "https://i.ibb.co/WvcD4D5C/IMG-20260323-WA0016.jpg", caption: "Excellence in empathy and solidarity." }
 ];
+
+export const LATEST_NEWS = [
+  { id: 1, title: "20th Anniversary Reunion Planning Underway", date: "March 20, 2026", summary: "The committee has begun preparations for our grand 20th anniversary celebration scheduled for December." },
+  { id: 2, title: "New Scholarship Fund Launched", date: "March 15, 2026", summary: "UDOSA 04 is proud to announce a new scholarship fund for current UBDS students excelling in STEM." },
+  { id: 3, title: "Alumni Spotlight: Dr. Irene Ogbeide", date: "March 10, 2026", summary: "Read about Irene's groundbreaking research in nutritional science and her impact on public health." }
+];
+
+export const PROJECT_PROGRESS = [
+  { id: 1, name: "Soccer Pitch Renovation", progress: 85, status: "Final Phase", description: "Laying the high-grade artificial turf and installing new goalposts." },
+  { id: 2, name: "Solar Water Pump System", progress: 100, status: "Completed", description: "Providing sustainable clean water access to the entire school compound." },
+  { id: 3, name: "Library Digitalization", progress: 40, status: "In Progress", description: "Procuring e-readers and setting up the digital catalog system." }
+];
+
+export const ALUMNI_DIRECTORY = [
+  { id: 1, name: "Owen Ojo", profession: "Engineer", city: "Lagos", email: "owen.ojo@example.com" },
+  { id: 2, name: "Ifeoma Azikiwe", profession: "Event Planner", city: "Abuja", email: "ifeoma.a@example.com" },
+  { id: 3, name: "Osas Ighodaro", profession: "Lawyer", city: "Benin City", email: "osas.i@example.com" },
+  { id: 4, name: "Irene Ogbeide", profession: "Doctor", city: "London", email: "irene.o@example.com" },
+  { id: 5, name: "Ehima Oziegbe", profession: "Engineer", city: "Port Harcourt", email: "ehima.o@example.com" },
+  { id: 6, name: "Osas Edokpolo", profession: "Artist", city: "New York", email: "osas.e@example.com" },
+  { id: 7, name: "Cynthia Okoro", profession: "Pharmacist", city: "Enugu", email: "cynthia.o@example.com" },
+  { id: 8, name: "Osayowanbo Aghedo", profession: "Tech Consultant", city: "Berlin", email: "osay.a@example.com" },
+  { id: 9, name: "Ehis Abudu", profession: "Architect", city: "Lagos", email: "ehis.a@example.com" },
+  { id: 10, name: "Ero Eliza", profession: "Software Developer", city: "Toronto", email: "ero.e@example.com" }
+];
+
+export const BUSINESS_MARKETPLACE = [
+  { id: 1, name: "Luxe Events", owner: "Ifeoma Azikiwe", category: "Events", description: "Premium event planning and management services." },
+  { id: 2, name: "TechNova Solutions", owner: "Owen Ojo", category: "Technology", description: "Innovative software development and IT consulting." },
+  { id: 3, name: "Healthy Bites", owner: "Irene Ogbeide", category: "Food", description: "Organic snacks and nutritional consulting." },
+  { id: 4, name: "Zenith Law Firm", owner: "Osas Ighodaro", category: "Legal", description: "Comprehensive legal services for businesses." },
+  { id: 5, name: "Apex Engineering", owner: "Ehima Oziegbe", category: "Construction", description: "Structural design and construction management." }
+];
+
+export const AUDIO_LIBRARY = [
+  { id: 1, title: "UBDS School Anthem", artist: "UBDS Choir", duration: "2:45", url: "#" },
+  { id: 2, title: "UDOSA 04 Podcast: Ep 1", artist: "Alumni Panel", duration: "45:00", url: "#" },
+  { id: 3, title: "Throwback Mix 2004", artist: "DJ Alumni", duration: "60:00", url: "#" }
+];
