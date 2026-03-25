@@ -34,11 +34,11 @@ export const Home = () => {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q="University of Benin" OR "Uniben"&sortBy=publishedAt&apiKey=f760e1cc039d488d8059d4b13ef5d1b7`
+          `https://newsapi.org/v2/top-headlines?country=ng&apiKey=f760e1cc039d488d8059d4b13ef5d1b7`
         );
         const data = await response.json();
         if (data.articles && data.articles.length > 0) {
-          setNews(data.articles.slice(0, 4));
+          setNews(data.articles.slice(0, 5));
         }
       } catch (error) {
         console.error("Error fetching news:", error);
@@ -97,18 +97,24 @@ export const Home = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
         {/* Latest News */}
         <div className="lg:col-span-2 space-y-6 bg-white/50 rounded-3xl px-4 py-8 md:p-0 md:bg-transparent">
-          <div className="flex items-center gap-4 border-b-2 border-gold pb-3">
-            <div className="relative">
-              <Newspaper className="text-purple w-6 h-6" />
-              <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+          <div className="flex items-center justify-between border-b-2 border-gold pb-3">
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <Newspaper className="text-purple w-6 h-6" />
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+              </div>
+              <h2 className="text-xl font-serif font-black text-purple uppercase tracking-widest">Latest News</h2>
             </div>
-            <h2 className="text-xl font-serif font-black text-purple uppercase tracking-widest">Latest News</h2>
+            <div className="flex items-center gap-2 bg-red-50 px-3 py-1 rounded-full border border-red-100">
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+              <span className="text-[10px] font-bold text-red-600 uppercase tracking-widest">Live News</span>
+            </div>
           </div>
           <div className="grid gap-4">
             {loading ? (
-              [1, 2, 3, 4].map((i) => (
+              [1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className="bg-white p-4 rounded-2xl shadow-md animate-pulse flex gap-4">
-                  <div className="w-16 h-16 bg-stone-200 rounded-xl shrink-0" />
+                  <div className="w-20 h-20 bg-stone-200 rounded-xl shrink-0" />
                   <div className="flex-grow space-y-2">
                     <div className="h-4 bg-stone-200 rounded w-3/4" />
                     <div className="h-3 bg-stone-200 rounded w-1/2" />
@@ -122,9 +128,9 @@ export const Home = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-white p-4 rounded-2xl shadow-md border-l-4 border-pink flex gap-4 items-center group cursor-pointer hover:shadow-lg transition-all"
+                  className="bg-white p-3 md:p-4 rounded-2xl shadow-sm border border-stone-100 hover:border-gold/50 flex gap-4 items-center group cursor-pointer hover:shadow-md transition-all"
                 >
-                  <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-stone-100">
+                  <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 border border-stone-100">
                     <img 
                       src={article.urlToImage || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=200"} 
                       alt="News Thumbnail" 
@@ -134,11 +140,11 @@ export const Home = () => {
                   </div>
                   <div className="flex-grow min-w-0">
                     <div className="flex justify-between items-start gap-2 mb-1">
-                      <p className="text-[10px] text-pink font-bold uppercase tracking-widest truncate">
+                      <p className="text-[10px] md:text-xs text-pink font-bold uppercase tracking-widest truncate">
                         {article.source?.name} • {new Date(article.publishedAt).toLocaleDateString()}
                       </p>
                     </div>
-                    <h3 className="text-sm font-serif font-bold text-purple leading-tight line-clamp-2 mb-2">
+                    <h3 className="text-sm md:text-base font-serif font-bold text-purple leading-tight line-clamp-2 mb-2">
                       {article.title}
                     </h3>
                     <a 
