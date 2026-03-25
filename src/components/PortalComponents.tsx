@@ -217,9 +217,9 @@ export const Home = ({ onViewChange }: { onViewChange: (view: any) => void }) =>
         </div>
       </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+      <div className="space-y-16">
         {/* Latest News */}
-        <div className="lg:col-span-2 space-y-6 bg-white/50 rounded-3xl px-4 py-8 md:p-0 md:bg-transparent">
+        <div className="space-y-6 bg-white/40 backdrop-blur-md rounded-[2.5rem] p-8 md:p-12 border border-white/40 shadow-xl">
           <div className="flex items-center justify-between border-b-2 border-gold pb-3">
             <div className="flex items-center gap-4">
               <div className="relative">
@@ -242,9 +242,9 @@ export const Home = ({ onViewChange }: { onViewChange: (view: any) => void }) =>
               </div>
             </div>
           </div>
-          <div className="grid gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {loading ? (
-              [1, 2, 3, 4, 5].map((i) => (
+              [1, 2, 3].map((i) => (
                 <div key={i} className="bg-white p-4 rounded-2xl shadow-md animate-pulse flex gap-4">
                   <div className="w-16 h-16 bg-stone-200 rounded-xl shrink-0" />
                   <div className="flex-grow space-y-2">
@@ -254,29 +254,28 @@ export const Home = ({ onViewChange }: { onViewChange: (view: any) => void }) =>
                 </div>
               ))
             ) : (
-              displayNews.map((article, i) => (
+              displayNews.slice(0, 3).map((article, i) => (
                 <motion.div 
                   key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-white p-3 md:p-4 rounded-2xl shadow-sm border border-stone-100 hover:border-gold/50 flex gap-4 items-center group cursor-pointer hover:shadow-md transition-all"
+                  className="bg-white p-4 rounded-2xl shadow-sm border border-stone-100 hover:border-gold/50 flex flex-col gap-4 group cursor-pointer hover:shadow-md transition-all"
                 >
-                  <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border-2 border-gold shadow-sm">
+                  <div className="w-full h-32 rounded-xl overflow-hidden shrink-0 border-2 border-gold shadow-sm">
                     <img 
-                      src={article.thumbnail || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=200"} 
+                      src={article.thumbnail || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=400"} 
                       alt="News Thumbnail" 
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       referrerPolicy="no-referrer"
                     />
                   </div>
                   <div className="flex-grow min-w-0">
-                    <div className="flex justify-between items-start gap-2 mb-1">
-                      <p className="text-[11px] text-pink font-bold uppercase tracking-widest truncate">
-                        BBC Africa • {new Date(article.pubDate).toLocaleDateString()}
-                      </p>
-                    </div>
-                    <h3 className="text-sm md:text-base font-serif font-bold text-purple leading-tight line-clamp-2 mb-2">
+                    <p className="text-[10px] text-pink font-bold uppercase tracking-widest mb-1">
+                      {new Date(article.pubDate).toLocaleDateString()}
+                    </p>
+                    <h3 className="text-sm font-serif font-bold text-purple leading-tight line-clamp-2 mb-3">
                       {article.title}
                     </h3>
                     <a 
@@ -294,38 +293,103 @@ export const Home = ({ onViewChange }: { onViewChange: (view: any) => void }) =>
           </div>
         </div>
 
-        {/* Project Progress */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-4 border-b-2 border-gold pb-3">
-            <CheckCircle2 className="text-purple w-6 h-6" />
-            <h2 className="text-xl font-serif font-black text-purple uppercase tracking-widest">Project Progress</h2>
+        {/* UDOSA 04 BY THE NUMBERS */}
+        <section className="space-y-8">
+          <div className="text-center space-y-2">
+            <h2 className="text-xl md:text-3xl font-serif font-black text-purple uppercase tracking-widest">UDOSA 04 By The Numbers</h2>
+            <div className="w-12 h-1 bg-gold mx-auto" />
           </div>
-          <div className="space-y-6">
-            {PROJECT_PROGRESS.map((project) => (
-              <div key={project.id} className="bg-purple text-white p-6 rounded-2xl shadow-xl space-y-4">
-                <div className="flex justify-between items-start">
-                  <h3 className="font-serif font-bold text-lg leading-tight">{project.name}</h3>
-                  <span className="text-[10px] bg-gold text-purple px-2 py-1 rounded-full font-bold uppercase">{project.status}</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { val: "22+", label: "Years of Legacy", sub: "Since 2004" },
+              { val: "1", label: "Global Family", sub: "Members in 15+ Countries" },
+              { val: "250+", label: "Legends", sub: "Our total batch strength" }
+            ].map((stat, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="flex flex-col items-center text-center space-y-4"
+              >
+                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-gold flex flex-col items-center justify-center bg-white shadow-xl relative group overflow-hidden">
+                  <div className="absolute inset-0 bg-gold/5 group-hover:bg-gold/10 transition-colors" />
+                  <span className="text-3xl md:text-4xl font-serif font-black text-gold relative z-10">{stat.val}</span>
                 </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-xs font-bold text-gold/80 uppercase">
-                    <span>Progress</span>
-                    <span>{project.progress}%</span>
-                  </div>
-                  <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      animate={{ width: `${project.progress}%` }}
-                      transition={{ duration: 1, delay: 0.5 }}
-                      className="h-full bg-gold shadow-[0_0_10px_rgba(251,191,36,0.5)]"
-                    />
-                  </div>
+                <div className="space-y-1">
+                  <p className="text-purple font-serif font-bold text-lg">{stat.label}</p>
+                  <p className="text-slate-500 text-xs uppercase tracking-widest font-bold">{stat.sub}</p>
                 </div>
-                <p className="text-xs text-white/70 italic">{project.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </section>
+
+        {/* ALUMNI SPOTLIGHT */}
+        <section className="space-y-8">
+          <div className="text-center space-y-2">
+            <h2 className="text-xl md:text-3xl font-serif font-black text-purple uppercase tracking-widest">Alumni Spotlight</h2>
+            <div className="w-12 h-1 bg-gold mx-auto" />
+          </div>
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-[0_20px_50px_rgba(219,39,119,0.1)] border border-pink/10 relative overflow-hidden group"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-pink/5 rounded-full -mr-32 -mt-32 blur-3xl" />
+            
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 relative z-10">
+              <div className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-pink p-1 shrink-0 shadow-2xl">
+                <img 
+                  src="https://i.ibb.co/5d1VcQh/IMG-20250306-WA0054-2.jpg" 
+                  alt="Dr. Irene Ogbeide" 
+                  className="w-full h-full object-cover rounded-full"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="flex-grow text-center md:text-left space-y-4">
+                <div className="space-y-1">
+                  <p className="text-pink font-serif font-bold uppercase tracking-[0.2em] text-xs">Featured Member</p>
+                  <h3 className="text-2xl md:text-4xl font-serif font-bold text-purple">Dr. Irene Ogbeide</h3>
+                </div>
+                <p className="text-slate-600 font-serif italic text-sm md:text-lg leading-relaxed max-w-2xl">
+                  "From the labs of Uniben to pioneering research in public health—read Irene's inspiring journey in our Digital Yearbook."
+                </p>
+                <button 
+                  onClick={() => onViewChange('ebook')}
+                  className="bg-purple text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-pink transition-all shadow-lg transform hover:scale-105"
+                >
+                  Read Her Story
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* JOIN THE INNER CIRCLE */}
+        <section className="relative rounded-[2.5rem] overflow-hidden shadow-2xl">
+          <div className="absolute inset-0 bg-purple" />
+          {/* Sparkle effect overlay */}
+          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #D4AF37 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+          <div className="absolute inset-0 bg-gradient-to-r from-purple via-transparent to-purple opacity-60" />
+          
+          <div className="relative z-10 px-8 py-12 md:py-20 text-center space-y-8">
+            <div className="max-w-3xl mx-auto space-y-4">
+              <h2 className="text-2xl md:text-5xl font-serif font-black text-gold leading-tight">Join The Inner Circle</h2>
+              <p className="text-white/80 font-serif italic text-sm md:text-xl leading-relaxed">
+                Are you in the loop? Join the official UDOSA 04 WhatsApp Community to stay connected in real-time.
+              </p>
+            </div>
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-pink text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm shadow-[0_10px_30px_rgba(219,39,119,0.4)] hover:bg-white hover:text-pink transition-all"
+            >
+              Join WhatsApp Group
+            </motion.button>
+          </div>
+        </section>
       </div>
     </div>
   );
