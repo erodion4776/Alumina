@@ -29,31 +29,32 @@ import {
 export const Home = () => (
   <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
     {/* Hero Section */}
-    <section className="relative h-[450px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+    <section className="relative h-[60vh] md:h-[80vh] rounded-3xl overflow-hidden shadow-2xl">
       <img 
-        src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=2000" 
+        src="https://i.ibb.co/9HHvtSD0/IMG-20260325-152719.png" 
         alt="Alumni Reunion" 
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover object-center"
         referrerPolicy="no-referrer"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-purple/90 via-purple/60 to-purple/20 flex flex-col justify-end p-6 md:p-12 pt-20 md:pt-12">
+      <div className="absolute inset-0 bg-gradient-to-t from-purple/70 to-transparent flex flex-col justify-end p-6 md:p-12 pt-20 md:pt-12">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="max-w-2xl text-center md:text-left mx-auto md:mx-0"
         >
-          <h1 className="text-2xl md:text-5xl font-serif font-black text-white mb-2 leading-tight">
-            Welcome Back, <br className="md:hidden" /> <span className="text-gold">Class of 2004</span>
+          <h1 className="font-serif font-black text-white mb-2 leading-tight">
+            <span className="text-2xl md:text-5xl block">Welcome Back,</span>
+            <span className="text-3xl md:text-6xl text-gold block">Class of 2004</span>
           </h1>
-          <p className="text-xl md:text-4xl text-white/90 font-serif italic mb-6">
+          <p className="text-sm md:text-2xl text-white/90 font-serif italic mb-6 max-w-[300px] md:max-w-none mx-auto md:mx-0">
             Celebrating two decades of excellence, friendship, and impact across the globe.
           </p>
           <div className="flex flex-col md:flex-row gap-3 items-center md:items-start">
-            <button className="w-full md:w-auto max-w-[240px] bg-gold text-purple px-6 py-3 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors shadow-lg">
+            <button className="w-full md:w-auto max-w-[220px] md:max-w-[240px] bg-gold text-purple px-5 py-2.5 md:px-6 md:py-3 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-sm hover:bg-white transition-colors shadow-lg">
               Join the Celebration
             </button>
-            <button className="w-full md:w-auto max-w-[240px] bg-white/20 backdrop-blur-md text-white border border-white/30 px-6 py-3 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-white/30 transition-colors">
+            <button className="w-full md:w-auto max-w-[220px] md:max-w-[240px] bg-white/20 backdrop-blur-md text-white border border-white/30 px-5 py-2.5 md:px-6 md:py-3 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-sm hover:bg-white/30 transition-colors">
               Read Our Story
             </button>
           </div>
