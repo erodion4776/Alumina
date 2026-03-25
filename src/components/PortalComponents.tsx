@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
+  RotateCw,
   Newspaper, 
   CheckCircle2, 
   Play, 
@@ -31,29 +32,33 @@ export const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const response = await fetch(
-          `https://newsapi.org/v2/top-headlines?country=ng&apiKey=f760e1cc039d488d8059d4b13ef5d1b7`
-        );
-        const data = await response.json();
-        if (data.articles && data.articles.length > 0) {
-          setNews(data.articles.slice(0, 5));
-        }
-      } catch (error) {
-        console.error("Error fetching news:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchNews();
   }, []);
 
+  const fetchNews = async () => {
+    setLoading(true);
+    const rssUrl = "http://feeds.bbci.co.uk/news/world/africa/rss.xml";
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+    
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      
+      if (data.status === 'ok' && data.items && data.items.length > 0) {
+        setNews(data.items.slice(0, 5));
+        console.log("News successfully fetched via RSS-to-JSON");
+      }
+    } catch (error) {
+      console.warn("RSS fetch failed, using fallback content:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const fallbackNews = [
-    { title: "UDOSA 04 Scholarship Fund Reaches Milestone", source: { name: "Alumni Updates" }, publishedAt: new Date().toISOString(), url: "#", urlToImage: "https://images.unsplash.com/photo-1523240693567-579cde089127?q=80&w=200" },
-    { title: "Global Reunion Planning Commences for 2026", source: { name: "Alumni Updates" }, publishedAt: new Date().toISOString(), url: "#", urlToImage: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=200" },
-    { title: "New Member Spotlight: Dr. Irene Ogbeide's Health Feature", source: { name: "Alumni Updates" }, publishedAt: new Date().toISOString(), url: "#", urlToImage: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=200" },
+    { title: "UDOSA 04 Scholarship Fund Reaches Milestone", pubDate: new Date().toISOString(), link: "#", thumbnail: "https://images.unsplash.com/photo-1523240693567-579cde089127?q=80&w=200" },
+    { title: "Global Reunion Planning Commences for 2026", pubDate: new Date().toISOString(), link: "#", thumbnail: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=200" },
+    { title: "New Member Spotlight: Dr. Irene Ogbeide's Health Feature", pubDate: new Date().toISOString(), link: "#", thumbnail: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=200" },
   ];
 
   const displayNews = news.length > 0 ? news : (loading ? [] : fallbackNews);
@@ -105,16 +110,25 @@ export const Home = () => {
               </div>
               <h2 className="text-xl font-serif font-black text-purple uppercase tracking-widest">Latest News</h2>
             </div>
-            <div className="flex items-center gap-2 bg-red-50 px-3 py-1 rounded-full border border-red-100">
-              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-              <span className="text-[10px] font-bold text-red-600 uppercase tracking-widest">Live News</span>
+            <div className="flex items-center gap-3">
+              <button 
+                onClick={() => fetchNews()}
+                className="p-2 hover:bg-gold/10 rounded-full transition-colors text-purple"
+                title="Refresh News"
+              >
+                <RotateCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+              </button>
+              <div className="flex items-center gap-2 bg-red-50 px-3 py-1 rounded-full border border-red-100">
+                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                <span className="text-[10px] font-bold text-red-600 uppercase tracking-widest">Live News</span>
+              </div>
             </div>
           </div>
           <div className="grid gap-4">
             {loading ? (
               [1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className="bg-white p-4 rounded-2xl shadow-md animate-pulse flex gap-4">
-                  <div className="w-20 h-20 bg-stone-200 rounded-xl shrink-0" />
+                  <div className="w-16 h-16 bg-stone-200 rounded-xl shrink-0" />
                   <div className="flex-grow space-y-2">
                     <div className="h-4 bg-stone-200 rounded w-3/4" />
                     <div className="h-3 bg-stone-200 rounded w-1/2" />
@@ -130,9 +144,9 @@ export const Home = () => {
                   transition={{ delay: i * 0.1 }}
                   className="bg-white p-3 md:p-4 rounded-2xl shadow-sm border border-stone-100 hover:border-gold/50 flex gap-4 items-center group cursor-pointer hover:shadow-md transition-all"
                 >
-                  <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 border border-stone-100">
+                  <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border-2 border-gold shadow-sm">
                     <img 
-                      src={article.urlToImage || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=200"} 
+                      src={article.thumbnail || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=200"} 
                       alt="News Thumbnail" 
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       referrerPolicy="no-referrer"
@@ -140,15 +154,15 @@ export const Home = () => {
                   </div>
                   <div className="flex-grow min-w-0">
                     <div className="flex justify-between items-start gap-2 mb-1">
-                      <p className="text-[10px] md:text-xs text-pink font-bold uppercase tracking-widest truncate">
-                        {article.source?.name} • {new Date(article.publishedAt).toLocaleDateString()}
+                      <p className="text-[11px] text-pink font-bold uppercase tracking-widest truncate">
+                        BBC Africa • {new Date(article.pubDate).toLocaleDateString()}
                       </p>
                     </div>
                     <h3 className="text-sm md:text-base font-serif font-bold text-purple leading-tight line-clamp-2 mb-2">
                       {article.title}
                     </h3>
                     <a 
-                      href={article.url} 
+                      href={article.link} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="inline-flex items-center text-gold font-bold text-[10px] uppercase tracking-widest hover:text-pink transition-colors"
