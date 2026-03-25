@@ -18,7 +18,8 @@ import {
   Mail,
   Settings,
   X,
-  Flame
+  Flame,
+  ShieldCheck
 } from 'lucide-react';
 import { 
   LATEST_NEWS, 
@@ -500,87 +501,57 @@ export const SolidarityHub = () => {
 
 // --- Alumni Directory ---
 export const Directory = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filter, setFilter] = useState("All");
-
-  const filteredAlumni = ALUMNI_DIRECTORY.filter(person => {
-    const matchesSearch = person.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          person.profession.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          person.city.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = filter === "All" || person.profession === filter;
-    return matchesSearch && matchesFilter;
-  });
-
-  const professions = ["All", ...new Set(ALUMNI_DIRECTORY.map(p => p.profession))];
+  const [notified, setNotified] = useState(false);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12 space-y-12">
-      <div className="flex flex-col md:flex-row justify-between items-end gap-8 border-b-4 border-purple pb-8">
-        <div>
-          <h1 className="text-4xl md:text-6xl font-serif font-black text-purple uppercase tracking-widest">Alumni Directory</h1>
-          <p className="text-pink font-serif italic text-lg md:text-xl">Reconnecting the Set of 2004</p>
-        </div>
-        <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
-          <div className="relative flex-grow">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-            <input 
-              type="text" 
-              placeholder="Search by name, profession, or city..."
-              className="w-full md:w-80 pl-12 pr-4 py-3 rounded-xl border-2 border-stone-100 focus:border-gold outline-none transition-all font-serif"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-          <div className="relative">
-            <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-            <select 
-              className="w-full md:w-48 pl-12 pr-4 py-3 rounded-xl border-2 border-stone-100 focus:border-gold outline-none appearance-none transition-all font-serif cursor-pointer"
-              value={filter}
-              onChange={(e) => setFilter(e.target.value)}
-            >
-              {professions.map(p => <option key={p} value={p}>{p}</option>)}
-            </select>
-          </div>
-        </div>
+    <div className="max-w-7xl mx-auto px-4 py-12 min-h-[70vh] flex flex-col items-center justify-center space-y-12 bg-gradient-to-b from-purple/5 to-pink/5 rounded-[3rem]">
+      <div className="text-center space-y-4">
+        <h1 className="text-4xl md:text-6xl font-serif font-black text-purple uppercase tracking-widest">Alumni Directory</h1>
+        <div className="w-24 h-1 bg-gold mx-auto" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <AnimatePresence mode="popLayout">
-          {filteredAlumni.map((person) => (
-            <motion.div 
-              key={person.id}
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="bg-white p-8 rounded-3xl shadow-xl border border-stone-100 hover:border-gold transition-all group"
-            >
-              <div className="flex items-center gap-6 mb-6">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple to-pink flex items-center justify-center text-white text-3xl font-serif font-black shadow-lg">
-                  {person.name.charAt(0)}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-serif font-bold text-purple">{person.name}</h3>
-                  <p className="text-pink font-bold text-xs uppercase tracking-widest">{person.profession}</p>
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 text-slate-500">
-                  <MapPin className="w-4 h-4 text-gold" />
-                  <span className="text-sm font-serif">{person.city}</span>
-                </div>
-                <div className="flex items-center gap-3 text-slate-500">
-                  <Mail className="w-4 h-4 text-gold" />
-                  <span className="text-sm font-serif">{person.email}</span>
-                </div>
-              </div>
-              <button className="w-full mt-8 bg-purple text-white py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-pink transition-colors opacity-0 group-hover:opacity-100 transition-opacity">
-                View Profile
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="max-w-2xl w-full bg-purple/10 backdrop-blur-xl border border-white/20 p-12 rounded-[3rem] shadow-2xl text-center space-y-8 relative overflow-hidden"
+      >
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-32 h-32 bg-pink/10 rounded-full -ml-16 -mt-16 blur-2xl" />
+        <div className="absolute bottom-0 right-0 w-32 h-32 bg-gold/10 rounded-full -mr-16 -mb-16 blur-2xl" />
+
+        <div className="relative z-10">
+          <div className="w-20 h-20 bg-gold/20 rounded-3xl flex items-center justify-center mx-auto mb-8 border border-gold/30">
+            <ShieldCheck className="w-10 h-10 text-gold" />
+          </div>
+
+          <h2 className="text-3xl md:text-4xl font-serif font-bold bg-gradient-to-r from-purple to-pink bg-clip-text text-transparent mb-4">
+            Securing the Network. Coming Soon.
+          </h2>
+          
+          <p className="text-slate-600 font-serif italic text-lg leading-relaxed">
+            "We are currently verifying alumni records to ensure a safe, private, and exclusive networking experience for the Set of 2004. Your privacy is our priority."
+          </p>
+
+          <div className="pt-8">
+            {!notified ? (
+              <button 
+                onClick={() => setNotified(true)}
+                className="bg-pink text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-purple transition-all shadow-lg hover:scale-105 active:scale-95"
+              >
+                Notify Me
               </button>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
+            ) : (
+              <motion.p 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-purple font-bold italic"
+              >
+                Thank you for your interest!
+              </motion.p>
+            )}
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 };
