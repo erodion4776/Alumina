@@ -17,6 +17,7 @@ type View = 'home' | 'solidarity' | 'directory' | 'ebook' | 'business' | 'memori
 export default function App() {
   const [activeView, setActiveView] = useState<View>('home');
   const [foundWords, setFoundWords] = useState<string[]>([]);
+  const [initialEBookPage, setInitialEBookPage] = useState<number>(0);
 
   const toggleWord = (word: string) => {
     setFoundWords(prev => 
@@ -28,10 +29,19 @@ export default function App() {
     window.print();
   };
 
+  const handleViewChange = (view: View, page?: number) => {
+    if (view === 'ebook' && page !== undefined) {
+      setInitialEBookPage(page);
+    } else if (view !== 'ebook') {
+      setInitialEBookPage(0);
+    }
+    setActiveView(view);
+  };
+
   const renderView = () => {
     switch (activeView) {
       case 'home':
-        return <Home onViewChange={setActiveView} />;
+        return <Home onViewChange={handleViewChange} />;
       case 'story':
         return <OurStory />;
       case 'solidarity':
@@ -39,7 +49,7 @@ export default function App() {
       case 'directory':
         return <Directory />;
       case 'ebook':
-        return <EBookReader foundWords={foundWords} toggleWord={toggleWord} handleDownload={handleDownload} />;
+        return <EBookReader foundWords={foundWords} toggleWord={toggleWord} handleDownload={handleDownload} initialPage={initialEBookPage} />;
       case 'business':
         return <BusinessMarketplace />;
       case 'memorial':
@@ -53,7 +63,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-stone-50 flex flex-col">
-      <Navbar activeView={activeView} onViewChange={setActiveView} />
+      <Navbar activeView={activeView} onViewChange={handleViewChange} />
       
       <main className="flex-grow">
         {renderView()}
@@ -71,10 +81,10 @@ export default function App() {
           <div className="space-y-4">
             <h4 className="text-gold font-serif font-bold uppercase tracking-widest text-xs">Quick Links</h4>
             <div className="grid grid-cols-2 gap-2 text-sm text-white/60">
-              <button onClick={() => setActiveView('home')} className="hover:text-gold text-left">Home</button>
-              <button onClick={() => setActiveView('ebook')} className="hover:text-gold text-left">E-Book</button>
-              <button onClick={() => setActiveView('directory')} className="hover:text-gold text-left">Directory</button>
-              <button onClick={() => setActiveView('solidarity')} className="hover:text-gold text-left">Solidarity</button>
+              <button onClick={() => handleViewChange('home')} className="hover:text-gold text-left">Home</button>
+              <button onClick={() => handleViewChange('ebook')} className="hover:text-gold text-left">E-Book</button>
+              <button onClick={() => handleViewChange('directory')} className="hover:text-gold text-left">Directory</button>
+              <button onClick={() => handleViewChange('solidarity')} className="hover:text-gold text-left">Solidarity</button>
             </div>
           </div>
           <div className="space-y-4">

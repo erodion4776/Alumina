@@ -7,10 +7,11 @@ interface EBookReaderProps {
   foundWords: string[];
   toggleWord: (word: string) => void;
   handleDownload: () => void;
+  initialPage?: number;
 }
 
-export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord, handleDownload }) => {
-  const [currentPage, setCurrentPage] = useState(0);
+export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord, handleDownload, initialPage = 0 }) => {
+  const [currentPage, setCurrentPage] = useState(initialPage);
   const [scale, setScale] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<HTMLDivElement>(null);

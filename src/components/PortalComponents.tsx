@@ -34,11 +34,12 @@ import {
   ALUMNI_DIRECTORY, 
   BUSINESS_MARKETPLACE, 
   AUDIO_LIBRARY,
-  LOGO_URL
+  LOGO_URL,
+  GALLERY_PHOTOS
 } from '../constants';
 
 // --- Home Section ---
-export const Home = ({ onViewChange }: { onViewChange: (view: any) => void }) => {
+export const Home = ({ onViewChange }: { onViewChange: (view: any, page?: number) => void }) => {
   const [news, setNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [showReconnectModal, setShowReconnectModal] = useState(false);
@@ -325,46 +326,72 @@ export const Home = ({ onViewChange }: { onViewChange: (view: any) => void }) =>
           </div>
         </section>
 
-        {/* ALUMNI SPOTLIGHT */}
-        <section className="space-y-8">
+        {/* THE LEGENDS OF '04 */}
+        <section className="space-y-8 overflow-hidden">
           <div className="text-center space-y-2">
-            <h2 className="text-xl md:text-3xl font-serif font-black text-purple uppercase tracking-widest">Alumni Spotlight</h2>
+            <h2 className="text-lg md:text-3xl font-serif font-black text-gold uppercase tracking-widest">The Legends of '04</h2>
             <div className="w-12 h-1 bg-gold mx-auto" />
           </div>
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-[0_20px_50px_rgba(219,39,119,0.1)] border border-pink/10 relative overflow-hidden group"
-          >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-pink/5 rounded-full -mr-32 -mt-32 blur-3xl" />
-            
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 relative z-10">
-              <div className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-pink p-1 shrink-0 shadow-2xl">
-                <img 
-                  src="https://i.ibb.co/5d1VcQh/IMG-20250306-WA0054-2.jpg" 
-                  alt="Dr. Irene Ogbeide" 
-                  className="w-full h-full object-cover rounded-full"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="flex-grow text-center md:text-left space-y-4">
-                <div className="space-y-1">
-                  <p className="text-pink font-serif font-bold uppercase tracking-[0.2em] text-xs">Featured Member</p>
-                  <h3 className="text-2xl md:text-4xl font-serif font-bold text-purple">Dr. Irene Ogbeide</h3>
-                </div>
-                <p className="text-slate-600 font-serif italic text-sm md:text-lg leading-relaxed max-w-2xl">
-                  "From the labs of Uniben to pioneering research in public health—read Irene's inspiring journey in our Digital Yearbook."
-                </p>
-                <button 
-                  onClick={() => onViewChange('ebook')}
-                  className="bg-purple text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-pink transition-all shadow-lg transform hover:scale-105"
-                >
-                  Read Her Story
-                </button>
-              </div>
+          
+          <div className="space-y-6">
+            {/* Row 1: Left to Right */}
+            <div className="flex overflow-hidden">
+              <motion.div 
+                animate={{ x: [0, -2000] }}
+                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                className="flex gap-4 md:gap-8 pr-4 md:pr-8"
+              >
+                {[...GALLERY_PHOTOS, ...GALLERY_PHOTOS].map((photo, i) => (
+                  <motion.div
+                    key={i}
+                    onClick={() => onViewChange('ebook', 22)}
+                    whileHover={{ scale: 1.1, rotateY: 10, z: 50 }}
+                    className="relative w-28 h-36 md:w-40 md:h-52 rounded-xl border-2 border-gold/30 overflow-hidden cursor-pointer shadow-xl transition-all hover:border-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] shrink-0"
+                    style={{ perspective: '1000px' }}
+                  >
+                    <img 
+                      src={photo.src} 
+                      alt={photo.name} 
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-3">
+                      <p className="text-[8px] md:text-[10px] text-white font-bold uppercase tracking-widest leading-tight">{photo.name}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
-          </motion.div>
+
+            {/* Row 2: Right to Left */}
+            <div className="flex overflow-hidden">
+              <motion.div 
+                animate={{ x: [-2000, 0] }}
+                transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+                className="flex gap-4 md:gap-8 pr-4 md:pr-8"
+              >
+                {[...GALLERY_PHOTOS.slice().reverse(), ...GALLERY_PHOTOS.slice().reverse()].map((photo, i) => (
+                  <motion.div
+                    key={i}
+                    onClick={() => onViewChange('ebook', 22)}
+                    whileHover={{ scale: 1.1, rotateY: -10, z: 50 }}
+                    className="relative w-28 h-36 md:w-40 md:h-52 rounded-xl border-2 border-gold/30 overflow-hidden cursor-pointer shadow-xl transition-all hover:border-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] shrink-0"
+                    style={{ perspective: '1000px' }}
+                  >
+                    <img 
+                      src={photo.src} 
+                      alt={photo.name} 
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-3">
+                      <p className="text-[8px] md:text-[10px] text-white font-bold uppercase tracking-widest leading-tight">{photo.name}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
         </section>
 
         {/* JOIN THE INNER CIRCLE */}
