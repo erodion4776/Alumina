@@ -26,7 +26,9 @@ import {
   CheckCircle,
   Gamepad2,
   Trophy,
-  Share2
+  Share2,
+  Puzzle,
+  RotateCcw
 } from 'lucide-react';
 import { 
   LATEST_NEWS, 
@@ -999,10 +1001,14 @@ export const Memorial = () => {
 // --- Our Story Section ---
 // --- Games Hub Section ---
 export const GamesHub = () => {
-  const [activeGame, setActiveGame] = useState<'hub' | 'snake'>('hub');
+  const [activeGame, setActiveGame] = useState<'hub' | 'snake' | 'puzzle'>('hub');
 
   if (activeGame === 'snake') {
     return <LegacySnake onBack={() => setActiveGame('hub')} />;
+  }
+
+  if (activeGame === 'puzzle') {
+    return <LegendPuzzle onBack={() => setActiveGame('hub')} />;
   }
 
   return (
@@ -1013,7 +1019,7 @@ export const GamesHub = () => {
         <div className="w-24 h-1 bg-gold mx-auto" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {/* Trivia Master Card */}
         <motion.div 
           whileHover={{ y: -10 }}
@@ -1047,6 +1053,25 @@ export const GamesHub = () => {
           <h3 className="text-2xl font-serif font-bold text-white mb-2">Legacy Snake</h3>
           <p className="text-white/80 font-serif italic text-sm mb-6">Grow the legacy as you collect 20-year badges.</p>
           <button className="w-full py-3 bg-gold text-purple rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-white transition-colors">
+            Play Now
+          </button>
+        </motion.div>
+
+        {/* Legend Puzzle Card */}
+        <motion.div 
+          whileHover={{ y: -10 }}
+          onClick={() => setActiveGame('puzzle')}
+          className="bg-gradient-to-br from-gold to-purple rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group cursor-pointer"
+        >
+          <div className="absolute -right-10 -bottom-10 opacity-10 group-hover:scale-110 transition-transform duration-700">
+            <Puzzle className="w-48 h-48 text-white" />
+          </div>
+          <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+            <Puzzle className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-2xl font-serif font-bold text-white mb-2">Legend Puzzle</h3>
+          <p className="text-white/80 font-serif italic text-sm mb-6">Reconnect the legends of '04 in this sliding challenge.</p>
+          <button className="w-full py-3 bg-pink text-white rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-pink transition-colors">
             Play Now
           </button>
         </motion.div>
@@ -1337,6 +1362,201 @@ export const LegacySnake = ({ onBack }: { onBack: () => void }) => {
 
       <p className="hidden md:block text-slate-400 text-xs font-serif italic">
         Tip: Use Arrow keys to move and Space to pause.
+      </p>
+    </div>
+  );
+};
+
+// --- Legend Puzzle Game ---
+export const LegendPuzzle = ({ onBack }: { onBack: () => void }) => {
+  const [level, setLevel] = useState(0);
+  const [tiles, setTiles] = useState<number[]>([]);
+  const [moves, setMoves] = useState(0);
+  const [isSolved, setIsSolved] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const currentLegend = GALLERY_PHOTOS[level % GALLERY_PHOTOS.length];
+
+  const initPuzzle = useCallback(() => {
+    // 0 to 8, where 8 is empty
+    const initialTiles = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    
+    // Shuffle logic (must be solvable)
+    let shuffled = [...initialTiles];
+    for (let i = 0; i < 100; i++) {
+      const emptyIdx = shuffled.indexOf(8);
+      const neighbors = getNeighbors(emptyIdx);
+      const randomNeighbor = neighbors[Math.floor(Math.random() * neighbors.length)];
+      [shuffled[emptyIdx], shuffled[randomNeighbor]] = [shuffled[randomNeighbor], shuffled[emptyIdx]];
+    }
+    
+    setTiles(shuffled);
+    setMoves(0);
+    setIsSolved(false);
+    setShowSuccess(false);
+  }, []);
+
+  useEffect(() => {
+    initPuzzle();
+  }, [level, initPuzzle]);
+
+  const getNeighbors = (idx: number) => {
+    const neighbors = [];
+    const r = Math.floor(idx / 3);
+    const c = idx % 3;
+
+    if (r > 0) neighbors.push(idx - 3);
+    if (r < 2) neighbors.push(idx + 3);
+    if (c > 0) neighbors.push(idx - 1);
+    if (c < 2) neighbors.push(idx + 1);
+
+    return neighbors;
+  };
+
+  const handleTileClick = (idx: number) => {
+    if (isSolved) return;
+
+    const emptyIdx = tiles.indexOf(8);
+    const neighbors = getNeighbors(emptyIdx);
+
+    if (neighbors.includes(idx)) {
+      const newTiles = [...tiles];
+      [newTiles[emptyIdx], newTiles[idx]] = [newTiles[idx], newTiles[emptyIdx]];
+      setTiles(newTiles);
+      setMoves(prev => prev + 1);
+
+      // Check if solved
+      if (newTiles.every((tile, i) => tile === i)) {
+        setIsSolved(true);
+        setTimeout(() => setShowSuccess(true), 500);
+      }
+    }
+  };
+
+  const shareResult = () => {
+    const text = `I just reconnected ${currentLegend.name} in only ${moves} moves on the UDOSA 04 Puzzle! Can you solve Level ${level + 1}? 🧩🎓 #UDOSA04 #LegendPuzzle`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
+  const nextLevel = () => {
+    setLevel(prev => (prev + 1) % GALLERY_PHOTOS.length);
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto px-4 py-8 space-y-8 flex flex-col items-center">
+      {/* Header */}
+      <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4">
+        <button 
+          onClick={onBack}
+          className="flex items-center gap-2 text-purple font-bold uppercase tracking-widest text-xs hover:text-pink transition-colors"
+        >
+          <ChevronLeft className="w-4 h-4" /> Back to Hub
+        </button>
+        
+        <div className="text-center">
+          <h2 className="text-xl font-serif font-black text-purple uppercase tracking-tight">
+            Level {level + 1}: <span className="text-pink">Reconnect the Legend</span>
+          </h2>
+          <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Legend: {currentLegend.name}</p>
+        </div>
+
+        <div className="flex gap-4">
+          <div className="bg-purple text-white px-4 py-2 rounded-xl shadow-lg border border-gold/20">
+            <p className="text-[8px] uppercase tracking-widest text-gold/60">Moves</p>
+            <p className="text-xl font-black">{moves}</p>
+          </div>
+          <button 
+            onClick={initPuzzle}
+            className="bg-white border border-purple/10 px-4 py-2 rounded-xl shadow-lg hover:bg-gold transition-colors group"
+          >
+            <RotateCcw className="w-5 h-5 text-purple group-hover:rotate-180 transition-transform duration-500" />
+          </button>
+        </div>
+      </div>
+
+      {/* Puzzle Board */}
+      <div className="relative w-full max-w-[320px] md:max-w-[400px] aspect-square bg-white rounded-3xl p-4 shadow-[0_20px_60px_rgba(88,28,135,0.2)] border-[8px] border-gold overflow-hidden">
+        <div className="grid grid-cols-3 grid-rows-3 w-full h-full gap-1 bg-purple/10">
+          {tiles.map((tile, i) => {
+            if (tile === 8 && !isSolved) {
+              return <div key={i} className="bg-purple/5 rounded-lg" />;
+            }
+
+            const originalR = Math.floor(tile / 3);
+            const originalC = tile % 3;
+
+            return (
+              <motion.div
+                key={tile}
+                layout
+                onClick={() => handleTileClick(i)}
+                className="relative cursor-pointer rounded-lg overflow-hidden border border-purple/10"
+                style={{
+                  backgroundImage: `url(${currentLegend.src})`,
+                  backgroundSize: '300% 300%',
+                  backgroundPosition: `${(originalC / 2) * 100}% ${(originalR / 2) * 100}%`,
+                }}
+                whileHover={!isSolved ? { scale: 0.98 } : {}}
+                whileTap={!isSolved ? { scale: 0.95 } : {}}
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccess && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="fixed inset-0 z-[100] bg-purple/90 backdrop-blur-md flex items-center justify-center p-6"
+          >
+            <motion.div 
+              initial={{ scale: 0.8, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              className="bg-white rounded-[3rem] p-8 max-w-sm w-full text-center space-y-6 shadow-2xl border-4 border-gold"
+            >
+              <div className="relative w-48 h-48 mx-auto rounded-2xl overflow-hidden border-4 border-gold shadow-[0_0_30px_rgba(212,175,55,0.5)]">
+                <img 
+                  src={currentLegend.src} 
+                  alt={currentLegend.name} 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <motion.div 
+                  animate={{ opacity: [0, 1, 0] }}
+                  transition={{ repeat: Infinity, duration: 2 }}
+                  className="absolute inset-0 bg-gold/20"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <h3 className="text-3xl font-serif font-black text-purple uppercase tracking-tighter">Success!</h3>
+                <p className="text-slate-600 font-serif italic">You reconnected {currentLegend.name} in {moves} moves.</p>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <button 
+                  onClick={nextLevel}
+                  className="w-full bg-purple text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-xs shadow-lg hover:bg-pink transition-all flex items-center justify-center gap-2"
+                >
+                  Next Level <ChevronRight className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={shareResult}
+                  className="w-full bg-white border-2 border-purple text-purple py-4 rounded-2xl font-bold uppercase tracking-widest text-xs shadow-lg flex items-center justify-center gap-2 hover:bg-gold hover:border-gold transition-all"
+                >
+                  <Share2 className="w-4 h-4" /> Brag on WhatsApp
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <p className="text-slate-400 text-[10px] font-serif italic text-center max-w-xs">
+        Tap tiles adjacent to the empty space to slide them. Arrange the pieces to reveal the legend.
       </p>
     </div>
   );
