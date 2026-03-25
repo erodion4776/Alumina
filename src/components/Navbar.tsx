@@ -63,21 +63,23 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, onViewChange }) => {
       </div>
 
       {/* Mobile Bottom Nav */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-purple border-t border-gold/20 px-2 pt-3 pb-[calc(12px+env(safe-area-inset-bottom))] flex justify-around items-center shadow-[0_-10px_30px_rgba(0,0,0,0.3)]">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-purple border-t border-gold/20 px-2 pt-2 pb-[calc(8px+env(safe-area-inset-bottom))] flex justify-around items-center shadow-[0_-10px_30px_rgba(0,0,0,0.3)]">
         {navItems.map((item) => (
           <button
             key={item.id}
             onClick={() => onViewChange(item.id as View)}
-            className={`flex flex-col items-center gap-1 transition-all duration-300 ${
-              activeView === item.id ? 'text-gold scale-110' : 'text-white/60'
+            className={`flex flex-col items-center gap-0.5 transition-all duration-300 ${
+              activeView === item.id ? 'text-gold scale-105' : 'text-white/60'
             }`}
           >
-            {item.icon}
-            <span className="text-[10px] font-bold uppercase tracking-tighter">{item.label.split(' ')[0]}</span>
+            <div className="p-1">
+              {React.cloneElement(item.icon as React.ReactElement, { className: "w-4 h-4" })}
+            </div>
+            <span className="text-[9px] font-bold uppercase tracking-tighter">{item.label.split(' ')[0]}</span>
             {activeView === item.id && (
               <motion.div
                 layoutId="activeTab"
-                className="w-1 h-1 bg-gold rounded-full"
+                className="w-1 h-1 bg-gold rounded-full mt-0.5"
               />
             )}
           </button>
