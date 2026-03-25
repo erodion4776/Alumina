@@ -19,7 +19,8 @@ import {
   Settings,
   X,
   Flame,
-  ShieldCheck
+  ShieldCheck,
+  CheckCircle
 } from 'lucide-react';
 import { 
   LATEST_NEWS, 
@@ -558,40 +559,58 @@ export const Directory = () => {
 
 // --- Business Marketplace ---
 export const BusinessMarketplace = () => (
-  <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
+  <div className="max-w-7xl mx-auto px-4 py-12 min-h-[70vh] flex flex-col items-center justify-center space-y-12">
     <div className="text-center space-y-4">
       <h1 className="text-4xl md:text-6xl font-serif font-black text-purple uppercase tracking-widest">Business Marketplace</h1>
-      <p className="text-lg md:text-xl text-pink font-serif italic">Supporting alumni-owned ventures worldwide.</p>
       <div className="w-24 h-1 bg-gold mx-auto" />
     </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-      {BUSINESS_MARKETPLACE.map((biz) => (
-        <div key={biz.id} className="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl border border-stone-100 flex flex-col md:flex-row h-full hover:scale-[1.02] transition-transform duration-500">
-          <div className="md:w-1/3 bg-purple p-10 flex flex-col items-center justify-center text-center space-y-4">
-            <div className="w-20 h-20 bg-gold rounded-3xl flex items-center justify-center shadow-xl">
-              <Briefcase className="w-10 h-10 text-purple" />
-            </div>
-            <span className="text-[10px] bg-white/10 text-gold px-4 py-1 rounded-full font-bold uppercase tracking-widest border border-white/20">
-              {biz.category}
-            </span>
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="max-w-3xl w-full bg-white/40 backdrop-blur-2xl border border-white/40 p-12 rounded-[3rem] shadow-2xl text-center space-y-8 relative overflow-hidden"
+    >
+      {/* Watermark/Decorative */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none flex items-center justify-center">
+        <img src={LOGO_URL} alt="" className="w-96 h-96 grayscale" referrerPolicy="no-referrer" />
+      </div>
+
+      <div className="relative z-10">
+        <div className="relative w-24 h-24 mx-auto mb-8">
+          <div className="w-24 h-24 bg-gold/20 rounded-3xl flex items-center justify-center border border-gold/30">
+            <Briefcase className="w-12 h-12 text-gold" />
           </div>
-          <div className="md:w-2/3 p-10 flex flex-col">
-            <h3 className="text-3xl font-serif font-bold text-purple mb-2">{biz.name}</h3>
-            <p className="text-pink font-bold text-xs uppercase tracking-widest mb-6">Owner: {biz.owner}</p>
-            <p className="text-slate-600 font-serif italic leading-relaxed mb-8 flex-grow">{biz.description}</p>
-            <div className="flex gap-4">
-              <button className="flex-grow bg-purple text-white py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-pink transition-colors">
-                Contact
-              </button>
-              <button className="p-3 border-2 border-purple text-purple rounded-xl hover:bg-purple hover:text-white transition-all">
-                <ExternalLink className="w-5 h-5" />
-              </button>
-            </div>
+          <div className="absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-lg">
+            <CheckCircle className="w-8 h-8 text-gold fill-gold/10" />
           </div>
         </div>
-      ))}
-    </div>
+
+        <h2 className="text-3xl md:text-5xl font-serif font-bold bg-gradient-to-r from-purple to-pink bg-clip-text text-transparent mb-6">
+          Launching Soon: The UDOSA 04 Business Hub.
+        </h2>
+        
+        <p className="text-slate-600 font-serif italic text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+          "We are building a premium platform to showcase our entrepreneurial strength and support our own global community."
+        </p>
+
+        <div className="bg-pink/5 border border-pink/10 p-6 rounded-2xl my-8">
+          <p className="text-pink font-bold text-sm md:text-base tracking-wide">
+            "Contact the Exco to include your business. A small verification token applies to ensure authenticity and premium placement."
+          </p>
+        </div>
+
+        <div className="pt-4">
+          <a 
+            href="https://wa.me/2348000000000" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-pink text-white px-12 py-5 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-purple transition-all shadow-xl hover:scale-105 active:scale-95"
+          >
+            Contact Exco on WhatsApp
+          </a>
+        </div>
+      </div>
+    </motion.div>
   </div>
 );
 
