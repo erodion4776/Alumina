@@ -66,33 +66,33 @@ export const Home = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
       {/* Hero Section */}
-      <section className="relative h-[60vh] md:h-[80vh] rounded-3xl overflow-hidden shadow-2xl">
+      <section className="relative h-[55vh] md:h-[80vh] rounded-3xl overflow-hidden shadow-2xl">
         <img 
           src="https://i.ibb.co/9HHvtSD0/IMG-20260325-152719.png" 
-          alt="Alumni Reunion" 
+          alt="UDOSA 04 Legacy" 
           className="w-full h-full object-cover object-center"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-purple/70 to-transparent flex flex-col justify-end p-6 md:p-12 pt-20 md:pt-12">
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/80 to-black/40 flex flex-col justify-center md:justify-end p-6 md:p-12">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl text-center md:text-left mx-auto md:mx-0"
+            className="max-w-3xl text-center md:text-left mx-auto md:mx-0"
           >
-            <h1 className="font-serif font-black text-white mb-2 leading-tight">
-              <span className="text-2xl md:text-5xl block">Welcome Back,</span>
-              <span className="text-3xl md:text-6xl text-gold block">Class of 2004</span>
+            <h1 className="font-serif font-black text-white mb-4 leading-tight">
+              <span className="text-2xl md:text-5xl block">UDOSA 04:</span>
+              <span className="text-2xl md:text-5xl text-gold font-serif font-bold block">The Great Reconnection</span>
             </h1>
-            <p className="text-sm md:text-2xl text-white/90 font-serif italic mb-6 max-w-[300px] md:max-w-none mx-auto md:mx-0">
-              Celebrating two decades of excellence, friendship, and impact across the globe.
+            <p className="text-xs md:text-xl text-white/90 font-serif italic mb-8 px-8 md:px-0 max-w-2xl mx-auto md:mx-0 leading-relaxed">
+              Bridging decades with peace, unity, and a shared commitment to our legacy. Rediscovering our roots, building our future together.
             </p>
-            <div className="flex flex-col md:flex-row gap-3 items-center md:items-start">
-              <button className="w-full md:w-auto max-w-[220px] md:max-w-[240px] bg-gold text-purple px-5 py-2.5 md:px-6 md:py-3 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-sm hover:bg-white transition-colors shadow-lg">
-                Join the Celebration
+            <div className="flex flex-col md:flex-row gap-4 items-center md:items-start">
+              <button className="w-full md:w-auto bg-pink text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-white hover:text-pink transition-all shadow-lg transform hover:scale-105">
+                Reconnect With Us
               </button>
-              <button className="w-full md:w-auto max-w-[220px] md:max-w-[240px] bg-white/20 backdrop-blur-md text-white border border-white/30 px-5 py-2.5 md:px-6 md:py-3 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-sm hover:bg-white/30 transition-colors">
-                Read Our Story
+              <button className="w-full md:w-auto bg-transparent text-gold border-2 border-gold px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-gold hover:text-purple transition-all transform hover:scale-105">
+                Explore Our Story
               </button>
             </div>
           </motion.div>
