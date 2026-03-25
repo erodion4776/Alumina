@@ -626,6 +626,13 @@ export const BusinessMarketplace = () => (
 
 // --- Memorial Section ---
 export const Memorial = () => {
+  const [candleCount, setCandleCount] = useState(() => Number(localStorage.getItem('udosa04_candles') || 0));
+  const [showTributeModal, setShowTributeModal] = useState(false);
+  const [tributes, setTributes] = useState<any[]>(() => JSON.parse(localStorage.getItem('udosa04_tributes') || '[]'));
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [isLighting, setIsLighting] = useState(false);
+
   const burialImages = [
     "https://i.ibb.co/dsXybKG4/IMG-20260323-WA0020.jpg",
     "https://i.ibb.co/5X5B0rhc/IMG-20260323-WA0018.jpg",
@@ -637,6 +644,34 @@ export const Memorial = () => {
     "https://i.ibb.co/2Yj8H5B8/IMG-20260323-WA0006.jpg",
     "https://i.ibb.co/5W0cfthc/IMG-20260323-WA0004.jpg"
   ];
+
+  const handleLightCandle = () => {
+    setIsLighting(true);
+    const newCount = candleCount + 1;
+    setCandleCount(newCount);
+    localStorage.setItem('udosa04_candles', String(newCount));
+    
+    setTimeout(() => {
+      setIsLighting(false);
+      setShowTributeModal(true);
+    }, 1200);
+  };
+
+  const handleSubmitTribute = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !message) return;
+    
+    const newTribute = { name, message, date: new Date().toISOString() };
+    const newTributes = [newTribute, ...tributes].slice(0, 10);
+    setTributes(newTributes);
+    localStorage.setItem('udosa04_tributes', JSON.stringify(newTributes));
+    
+    setName("");
+    setMessage("");
+    setShowTributeModal(false);
+  };
+
+  const recentTributes = tributes.slice(0, 3);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
@@ -677,12 +712,135 @@ export const Memorial = () => {
 
       <div className="flex flex-col items-center gap-8 pt-12">
         <div className="w-full h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
-        <button className="flex items-center gap-4 bg-gradient-to-r from-purple to-pink text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-sm shadow-[0_10px_30px_rgba(157,23,77,0.4)] hover:scale-105 transition-all active:scale-95 group">
-          <Flame className="w-6 h-6 text-gold animate-pulse group-hover:scale-125 transition-transform" />
-          Light a Candle
-        </button>
+        
+        <div className="flex flex-col md:flex-row items-center gap-6">
+          <div className="relative">
+            <AnimatePresence>
+              {isLighting && (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0, y: 0 }}
+                  animate={{ opacity: 1, scale: 1.5, y: -40 }}
+                  exit={{ opacity: 0, scale: 2, y: -80 }}
+                  className="absolute left-1/2 -translate-x-1/2 z-20"
+                >
+                  <Flame className="w-12 h-12 text-gold fill-gold drop-shadow-[0_0_15px_rgba(212,175,55,0.8)]" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            
+            <button 
+              onClick={handleLightCandle}
+              disabled={isLighting}
+              className="flex items-center gap-4 bg-gradient-to-r from-purple to-pink text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-sm shadow-[0_10px_30px_rgba(157,23,77,0.4)] hover:scale-105 transition-all active:scale-95 group disabled:opacity-50"
+            >
+              <Flame className="w-6 h-6 text-gold animate-pulse group-hover:scale-125 transition-transform" />
+              Light a Candle
+            </button>
+          </div>
+
+          <div className="bg-white/50 backdrop-blur-sm border border-gold/20 px-6 py-4 rounded-2xl flex flex-col items-center md:items-start">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Digital Counter</span>
+            <div className="flex items-center gap-2">
+              <span className="text-2xl font-mono font-black text-purple">{candleCount}</span>
+              <span className="text-sm font-serif text-pink italic">Candles Lit for our Loved Ones</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Tributes Ticker */}
+        {tributes.length > 0 && (
+          <div className="w-full max-w-4xl bg-purple/5 py-4 overflow-hidden border-y border-gold/20 relative">
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10" />
+            <motion.div 
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              className="flex gap-16 whitespace-nowrap"
+            >
+              {[...recentTributes, ...recentTributes].map((t, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <span className="text-gold font-bold uppercase tracking-widest text-[10px]">{t.name}:</span>
+                  <span className="text-purple font-serif italic text-sm">"{t.message}"</span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        )}
+
         <p className="text-slate-400 font-serif italic text-sm">"May their souls rest in perfect peace."</p>
       </div>
+
+      {/* Tribute Modal */}
+      <AnimatePresence>
+        {showTributeModal && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-purple/80 backdrop-blur-md"
+          >
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="max-w-md w-full bg-white/90 backdrop-blur-xl p-8 rounded-[2.5rem] shadow-2xl space-y-6 relative overflow-hidden"
+            >
+              {/* Logo Watermark */}
+              <img 
+                src={LOGO_URL} 
+                alt="Watermark" 
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 opacity-[0.03] pointer-events-none"
+              />
+
+              <button 
+                onClick={() => setShowTributeModal(false)}
+                className="absolute top-6 right-6 text-slate-400 hover:text-purple z-10"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="text-center space-y-2 relative z-10">
+                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Flame className="w-8 h-8 text-gold" />
+                </div>
+                <h3 className="text-3xl font-serif font-bold text-purple uppercase tracking-tighter">Leave a Tribute</h3>
+                <p className="text-pink text-sm font-serif italic">Share a word of comfort or memory.</p>
+              </div>
+
+              <form onSubmit={handleSubmitTribute} className="space-y-4 relative z-10">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-2">Your Name</label>
+                  <input 
+                    type="text" 
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter your name"
+                    className="w-full px-5 py-3 rounded-2xl border border-stone-200 focus:border-purple outline-none text-sm bg-white/50"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-2">Tribute Message</label>
+                  <textarea 
+                    required
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Rest in peace..."
+                    rows={3}
+                    className="w-full px-5 py-3 rounded-2xl border border-stone-200 focus:border-purple outline-none text-sm bg-white/50 resize-none"
+                  />
+                </div>
+                <button 
+                  type="submit" 
+                  className="w-full bg-purple text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-pink transition-all shadow-lg active:scale-95"
+                >
+                  Post Tribute
+                </button>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
