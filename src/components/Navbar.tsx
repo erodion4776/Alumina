@@ -29,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, onViewChange }) => {
         <div className="flex items-center gap-4 cursor-pointer" onClick={() => onViewChange('home')}>
           <img src={LOGO_URL} alt="UDOSA Logo" className="h-12 object-contain" referrerPolicy="no-referrer" />
           <div className="hidden lg:block">
-            <h1 className="text-gold font-serif font-bold text-xl tracking-tighter">UDOSA 04</h1>
+            <h1 className="text-gold font-serif font-bold text-xl tracking-tighter">UDOSA 04 Connect</h1>
             <p className="text-white/60 text-[10px] uppercase tracking-widest leading-none">Alumni Portal</p>
           </div>
         </div>

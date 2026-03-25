@@ -63,7 +63,7 @@ export default function App() {
       <footer className="bg-purple text-white py-12 px-8 mt-auto no-print">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="space-y-4">
-            <h3 className="text-gold font-serif font-bold text-xl">UDOSA 04</h3>
+            <h3 className="text-gold font-serif font-bold text-xl">UDOSA 04 Connect</h3>
             <p className="text-white/60 text-sm font-serif italic">
               "Unity and Progress: Celebrating 20 years of excellence and brotherhood."
             </p>
