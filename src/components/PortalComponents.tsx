@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Newspaper, 
@@ -26,102 +26,172 @@ import {
 } from '../constants';
 
 // --- Home Section ---
-export const Home = () => (
-  <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
-    {/* Hero Section */}
-    <section className="relative h-[60vh] md:h-[80vh] rounded-3xl overflow-hidden shadow-2xl">
-      <img 
-        src="https://i.ibb.co/9HHvtSD0/IMG-20260325-152719.png" 
-        alt="Alumni Reunion" 
-        className="w-full h-full object-cover object-center"
-        referrerPolicy="no-referrer"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-purple/70 to-transparent flex flex-col justify-end p-6 md:p-12 pt-20 md:pt-12">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-2xl text-center md:text-left mx-auto md:mx-0"
-        >
-          <h1 className="font-serif font-black text-white mb-2 leading-tight">
-            <span className="text-2xl md:text-5xl block">Welcome Back,</span>
-            <span className="text-3xl md:text-6xl text-gold block">Class of 2004</span>
-          </h1>
-          <p className="text-sm md:text-2xl text-white/90 font-serif italic mb-6 max-w-[300px] md:max-w-none mx-auto md:mx-0">
-            Celebrating two decades of excellence, friendship, and impact across the globe.
-          </p>
-          <div className="flex flex-col md:flex-row gap-3 items-center md:items-start">
-            <button className="w-full md:w-auto max-w-[220px] md:max-w-[240px] bg-gold text-purple px-5 py-2.5 md:px-6 md:py-3 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-sm hover:bg-white transition-colors shadow-lg">
-              Join the Celebration
-            </button>
-            <button className="w-full md:w-auto max-w-[220px] md:max-w-[240px] bg-white/20 backdrop-blur-md text-white border border-white/30 px-5 py-2.5 md:px-6 md:py-3 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-sm hover:bg-white/30 transition-colors">
-              Read Our Story
-            </button>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+export const Home = () => {
+  const [news, setNews] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
-      {/* Latest News */}
-      <div className="lg:col-span-2 space-y-6 bg-white/50 rounded-3xl px-4 py-8 md:p-0 md:bg-transparent">
-        <div className="flex items-center gap-4 border-b-2 border-gold pb-3">
-          <Newspaper className="text-purple w-6 h-6" />
-          <h2 className="text-xl font-serif font-black text-purple uppercase tracking-widest">Latest News</h2>
-        </div>
-        <div className="grid gap-4">
-          {LATEST_NEWS.map((news) => (
-            <motion.div 
-              key={news.id}
-              whileHover={{ x: 5 }}
-              className="bg-white p-4 md:p-6 rounded-2xl shadow-md border-l-4 md:border-l-8 border-pink flex flex-col gap-1 cursor-pointer"
-            >
-              <p className="text-[10px] md:text-xs text-pink font-bold uppercase tracking-widest">{news.date}</p>
-              <h3 className="text-base md:text-xl font-serif font-bold text-purple">{news.title}</h3>
-              <p className="text-xs md:text-base text-slate-600 font-serif leading-relaxed line-clamp-2">{news.summary}</p>
-              <div className="flex items-center text-gold font-bold text-[10px] uppercase tracking-widest mt-1">
-                Read More <ChevronRight className="w-3 h-3 ml-1" />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const response = await fetch(
+          `https://newsapi.org/v2/everything?q="University of Benin" OR "Uniben"&sortBy=publishedAt&apiKey=f760e1cc039d488d8059d4b13ef5d1b7`
+        );
+        const data = await response.json();
+        if (data.articles && data.articles.length > 0) {
+          setNews(data.articles.slice(0, 4));
+        }
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      {/* Project Progress */}
-      <div className="space-y-6">
-        <div className="flex items-center gap-4 border-b-2 border-gold pb-3">
-          <CheckCircle2 className="text-purple w-6 h-6" />
-          <h2 className="text-xl font-serif font-black text-purple uppercase tracking-widest">Project Progress</h2>
-        </div>
-        <div className="space-y-6">
-          {PROJECT_PROGRESS.map((project) => (
-            <div key={project.id} className="bg-purple text-white p-6 rounded-2xl shadow-xl space-y-4">
-              <div className="flex justify-between items-start">
-                <h3 className="font-serif font-bold text-lg leading-tight">{project.name}</h3>
-                <span className="text-[10px] bg-gold text-purple px-2 py-1 rounded-full font-bold uppercase">{project.status}</span>
-              </div>
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs font-bold text-gold/80 uppercase">
-                  <span>Progress</span>
-                  <span>{project.progress}%</span>
-                </div>
-                <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: `${project.progress}%` }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                    className="h-full bg-gold shadow-[0_0_10px_rgba(251,191,36,0.5)]"
-                  />
-                </div>
-              </div>
-              <p className="text-xs text-white/70 italic">{project.description}</p>
+    fetchNews();
+  }, []);
+
+  const fallbackNews = [
+    { title: "UDOSA 04 Scholarship Fund Reaches Milestone", source: { name: "Alumni Updates" }, publishedAt: new Date().toISOString(), url: "#", urlToImage: "https://images.unsplash.com/photo-1523240693567-579cde089127?q=80&w=200" },
+    { title: "Global Reunion Planning Commences for 2026", source: { name: "Alumni Updates" }, publishedAt: new Date().toISOString(), url: "#", urlToImage: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=200" },
+    { title: "New Member Spotlight: Dr. Irene Ogbeide's Health Feature", source: { name: "Alumni Updates" }, publishedAt: new Date().toISOString(), url: "#", urlToImage: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=200" },
+  ];
+
+  const displayNews = news.length > 0 ? news : (loading ? [] : fallbackNews);
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
+      {/* Hero Section */}
+      <section className="relative h-[60vh] md:h-[80vh] rounded-3xl overflow-hidden shadow-2xl">
+        <img 
+          src="https://i.ibb.co/9HHvtSD0/IMG-20260325-152719.png" 
+          alt="Alumni Reunion" 
+          className="w-full h-full object-cover object-center"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-purple/70 to-transparent flex flex-col justify-end p-6 md:p-12 pt-20 md:pt-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-2xl text-center md:text-left mx-auto md:mx-0"
+          >
+            <h1 className="font-serif font-black text-white mb-2 leading-tight">
+              <span className="text-2xl md:text-5xl block">Welcome Back,</span>
+              <span className="text-3xl md:text-6xl text-gold block">Class of 2004</span>
+            </h1>
+            <p className="text-sm md:text-2xl text-white/90 font-serif italic mb-6 max-w-[300px] md:max-w-none mx-auto md:mx-0">
+              Celebrating two decades of excellence, friendship, and impact across the globe.
+            </p>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-start">
+              <button className="w-full md:w-auto max-w-[220px] md:max-w-[240px] bg-gold text-purple px-5 py-2.5 md:px-6 md:py-3 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-sm hover:bg-white transition-colors shadow-lg">
+                Join the Celebration
+              </button>
+              <button className="w-full md:w-auto max-w-[220px] md:max-w-[240px] bg-white/20 backdrop-blur-md text-white border border-white/30 px-5 py-2.5 md:px-6 md:py-3 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-sm hover:bg-white/30 transition-colors">
+                Read Our Story
+              </button>
             </div>
-          ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+        {/* Latest News */}
+        <div className="lg:col-span-2 space-y-6 bg-white/50 rounded-3xl px-4 py-8 md:p-0 md:bg-transparent">
+          <div className="flex items-center gap-4 border-b-2 border-gold pb-3">
+            <div className="relative">
+              <Newspaper className="text-purple w-6 h-6" />
+              <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+            </div>
+            <h2 className="text-xl font-serif font-black text-purple uppercase tracking-widest">Latest News</h2>
+          </div>
+          <div className="grid gap-4">
+            {loading ? (
+              [1, 2, 3, 4].map((i) => (
+                <div key={i} className="bg-white p-4 rounded-2xl shadow-md animate-pulse flex gap-4">
+                  <div className="w-16 h-16 bg-stone-200 rounded-xl shrink-0" />
+                  <div className="flex-grow space-y-2">
+                    <div className="h-4 bg-stone-200 rounded w-3/4" />
+                    <div className="h-3 bg-stone-200 rounded w-1/2" />
+                  </div>
+                </div>
+              ))
+            ) : (
+              displayNews.map((article, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="bg-white p-4 rounded-2xl shadow-md border-l-4 border-pink flex gap-4 items-center group cursor-pointer hover:shadow-lg transition-all"
+                >
+                  <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-stone-100">
+                    <img 
+                      src={article.urlToImage || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=200"} 
+                      alt="News Thumbnail" 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <div className="flex-grow min-w-0">
+                    <div className="flex justify-between items-start gap-2 mb-1">
+                      <p className="text-[10px] text-pink font-bold uppercase tracking-widest truncate">
+                        {article.source?.name} • {new Date(article.publishedAt).toLocaleDateString()}
+                      </p>
+                    </div>
+                    <h3 className="text-sm font-serif font-bold text-purple leading-tight line-clamp-2 mb-2">
+                      {article.title}
+                    </h3>
+                    <a 
+                      href={article.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-gold font-bold text-[10px] uppercase tracking-widest hover:text-pink transition-colors"
+                    >
+                      Read More <ChevronRight className="w-3 h-3 ml-1" />
+                    </a>
+                  </div>
+                </motion.div>
+              ))
+            )}
+          </div>
+        </div>
+
+        {/* Project Progress */}
+        <div className="space-y-6">
+          <div className="flex items-center gap-4 border-b-2 border-gold pb-3">
+            <CheckCircle2 className="text-purple w-6 h-6" />
+            <h2 className="text-xl font-serif font-black text-purple uppercase tracking-widest">Project Progress</h2>
+          </div>
+          <div className="space-y-6">
+            {PROJECT_PROGRESS.map((project) => (
+              <div key={project.id} className="bg-purple text-white p-6 rounded-2xl shadow-xl space-y-4">
+                <div className="flex justify-between items-start">
+                  <h3 className="font-serif font-bold text-lg leading-tight">{project.name}</h3>
+                  <span className="text-[10px] bg-gold text-purple px-2 py-1 rounded-full font-bold uppercase">{project.status}</span>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs font-bold text-gold/80 uppercase">
+                    <span>Progress</span>
+                    <span>{project.progress}%</span>
+                  </div>
+                  <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      animate={{ width: `${project.progress}%` }}
+                      transition={{ duration: 1, delay: 0.5 }}
+                      className="h-full bg-gold shadow-[0_0_10px_rgba(251,191,36,0.5)]"
+                    />
+                  </div>
+                </div>
+                <p className="text-xs text-white/70 italic">{project.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 // --- Solidarity Hub ---
 export const SolidarityHub = () => {
