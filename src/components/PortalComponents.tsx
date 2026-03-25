@@ -153,6 +153,70 @@ export const Home = ({ onViewChange }: { onViewChange: (view: any) => void }) =>
         </AnimatePresence>
       </section>
 
+      {/* Yearbook CTA Section */}
+      <section className="bg-white/40 backdrop-blur-md rounded-[2.5rem] p-8 md:p-12 border border-white/40 shadow-xl overflow-hidden relative group">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full -mr-32 -mt-32 blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-pink/5 rounded-full -ml-32 -mb-32 blur-3xl" />
+        
+        <div className="flex flex-col lg:flex-row items-center gap-12 relative z-10">
+          {/* 3D Book Cover */}
+          <div className="w-full lg:w-1/3 flex justify-center" style={{ perspective: '1000px' }}>
+            <motion.div 
+              whileHover={{ rotateY: -5, scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="relative w-48 h-64 md:w-64 md:h-80 bg-gradient-to-br from-purple via-[#3b0764] to-pink rounded-r-lg shadow-[-20px_20px_50px_rgba(0,0,0,0.3)] border-l-4 border-gold/30"
+              style={{ transform: 'rotateY(-15deg)', transformStyle: 'preserve-3d' }}
+            >
+              {/* Spine */}
+              <div className="absolute inset-y-0 left-0 w-2 bg-black/20" />
+              
+              {/* Cover Content */}
+              <div className="h-full flex flex-col items-center justify-center p-6 text-center">
+                <img src={LOGO_URL} alt="Logo" className="h-16 md:h-24 mb-4 object-contain drop-shadow-lg" />
+                <h2 className="text-2xl md:text-4xl font-serif font-black text-gold tracking-tighter leading-none">UDOSA 04</h2>
+                <div className="w-8 h-0.5 bg-gold/50 my-3" />
+                <p className="text-[8px] md:text-[10px] text-white/80 font-serif uppercase tracking-[0.2em] leading-tight font-bold">
+                  Class of 2004: <br/> Two Decades of Excellence
+                </p>
+              </div>
+              
+              {/* Page edges effect */}
+              <div className="absolute inset-y-1 -right-1 w-1 bg-stone-200 rounded-r-sm" />
+            </motion.div>
+          </div>
+
+          {/* Content */}
+          <div className="w-full lg:w-2/3 text-center lg:text-left space-y-6">
+            <div className="space-y-2">
+              <p className="text-gold font-serif font-bold uppercase tracking-[0.3em] text-xs md:text-sm">Relive the Legacy</p>
+              <h2 className="text-xl md:text-4xl font-serif font-black text-purple leading-tight">
+                UDOSA 04: The 20th Anniversary Yearbook
+              </h2>
+            </div>
+            <p className="text-sm md:text-lg text-slate-600 font-serif italic leading-relaxed max-w-2xl">
+              "30 pages of memories, milestones, and the enduring spirit of the Class of 2004. From the familiar corridors of UDSS to our global impact today—this is our story."
+            </p>
+            
+            <div className="pt-4">
+              <motion.button 
+                onClick={() => onViewChange('ebook')}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative overflow-hidden bg-gold text-purple px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm shadow-[0_10px_30px_rgba(212,175,55,0.4)] group"
+              >
+                {/* Shimmer effect */}
+                <motion.div 
+                  animate={{ x: ['-100%', '200%'] }}
+                  transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
+                />
+                <span className="relative z-10">Open the Yearbook</span>
+              </motion.button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
         {/* Latest News */}
         <div className="lg:col-span-2 space-y-6 bg-white/50 rounded-3xl px-4 py-8 md:p-0 md:bg-transparent">
