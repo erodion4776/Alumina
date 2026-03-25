@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { AdComponent } from './AdComponent';
 import { 
   RotateCw,
   Newspaper, 
@@ -219,6 +220,8 @@ export const Home = ({ onViewChange }: { onViewChange: (view: any, page?: number
           </div>
         </div>
       </section>
+
+      <AdComponent />
 
       <div className="space-y-16">
         {/* Latest News */}
@@ -605,6 +608,8 @@ export const SolidarityHub = () => {
             </div>
           </div>
         </div>
+
+        <AdComponent />
 
         {/* Audio Library */}
         <div className="space-y-6">
@@ -1363,6 +1368,8 @@ export const LegacySnake = ({ onBack }: { onBack: () => void }) => {
       <p className="hidden md:block text-slate-400 text-xs font-serif italic">
         Tip: Use Arrow keys to move and Space to pause.
       </p>
+
+      <AdComponent type="square" />
     </div>
   );
 };
@@ -1558,6 +1565,8 @@ export const LegendPuzzle = ({ onBack }: { onBack: () => void }) => {
       <p className="text-slate-400 text-[10px] font-serif italic text-center max-w-xs">
         Tap tiles adjacent to the empty space to slide them. Arrange the pieces to reveal the legend.
       </p>
+
+      <AdComponent type="square" />
     </div>
   );
 };

@@ -5,6 +5,7 @@
 
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
+import { AdComponent } from './components/AdComponent';
 import { Home } from './components/PortalComponents';
 import { SolidarityHub } from './components/PortalComponents';
 import { Directory } from './components/PortalComponents';
@@ -96,6 +97,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto border-t border-white/10 mt-12 pt-8 text-center text-[10px] text-white/40 uppercase tracking-widest">
           © 2026 UDOSA Class of 2004. All Rights Reserved.
         </div>
+        <AdComponent className="mt-8" />
       </footer>
     </div>
   );
