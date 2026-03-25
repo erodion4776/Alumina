@@ -22,7 +22,7 @@
   .page-a4 {
     width: 210mm;
     height: 297mm;
-    @apply bg-white mx-auto my-12 shadow-[0_40px_100px_-15px_rgba(0,0,0,0.3)] relative overflow-hidden flex flex-col;
+    @apply bg-white mx-auto shadow-[0_40px_100px_-15px_rgba(0,0,0,0.3)] relative overflow-hidden flex flex-col;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
