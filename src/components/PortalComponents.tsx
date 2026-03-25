@@ -27,9 +27,10 @@ import {
 } from '../constants';
 
 // --- Home Section ---
-export const Home = () => {
+export const Home = ({ onViewChange }: { onViewChange: (view: any) => void }) => {
   const [news, setNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showReconnectModal, setShowReconnectModal] = useState(false);
 
   useEffect(() => {
     fetchNews();
@@ -88,15 +89,57 @@ export const Home = () => {
               Bridging decades with peace, unity, and a shared commitment to our legacy. Rediscovering our roots, building our future together.
             </p>
             <div className="flex flex-col md:flex-row gap-4 items-center md:items-start">
-              <button className="w-full md:w-auto bg-pink text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-white hover:text-pink transition-all shadow-lg transform hover:scale-105">
+              <button 
+                onClick={() => setShowReconnectModal(true)}
+                className="w-full md:w-auto bg-pink text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-white hover:text-pink transition-all shadow-lg transform hover:scale-105"
+              >
                 Reconnect With Us
               </button>
-              <button className="w-full md:w-auto bg-transparent text-gold border-2 border-gold px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-gold hover:text-purple transition-all transform hover:scale-105">
+              <button 
+                onClick={() => onViewChange('story')}
+                className="w-full md:w-auto bg-transparent text-gold border-2 border-gold px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-gold hover:text-purple transition-all transform hover:scale-105"
+              >
                 Explore Our Story
               </button>
             </div>
           </motion.div>
         </div>
+
+        {/* Reconnect Modal */}
+        <AnimatePresence>
+          {showReconnectModal && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-purple/80 backdrop-blur-sm"
+              onClick={() => setShowReconnectModal(false)}
+            >
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="max-w-md w-full bg-gradient-to-br from-pink to-purple p-8 rounded-[2rem] shadow-2xl text-center space-y-6 relative overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl" />
+                <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-serif font-bold text-white">The Great Reconnection is brewing...</h3>
+                <p className="text-white/90 font-serif italic">
+                  Our global directory and networking portal is coming soon. Stay tuned!
+                </p>
+                <button 
+                  onClick={() => setShowReconnectModal(false)}
+                  className="bg-white text-purple px-8 py-2 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-gold transition-colors"
+                >
+                  Got it
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
@@ -474,6 +517,100 @@ export const Memorial = () => (
         <div className="w-3 h-3 rounded-full bg-gold animate-pulse delay-75" />
         <div className="w-3 h-3 rounded-full bg-gold animate-pulse delay-150" />
       </div>
+    </div>
+  </div>
+);
+
+// --- Our Story Section ---
+export const OurStory = () => (
+  <div className="min-h-screen bg-purple text-white overflow-hidden pb-24">
+    {/* Parallax Hero */}
+    <section className="relative h-[70vh] flex items-center justify-center text-center px-4">
+      <div 
+        className="absolute inset-0 z-0 opacity-40 bg-fixed bg-cover bg-center"
+        style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1920")' }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-purple/20 via-purple/60 to-purple z-1" />
+      
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="relative z-10 space-y-4"
+      >
+        <h1 className="text-4xl md:text-7xl font-serif font-black uppercase tracking-tighter leading-none">
+          The Hustle, <br />
+          <span className="text-gold">The Hurdles,</span> <br />
+          The Triumph
+        </h1>
+        <div className="w-24 h-1 bg-pink mx-auto" />
+      </motion.div>
+    </section>
+
+    {/* Story Content */}
+    <div className="max-w-4xl mx-auto px-6 py-24 space-y-32">
+      {/* The Beginning */}
+      <motion.section 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="space-y-6"
+      >
+        <h2 className="text-3xl md:text-5xl font-serif font-bold text-gold italic">The Beginning</h2>
+        <p className="text-lg md:text-2xl font-serif leading-relaxed text-white/80 italic">
+          "In 2004, we walked out of the UDSS gates with dreams as big as the Benin sky. We were young, fueled by innocence and the 'Knowledge for Service' mantra. But the world outside those walls had its own lessons to teach."
+        </p>
+      </motion.section>
+
+      {/* The Hurdles */}
+      <motion.section 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="space-y-6 text-right"
+      >
+        <h2 className="text-3xl md:text-5xl font-serif font-bold text-pink italic">The Hurdles</h2>
+        <p className="text-lg md:text-2xl font-serif leading-relaxed text-white/80 italic">
+          "The years that followed were the 'Hustle' years. We faced the grinding pressure of universities, the cold silence of the job market, and the heavy weight of expectations. We felt the sting of failure, the heartbreak of loss, and the silent storms of life that no textbook prepared us for."
+        </p>
+      </motion.section>
+
+      {/* The Resilience */}
+      <motion.section 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="space-y-6"
+      >
+        <h2 className="text-3xl md:text-5xl font-serif font-bold text-gold italic">The Resilience</h2>
+        <p className="text-lg md:text-2xl font-serif leading-relaxed text-white/80 italic">
+          "But look at us now. Every hurdle was a stepping stone. Every challenge was the fire that forged our character. We didn't just survive those storms; we learned to navigate them together. Today, we are doctors, engineers, parents, and leaders—not in spite of our struggles, but because of them."
+        </p>
+      </motion.section>
+
+      {/* The Reunion */}
+      <motion.section 
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="text-center space-y-8 py-12 border-y border-white/10"
+      >
+        <h2 className="text-4xl md:text-6xl font-serif font-black text-white uppercase tracking-widest">The Reunion</h2>
+        <p className="text-xl md:text-3xl font-serif leading-relaxed text-gold italic">
+          "This is more than a reunion; it is a homecoming for our souls. We are the '04 Set—scarred by our challenges, but shining with the light of our shared victory."
+        </p>
+        <div className="pt-8">
+          <div className="flex justify-center gap-4">
+            <div className="w-2 h-2 rounded-full bg-pink animate-pulse" />
+            <div className="w-2 h-2 rounded-full bg-gold animate-pulse delay-75" />
+            <div className="w-2 h-2 rounded-full bg-pink animate-pulse delay-150" />
+          </div>
+        </div>
+      </motion.section>
     </div>
   </div>
 );
