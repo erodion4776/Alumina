@@ -17,7 +17,8 @@ import {
   MapPin,
   Mail,
   Settings,
-  X
+  X,
+  Flame
 } from 'lucide-react';
 import { 
   LATEST_NEWS, 
@@ -624,58 +625,67 @@ export const BusinessMarketplace = () => (
 );
 
 // --- Memorial Section ---
-export const Memorial = () => (
-  <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
-    <div className="text-center space-y-4">
-      <h1 className="text-4xl md:text-6xl font-serif font-black text-purple uppercase tracking-widest">In Loving Memory</h1>
-      <p className="text-lg md:text-xl text-pink font-serif italic">Honoring the parents and loved ones who guided our path.</p>
-      <div className="w-24 h-1 bg-gold mx-auto" />
-    </div>
+export const Memorial = () => {
+  const burialImages = [
+    "https://i.ibb.co/dsXybKG4/IMG-20260323-WA0020.jpg",
+    "https://i.ibb.co/5X5B0rhc/IMG-20260323-WA0018.jpg",
+    "https://i.ibb.co/WvcD4D5C/IMG-20260323-WA0016.jpg",
+    "https://i.ibb.co/GvbwNMbW/IMG-20260323-WA0015.jpg",
+    "https://i.ibb.co/WN98sZcf/IMG-20260323-WA0012.jpg",
+    "https://i.ibb.co/zH4x0JSd/IMG-20260323-WA0010.jpg",
+    "https://i.ibb.co/CpzVJKsp/IMG-20260323-WA0009.jpg",
+    "https://i.ibb.co/2Yj8H5B8/IMG-20260323-WA0006.jpg",
+    "https://i.ibb.co/5W0cfthc/IMG-20260323-WA0004.jpg"
+  ];
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-      {[
-        { name: "Cynthia's Late Parent", date: "2024", icon: <Heart className="w-8 h-8" /> },
-        { name: "Osayowanbo's Late Parent", date: "2025", icon: <Heart className="w-8 h-8" /> },
-        { name: "Owen's Late Parent", date: "2025", icon: <Heart className="w-8 h-8" /> },
-        { name: "Ehis's Late Parent", date: "2026", icon: <Heart className="w-8 h-8" /> },
-        { name: "Ero's Late Parent", date: "2026", icon: <Heart className="w-8 h-8" /> }
-      ].map((item, i) => (
-        <motion.div 
-          key={i}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.1 }}
-          className="bg-white p-10 rounded-[2rem] shadow-xl border-b-8 border-gold text-center space-y-6"
-        >
-          <div className="w-20 h-20 bg-purple/5 text-pink rounded-full flex items-center justify-center mx-auto border-2 border-pink/10">
-            {item.icon}
-          </div>
-          <div>
-            <h3 className="text-2xl font-serif font-bold text-purple">{item.name}</h3>
-            <p className="text-gold font-bold text-xs uppercase tracking-widest mt-2">Remembrance {item.date}</p>
-          </div>
-          <p className="text-slate-500 font-serif italic text-sm leading-relaxed">
-            "Your legacy lives on through the excellence and kindness of the children you raised."
-          </p>
-        </motion.div>
-      ))}
-    </div>
+  return (
+    <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
+      <div className="text-center space-y-4">
+        <h1 className="text-4xl md:text-6xl font-serif font-black text-purple uppercase tracking-widest">IN LOVING MEMORY</h1>
+        <p className="text-lg md:text-xl text-pink font-serif italic max-w-3xl mx-auto">
+          "Honoring the parents of Cynthia, Osayowanbo, Owen, Ehis, and Ero. Their legacy lives on through us."
+        </p>
+        <div className="w-24 h-1 bg-gold mx-auto" />
+      </div>
 
-    <div className="bg-purple p-12 rounded-[3rem] text-center space-y-8 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-64 h-64 bg-pink/10 rounded-full -ml-32 -mt-32 blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-gold/10 rounded-full -mr-32 -mb-32 blur-3xl" />
-      <h2 className="text-4xl font-serif font-bold text-gold relative z-10">A Moment of Silence</h2>
-      <p className="text-white/80 font-serif italic text-xl max-w-2xl mx-auto relative z-10 leading-relaxed">
-        "Those we love don't go away, they walk beside us every day. Unseen, unheard, but always near, so loved, so missed, so very dear."
-      </p>
-      <div className="flex justify-center gap-4 relative z-10">
-        <div className="w-3 h-3 rounded-full bg-gold animate-pulse" />
-        <div className="w-3 h-3 rounded-full bg-gold animate-pulse delay-75" />
-        <div className="w-3 h-3 rounded-full bg-gold animate-pulse delay-150" />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        {burialImages.map((src, i) => (
+          <motion.div 
+            key={i}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: i * 0.1 }}
+            className="flex flex-col items-center space-y-6"
+          >
+            <div className="relative group w-full">
+              <div className="absolute -inset-2 bg-gold/30 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+              <div className="relative border-[12px] border-gold rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(212,175,55,0.3)] bg-white">
+                <img 
+                  src={src} 
+                  alt={`Tribute ${i + 1}`} 
+                  className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+            <p className="text-pink font-bold text-xs uppercase tracking-widest italic">
+              UDOSA 04 standing in honor.
+            </p>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="flex flex-col items-center gap-8 pt-12">
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+        <button className="flex items-center gap-4 bg-gradient-to-r from-purple to-pink text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-sm shadow-[0_10px_30px_rgba(157,23,77,0.4)] hover:scale-105 transition-all active:scale-95 group">
+          <Flame className="w-6 h-6 text-gold animate-pulse group-hover:scale-125 transition-transform" />
+          Light a Candle
+        </button>
+        <p className="text-slate-400 font-serif italic text-sm">"May their souls rest in perfect peace."</p>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 // --- Our Story Section ---
 export const OurStory = () => (
