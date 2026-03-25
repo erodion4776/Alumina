@@ -1377,17 +1377,28 @@ export const LegendPuzzle = ({ onBack }: { onBack: () => void }) => {
 
   const currentLegend = GALLERY_PHOTOS[level % GALLERY_PHOTOS.length];
 
+  const getNeighbors = (idx: number) => {
+    const neighbors = [];
+    const r = Math.floor(idx / 3);
+    const c = idx % 3;
+    if (r > 0) neighbors.push(idx - 3);
+    if (r < 2) neighbors.push(idx + 3);
+    if (c > 0) neighbors.push(idx - 1);
+    if (c < 2) neighbors.push(idx + 1);
+    return neighbors;
+  };
+
   const initPuzzle = useCallback(() => {
-    // 0 to 8, where 8 is empty
     const initialTiles = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    
-    // Shuffle logic (must be solvable)
     let shuffled = [...initialTiles];
-    for (let i = 0; i < 100; i++) {
-      const emptyIdx = shuffled.indexOf(8);
+    
+    // Robust Shuffle: 20 Valid Moves to ensure solvability
+    let emptyIdx = 8;
+    for (let i = 0; i < 20; i++) {
       const neighbors = getNeighbors(emptyIdx);
       const randomNeighbor = neighbors[Math.floor(Math.random() * neighbors.length)];
       [shuffled[emptyIdx], shuffled[randomNeighbor]] = [shuffled[randomNeighbor], shuffled[emptyIdx]];
+      emptyIdx = randomNeighbor;
     }
     
     setTiles(shuffled);
@@ -1399,19 +1410,6 @@ export const LegendPuzzle = ({ onBack }: { onBack: () => void }) => {
   useEffect(() => {
     initPuzzle();
   }, [level, initPuzzle]);
-
-  const getNeighbors = (idx: number) => {
-    const neighbors = [];
-    const r = Math.floor(idx / 3);
-    const c = idx % 3;
-
-    if (r > 0) neighbors.push(idx - 3);
-    if (r < 2) neighbors.push(idx + 3);
-    if (c > 0) neighbors.push(idx - 1);
-    if (c < 2) neighbors.push(idx + 1);
-
-    return neighbors;
-  };
 
   const handleTileClick = (idx: number) => {
     if (isSolved) return;
@@ -1428,7 +1426,7 @@ export const LegendPuzzle = ({ onBack }: { onBack: () => void }) => {
       // Check if solved
       if (newTiles.every((tile, i) => tile === i)) {
         setIsSolved(true);
-        setTimeout(() => setShowSuccess(true), 500);
+        setTimeout(() => setShowSuccess(true), 600);
       }
     }
   };
@@ -1466,8 +1464,12 @@ export const LegendPuzzle = ({ onBack }: { onBack: () => void }) => {
             <p className="text-xl font-black">{moves}</p>
           </div>
           <button 
-            onClick={initPuzzle}
+            onClick={() => {
+              if (level === 0) initPuzzle();
+              else setLevel(0);
+            }}
             className="bg-white border border-purple/10 px-4 py-2 rounded-xl shadow-lg hover:bg-gold transition-colors group"
+            title="Restart to Level 1"
           >
             <RotateCcw className="w-5 h-5 text-purple group-hover:rotate-180 transition-transform duration-500" />
           </button>
@@ -1475,29 +1477,27 @@ export const LegendPuzzle = ({ onBack }: { onBack: () => void }) => {
       </div>
 
       {/* Puzzle Board */}
-      <div className="relative w-full max-w-[320px] md:max-w-[400px] aspect-square bg-white rounded-3xl p-4 shadow-[0_20px_60px_rgba(88,28,135,0.2)] border-[8px] border-gold overflow-hidden">
+      <div className="relative w-full max-w-[340px] aspect-square bg-white rounded-3xl p-3 shadow-[0_20px_60px_rgba(88,28,135,0.2)] border-[8px] border-gold overflow-hidden touch-none">
         <div className="grid grid-cols-3 grid-rows-3 w-full h-full gap-1 bg-purple/10">
-          {tiles.map((tile, i) => {
-            if (tile === 8 && !isSolved) {
-              return <div key={i} className="bg-purple/5 rounded-lg" />;
-            }
-
-            const originalR = Math.floor(tile / 3);
-            const originalC = tile % 3;
+          {tiles.map((tileValue, currentIndex) => {
+            const isHole = tileValue === 8;
+            const originalR = Math.floor(tileValue / 3);
+            const originalC = tileValue % 3;
 
             return (
               <motion.div
-                key={tile}
+                key={tileValue}
                 layout
-                onClick={() => handleTileClick(i)}
-                className="relative cursor-pointer rounded-lg overflow-hidden border border-purple/10"
+                onClick={() => handleTileClick(currentIndex)}
+                className={`relative cursor-pointer rounded-lg overflow-hidden border border-purple/5 ${isHole && !isSolved ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
                 style={{
                   backgroundImage: `url(${currentLegend.src})`,
                   backgroundSize: '300% 300%',
                   backgroundPosition: `${(originalC / 2) * 100}% ${(originalR / 2) * 100}%`,
                 }}
-                whileHover={!isSolved ? { scale: 0.98 } : {}}
-                whileTap={!isSolved ? { scale: 0.95 } : {}}
+                whileHover={!isSolved && !isHole ? { scale: 0.98 } : {}}
+                whileTap={!isSolved && !isHole ? { scale: 0.95 } : {}}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
               />
             );
           })}
