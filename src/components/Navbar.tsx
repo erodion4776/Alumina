@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Home, Heart, Users, BookOpen, Briefcase, Flower2 } from 'lucide-react';
+import { Home, Heart, Users, BookOpen, Briefcase, Flower2, Gamepad2 } from 'lucide-react';
 
 const LOGO_URL = "https://i.ibb.co/DHC0kvzR/1000773566-removebg-preview-1.png";
 
-type View = 'home' | 'solidarity' | 'directory' | 'ebook' | 'business' | 'memorial';
+type View = 'home' | 'solidarity' | 'directory' | 'ebook' | 'business' | 'memorial' | 'games';
 
 interface NavbarProps {
   activeView: View;
@@ -19,6 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, onViewChange }) => {
     { id: 'ebook', label: 'E-Book', icon: <BookOpen className="w-5 h-5" /> },
     { id: 'business', label: 'Business', icon: <Briefcase className="w-5 h-5" /> },
     { id: 'memorial', label: 'Memorial', icon: <Flower2 className="w-5 h-5" /> },
+    { id: 'games', label: 'Games', icon: <Gamepad2 className="w-5 h-5" /> },
   ];
 
   return (

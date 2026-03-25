@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   RotateCw,
@@ -13,6 +13,9 @@ import {
   Users, 
   ExternalLink,
   ChevronRight,
+  ChevronLeft,
+  ChevronUp,
+  ChevronDown,
   Clock,
   MapPin,
   Mail,
@@ -20,7 +23,10 @@ import {
   X,
   Flame,
   ShieldCheck,
-  CheckCircle
+  CheckCircle,
+  Gamepad2,
+  Trophy,
+  Share2
 } from 'lucide-react';
 import { 
   LATEST_NEWS, 
@@ -836,6 +842,351 @@ export const Memorial = () => {
 };
 
 // --- Our Story Section ---
+// --- Games Hub Section ---
+export const GamesHub = () => {
+  const [activeGame, setActiveGame] = useState<'hub' | 'snake'>('hub');
+
+  if (activeGame === 'snake') {
+    return <LegacySnake onBack={() => setActiveGame('hub')} />;
+  }
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 py-12 space-y-12">
+      <div className="text-center space-y-4">
+        <h1 className="text-4xl md:text-6xl font-serif font-black text-purple uppercase tracking-widest">Games Hub</h1>
+        <p className="text-lg md:text-xl text-pink font-serif italic">Relive the fun, build the legacy.</p>
+        <div className="w-24 h-1 bg-gold mx-auto" />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {/* Trivia Master Card */}
+        <motion.div 
+          whileHover={{ y: -10 }}
+          className="bg-white/40 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group opacity-80"
+        >
+          <div className="absolute top-0 right-0 p-4">
+            <span className="bg-purple/10 text-purple text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Coming Soon</span>
+          </div>
+          <div className="w-16 h-16 bg-purple/10 rounded-2xl flex items-center justify-center mb-6">
+            <Trophy className="w-8 h-8 text-purple" />
+          </div>
+          <h3 className="text-2xl font-serif font-bold text-purple mb-2">Trivia Master</h3>
+          <p className="text-slate-500 font-serif italic text-sm mb-6">Test your knowledge of UDSS and the Class of 2004.</p>
+          <button disabled className="w-full py-3 rounded-xl border-2 border-purple/20 text-purple/40 font-bold uppercase tracking-widest text-xs">
+            Locked
+          </button>
+        </motion.div>
+
+        {/* Legacy Snake Card */}
+        <motion.div 
+          whileHover={{ y: -10 }}
+          onClick={() => setActiveGame('snake')}
+          className="bg-gradient-to-br from-purple to-pink rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group cursor-pointer"
+        >
+          <div className="absolute -right-10 -bottom-10 opacity-10 group-hover:scale-110 transition-transform duration-700">
+            <Gamepad2 className="w-48 h-48 text-white" />
+          </div>
+          <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+            <Gamepad2 className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-2xl font-serif font-bold text-white mb-2">Legacy Snake</h3>
+          <p className="text-white/80 font-serif italic text-sm mb-6">Grow the legacy as you collect 20-year badges.</p>
+          <button className="w-full py-3 bg-gold text-purple rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-white transition-colors">
+            Play Now
+          </button>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+// --- Legacy Snake Game ---
+const GRID_SIZE = 20;
+const INITIAL_SPEED = 150;
+
+export const LegacySnake = ({ onBack }: { onBack: () => void }) => {
+  const [snake, setSnake] = useState([{ x: 10, y: 10 }, { x: 10, y: 11 }, { x: 10, y: 12 }]);
+  const [food, setFood] = useState({ x: 5, y: 5 });
+  const [direction, setDirection] = useState('UP');
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(() => Number(localStorage.getItem('udosa04_snake_highscore') || 0));
+  const [isPaused, setIsPaused] = useState(true);
+  const [speed, setSpeed] = useState(INITIAL_SPEED);
+
+  const gameLoop = useRef<NodeJS.Timeout | null>(null);
+
+  const generateFood = useCallback(() => {
+    let newFood;
+    while (true) {
+      newFood = {
+        x: Math.floor(Math.random() * GRID_SIZE),
+        y: Math.floor(Math.random() * GRID_SIZE),
+      };
+      // Check if food is on snake
+      const onSnake = snake.some(segment => segment.x === newFood.x && segment.y === newFood.y);
+      if (!onSnake) break;
+    }
+    setFood(newFood);
+  }, [snake]);
+
+  const moveSnake = useCallback(() => {
+    if (isGameOver || isPaused) return;
+
+    const head = { ...snake[0] };
+    switch (direction) {
+      case 'UP': head.y -= 1; break;
+      case 'DOWN': head.y += 1; break;
+      case 'LEFT': head.x -= 1; break;
+      case 'RIGHT': head.x += 1; break;
+    }
+
+    // Collision detection (walls)
+    if (head.x < 0 || head.x >= GRID_SIZE || head.y < 0 || head.y >= GRID_SIZE) {
+      handleGameOver();
+      return;
+    }
+
+    // Collision detection (self)
+    if (snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+      handleGameOver();
+      return;
+    }
+
+    const newSnake = [head, ...snake];
+
+    // Check if food eaten
+    if (head.x === food.x && head.y === food.y) {
+      const newScore = score + 10;
+      setScore(newScore);
+      if (newScore > highScore) {
+        setHighScore(newScore);
+        localStorage.setItem('udosa04_snake_highscore', String(newScore));
+      }
+      
+      // Speed increase every 5 badges
+      if (newScore % 50 === 0) {
+        setSpeed(prev => Math.max(prev - 10, 60));
+      }
+      
+      generateFood();
+    } else {
+      newSnake.pop();
+    }
+
+    setSnake(newSnake);
+  }, [snake, direction, food, isGameOver, isPaused, score, highScore, generateFood]);
+
+  const handleGameOver = () => {
+    setIsGameOver(true);
+    setIsPaused(true);
+    if (gameLoop.current) clearInterval(gameLoop.current);
+  };
+
+  const resetGame = () => {
+    setSnake([{ x: 10, y: 10 }, { x: 10, y: 11 }, { x: 10, y: 12 }]);
+    setDirection('UP');
+    setScore(0);
+    setIsGameOver(false);
+    setIsPaused(false);
+    setSpeed(INITIAL_SPEED);
+    generateFood();
+  };
+
+  useEffect(() => {
+    if (!isPaused && !isGameOver) {
+      gameLoop.current = setInterval(moveSnake, speed);
+    } else {
+      if (gameLoop.current) clearInterval(gameLoop.current);
+    }
+    return () => {
+      if (gameLoop.current) clearInterval(gameLoop.current);
+    };
+  }, [moveSnake, isPaused, isGameOver, speed]);
+
+  // Keyboard controls
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case 'ArrowUp': if (direction !== 'DOWN') setDirection('UP'); break;
+        case 'ArrowDown': if (direction !== 'UP') setDirection('DOWN'); break;
+        case 'ArrowLeft': if (direction !== 'RIGHT') setDirection('LEFT'); break;
+        case 'ArrowRight': if (direction !== 'LEFT') setDirection('RIGHT'); break;
+        case ' ': setIsPaused(prev => !prev); break;
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [direction]);
+
+  const shareScore = () => {
+    const text = `I just scored ${score} points in the UDOSA 04 Legacy Snake game! Can you beat my high score of ${highScore}? 🐍🏆 #UDOSA04 #20YearLegacy`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto px-4 py-8 space-y-8 flex flex-col items-center">
+      {/* Header */}
+      <div className="w-full flex justify-between items-center">
+        <button 
+          onClick={onBack}
+          className="flex items-center gap-2 text-purple font-bold uppercase tracking-widest text-xs hover:text-pink transition-colors"
+        >
+          <ChevronLeft className="w-4 h-4" /> Back to Hub
+        </button>
+        <div className="flex gap-4">
+          <div className="bg-purple text-white px-4 py-2 rounded-xl shadow-lg border border-gold/20">
+            <p className="text-[8px] uppercase tracking-widest text-gold/60">Score</p>
+            <p className="text-xl font-black">{score}</p>
+          </div>
+          <div className="bg-white border border-purple/10 px-4 py-2 rounded-xl shadow-lg">
+            <p className="text-[8px] uppercase tracking-widest text-purple/40">High Score</p>
+            <p className="text-xl font-black text-purple">{highScore}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Game Board */}
+      <div className="relative bg-[#581c87] rounded-3xl p-2 shadow-[0_20px_60px_rgba(88,28,135,0.4)] border-4 border-gold/30 w-full aspect-square max-w-[500px] overflow-hidden">
+        {/* Grid Background */}
+        <div className="absolute inset-0 grid grid-cols-20 grid-rows-20 opacity-5">
+          {Array.from({ length: 400 }).map((_, i) => (
+            <div key={i} className="border-[0.5px] border-white" />
+          ))}
+        </div>
+
+        {/* Snake */}
+        {snake.map((segment, i) => (
+          <div 
+            key={i}
+            className={`absolute rounded-sm transition-all duration-150 ${i === 0 ? 'z-10' : 'z-0'}`}
+            style={{
+              width: `${100 / GRID_SIZE}%`,
+              height: `${100 / GRID_SIZE}%`,
+              left: `${(segment.x / GRID_SIZE) * 100}%`,
+              top: `${(segment.y / GRID_SIZE) * 100}%`,
+              backgroundColor: i === 0 ? 'transparent' : '#f472b6',
+              boxShadow: i === 0 ? 'none' : '0 0 10px rgba(212,175,55,0.5)',
+              border: i === 0 ? 'none' : '1px solid rgba(212,175,55,0.3)'
+            }}
+          >
+            {i === 0 && (
+              <img 
+                src={LOGO_URL} 
+                className="w-full h-full object-contain drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]" 
+                alt="Head"
+                referrerPolicy="no-referrer"
+              />
+            )}
+          </div>
+        ))}
+
+        {/* Food */}
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ repeat: Infinity, duration: 1 }}
+          className="absolute flex items-center justify-center"
+          style={{
+            width: `${100 / GRID_SIZE}%`,
+            height: `${100 / GRID_SIZE}%`,
+            left: `${(food.x / GRID_SIZE) * 100}%`,
+            top: `${(food.y / GRID_SIZE) * 100}%`,
+          }}
+        >
+          <div className="w-full h-full bg-gold rounded-full shadow-[0_0_15px_rgba(212,175,55,0.8)] flex items-center justify-center text-[8px] font-black text-purple">
+            20
+          </div>
+        </motion.div>
+
+        {/* Pause Overlay */}
+        {isPaused && !isGameOver && (
+          <div className="absolute inset-0 bg-purple/60 backdrop-blur-sm flex flex-col items-center justify-center z-20">
+            <button 
+              onClick={() => setIsPaused(false)}
+              className="bg-gold text-purple px-8 py-3 rounded-full font-bold uppercase tracking-widest text-sm shadow-2xl hover:scale-110 transition-transform"
+            >
+              Start Game
+            </button>
+            <p className="mt-4 text-white/60 text-xs font-serif italic">Use Arrows or D-Pad to move</p>
+          </div>
+        )}
+
+        {/* Game Over Overlay */}
+        <AnimatePresence>
+          {isGameOver && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="absolute inset-0 bg-purple/90 backdrop-blur-md flex flex-col items-center justify-center z-30 p-8 text-center"
+            >
+              <Trophy className="w-16 h-16 text-gold mb-4 animate-bounce" />
+              <h2 className="text-4xl font-serif font-black text-white uppercase tracking-tighter mb-2">Game Over</h2>
+              <p className="text-gold font-serif italic text-xl mb-6">Final Score: {score}</p>
+              
+              <div className="flex flex-col gap-3 w-full max-w-xs">
+                <button 
+                  onClick={resetGame}
+                  className="w-full bg-pink text-white py-3 rounded-xl font-bold uppercase tracking-widest text-xs shadow-lg hover:bg-white hover:text-pink transition-all"
+                >
+                  Try Again
+                </button>
+                <button 
+                  onClick={shareScore}
+                  className="w-full bg-white text-purple py-3 rounded-xl font-bold uppercase tracking-widest text-xs shadow-lg flex items-center justify-center gap-2 hover:bg-gold transition-all"
+                >
+                  <Share2 className="w-4 h-4" /> Brag to the Group
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Mobile Controls */}
+      <div className="grid grid-cols-3 gap-4 md:hidden">
+        <div />
+        <button 
+          onClick={() => direction !== 'DOWN' && setDirection('UP')}
+          className="w-16 h-16 bg-purple/10 rounded-2xl flex items-center justify-center text-purple active:bg-purple active:text-white transition-colors border border-purple/20"
+        >
+          <ChevronUp className="w-8 h-8" />
+        </button>
+        <div />
+        <button 
+          onClick={() => direction !== 'RIGHT' && setDirection('LEFT')}
+          className="w-16 h-16 bg-purple/10 rounded-2xl flex items-center justify-center text-purple active:bg-purple active:text-white transition-colors border border-purple/20"
+        >
+          <ChevronLeft className="w-8 h-8" />
+        </button>
+        <button 
+          onClick={() => setIsPaused(prev => !prev)}
+          className="w-16 h-16 bg-gold/20 rounded-2xl flex items-center justify-center text-purple active:bg-gold active:text-purple transition-colors border border-gold/30"
+        >
+          {isPaused ? <Play className="w-6 h-6 fill-purple" /> : <div className="w-6 h-6 border-x-4 border-purple" />}
+        </button>
+        <button 
+          onClick={() => direction !== 'LEFT' && setDirection('RIGHT')}
+          className="w-16 h-16 bg-purple/10 rounded-2xl flex items-center justify-center text-purple active:bg-purple active:text-white transition-colors border border-purple/20"
+        >
+          <ChevronRight className="w-8 h-8" />
+        </button>
+        <div />
+        <button 
+          onClick={() => direction !== 'UP' && setDirection('DOWN')}
+          className="w-16 h-16 bg-purple/10 rounded-2xl flex items-center justify-center text-purple active:bg-purple active:text-white transition-colors border border-purple/20"
+        >
+          <ChevronDown className="w-8 h-8" />
+        </button>
+        <div />
+      </div>
+
+      <p className="hidden md:block text-slate-400 text-xs font-serif italic">
+        Tip: Use Arrow keys to move and Space to pause.
+      </p>
+    </div>
+  );
+};
+
 export const OurStory = () => (
   <div className="min-h-screen bg-purple text-white overflow-hidden pb-24">
     {/* Parallax Hero */}
