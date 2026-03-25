@@ -15,7 +15,9 @@ import {
   ChevronRight,
   Clock,
   MapPin,
-  Mail
+  Mail,
+  Settings,
+  X
 } from 'lucide-react';
 import { 
   LATEST_NEWS, 
@@ -259,9 +261,137 @@ export const Home = ({ onViewChange }: { onViewChange: (view: any) => void }) =>
 // --- Solidarity Hub ---
 export const SolidarityHub = () => {
   const [activeAudio, setActiveAudio] = useState<number | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+  const [password, setPassword] = useState("");
+  const [liveStreamUrl, setLiveStreamUrl] = useState(() => localStorage.getItem('udosa04_live_url') || "");
+  const [audioUrl, setAudioUrl] = useState(() => localStorage.getItem('udosa04_audio_url') || "");
+  const [tempLiveUrl, setTempLiveUrl] = useState(liveStreamUrl);
+  const [tempAudioUrl, setTempAudioUrl] = useState(audioUrl);
+
+  const handleAdminLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === "udosa04") {
+      setIsAdmin(true);
+      setPassword("");
+    } else {
+      alert("Incorrect Password");
+    }
+  };
+
+  const handleUpdateLinks = () => {
+    setLiveStreamUrl(tempLiveUrl);
+    setAudioUrl(tempAudioUrl);
+    localStorage.setItem('udosa04_live_url', tempLiveUrl);
+    localStorage.setItem('udosa04_audio_url', tempAudioUrl);
+    setShowAdminPanel(false);
+    alert("Links updated successfully!");
+  };
+
+  // Helper to extract YouTube ID
+  const getYouTubeId = (url: string) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
+
+  const youtubeId = getYouTubeId(liveStreamUrl);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
+    <div className="max-w-7xl mx-auto px-4 py-12 space-y-16 relative">
+      {/* Admin Toggle */}
+      <button 
+        onClick={() => setShowAdminPanel(true)}
+        className="absolute top-4 right-4 p-2 text-purple/20 hover:text-purple transition-colors z-50"
+        title="Admin Settings"
+      >
+        <Settings className="w-5 h-5" />
+      </button>
+
+      {/* Admin Panel Modal */}
+      <AnimatePresence>
+        {showAdminPanel && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-purple/80 backdrop-blur-sm"
+          >
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="max-w-md w-full bg-white p-8 rounded-[2rem] shadow-2xl space-y-6 relative"
+            >
+              <button 
+                onClick={() => setShowAdminPanel(false)}
+                className="absolute top-6 right-6 text-slate-400 hover:text-purple"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              {!isAdmin ? (
+                <form onSubmit={handleAdminLogin} className="space-y-4">
+                  <h3 className="text-2xl font-serif font-bold text-purple">Admin Access</h3>
+                  <p className="text-slate-500 text-sm">Enter password to manage links.</p>
+                  <input 
+                    type="password" 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter Password"
+                    className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-purple outline-none"
+                  />
+                  <button type="submit" className="w-full bg-purple text-white py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-pink transition-colors">
+                    Login
+                  </button>
+                </form>
+              ) : (
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-serif font-bold text-purple">Link Controller</h3>
+                  
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Live Stream (YouTube Link)</label>
+                    <input 
+                      type="text" 
+                      value={tempLiveUrl}
+                      onChange={(e) => setTempLiveUrl(e.target.value)}
+                      placeholder="Paste YouTube Link"
+                      className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-purple outline-none text-sm"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Audio URL (Anthem/Podcast)</label>
+                    <input 
+                      type="text" 
+                      value={tempAudioUrl}
+                      onChange={(e) => setTempAudioUrl(e.target.value)}
+                      placeholder="Paste Audio File Link"
+                      className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-purple outline-none text-sm"
+                    />
+                  </div>
+
+                  <div className="pt-4 flex gap-3">
+                    <button 
+                      onClick={handleUpdateLinks}
+                      className="flex-grow bg-gold text-purple py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-purple hover:text-white transition-all"
+                    >
+                      Update Links
+                    </button>
+                    <button 
+                      onClick={() => setIsAdmin(false)}
+                      className="px-4 py-3 border border-stone-200 rounded-xl text-slate-400 hover:text-red-500 transition-colors"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="text-center space-y-4">
         <h1 className="text-4xl md:text-6xl font-serif font-black text-purple uppercase tracking-tighter">Solidarity Hub</h1>
         <p className="text-lg md:text-xl text-pink font-serif italic">Connecting hearts, voices, and memories.</p>
@@ -276,22 +406,36 @@ export const SolidarityHub = () => {
             <h2 className="text-2xl font-serif font-bold text-purple uppercase tracking-widest">Live Stream</h2>
           </div>
           <div className="aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl relative group">
-            <img 
-              src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000" 
-              alt="Live Stream Placeholder" 
-              className="w-full h-full object-cover opacity-60"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-              <div className="w-20 h-20 bg-gold rounded-full flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform">
-                <Play className="w-10 h-10 fill-purple text-purple ml-1" />
-              </div>
-              <p className="mt-6 font-serif font-bold text-lg uppercase tracking-widest">No Active Stream</p>
-              <p className="text-white/60 text-sm italic">Next event: 20th Anniversary Gala (Dec 2026)</p>
-            </div>
-            <div className="absolute top-6 left-6 flex items-center gap-2 bg-red-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest animate-pulse">
+            {youtubeId ? (
+              <iframe 
+                className="w-full h-full"
+                src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`}
+                title="Live Stream"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <>
+                <img 
+                  src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000" 
+                  alt="Live Stream Placeholder" 
+                  className="w-full h-full object-cover opacity-60"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                  <div className="w-20 h-20 bg-gold rounded-full flex items-center justify-center shadow-2xl">
+                    <Play className="w-10 h-10 fill-purple text-purple ml-1" />
+                  </div>
+                  <p className="mt-6 font-serif font-bold text-lg uppercase tracking-widest">No Active Stream</p>
+                  <p className="text-white/60 text-sm italic">Next event: 20th Anniversary Gala (Dec 2026)</p>
+                </div>
+              </>
+            )}
+            
+            <div className={`absolute top-6 left-6 flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${youtubeId ? 'bg-red-600 animate-pulse' : 'bg-stone-600'}`}>
               <div className="w-2 h-2 bg-white rounded-full" />
-              Offline
+              {youtubeId ? 'Live Now' : 'Offline'}
             </div>
           </div>
         </div>
@@ -310,9 +454,21 @@ export const SolidarityHub = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-serif font-bold text-gold">Now Playing</h3>
-                  <p className="text-white/60 italic">Select a track to begin listening</p>
+                  <p className="text-white/60 italic">
+                    {activeAudio ? AUDIO_LIBRARY.find(t => t.id === activeAudio)?.title : 'Select a track to begin listening'}
+                  </p>
                 </div>
               </div>
+              {activeAudio && (
+                <div className="mt-6">
+                  <audio 
+                    controls 
+                    autoPlay 
+                    className="w-full h-8 accent-gold"
+                    src={activeAudio === 1 && audioUrl ? audioUrl : AUDIO_LIBRARY.find(t => t.id === activeAudio)?.url}
+                  />
+                </div>
+              )}
             </div>
             <div className="divide-y divide-stone-100">
               {AUDIO_LIBRARY.map((track) => (
