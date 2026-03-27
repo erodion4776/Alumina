@@ -1339,21 +1339,23 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
     <div className="p-8 flex-grow overflow-hidden flex flex-col">
       <div className="mb-6 text-center">
         <h3 className="text-xl font-serif font-bold text-purple uppercase tracking-widest">Standing Together: A Photo Journal</h3>
-        <p className="text-pink font-serif italic text-sm mt-1">Capturing the times we've come together to support our own and our alma mater.</p>
+        <p className="text-pink font-serif italic text-sm mt-1">Supporting Cynthia, Osayowanbo, Owen, Ehis, and Ero during their times of loss.</p>
         <div className="w-20 h-1 bg-gold mx-auto mt-2" />
       </div>
 
-      <div className="grid grid-cols-2 gap-4 flex-grow overflow-hidden">
+      <div className="grid grid-cols-2 gap-x-4 gap-y-4 flex-grow overflow-hidden content-start">
         {SOLIDARITY_PHOTOS.slice(0, 4).map((photo, i) => (
-          <div key={i} className="relative group overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[240px]">
-            <img 
-              src={photo.src} 
-              alt={`Solidarity ${i + 1}`} 
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-purple/90 to-transparent p-4">
-              <p className="text-white font-serif italic text-xs leading-tight">{photo.caption}</p>
+          <div key={i} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[220px] bg-white group">
+            <div className="relative flex-grow overflow-hidden bg-stone-50">
+              <img 
+                src={photo.src} 
+                alt={`Solidarity ${i + 1}`} 
+                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="p-2 bg-white shrink-0 border-t border-gold/10">
+              <p className="text-purple font-serif italic text-[10px] leading-tight text-center">{photo.caption}</p>
             </div>
           </div>
         ))}
@@ -1372,17 +1374,19 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
     </div>
 
     <div className="p-8 flex-grow overflow-hidden flex flex-col">
-      <div className="grid grid-cols-2 gap-4 flex-grow overflow-hidden">
+      <div className="grid grid-cols-2 gap-x-4 gap-y-4 flex-grow overflow-hidden content-start">
         {SOLIDARITY_PHOTOS.slice(4, 8).map((photo, i) => (
-          <div key={i + 4} className="relative group overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[240px]">
-            <img 
-              src={photo.src} 
-              alt={`Solidarity ${i + 5}`} 
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-purple/90 to-transparent p-4">
-              <p className="text-white font-serif italic text-xs leading-tight">{photo.caption}</p>
+          <div key={i + 4} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[220px] bg-white group">
+            <div className="relative flex-grow overflow-hidden bg-stone-50">
+              <img 
+                src={photo.src} 
+                alt={`Solidarity ${i + 5}`} 
+                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="p-2 bg-white shrink-0 border-t border-gold/10">
+              <p className="text-purple font-serif italic text-[10px] leading-tight text-center">{photo.caption}</p>
             </div>
           </div>
         ))}
@@ -1401,17 +1405,19 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
     </div>
 
     <div className="p-8 flex-grow overflow-hidden flex flex-col">
-      <div className="grid grid-cols-2 gap-4 flex-grow overflow-hidden">
+      <div className="grid grid-cols-2 gap-x-4 gap-y-4 flex-grow overflow-hidden content-start">
         {SOLIDARITY_PHOTOS.slice(8, 12).map((photo, i) => (
-          <div key={i + 8} className="relative group overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[240px]">
-            <img 
-              src={photo.src} 
-              alt={`Solidarity ${i + 9}`} 
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-purple/90 to-transparent p-4">
-              <p className="text-white font-serif italic text-xs leading-tight">{photo.caption}</p>
+          <div key={i + 8} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[220px] bg-white group">
+            <div className="relative flex-grow overflow-hidden bg-stone-50">
+              <img 
+                src={photo.src} 
+                alt={`Solidarity ${i + 9}`} 
+                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="p-2 bg-white shrink-0 border-t border-gold/10">
+              <p className="text-purple font-serif italic text-[10px] leading-tight text-center">{photo.caption}</p>
             </div>
           </div>
         ))}
