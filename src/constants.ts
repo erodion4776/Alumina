@@ -95,7 +95,7 @@ export const GALLERY_PHOTOS = [
   { src: "https://i.ibb.co/350S09WN/285318-AF-100-F-487-C-824-E-50-DC5314-B7-FA.jpg", name: "Osas Eboigbe" },
   { src: "https://i.ibb.co/Dfn2SbBx/IMG-20250308-101418-4.jpg", name: "Osas Eghobamien" },
   { src: "https://i.ibb.co/QtzyXF9/701-C2184-7-B61-4-C1-F-8936-61-A51-BF08405.jpg", name: "Osas Ehanire" },
-  { src: "https://i.ibb.co/TMYDCZTD/IMG-20250409-WA0011-1.jpg", name: "Osas Ekhator" },
+  { src: "https://i.ibb.co/0R5jQgRt/IMG-20260327-080503.jpg", name: "Osas Ekhator" },
   { src: "https://i.ibb.co/0j1G5Hgx/IMG-0280-1.jpg", name: "Osas Enabulele" },
   { src: "https://i.ibb.co/0RxB0Br7/IMG-20241228-181727-517.jpg", name: "Osas Erhabor" },
   { src: "https://i.ibb.co/rGp6Y1Q9/20231230-145841-3.jpg", name: "Osas Igbinedion" }

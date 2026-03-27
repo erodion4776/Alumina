@@ -27,7 +27,7 @@ export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord
     
     // Header is ~64px-80px, Bottom Nav is ~70px-80px, Pagination UI is ~60px
     // We want to fit the A4 (210x297 ratio) into the remaining space
-    const reservedHeight = viewportWidth < 768 ? 220 : 250; 
+    const reservedHeight = viewportWidth < 768 ? 260 : 250; 
     const availableWidth = viewportWidth - 40; // 20px padding each side
     const availableHeight = viewportHeight - reservedHeight;
     
@@ -114,7 +114,7 @@ export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord
               animate={{ opacity: 1, scale: scale, x: 0 }}
               exit={{ opacity: 0, scale: scale * 0.9, x: -20 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="shadow-[0_30px_100px_rgba(0,0,0,0.5)] rounded-sm overflow-hidden origin-center no-print"
+              className="shadow-[0_30px_100px_rgba(0,0,0,0.5)] rounded-sm overflow-hidden origin-center no-print md:scale-100 scale-[0.9]"
               style={{ 
                 width: '210mm', 
                 height: '297mm',
