@@ -1221,9 +1221,21 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
 
     <div className="p-8 flex-grow overflow-hidden flex flex-col">
       <div className="grid grid-cols-3 gap-4 flex-grow overflow-hidden">
-        {GALLERY_PHOTOS.slice(12, 21).map((photo, i) => (
-          <GalleryItem key={i + 12} src={photo.src} number={i + 13} name={photo.name} />
-        ))}
+        {GALLERY_PHOTOS.slice(12, 21).map((photo, i) => {
+          const number = i + 13;
+          let position = "object-top";
+          if (number === 15) position = "object-center";
+          if (number === 18) position = "object-bottom";
+          return (
+            <GalleryItem 
+              key={i + 12} 
+              src={photo.src} 
+              number={number} 
+              name={photo.name} 
+              objectPosition={position}
+            />
+          );
+        })}
       </div>
     </div>
     <Footer text="UDOSA 04 | 20 Years of Transformation" />
