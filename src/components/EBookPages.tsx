@@ -1225,7 +1225,8 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
           const number = i + 13;
           let position = "object-top";
           if (number === 15) position = "object-center";
-          if (number === 18) position = "object-bottom";
+          if (number === 17) position = "object-top";
+          if (number === 18) position = "object-top";
           return (
             <GalleryItem 
               key={i + 12} 
