@@ -149,18 +149,18 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
   // 4. Editor's Note - Page 4
   <Page className="bg-white" showHeader={false}>
     <div className="flex flex-col h-full">
-      <div className="bg-purple w-full py-6 flex justify-center mb-8 rounded-xl shadow-lg">
+      <div className="bg-purple w-full py-6 flex justify-center mb-6 rounded-xl shadow-lg">
         <img src={LOGO_URL} alt="UDOSA Logo" className="h-16 object-contain" referrerPolicy="no-referrer" />
       </div>
       
-      <div className="mb-8">
-        <h2 className="text-4xl font-serif font-bold text-purple leading-tight">
+      <div className="mb-6">
+        <h2 className="text-3xl font-serif font-bold text-purple leading-tight">
           A Note from the <span className="text-gold italic">Editor-in-Chief</span>
         </h2>
         <div className="w-20 h-1 bg-gold mt-2" />
       </div>
 
-      <div className="flex gap-10 mb-8">
+      <div className="flex gap-8 mb-6">
         <div className="w-1/2">
           <div className="relative group">
             <div className="absolute -inset-1 bg-gold rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
@@ -175,7 +175,7 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
           </div>
         </div>
         <div className="w-1/2 flex flex-col justify-center">
-          <div className="space-y-4 text-slate-700 leading-relaxed font-serif text-justify text-[15px] md:text-[14px]">
+          <div className="space-y-3 text-slate-700 leading-relaxed font-serif text-justify text-[13px] md:text-[14px]">
             <p className="drop-cap">
               As the PRO Committee, we came together with a shared realization — that we were already working in sync, united by a common goal: to reconnect, build, and move UDOSA O4 forward with purpose.
             </p>
@@ -186,18 +186,24 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
         </div>
       </div>
 
-      <div className="space-y-4 text-slate-700 leading-relaxed font-serif text-justify text-[15px] md:text-[14px]">
+      <div className="space-y-3 text-slate-700 leading-relaxed font-serif text-justify text-[13px] md:text-[14px]">
         <p>
           From those conversations, a bigger idea was born — this Yearbook/Newsletter. This publication represents more than just pages of content; it reflects our shared history, values, and journey. It is a space where memories meet purpose — where we celebrate who we were, who we are, and who we are becoming.
         </p>
         <p>
+          Personally, being part of the Conservation Club shaped my love for nature. Today, I find joy in planting and nurturing flowers around my home — a passion that started right here in UDSS. Many of us share similar stories — from Karate Club to Bible Club — each experience contributing to who we are today.
+        </p>
+        <p>
+          This is our first edition, and while we made every effort to include as many people as possible, we acknowledge that not everyone was captured due to limited responses. We hope future editions will continue to expand and include even more voices and stories.
+        </p>
+        <p className="font-bold text-purple italic">
           Within these pages, you will find:
         </p>
-        <ul className="list-disc list-inside space-y-1 ml-4 text-purple font-bold italic">
-          <li>Stories and reflections from our colleagues</li>
-          <li>Highlights of our time at UDSS</li>
-          <li>The impact of clubs and activities on our lives today</li>
-          <li>Celebrations of milestones and personal achievements</li>
+        <ul className="grid grid-cols-2 gap-x-4 gap-y-1 ml-4 text-purple font-bold italic text-[12px]">
+          <li>• Stories & reflections</li>
+          <li>• Highlights of UDSS</li>
+          <li>• Impact of clubs</li>
+          <li>• Milestones & achievements</li>
         </ul>
       </div>
     </div>
@@ -211,62 +217,62 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
     </div>
 
     <div className="relative z-10 flex flex-col h-full">
-      <div className="my-12 py-8 border-y-2 border-pink/20 bg-pink/5 text-center relative">
+      <div className="my-8 py-6 border-y-2 border-pink/20 bg-pink/5 text-center relative">
         <Quote className="w-10 h-10 text-pink mb-4 mx-auto opacity-30" />
-        <p className="text-2xl font-serif italic text-pink leading-relaxed max-w-2xl mx-auto px-8">
+        <p className="text-xl md:text-2xl font-serif italic text-pink leading-relaxed max-w-2xl mx-auto px-8">
           "Many of us share similar stories—from Karate Club to Bible Club—each experience contributing to who we are today."
         </p>
       </div>
 
-      <div className="space-y-6 text-slate-700 leading-relaxed font-serif text-justify text-[15px] md:text-[14px] flex-grow">
-        <p>
-          Personally, being part of the Conservation Club shaped my love for nature. Today, I find joy in planting and nurturing flowers around my home — a passion that started right here in UDSS. Many of us share similar stories — from Karate Club to Bible Club — each experience contributing to who we are today.
-        </p>
-        <p>
-          This is our first edition, and while we made every effort to include as many people as possible, we acknowledge that not everyone was captured due to limited responses. We hope future editions will continue to expand and include even more voices and stories.
-        </p>
+      <div className="space-y-4 text-slate-700 leading-relaxed font-serif text-justify text-[13px] md:text-[14px]">
         <p>
           I would like to sincerely thank everyone who contributed, shared their information, and supported the realization of this vision. Your participation made this possible.
         </p>
-        <p className="font-bold text-purple">
+        <p className="font-bold text-purple text-lg">
           This is just the beginning.
         </p>
         <p>
           Let us continue this journey together — building, reconnecting, and creating something even greater for the future.
         </p>
-        <p className="font-serif italic text-purple">
+        <p className="font-serif italic text-purple text-lg">
           Thank you all.
         </p>
       </div>
 
-      <div className="mt-8 flex flex-col items-end">
+      <div className="mt-6 mb-8 flex flex-col items-end">
         <p className="font-[var(--font-handwriting)] text-4xl text-purple mb-1">Cynthia Azor</p>
-        <p className="text-xs font-serif font-bold text-gold uppercase tracking-widest">PRO (Diaspora) & Editor-in-Chief</p>
+        <p className="text-[10px] font-serif font-bold text-gold uppercase tracking-widest">PRO (Diaspora) & Editor-in-Chief</p>
       </div>
 
-      {/* Credits Box */}
-      <div className="mt-12 p-6 bg-purple text-white rounded-2xl shadow-xl border-2 border-gold/30">
-        <h4 className="text-gold font-serif font-bold uppercase tracking-[0.2em] text-xs mb-4 border-b border-gold/20 pb-2">Editorial Team Credits</h4>
-        <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-[11px] font-serif">
-          <div className="flex justify-between border-b border-white/10 pb-1">
-            <span className="text-gold/80">Osarenoma</span>
-            <span className="italic">Assistant PRO</span>
+      <div className="flex-grow" />
+
+      {/* Compact Credits Box */}
+      <div className="p-5 bg-purple text-white rounded-2xl shadow-xl border-2 border-gold/30">
+        <h4 className="text-gold font-serif font-bold uppercase tracking-[0.2em] text-[10px] mb-3 border-b border-gold/20 pb-1">Editorial Team Credits</h4>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-[10px] font-serif">
+          <div className="space-y-2">
+            <div className="flex flex-col border-b border-white/10 pb-1">
+              <span className="text-gold font-bold">Osarenoma</span>
+              <span className="italic opacity-70">Assistant PRO</span>
+            </div>
+            <div className="flex flex-col border-b border-white/10 pb-1">
+              <span className="text-gold font-bold">Ochuko</span>
+              <span className="italic opacity-70">PRO</span>
+            </div>
           </div>
-          <div className="flex justify-between border-b border-white/10 pb-1">
-            <span className="text-gold/80">Ochuko</span>
-            <span className="italic">PRO</span>
-          </div>
-          <div className="flex justify-between border-b border-white/10 pb-1">
-            <span className="text-gold/80">Irene</span>
-            <span className="italic">Editorial Team</span>
-          </div>
-          <div className="flex justify-between border-b border-white/10 pb-1">
-            <span className="text-gold/80">Owen Ojo</span>
-            <span className="italic">Editorial Team</span>
-          </div>
-          <div className="flex justify-between border-b border-white/10 pb-1 col-span-2">
-            <span className="text-gold/80">Ero</span>
-            <span className="italic">Editorial Team & Designer</span>
+          <div className="space-y-2">
+            <div className="flex flex-col border-b border-white/10 pb-1">
+              <span className="text-gold font-bold">Irene</span>
+              <span className="italic opacity-70">Editorial Team</span>
+            </div>
+            <div className="flex flex-col border-b border-white/10 pb-1">
+              <span className="text-gold font-bold">Owen Ojo</span>
+              <span className="italic opacity-70">Editorial Team</span>
+            </div>
+            <div className="flex flex-col border-b border-white/10 pb-1">
+              <span className="text-gold font-bold">Ero</span>
+              <span className="italic opacity-70">Editorial & Designer</span>
+            </div>
           </div>
         </div>
       </div>

@@ -35,10 +35,16 @@ export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord
     const a4Width = 794; // approx px at 96dpi
     const a4Height = 1123; // approx px at 96dpi
     
-    const scaleX = availableWidth / a4Width;
-    const scaleY = availableHeight / a4Height;
+    let scaleX = availableWidth / a4Width;
+    let scaleY = availableHeight / a4Height;
     
-    const newScale = Math.min(scaleX, scaleY, 1);
+    let newScale = Math.min(scaleX, scaleY, 1);
+    
+    // Apply extra scaling factor on small mobile screens to ensure full height visibility
+    if (viewportWidth < 768) {
+      newScale = newScale * 0.92;
+    }
+    
     setScale(newScale);
   }, []);
 
