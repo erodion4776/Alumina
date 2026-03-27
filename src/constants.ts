@@ -101,6 +101,30 @@ export const GALLERY_PHOTOS = [
   { src: "https://i.ibb.co/rGp6Y1Q9/20231230-145841-3.jpg", name: "Osas Igbinedion" }
 ];
 
+export const WHO_IS_WHO_ANSWERS = [
+  "Ejiro Agbonwanegbe",
+  "Eric Okoye",
+  "Ikponmwosa Ekhovbiye",
+  "Onojeta Okotete",
+  "Agbonlahor Osayemwenre",
+  "Eghosa Izekor",
+  "Itua Okojie",
+  "Uwa Osaigbovo",
+  "Angela Agbiboa",
+  "Irene Ogbeide",
+  "Justin Egede",
+  "Pius Ubhi",
+  "Utomi Anwulika",
+  "Omoregie Obaretin",
+  "Ehi Okoro",
+  "Elo Kabba",
+  "Cynthia Azor",
+  "Oghale Ovuakporie-U",
+  "Osarieme",
+  "Ochuko Ebipamo-Ebikebina",
+  "Aibangbee Osarenoma Joseph"
+];
+
 export const SOLIDARITY_PHOTOS = [
   { src: "https://i.ibb.co/dsXybKG4/IMG-20260323-WA0020.jpg", caption: "Supporting Cynthia during her time of loss." },
   { src: "https://i.ibb.co/5X5B0rhc/IMG-20260323-WA0018.jpg", caption: "Standing with Osayowanbo in solidarity." },

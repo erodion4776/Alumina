@@ -16,7 +16,7 @@ export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord
   const containerRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<HTMLDivElement>(null);
   
-  const pages = getEBookPages(foundWords, toggleWord);
+  const pages = getEBookPages(foundWords, toggleWord, setCurrentPage);
   const totalPages = pages.length;
 
   const updateScale = useCallback(() => {

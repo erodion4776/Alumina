@@ -2,12 +2,21 @@ import React, { useState } from 'react';
 import { Award } from 'lucide-react';
 import { LOGO_URL } from '../constants';
 
-export const GalleryItem: React.FC<{ src: string; number: number; name: string; objectPosition?: string }> = ({ src, number, name, objectPosition = "object-top" }) => {
+export const GalleryItem: React.FC<{ 
+  src: string; 
+  number: number; 
+  name: string; 
+  objectPosition?: string;
+  onNavigate?: () => void;
+}> = ({ src, number, name, objectPosition = "object-top", onNavigate }) => {
   const [revealed, setRevealed] = useState(false);
   return (
     <div 
       className="relative group cursor-pointer overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg transition-all duration-500 hover:scale-[1.02] hover:border-gold aspect-square"
-      onClick={() => setRevealed(!revealed)}
+      onClick={() => {
+        setRevealed(!revealed);
+        if (onNavigate) onNavigate();
+      }}
     >
       <img 
         src={src} 

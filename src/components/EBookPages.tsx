@@ -1,9 +1,9 @@
 import React from 'react';
 import { Award, BookOpen, Activity, Brain, Search, Heart, Sun, Users, Camera, Briefcase, Quote, Eye, Wind, Flower2 } from 'lucide-react';
 import { Page, GalleryItem, Header, Footer } from './EBookComponents';
-import { LOGO_URL, WORD_SEARCH_WORDS, WORD_SEARCH_GRID, CAREERS_WORDS, CAREERS_GRID, RIDDLES, GALLERY_PHOTOS, SOLIDARITY_PHOTOS } from '../constants';
+import { LOGO_URL, WORD_SEARCH_WORDS, WORD_SEARCH_GRID, CAREERS_WORDS, CAREERS_GRID, RIDDLES, GALLERY_PHOTOS, SOLIDARITY_PHOTOS, WHO_IS_WHO_ANSWERS } from '../constants';
 
-export const getEBookPages = (foundWords: string[], toggleWord: (word: string) => void) => [
+export const getEBookPages = (foundWords: string[], toggleWord: (word: string) => void, goToPage?: (page: number) => void) => [
   // 1. Cover Page
   <div className="page-a4 relative mx-auto shadow-2xl">
     <div className="absolute inset-0 bg-gradient-to-br from-purple via-[#3b0764] to-pink opacity-95 z-0" />
@@ -1184,7 +1184,7 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
 
       <div className="grid grid-cols-3 gap-4 flex-grow overflow-hidden">
         {GALLERY_PHOTOS.slice(0, 6).map((photo, i) => (
-          <GalleryItem key={i} src={photo.src} number={i + 1} name={photo.name} />
+          <GalleryItem key={i} src={photo.src} number={i + 1} name={photo.name} onNavigate={() => goToPage?.(25)} />
         ))}
       </div>
     </div>
@@ -1203,7 +1203,7 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
     <div className="p-8 flex-grow overflow-hidden flex flex-col">
       <div className="grid grid-cols-3 gap-4 flex-grow overflow-hidden">
         {GALLERY_PHOTOS.slice(6, 12).map((photo, i) => (
-          <GalleryItem key={i + 6} src={photo.src} number={i + 7} name={photo.name} />
+          <GalleryItem key={i + 6} src={photo.src} number={i + 7} name={photo.name} onNavigate={() => goToPage?.(25)} />
         ))}
       </div>
     </div>
@@ -1234,6 +1234,7 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
               number={number} 
               name={photo.name} 
               objectPosition={position}
+              onNavigate={() => goToPage?.(25)}
             />
           );
         })}
@@ -1243,36 +1244,34 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
   </div>,
 
   // 26. WHO’S WHO? Face Challenge & Answer Key - Page 26
-  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always">
-    <div className="bg-purple w-full h-20 flex flex-col items-center justify-center px-8 shrink-0 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
-      <h2 className="text-xl font-serif font-black tracking-[0.3em] relative z-10 text-white">
-        THE REVEAL: <span className="text-gold uppercase">ANSWER KEY</span>
+  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-purple shadow-2xl print:m-0 print:shadow-none print:page-break-after-always">
+    <div className="bg-purple w-full h-24 flex flex-col items-center justify-center px-8 shrink-0 relative overflow-hidden border-b border-gold/20">
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/20 to-transparent" />
+      <h2 className="text-2xl font-serif font-black tracking-[0.2em] relative z-10 text-center">
+        <span className="text-gold uppercase">THE REVEAL:</span> <br />
+        <span className="text-pink uppercase text-xl">UDOSA 04 Legends</span>
       </h2>
     </div>
 
-    <div className="p-10 flex-grow overflow-hidden flex flex-col">
-      <div className="mb-8 text-center">
-        <h3 className="text-2xl font-serif font-bold text-purple uppercase tracking-widest">How well do you know them?</h3>
-        <p className="text-pink font-serif italic text-base">The official list of our featured alumni.</p>
-        <div className="w-20 h-1 bg-gold mx-auto mt-2" />
-      </div>
-
-      <div className="grid grid-cols-2 gap-x-12 gap-y-4 flex-grow overflow-hidden">
-        {GALLERY_PHOTOS.map((photo, i) => (
-          <div key={i} className="flex items-center gap-4 border-b border-stone-100 pb-2">
-            <div className="w-10 h-10 rounded-full bg-purple text-gold flex items-center justify-center font-black shrink-0 shadow-md">
-              {i + 1}
+    <div className="p-8 flex-grow overflow-hidden flex flex-col relative">
+      {/* Frosted Glass Container */}
+      <div className="absolute inset-8 bg-white/80 backdrop-blur-md rounded-3xl border border-white/20 z-0 shadow-2xl" />
+      
+      <div className="relative z-10 flex-grow overflow-hidden flex flex-col p-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-3 flex-grow overflow-hidden content-start">
+          {WHO_IS_WHO_ANSWERS.map((name, i) => (
+            <div key={i} className="flex items-center gap-3 py-1.5 border-b border-purple/5">
+              <span className="text-gold font-black text-sm w-6 shrink-0">{i + 1}.</span>
+              <p className="text-[13px] font-serif font-bold text-purple truncate">{name}</p>
             </div>
-            <p className="text-lg font-serif font-bold text-slate-800">{photo.name}</p>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <div className="mt-auto p-8 bg-pink/5 rounded-3xl border-2 border-pink/10 text-center">
-        <p className="text-xl font-serif italic text-purple leading-relaxed">
-          "Time may change our faces, but it can never erase the memories we shared in those classrooms. Here's to twenty years of growth, success, and enduring friendship!"
-        </p>
+        <div className="mt-6 pt-6 border-t border-gold/20 text-center">
+          <p className="text-gold font-serif italic text-sm">
+            "Time may change our faces, but it can never erase the memories we shared."
+          </p>
+        </div>
       </div>
     </div>
     <Footer text="UDOSA 04 | 20 Years of Transformation" />
