@@ -1327,8 +1327,13 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
   </div>,
 
   // 28. Moments of Solidarity - Page 1
-  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always">
-    <div className="bg-purple w-full h-24 flex items-center justify-center px-8 shrink-0 relative overflow-hidden">
+  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always relative">
+    {/* Watermark */}
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] z-0">
+      <img src={LOGO_URL} alt="" className="w-96 h-96 object-contain grayscale" referrerPolicy="no-referrer" />
+    </div>
+
+    <div className="bg-purple w-full h-24 flex items-center justify-center px-8 shrink-0 relative overflow-hidden z-10">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
       <img src={LOGO_URL} alt="UDOSA Logo" className="h-10 object-contain mr-6 relative z-10" referrerPolicy="no-referrer" />
       <h2 className="text-2xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
@@ -1336,91 +1341,179 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
       </h2>
     </div>
 
-    <div className="p-8 flex-grow overflow-hidden flex flex-col">
+    <div className="p-8 flex-grow overflow-hidden flex flex-col relative z-10">
       <div className="mb-6 text-center">
         <h3 className="text-xl font-serif font-bold text-purple uppercase tracking-widest">Standing Together: A Photo Journal</h3>
         <p className="text-pink font-serif italic text-sm mt-1">Supporting Cynthia, Osayowanbo, Owen, Ehis, and Ero during their times of loss.</p>
         <div className="w-20 h-1 bg-gold mx-auto mt-2" />
       </div>
 
-      <div className="grid grid-cols-2 gap-x-4 gap-y-4 flex-grow overflow-hidden content-start">
-        {SOLIDARITY_PHOTOS.slice(0, 4).map((photo, i) => (
-          <div key={i} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[220px] bg-white group">
-            <div className="relative flex-grow overflow-hidden bg-stone-50">
-              <img 
-                src={photo.src} 
-                alt={`Solidarity ${i + 1}`} 
-                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className="p-2 bg-white shrink-0 border-t border-gold/10">
-              <p className="text-purple font-serif italic text-[10px] leading-tight text-center">{photo.caption}</p>
-            </div>
+      <div className="flex flex-col gap-6 flex-grow overflow-hidden">
+        {/* Feature Image - Full Width */}
+        <div className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[320px] bg-white group shrink-0">
+          <div className="relative flex-grow overflow-hidden">
+            <img 
+              src={SOLIDARITY_PHOTOS[0].src} 
+              alt="Solidarity Feature" 
+              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              referrerPolicy="no-referrer"
+            />
           </div>
-        ))}
+          <div className="p-2 bg-white shrink-0 border-t border-gold/10">
+            <p className="text-pink font-serif italic text-xs leading-tight text-center">{SOLIDARITY_PHOTOS[0].caption}</p>
+          </div>
+        </div>
+
+        {/* Supporting Images - 2 Column Grid */}
+        <div className="grid grid-cols-2 gap-4 h-[240px] shrink-0">
+          {SOLIDARITY_PHOTOS.slice(1, 3).map((photo, i) => (
+            <div key={i} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-full bg-white group">
+              <div className="relative flex-grow overflow-hidden">
+                <img 
+                  src={photo.src} 
+                  alt={`Solidarity ${i + 2}`} 
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-2 bg-white shrink-0 border-t border-gold/10">
+                <p className="text-pink font-serif italic text-xs leading-tight text-center truncate px-2">{photo.caption}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Solidarity Note / Quote Box */}
+        <div className="mt-auto p-6 bg-purple/5 rounded-2xl border-2 border-gold/40 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-1 h-full bg-gold" />
+          <p className="text-purple font-serif italic text-lg leading-relaxed text-center relative z-10">
+            "Strength is not found in standing alone, but in the shoulders we lean on during our darkest hours."
+          </p>
+        </div>
       </div>
     </div>
     <Footer text="UDOSA 04 | Stronger Together" />
   </div>,
 
   // 29. Moments of Solidarity - Page 2
-  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always">
-    <div className="bg-purple w-full h-20 flex items-center justify-center px-8 shrink-0 relative overflow-hidden">
+  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always relative">
+    {/* Watermark */}
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] z-0">
+      <img src={LOGO_URL} alt="" className="w-96 h-96 object-contain grayscale" referrerPolicy="no-referrer" />
+    </div>
+
+    <div className="bg-purple w-full h-20 flex items-center justify-center px-8 shrink-0 relative overflow-hidden z-10">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
       <h2 className="text-xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
         Solidarity: <span className="text-gold uppercase">CONTINUED</span>
       </h2>
     </div>
 
-    <div className="p-8 flex-grow overflow-hidden flex flex-col">
-      <div className="grid grid-cols-2 gap-x-4 gap-y-4 flex-grow overflow-hidden content-start">
-        {SOLIDARITY_PHOTOS.slice(4, 8).map((photo, i) => (
-          <div key={i + 4} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[220px] bg-white group">
-            <div className="relative flex-grow overflow-hidden bg-stone-50">
-              <img 
-                src={photo.src} 
-                alt={`Solidarity ${i + 5}`} 
-                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
+    <div className="p-8 flex-grow overflow-hidden flex flex-col relative z-10">
+      <div className="flex flex-col gap-6 flex-grow overflow-hidden">
+        {/* Supporting Images - 2 Column Grid */}
+        <div className="grid grid-cols-2 gap-4 h-[240px] shrink-0">
+          {SOLIDARITY_PHOTOS.slice(3, 5).map((photo, i) => (
+            <div key={i} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-full bg-white group">
+              <div className="relative flex-grow overflow-hidden">
+                <img 
+                  src={photo.src} 
+                  alt={`Solidarity ${i + 4}`} 
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-2 bg-white shrink-0 border-t border-gold/10">
+                <p className="text-pink font-serif italic text-xs leading-tight text-center truncate px-2">{photo.caption}</p>
+              </div>
             </div>
-            <div className="p-2 bg-white shrink-0 border-t border-gold/10">
-              <p className="text-purple font-serif italic text-[10px] leading-tight text-center">{photo.caption}</p>
-            </div>
+          ))}
+        </div>
+
+        {/* Feature Image - Full Width */}
+        <div className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[320px] bg-white group shrink-0">
+          <div className="relative flex-grow overflow-hidden">
+            <img 
+              src={SOLIDARITY_PHOTOS[5].src} 
+              alt="Solidarity Feature" 
+              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              referrerPolicy="no-referrer"
+            />
           </div>
-        ))}
+          <div className="p-2 bg-white shrink-0 border-t border-gold/10">
+            <p className="text-pink font-serif italic text-xs leading-tight text-center">{SOLIDARITY_PHOTOS[5].caption}</p>
+          </div>
+        </div>
+
+        {/* Solidarity Note / Quote Box */}
+        <div className="mt-auto p-6 bg-pink/5 rounded-2xl border-2 border-gold/40 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-1 h-full bg-gold" />
+          <p className="text-purple font-serif italic text-lg leading-relaxed text-center relative z-10">
+            "UDOSA 04: A brotherhood forged in the classrooms of UBDS, and proven in the seasons of life."
+          </p>
+        </div>
       </div>
     </div>
     <Footer text="UDOSA 04 | Stronger Together" />
   </div>,
 
   // 30. Moments of Solidarity - Page 3
-  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always">
-    <div className="bg-purple w-full h-20 flex items-center justify-center px-8 shrink-0 relative overflow-hidden">
+  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always relative">
+    {/* Watermark */}
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] z-0">
+      <img src={LOGO_URL} alt="" className="w-96 h-96 object-contain grayscale" referrerPolicy="no-referrer" />
+    </div>
+
+    <div className="bg-purple w-full h-20 flex items-center justify-center px-8 shrink-0 relative overflow-hidden z-10">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
       <h2 className="text-xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
         Solidarity: <span className="text-gold uppercase">FINAL CHAPTER</span>
       </h2>
     </div>
 
-    <div className="p-8 flex-grow overflow-hidden flex flex-col">
-      <div className="grid grid-cols-2 gap-x-4 gap-y-4 flex-grow overflow-hidden content-start">
-        {SOLIDARITY_PHOTOS.slice(8, 12).map((photo, i) => (
-          <div key={i + 8} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[220px] bg-white group">
-            <div className="relative flex-grow overflow-hidden bg-stone-50">
-              <img 
-                src={photo.src} 
-                alt={`Solidarity ${i + 9}`} 
-                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className="p-2 bg-white shrink-0 border-t border-gold/10">
-              <p className="text-purple font-serif italic text-[10px] leading-tight text-center">{photo.caption}</p>
-            </div>
+    <div className="p-8 flex-grow overflow-hidden flex flex-col relative z-10">
+      <div className="flex flex-col gap-6 flex-grow overflow-hidden">
+        {/* Feature Image - Full Width */}
+        <div className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[320px] bg-white group shrink-0">
+          <div className="relative flex-grow overflow-hidden">
+            <img 
+              src={SOLIDARITY_PHOTOS[6].src} 
+              alt="Solidarity Feature" 
+              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              referrerPolicy="no-referrer"
+            />
           </div>
-        ))}
+          <div className="p-2 bg-white shrink-0 border-t border-gold/10">
+            <p className="text-pink font-serif italic text-xs leading-tight text-center">{SOLIDARITY_PHOTOS[6].caption}</p>
+          </div>
+        </div>
+
+        {/* Supporting Images - 2 Column Grid */}
+        <div className="grid grid-cols-2 gap-4 h-[240px] shrink-0">
+          {SOLIDARITY_PHOTOS.slice(7, 9).map((photo, i) => (
+            <div key={i} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-full bg-white group">
+              <div className="relative flex-grow overflow-hidden">
+                <img 
+                  src={photo.src} 
+                  alt={`Solidarity ${i + 8}`} 
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="p-2 bg-white shrink-0 border-t border-gold/10">
+                <p className="text-pink font-serif italic text-xs leading-tight text-center truncate px-2">{photo.caption}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Solidarity Note / Quote Box */}
+        <div className="mt-auto p-6 bg-purple/5 rounded-2xl border-2 border-gold/40 relative overflow-hidden">
+          <div className="absolute bottom-0 left-0 w-full h-1 bg-gold" />
+          <p className="text-purple font-serif italic text-lg leading-relaxed text-center relative z-10">
+            "We carry the legacies of our parents in the excellence of our lives. They guided us then; we honor them now."
+          </p>
+        </div>
       </div>
     </div>
     <Footer text="UDOSA 04 | Stronger Together" />
