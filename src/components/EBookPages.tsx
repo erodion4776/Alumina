@@ -1350,12 +1350,12 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
 
       <div className="flex flex-col gap-6 flex-grow overflow-hidden">
         {/* Feature Image - Full Width */}
-        <div className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[320px] bg-white group shrink-0">
-          <div className="relative flex-grow overflow-hidden">
+        <div className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[320px] bg-purple-50/50 group shrink-0">
+          <div className="relative flex-grow overflow-hidden flex items-center justify-center p-2">
             <img 
               src={SOLIDARITY_PHOTOS[0].src} 
               alt="Solidarity Feature" 
-              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              className="max-w-full max-h-full object-contain border-[1px] border-gold/30 transition-transform duration-500 group-hover:scale-105"
               referrerPolicy="no-referrer"
             />
           </div>
@@ -1367,12 +1367,12 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
         {/* Supporting Images - 2 Column Grid */}
         <div className="grid grid-cols-2 gap-4 h-[240px] shrink-0">
           {SOLIDARITY_PHOTOS.slice(1, 3).map((photo, i) => (
-            <div key={i} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-full bg-white group">
-              <div className="relative flex-grow overflow-hidden">
+            <div key={i} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-full bg-purple-50/50 group">
+              <div className="relative flex-grow overflow-hidden flex items-center justify-center p-2">
                 <img 
                   src={photo.src} 
                   alt={`Solidarity ${i + 2}`} 
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  className="max-w-full max-h-full object-contain border-[1px] border-gold/30 transition-transform duration-500 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -1414,12 +1414,12 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
         {/* Supporting Images - 2 Column Grid */}
         <div className="grid grid-cols-2 gap-4 h-[240px] shrink-0">
           {SOLIDARITY_PHOTOS.slice(3, 5).map((photo, i) => (
-            <div key={i} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-full bg-white group">
-              <div className="relative flex-grow overflow-hidden">
+            <div key={i} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-full bg-purple-50/50 group">
+              <div className="relative flex-grow overflow-hidden flex items-center justify-center p-2">
                 <img 
                   src={photo.src} 
                   alt={`Solidarity ${i + 4}`} 
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  className="max-w-full max-h-full object-contain border-[1px] border-gold/30 transition-transform duration-500 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -1431,12 +1431,12 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
         </div>
 
         {/* Feature Image - Full Width */}
-        <div className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[320px] bg-white group shrink-0">
-          <div className="relative flex-grow overflow-hidden">
+        <div className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[320px] bg-purple-50/50 group shrink-0">
+          <div className="relative flex-grow overflow-hidden flex items-center justify-center p-2">
             <img 
               src={SOLIDARITY_PHOTOS[5].src} 
               alt="Solidarity Feature" 
-              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              className="max-w-full max-h-full object-contain border-[1px] border-gold/30 transition-transform duration-500 group-hover:scale-105"
               referrerPolicy="no-referrer"
             />
           </div>
@@ -1474,12 +1474,12 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
     <div className="p-8 flex-grow overflow-hidden flex flex-col relative z-10">
       <div className="flex flex-col gap-6 flex-grow overflow-hidden">
         {/* Feature Image - Full Width */}
-        <div className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[320px] bg-white group shrink-0">
-          <div className="relative flex-grow overflow-hidden">
+        <div className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[320px] bg-purple-50/50 group shrink-0">
+          <div className="relative flex-grow overflow-hidden flex items-center justify-center p-2">
             <img 
               src={SOLIDARITY_PHOTOS[6].src} 
               alt="Solidarity Feature" 
-              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              className="max-w-full max-h-full object-contain border-[1px] border-gold/30 transition-transform duration-500 group-hover:scale-105"
               referrerPolicy="no-referrer"
             />
           </div>
@@ -1491,12 +1491,12 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
         {/* Supporting Images - 2 Column Grid */}
         <div className="grid grid-cols-2 gap-4 h-[240px] shrink-0">
           {SOLIDARITY_PHOTOS.slice(7, 9).map((photo, i) => (
-            <div key={i} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-full bg-white group">
-              <div className="relative flex-grow overflow-hidden">
+            <div key={i} className="flex flex-col overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-full bg-purple-50/50 group">
+              <div className="relative flex-grow overflow-hidden flex items-center justify-center p-2">
                 <img 
                   src={photo.src} 
                   alt={`Solidarity ${i + 8}`} 
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  className="max-w-full max-h-full object-contain border-[1px] border-gold/30 transition-transform duration-500 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
               </div>
