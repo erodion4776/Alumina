@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, BookOpen, Activity, Brain, Search, Heart, Sun, Users, Camera, Briefcase, Quote, Eye, Wind } from 'lucide-react';
+import { Award, BookOpen, Activity, Brain, Search, Heart, Sun, Users, Camera, Briefcase, Quote, Eye, Wind, Flower2 } from 'lucide-react';
 import { Page, GalleryItem, Header, Footer } from './EBookComponents';
 import { LOGO_URL, WORD_SEARCH_WORDS, WORD_SEARCH_GRID, CAREERS_WORDS, CAREERS_GRID, RIDDLES, GALLERY_PHOTOS, SOLIDARITY_PHOTOS } from '../constants';
 
@@ -41,21 +41,21 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
       {[
         { title: "The Chairman's Address", page: "03", icon: <Award className="w-5 h-5" /> },
         { title: "Editor's Perspective", page: "04", icon: <BookOpen className="w-5 h-5" /> },
-        { title: "The Importance and Benefits of Karate", page: "05", icon: <Award className="w-5 h-5" /> },
-        { title: "The Dark Side of Processed Sugar", page: "08", icon: <Activity className="w-5 h-5" /> },
-        { title: "The UDOSA 04 Mind Gym", page: "13", icon: <Brain className="w-5 h-5" /> },
-        { title: "UDOSA 04 Challenge", page: "15", icon: <Search className="w-5 h-5" /> },
-        { title: "UDOSA 04 Careers", page: "16", icon: <Briefcase className="w-5 h-5" /> },
-        { title: "The Power of Connection", page: "17", icon: <Heart className="w-5 h-5" /> },
-        { title: "Finding Peace Amidst Storms", page: "19", icon: <Sun className="w-5 h-5" /> },
-        { title: "Unlock Your Earning Potential", page: "21", icon: <Briefcase className="w-5 h-5" /> },
-        { title: "WHO’S WHO? Face Challenge", page: "23", icon: <Camera className="w-5 h-5" /> },
-        { title: "The Reveal: Answer Key", page: "26", icon: <Search className="w-5 h-5" /> },
-        { title: "Two Decades: A Retrospective", page: "27", icon: <Users className="w-5 h-5" /> },
-        { title: "Moments of Solidarity", page: "28", icon: <Heart className="w-5 h-5" /> },
-        { title: "Class of 2004 Directory", page: "31", icon: <Users className="w-5 h-5" /> },
-        { title: "Throwback Gallery", page: "32", icon: <Camera className="w-5 h-5" /> },
-        { title: "Alumni Business Directory", page: "33", icon: <Briefcase className="w-5 h-5" /> },
+        { title: "The Importance and Benefits of Karate", page: "06", icon: <Award className="w-5 h-5" /> },
+        { title: "The Dark Side of Processed Sugar", page: "09", icon: <Activity className="w-5 h-5" /> },
+        { title: "The UDOSA 04 Mind Gym", page: "14", icon: <Brain className="w-5 h-5" /> },
+        { title: "UDOSA 04 Challenge", page: "16", icon: <Search className="w-5 h-5" /> },
+        { title: "UDOSA 04 Careers", page: "17", icon: <Briefcase className="w-5 h-5" /> },
+        { title: "The Power of Connection", page: "18", icon: <Heart className="w-5 h-5" /> },
+        { title: "Finding Peace Amidst Storms", page: "20", icon: <Sun className="w-5 h-5" /> },
+        { title: "Unlock Your Earning Potential", page: "22", icon: <Briefcase className="w-5 h-5" /> },
+        { title: "WHO’S WHO? Face Challenge", page: "24", icon: <Camera className="w-5 h-5" /> },
+        { title: "The Reveal: Answer Key", page: "27", icon: <Search className="w-5 h-5" /> },
+        { title: "Two Decades: A Retrospective", page: "28", icon: <Users className="w-5 h-5" /> },
+        { title: "Moments of Solidarity", page: "29", icon: <Heart className="w-5 h-5" /> },
+        { title: "Class of 2004 Directory", page: "32", icon: <Users className="w-5 h-5" /> },
+        { title: "Throwback Gallery", page: "33", icon: <Camera className="w-5 h-5" /> },
+        { title: "Alumni Business Directory", page: "34", icon: <Briefcase className="w-5 h-5" /> },
       ].map((item, i) => (
         <div key={i} className="flex items-center group cursor-default">
           <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -146,35 +146,129 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
     </div>
   </Page>,
 
-  // 4. Editor's Note
-  <Page className="bg-slate-50">
-    <div className="max-w-3xl mx-auto flex flex-col h-full">
-      <div className="text-center mb-16">
-        <p className="text-gold font-serif tracking-[0.3em] uppercase text-xs mb-4">Editorial Board</p>
-        <h2 className="text-7xl font-serif font-black text-purple">
-          Editor's <span className="text-pink italic">Note</span>
+  // 4. Editor's Note - Page 4
+  <Page className="bg-white" showHeader={false}>
+    <div className="flex flex-col h-full">
+      <div className="bg-purple w-full py-6 flex justify-center mb-8 rounded-xl shadow-lg">
+        <img src={LOGO_URL} alt="UDOSA Logo" className="h-16 object-contain" referrerPolicy="no-referrer" />
+      </div>
+      
+      <div className="mb-8">
+        <h2 className="text-4xl font-serif font-bold text-purple leading-tight">
+          A Note from the <span className="text-gold italic">Editor-in-Chief</span>
         </h2>
-        <div className="w-24 h-1 bg-pink mx-auto mt-6" />
+        <div className="w-20 h-1 bg-gold mt-2" />
       </div>
-      <div className="grid grid-cols-1 gap-10 text-slate-700 leading-[2] text-xl text-justify font-serif">
-        <p className="first-letter:text-7xl first-letter:font-black first-letter:text-purple first-letter:float-left first-letter:mr-4 first-letter:leading-none">
-          Compiling this anniversary edition has been a journey through time. Sifting through old photographs, reading through shared memories, and witnessing the incredible professional trajectories of our classmates has been nothing short of inspiring.
-        </p>
-        <p>
-          This magazine is designed to be a keepsake—a digital artifact that captures the essence of who we were and who we have become. From the feature articles reflecting on our school days to the business directory showcasing our entrepreneurial spirit, every page is a celebration of "Set 04".
-        </p>
-        <p>
-          Thank you to everyone who contributed their stories and photos. This is our legacy. We hope these pages bring a smile to your face and a warmth to your heart as we look back on twenty years of excellence.
-        </p>
-      </div>
-      <div className="mt-auto pt-20 flex flex-col items-center">
-        <div className="relative">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Signature_of_John_Hancock.png" alt="Signature" className="h-20 opacity-60 grayscale invert" />
-          <div className="absolute -top-4 -right-4 w-8 h-8 bg-pink/10 rounded-full blur-xl" />
+
+      <div className="flex gap-10 mb-8">
+        <div className="w-1/2">
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gold rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+            <div className="relative bg-white rounded-2xl p-1 border-[3px] border-gold shadow-2xl overflow-hidden aspect-[3/4]">
+              <img 
+                src="https://i.ibb.co/whnmmhpF/Screenshot-20250208-100512-Facebook.png" 
+                alt="Cynthia Azor" 
+                className="w-full h-full object-cover rounded-xl"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
         </div>
-        <div className="w-48 h-px bg-gold/30 my-6" />
-        <p className="font-serif font-bold text-purple text-2xl">Ifeoma Azikiwe</p>
-        <p className="text-xs text-pink font-bold uppercase tracking-[0.3em] mt-2">Chief Editor, UDOSA 04</p>
+        <div className="w-1/2 flex flex-col justify-center">
+          <div className="space-y-4 text-slate-700 leading-relaxed font-serif text-justify text-[15px] md:text-[14px]">
+            <p className="drop-cap">
+              As the PRO Committee, we came together with a shared realization — that we were already working in sync, united by a common goal: to reconnect, build, and move UDOSA O4 forward with purpose.
+            </p>
+            <p>
+              From this alignment, we formed a dedicated team to help generate ideas and bring structure to our vision. One of our first steps was creating a Facebook page, aimed at strengthening our connection, sharing our stories, and expanding our reach to classmates beyond our immediate platforms.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-4 text-slate-700 leading-relaxed font-serif text-justify text-[15px] md:text-[14px]">
+        <p>
+          From those conversations, a bigger idea was born — this Yearbook/Newsletter. This publication represents more than just pages of content; it reflects our shared history, values, and journey. It is a space where memories meet purpose — where we celebrate who we were, who we are, and who we are becoming.
+        </p>
+        <p>
+          Within these pages, you will find:
+        </p>
+        <ul className="list-disc list-inside space-y-1 ml-4 text-purple font-bold italic">
+          <li>Stories and reflections from our colleagues</li>
+          <li>Highlights of our time at UDSS</li>
+          <li>The impact of clubs and activities on our lives today</li>
+          <li>Celebrations of milestones and personal achievements</li>
+        </ul>
+      </div>
+    </div>
+  </Page>,
+
+  // 5. Editor's Note - Page 5
+  <Page className="bg-white relative overflow-hidden" showHeader={false}>
+    {/* Floral Watermark */}
+    <div className="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center z-0">
+      <Flower2 className="w-[500px] h-[500px] text-purple rotate-12" />
+    </div>
+
+    <div className="relative z-10 flex flex-col h-full">
+      <div className="my-12 py-8 border-y-2 border-pink/20 bg-pink/5 text-center relative">
+        <Quote className="w-10 h-10 text-pink mb-4 mx-auto opacity-30" />
+        <p className="text-2xl font-serif italic text-pink leading-relaxed max-w-2xl mx-auto px-8">
+          "Many of us share similar stories—from Karate Club to Bible Club—each experience contributing to who we are today."
+        </p>
+      </div>
+
+      <div className="space-y-6 text-slate-700 leading-relaxed font-serif text-justify text-[15px] md:text-[14px] flex-grow">
+        <p>
+          Personally, being part of the Conservation Club shaped my love for nature. Today, I find joy in planting and nurturing flowers around my home — a passion that started right here in UDSS. Many of us share similar stories — from Karate Club to Bible Club — each experience contributing to who we are today.
+        </p>
+        <p>
+          This is our first edition, and while we made every effort to include as many people as possible, we acknowledge that not everyone was captured due to limited responses. We hope future editions will continue to expand and include even more voices and stories.
+        </p>
+        <p>
+          I would like to sincerely thank everyone who contributed, shared their information, and supported the realization of this vision. Your participation made this possible.
+        </p>
+        <p className="font-bold text-purple">
+          This is just the beginning.
+        </p>
+        <p>
+          Let us continue this journey together — building, reconnecting, and creating something even greater for the future.
+        </p>
+        <p className="font-serif italic text-purple">
+          Thank you all.
+        </p>
+      </div>
+
+      <div className="mt-8 flex flex-col items-end">
+        <p className="font-[var(--font-handwriting)] text-4xl text-purple mb-1">Cynthia Azor</p>
+        <p className="text-xs font-serif font-bold text-gold uppercase tracking-widest">PRO (Diaspora) & Editor-in-Chief</p>
+      </div>
+
+      {/* Credits Box */}
+      <div className="mt-12 p-6 bg-purple text-white rounded-2xl shadow-xl border-2 border-gold/30">
+        <h4 className="text-gold font-serif font-bold uppercase tracking-[0.2em] text-xs mb-4 border-b border-gold/20 pb-2">Editorial Team Credits</h4>
+        <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-[11px] font-serif">
+          <div className="flex justify-between border-b border-white/10 pb-1">
+            <span className="text-gold/80">Osarenoma</span>
+            <span className="italic">Assistant PRO</span>
+          </div>
+          <div className="flex justify-between border-b border-white/10 pb-1">
+            <span className="text-gold/80">Ochuko</span>
+            <span className="italic">PRO</span>
+          </div>
+          <div className="flex justify-between border-b border-white/10 pb-1">
+            <span className="text-gold/80">Irene</span>
+            <span className="italic">Editorial Team</span>
+          </div>
+          <div className="flex justify-between border-b border-white/10 pb-1">
+            <span className="text-gold/80">Owen Ojo</span>
+            <span className="italic">Editorial Team</span>
+          </div>
+          <div className="flex justify-between border-b border-white/10 pb-1 col-span-2">
+            <span className="text-gold/80">Ero</span>
+            <span className="italic">Editorial Team & Designer</span>
+          </div>
+        </div>
       </div>
     </div>
   </Page>,
