@@ -42,7 +42,7 @@ export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord
     
     // Apply extra scaling factor on small mobile screens to ensure full height visibility
     if (viewportWidth < 768) {
-      newScale = newScale * 0.92;
+      newScale = newScale * 0.9;
     }
     
     setScale(newScale);
@@ -77,7 +77,7 @@ export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord
   }, [currentPage]);
 
   return (
-    <div ref={viewerRef} className="relative min-h-[calc(100vh-144px)] md:min-h-[calc(100vh-80px)] bg-[#0f0714] flex flex-col items-center py-4 md:py-8 px-2 md:px-4 pb-32 md:pb-12 overflow-hidden">
+    <div ref={viewerRef} className="relative min-h-[calc(100vh-144px)] md:min-h-[calc(100vh-80px)] bg-[#0f0714] flex flex-col items-center py-4 md:py-8 px-2 md:px-4 pb-40 md:pb-12 overflow-hidden">
       {/* Page Indicator */}
       <div className="mb-4 md:mb-8 flex flex-col items-center gap-2 w-full max-w-[200px] md:max-w-xs z-20">
         <div className="flex items-center gap-2 md:gap-3 bg-purple/80 backdrop-blur-md text-gold px-4 md:px-6 py-1.5 md:py-2 rounded-full shadow-lg border border-gold/30">
@@ -97,11 +97,11 @@ export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord
 
       {/* Slide Viewer */}
       <div className="relative w-full flex-grow flex items-center justify-center overflow-visible">
-        {/* Navigation Arrows - Edge positioned for mobile */}
+        {/* Navigation Arrows - Desktop: Side, Mobile: Floating Bottom */}
         <button 
           onClick={prevPage}
           disabled={currentPage === 0}
-          className="absolute left-0 md:-left-16 lg:-left-24 z-30 p-3 md:p-4 rounded-r-2xl md:rounded-full bg-white/10 md:bg-white backdrop-blur-md md:backdrop-blur-none shadow-xl border-y border-r md:border-2 border-gold/30 md:border-gold text-gold md:text-purple transition-all hover:scale-110 active:scale-95 disabled:opacity-0 disabled:pointer-events-none"
+          className="fixed md:absolute left-4 md:-left-16 lg:-left-24 bottom-24 md:bottom-auto md:top-1/2 md:-translate-y-1/2 z-40 p-3 md:p-4 rounded-full bg-white/20 md:bg-white backdrop-blur-xl md:backdrop-blur-none shadow-2xl border-2 border-gold/50 md:border-gold text-gold md:text-purple transition-all hover:scale-110 active:scale-95 disabled:opacity-0 disabled:pointer-events-none"
         >
           <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
         </button>
@@ -130,7 +130,7 @@ export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord
         <button 
           onClick={nextPage}
           disabled={currentPage === totalPages - 1}
-          className="absolute right-0 md:-right-16 lg:-right-24 z-30 p-3 md:p-4 rounded-l-2xl md:rounded-full bg-white/10 md:bg-white backdrop-blur-md md:backdrop-blur-none shadow-xl border-y border-l md:border-2 border-gold/30 md:border-gold text-gold md:text-purple transition-all hover:scale-110 active:scale-95 disabled:opacity-0 disabled:pointer-events-none"
+          className="fixed md:absolute right-4 md:-right-16 lg:-right-24 bottom-24 md:bottom-auto md:top-1/2 md:-translate-y-1/2 z-40 p-3 md:p-4 rounded-full bg-white/20 md:bg-white backdrop-blur-xl md:backdrop-blur-none shadow-2xl border-2 border-gold/50 md:border-gold text-gold md:text-purple transition-all hover:scale-110 active:scale-95 disabled:opacity-0 disabled:pointer-events-none"
         >
           <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
         </button>
@@ -139,7 +139,7 @@ export const EBookReader: React.FC<EBookReaderProps> = ({ foundWords, toggleWord
       {/* Floating Action Button - Responsive */}
       <button 
         onClick={handleDownload}
-        className="no-print fixed bottom-24 right-6 md:bottom-10 md:right-10 bg-purple text-white p-4 md:px-8 md:py-5 rounded-full shadow-[0_20px_50px_rgba(88,28,135,0.5)] hover:bg-pink hover:scale-110 transition-all duration-500 flex items-center gap-4 group z-50 border-2 border-white/20"
+        className="no-print fixed bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-10 md:right-10 md:left-auto bg-purple text-white p-4 md:px-8 md:py-5 rounded-full shadow-[0_20px_50px_rgba(88,28,135,0.5)] hover:bg-pink hover:scale-110 transition-all duration-500 flex items-center gap-4 group z-50 border-2 border-white/20"
         title="Download Full PDF"
       >
         <Download className="w-6 h-6 md:w-7 md:h-7 animate-bounce group-hover:animate-none" />

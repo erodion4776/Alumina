@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import { Award } from 'lucide-react';
 import { LOGO_URL } from '../constants';
 
-export const GalleryItem: React.FC<{ src: string; number: number; name: string }> = ({ src, number, name }) => {
+export const GalleryItem: React.FC<{ src: string; number: number; name: string; objectPosition?: string }> = ({ src, number, name, objectPosition = "object-top" }) => {
   const [revealed, setRevealed] = useState(false);
   return (
     <div 
-      className="relative group cursor-pointer overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg transition-all duration-500 hover:scale-[1.02] hover:border-gold h-[240px]"
+      className="relative group cursor-pointer overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg transition-all duration-500 hover:scale-[1.02] hover:border-gold aspect-square"
       onClick={() => setRevealed(!revealed)}
     >
       <img 
         src={src} 
         alt={`UDOSA Face ${number}`} 
-        className="w-full h-full object-cover"
+        className={`w-full h-full object-cover ${objectPosition}`}
         referrerPolicy="no-referrer"
       />
-      <div className="absolute top-2 left-2 bg-gold text-purple w-8 h-8 rounded-full flex items-center justify-center font-black text-sm shadow-md z-10">
+      <div className="absolute bottom-2 right-2 bg-gold text-purple w-8 h-8 rounded-full flex items-center justify-center font-black text-sm shadow-md z-10 border border-purple/20">
         {number}
       </div>
       
