@@ -390,29 +390,34 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
         </p>
       </div>
 
-      {/* Signature Space */}
-      <div className="my-8 flex flex-col items-end">
-        <div className="w-48 h-px bg-slate-200 mb-2" />
-        <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Author's Signature</p>
-      </div>
-
       {/* Meet the Author Box */}
-      <div className="mt-auto p-6 bg-purple/5 rounded-3xl border-2 border-purple/10 flex items-center gap-6">
-        <div className="w-20 h-20 rounded-full border-2 border-gold p-1 shrink-0">
-          <div className="w-full h-full rounded-full bg-slate-200 overflow-hidden">
+      <div className="mt-auto p-6 bg-purple rounded-[2rem] border-2 border-gold/30 flex items-center gap-6 shadow-[0_0_15px_rgba(219,39,119,0.15)] relative overflow-hidden">
+        <div className="absolute -top-10 -right-10 w-32 h-32 bg-pink/5 rounded-full blur-2xl" />
+        
+        <div className="w-28 h-28 rounded-full border-[3px] border-gold p-1 shrink-0 shadow-xl">
+          <div className="w-full h-full rounded-full bg-slate-800 overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" 
+              src="https://i.ibb.co/PGnzvkgv/IMG-20260323-WA0019.jpg" 
               alt="Ehima Oziegbe" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center"
               referrerPolicy="no-referrer"
             />
           </div>
         </div>
-        <div>
-          <h3 className="text-lg font-serif font-bold text-purple mb-1">Meet the Author</h3>
-          <p className="text-[13px] text-slate-600 leading-relaxed font-serif italic">
-            Ehima Oziegbe is a second-degree black belt with the Nigeria Karate Association (NKA) and Shotokan Karate International (SKI). Passionate about sharing the transformative power of karate, Ehima continues to train, teach, and inspire others through this timeless martial art.
-          </p>
+        <div className="flex-grow">
+          <h4 className="text-gold font-serif font-bold text-xs uppercase tracking-[0.2em] mb-2">Meet the Author</h4>
+          <div className="space-y-1">
+            <p className="text-white font-serif font-black text-lg leading-none">Ehima Oziegbe</p>
+            <p className="text-pink font-serif text-[10px] uppercase tracking-wider font-bold">Second-Degree Black Belt, NKA, SKI</p>
+            <p className="text-white/70 text-[12px] leading-snug font-serif italic mt-2">
+              Ehima is dedicated to the transformative power of karate, inspiring others through this timeless martial art.
+            </p>
+            {/* Official Sign-off */}
+            <div className="pt-3 flex flex-col items-start opacity-60">
+              <div className="w-24 h-px bg-gold/40 mb-1" />
+              <p className="text-[8px] text-gold uppercase tracking-[0.3em] font-serif italic">Official Sign-off</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
