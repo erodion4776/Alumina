@@ -781,14 +781,14 @@ export const LeadershipDirectory = () => {
     { 
       name: "UZOMA EDOZIE", 
       role: "Secretary General", 
-      image: null,
+      image: "https://i.ibb.co/33NZJxN/IMG-20260328-WA0007.jpg",
       gender: "male",
       level: "member"
     },
     { 
       name: "CHUKUNEDUM RAPHAEL EWULUJE", 
       role: "Treasurer", 
-      image: null,
+      image: "https://i.ibb.co/6Qn7YDL/IMG-20260328-WA0006.jpg",
       gender: "male",
       level: "member"
     },

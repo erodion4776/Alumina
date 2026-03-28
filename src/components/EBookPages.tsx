@@ -324,19 +324,19 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
         </div>
 
         {/* Committee Members Grid */}
-        <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-3">
           {[
             { name: "CYNTHIA AZOR", role: "PRO (Diaspora)", image: "https://i.ibb.co/whnmmhpF/Screenshot-20250208-100512-Facebook.png" },
             { name: "OCHUKO EBIKEBINA NEE AKPOBASA", role: "PRO", image: "https://i.ibb.co/v4vZ7hDF/IMG-20250321-WA0074.jpg" },
             { name: "OGHALE OVUAKPORIE-UVO", role: "Financial Secretary", image: "https://i.ibb.co/5d1VcQh/IMG-20250306-WA0054-2.jpg" },
             { name: "OSAS AGBONLAHOR", role: "Wellness & Welfare Officer", image: "https://i.ibb.co/QtzyXF9/701-C2184-7-B61-4-C1-F-8936-61-A51-BF08405.jpg" },
             { name: "OSARENOMA AIGBANGBEE", role: "Supporting Member", image: "https://i.ibb.co/GQ0cBV8N/1716787836207.jpg" },
-            { name: "UZOMA EDOZIE", role: "Secretary General", image: null },
-            { name: "CHUKUNEDUM RAPHAEL EWULUJE", role: "Treasurer", image: null },
+            { name: "UZOMA EDOZIE", role: "Secretary General", image: "https://i.ibb.co/33NZJxN/IMG-20260328-WA0007.jpg" },
+            { name: "CHUKUNEDUM RAPHAEL EWULUJE", role: "Treasurer", image: "https://i.ibb.co/6Qn7YDL/IMG-20260328-WA0006.jpg" },
             { name: "ISOKEN AIGBOMIAN", role: "Assistant Wellness Officer", image: null },
           ].map((member, i) => (
-            <div key={i} className="flex items-center gap-2 border-b border-stone-100 pb-1">
-              <div className="w-12 h-12 rounded-full border border-gold/30 p-0.5 shrink-0 overflow-hidden bg-purple/5">
+            <div key={i} className="flex items-center gap-2 border-b border-stone-100 py-2">
+              <div className="w-14 h-14 rounded-full border border-gold/30 p-0.5 shrink-0 overflow-hidden bg-purple/5">
                 {member.image ? (
                   <img 
                     src={member.image} 
