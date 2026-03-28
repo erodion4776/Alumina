@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, BookOpen, Activity, Brain, Search, Heart, Sun, Users, Camera, Briefcase, Quote, Eye, Wind, Flower2 } from 'lucide-react';
+import { Award, BookOpen, Activity, Brain, Search, Heart, Sun, Users, Camera, Briefcase, Quote, Eye, Wind, Flower2, FileText, Layout, ShieldCheck, Info, ArrowRight } from 'lucide-react';
 import { Page, GalleryItem, Header, Footer } from './EBookComponents';
 import { LOGO_URL, WORD_SEARCH_WORDS, WORD_SEARCH_GRID, CAREERS_WORDS, CAREERS_GRID, RIDDLES, GALLERY_PHOTOS, SOLIDARITY_PHOTOS, WHO_IS_WHO_ANSWERS } from '../constants';
 
@@ -53,7 +53,7 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
         { title: "The Reveal: Answer Key", page: "27", icon: <Search className="w-5 h-5" /> },
         { title: "Two Decades: A Retrospective", page: "28", icon: <Users className="w-5 h-5" /> },
         { title: "Moments of Solidarity", page: "29", icon: <Heart className="w-5 h-5" /> },
-        { title: "Alumni Business Directory", page: "32", icon: <Briefcase className="w-5 h-5" /> },
+        { title: "UDOSA 04 Marketplace", page: "32", icon: <Briefcase className="w-5 h-5" /> },
       ].map((item, i) => (
         <div key={i} className="flex items-center group cursor-default">
           <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -1533,51 +1533,78 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
     <Footer text="UDOSA 04 | Stronger Together" />
   </div>,
 
-  // 31. Business Showcase
-  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always">
-    <div className="bg-purple w-full h-24 flex items-center justify-center px-8 shrink-0 relative overflow-hidden">
+  // 31. UDOSA 04 Marketplace
+  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always relative">
+    {/* Watermark */}
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] z-0">
+      <img src={LOGO_URL} alt="" className="w-96 h-96 object-contain grayscale" referrerPolicy="no-referrer" />
+    </div>
+
+    <div className="bg-purple w-full h-24 flex items-center justify-center px-8 shrink-0 relative overflow-hidden z-10">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
       <img src={LOGO_URL} alt="UDOSA Logo" className="h-10 object-contain mr-6 relative z-10" referrerPolicy="no-referrer" />
       <h2 className="text-2xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
-        Business <span className="text-gold italic">Showcase</span>
+        UDOSA 04 <span className="text-gold italic">Marketplace</span>
       </h2>
     </div>
 
-    <div className="p-10 flex-grow overflow-hidden flex flex-col">
+    <div className="p-10 flex-grow overflow-hidden flex flex-col relative z-10">
       <div className="mb-8 text-center">
-        <h3 className="text-2xl font-serif font-bold text-purple uppercase tracking-widest">Alumni Entrepreneurship</h3>
-        <p className="text-pink font-serif italic text-base">Supporting the businesses of our fellow classmates.</p>
+        <h3 className="text-2xl font-serif font-bold text-purple uppercase tracking-widest">Promote Your Business</h3>
+        <p className="text-pink font-serif italic text-base">Showcase your brand to our global alumni network.</p>
         <div className="w-20 h-1 bg-gold mx-auto mt-2" />
       </div>
 
-      <div className="grid grid-cols-2 gap-6 flex-grow overflow-hidden">
+      {/* Section 1: How to Place Your Ad */}
+      <div className="grid grid-cols-1 gap-4 mb-8">
         {[
-          { n: "Luxe Events", o: "Ifeoma Azikiwe", d: "Premium event planning and management services.", c: "+234 801 234 5678" },
-          { n: "TechNova Solutions", o: "Owen Ojo", d: "Innovative software development and IT consulting.", c: "info@technova.com" },
-          { n: "Healthy Bites", o: "Irene Ogbeide", d: "Organic snacks and nutritional consulting.", c: "@healthybites_ng" },
-          { n: "Zenith Law Firm", o: "Osas Ighodaro", d: "Comprehensive legal services for businesses and individuals.", c: "www.zenithlaw.com" },
-          { n: "Apex Engineering", o: "Ehima Oziegbe", d: "Structural design and construction management.", c: "0802 345 6789" },
-          { n: "Creative Minds Studio", o: "Osas Edokpolo", d: "Graphic design, branding, and digital marketing.", c: "@creativeminds_ng" }
-        ].map((biz, i) => (
-          <div key={i} className="bg-purple/5 p-6 rounded-2xl border-2 border-gold/20 flex flex-col justify-between shadow-sm hover:border-gold transition-colors">
-            <div>
-              <h4 className="text-xl font-serif font-bold text-purple mb-1">{biz.n}</h4>
-              <p className="text-[10px] text-pink font-bold uppercase tracking-widest">Owner: {biz.o}</p>
-              <p className="text-[13px] text-slate-600 leading-relaxed font-serif mb-4">{biz.d}</p>
+          { 
+            title: "1. Provide Assets", 
+            desc: "Submit a high-resolution logo, a brief business description (max 50 words), and your primary contact links (WhatsApp, Instagram, or Website).",
+            icon: <FileText className="w-6 h-6 text-pink" />
+          },
+          { 
+            title: "2. Choose Placement", 
+            desc: "Ads can be featured in our Digital Yearbook, the Alumni Web Portal, or our high-traffic interactive game zones.",
+            icon: <Layout className="w-6 h-6 text-purple" />
+          },
+          { 
+            title: "3. Verification", 
+            desc: "All business entries undergo a brief verification process by the Exco to maintain the prestige of our network.",
+            icon: <ShieldCheck className="w-6 h-6 text-gold" />
+          }
+        ].map((step, i) => (
+          <div key={i} className="bg-white p-5 rounded-2xl border border-purple/10 shadow-sm flex items-start gap-4 hover:border-pink/30 transition-colors">
+            <div className="w-12 h-12 rounded-xl bg-purple/5 flex items-center justify-center shrink-0">
+              {step.icon}
             </div>
-            <div className="pt-4 border-t border-gold/10">
-              <p className="text-[11px] font-bold text-purple uppercase tracking-tighter">Contact: <span className="text-gold">{biz.c}</span></p>
+            <div>
+              <h4 className="text-lg font-serif font-bold text-purple mb-1">{step.title}</h4>
+              <p className="text-[13px] text-slate-600 leading-relaxed font-serif">{step.desc}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="mt-8 p-6 bg-pink/5 rounded-2xl border border-pink/10 text-center">
-        <p className="text-[15px] font-serif italic text-purple">
-          "Patronize your own. Let's build a thriving economic ecosystem within the UDOSA 04 family."
-        </p>
+      {/* Section 2: Administrative Token */}
+      <div className="mt-auto">
+        <div className="bg-gold/5 p-6 rounded-3xl border-2 border-gold/30 shadow-inner relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-gold/10 rounded-full -mr-12 -mt-12" />
+          <h4 className="text-purple font-serif font-bold text-lg uppercase tracking-widest mb-3 flex items-center gap-2">
+            <Info className="w-5 h-5 text-gold" />
+            Administrative Token
+          </h4>
+          <p className="text-[14px] text-slate-700 leading-relaxed font-serif italic mb-6">
+            "Please be advised that a nominal token will be required for all business placements. The specific amount is currently being deliberated by the Executive Committee (Exco) and will be formally presented to the House for consideration and final approval."
+          </p>
+          
+          <button className="w-full bg-purple text-white font-serif font-bold py-4 rounded-xl shadow-lg shadow-purple/20 hover:bg-pink transition-all duration-300 uppercase tracking-widest text-sm flex items-center justify-center gap-2 group">
+            Express Interest to PRO/Exco
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
       </div>
     </div>
-    <Footer text="UDOSA 04 | Empowering Our Own" />
+    <Footer text="UDOSA 04 | Marketplace & Growth" />
   </div>
 ];
