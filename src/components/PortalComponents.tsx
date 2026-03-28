@@ -437,16 +437,26 @@ export const Home = ({ onViewChange }: { onViewChange: (view: any, page?: number
 
 // --- Solidarity Hub ---
 export const SolidarityHub = () => {
-  const [activeAudio, setActiveAudio] = useState<number | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [password, setPassword] = useState("");
+  
+  // Dynamic State from LocalStorage
   const [liveStreamUrl, setLiveStreamUrl] = useState(() => localStorage.getItem('udosa04_live_url') || "");
   const [audioUrl, setAudioUrl] = useState(() => localStorage.getItem('udosa04_audio_url') || "");
+  const [audioTitle, setAudioTitle] = useState(() => localStorage.getItem('udosa04_audio_title') || "UDSS School Anthem");
+  const [audioArtist, setAudioArtist] = useState(() => localStorage.getItem('udosa04_audio_artist') || "Class of 2004");
+
+  // Temp State for Admin Inputs
   const [tempLiveUrl, setTempLiveUrl] = useState(liveStreamUrl);
   const [tempAudioUrl, setTempAudioUrl] = useState(audioUrl);
+  const [tempAudioTitle, setTempAudioTitle] = useState(audioTitle);
+  const [tempAudioArtist, setTempAudioArtist] = useState(audioArtist);
+  
   const [showToast, setShowToast] = useState(false);
   const [testVideoId, setTestVideoId] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleAdminLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -461,17 +471,22 @@ export const SolidarityHub = () => {
   const handleUpdateLinks = () => {
     setLiveStreamUrl(tempLiveUrl);
     setAudioUrl(tempAudioUrl);
+    setAudioTitle(tempAudioTitle);
+    setAudioArtist(tempAudioArtist);
+    
     localStorage.setItem('udosa04_live_url', tempLiveUrl);
     localStorage.setItem('udosa04_audio_url', tempAudioUrl);
+    localStorage.setItem('udosa04_audio_title', tempAudioTitle);
+    localStorage.setItem('udosa04_audio_artist', tempAudioArtist);
+    
     setShowAdminPanel(false);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
   };
 
-  // Smart URL Parser (The Fix)
+  // Smart URL Parser
   const getYouTubeId = (url: string) => {
     if (!url) return null;
-    // Handle various YouTube URL formats
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     const match = url.match(regExp);
     return (match && match[2].length === 11) ? match[2] : null;
@@ -484,6 +499,17 @@ export const SolidarityHub = () => {
     } else {
       alert("Invalid YouTube URL. Please check the link.");
       setTestVideoId(null);
+    }
+  };
+
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
     }
   };
 
@@ -523,12 +549,13 @@ export const SolidarityHub = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-purple/80 backdrop-blur-sm"
+            onClick={() => setShowAdminPanel(false)}
           >
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="max-w-md w-full bg-white p-8 rounded-[2rem] shadow-2xl space-y-6 relative"
+              className="max-w-lg w-full bg-white p-8 rounded-[2.5rem] shadow-2xl space-y-6 relative max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <button 
@@ -547,68 +574,100 @@ export const SolidarityHub = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter Password"
-                    className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-purple outline-none"
+                    className="w-full px-5 py-4 rounded-2xl border border-stone-200 focus:border-purple outline-none text-lg"
                   />
-                  <button type="submit" className="w-full bg-purple text-white py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-pink transition-colors">
+                  <button type="submit" className="w-full bg-purple text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-sm hover:bg-pink transition-colors">
                     Login
                   </button>
                 </form>
               ) : (
-                <div className="space-y-6">
-                  <h3 className="text-2xl font-serif font-bold text-purple">Link Controller</h3>
+                <div className="space-y-8">
+                  <h3 className="text-2xl font-serif font-bold text-purple border-b border-gold/20 pb-2">Solidarity Controller</h3>
                   
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Live Stream (YouTube Link)</label>
-                    <div className="flex gap-2">
-                      <input 
-                        type="text" 
-                        value={tempLiveUrl}
-                        onChange={(e) => setTempLiveUrl(e.target.value)}
-                        placeholder="Paste YouTube Link"
-                        className="flex-grow px-4 py-3 rounded-xl border border-stone-200 focus:border-purple outline-none text-sm"
-                      />
-                      <button 
-                        onClick={handleTestLink}
-                        className="bg-purple/10 text-purple px-4 py-3 rounded-xl font-bold text-xs hover:bg-purple/20 transition-colors"
-                      >
-                        Test
-                      </button>
+                  {/* Video Section */}
+                  <div className="space-y-4">
+                    <h4 className="text-pink font-bold text-xs uppercase tracking-[0.2em]">Video Section</h4>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Live Stream (YouTube Link)</label>
+                      <div className="flex gap-2">
+                        <input 
+                          type="text" 
+                          value={tempLiveUrl}
+                          onChange={(e) => setTempLiveUrl(e.target.value)}
+                          placeholder="Paste YouTube Link"
+                          className="flex-grow px-4 py-4 rounded-xl border border-stone-200 focus:border-purple outline-none text-base"
+                        />
+                        <button 
+                          onClick={handleTestLink}
+                          className="bg-purple/10 text-purple px-6 py-4 rounded-xl font-bold text-xs hover:bg-purple/20 transition-colors"
+                        >
+                          Test
+                        </button>
+                      </div>
+                      {testVideoId && (
+                        <div className="mt-2 aspect-video rounded-2xl overflow-hidden border-2 border-green-500">
+                          <iframe 
+                            className="w-full h-full"
+                            src={`https://www.youtube.com/embed/${testVideoId}`}
+                            title="Test Preview"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                          />
+                        </div>
+                      )}
                     </div>
-                    {testVideoId && (
-                      <div className="mt-2 aspect-video rounded-xl overflow-hidden border-2 border-green-500">
-                        <iframe 
-                          className="w-full h-full"
-                          src={`https://www.youtube.com/embed/${testVideoId}`}
-                          title="Test Preview"
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowFullScreen
+                  </div>
+
+                  {/* Audio Section */}
+                  <div className="space-y-4">
+                    <h4 className="text-pink font-bold text-xs uppercase tracking-[0.2em]">Audio Section</h4>
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Audio File URL (MP3/Link)</label>
+                        <input 
+                          type="text" 
+                          value={tempAudioUrl}
+                          onChange={(e) => setTempAudioUrl(e.target.value)}
+                          placeholder="Paste Audio URL"
+                          className="w-full px-4 py-4 rounded-xl border border-stone-200 focus:border-purple outline-none text-base"
                         />
                       </div>
-                    )}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Song Title</label>
+                          <input 
+                            type="text" 
+                            value={tempAudioTitle}
+                            onChange={(e) => setTempAudioTitle(e.target.value)}
+                            placeholder="e.g. School Anthem"
+                            className="w-full px-4 py-4 rounded-xl border border-stone-200 focus:border-purple outline-none text-base"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Artist/Source</label>
+                          <input 
+                            type="text" 
+                            value={tempAudioArtist}
+                            onChange={(e) => setTempAudioArtist(e.target.value)}
+                            placeholder="e.g. Class of 2004"
+                            className="w-full px-4 py-4 rounded-xl border border-stone-200 focus:border-purple outline-none text-base"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Audio URL (Anthem/Podcast)</label>
-                    <input 
-                      type="text" 
-                      value={tempAudioUrl}
-                      onChange={(e) => setTempAudioUrl(e.target.value)}
-                      placeholder="Paste Audio File Link"
-                      className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-purple outline-none text-sm"
-                    />
-                  </div>
-
-                  <div className="pt-4 flex gap-3">
+                  <div className="pt-6 flex gap-3">
                     <button 
                       onClick={handleUpdateLinks}
-                      className="flex-grow bg-gold text-purple py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-purple hover:text-white transition-all"
+                      className="flex-grow bg-gold text-purple py-4 rounded-2xl font-bold uppercase tracking-widest text-sm hover:bg-purple hover:text-white transition-all shadow-lg"
                     >
-                      Update Links
+                      Save & Update Portal
                     </button>
                     <button 
                       onClick={() => setIsAdmin(false)}
-                      className="px-4 py-3 border border-stone-200 rounded-xl text-slate-400 hover:text-red-500 transition-colors"
+                      className="px-6 py-4 border border-stone-200 rounded-2xl text-slate-400 hover:text-red-500 transition-colors"
                     >
                       Logout
                     </button>
@@ -633,9 +692,10 @@ export const SolidarityHub = () => {
             <Play className="text-purple w-6 h-6 fill-purple" />
             <h2 className="text-2xl font-serif font-bold text-purple uppercase tracking-widest">Live Stream</h2>
           </div>
-          <div className="w-full aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl relative group">
+          <div className="w-full aspect-video bg-black rounded-[2rem] overflow-hidden shadow-2xl relative group border-4 border-purple/10">
             {youtubeId ? (
               <iframe 
+                key={liveStreamUrl}
                 className="w-full h-full"
                 src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`}
                 title="Live Stream"
@@ -644,25 +704,25 @@ export const SolidarityHub = () => {
                 allowFullScreen
               />
             ) : (
-              <>
+              <div className="w-full h-full relative">
                 <img 
                   src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000" 
                   alt="Live Stream Placeholder" 
-                  className="w-full h-full object-cover opacity-60"
+                  className="w-full h-full object-cover opacity-40 grayscale"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                  <div className="w-20 h-20 bg-gold rounded-full flex items-center justify-center shadow-2xl">
-                    <Play className="w-10 h-10 fill-purple text-purple ml-1" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center">
+                  <div className="w-24 h-24 bg-gold/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl border-2 border-gold/50 mb-6">
+                    <Play className="w-12 h-12 fill-gold text-gold ml-1" />
                   </div>
-                  <p className="mt-6 font-serif font-bold text-lg uppercase tracking-widest">No Active Stream</p>
-                  <p className="text-white/60 text-sm italic">Next event: 20th Anniversary Gala (Dec 2026)</p>
+                  <h3 className="font-serif font-black text-2xl uppercase tracking-widest text-gold">No Active Stream</h3>
+                  <p className="text-white/60 text-sm italic mt-2 max-w-xs">The admin has not started a live broadcast yet. Check back during scheduled events!</p>
                 </div>
-              </>
+              </div>
             )}
             
-            <div className={`absolute top-6 left-6 flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${youtubeId ? 'bg-red-600 animate-pulse' : 'bg-stone-600'}`}>
-              <div className="w-2 h-2 bg-white rounded-full" />
+            <div className={`absolute top-6 left-6 flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg z-10 ${youtubeId ? 'bg-red-600 text-white animate-pulse' : 'bg-stone-800 text-white/50'}`}>
+              <div className={`w-2 h-2 rounded-full ${youtubeId ? 'bg-white' : 'bg-white/20'}`} />
               {youtubeId ? 'Live Now' : 'Offline'}
             </div>
           </div>
@@ -674,51 +734,90 @@ export const SolidarityHub = () => {
         <div className="space-y-6">
           <div className="flex items-center gap-4">
             <Music className="text-purple w-6 h-6" />
-            <h2 className="text-2xl font-serif font-bold text-purple uppercase tracking-widest">Audio Library</h2>
+            <h2 className="text-2xl font-serif font-bold text-purple uppercase tracking-widest">Solidarity Audio</h2>
           </div>
-          <div className="bg-white rounded-3xl shadow-xl border border-stone-100 overflow-hidden">
-            <div className="p-8 bg-purple text-white">
-              <div className="flex items-center gap-6">
-                <div className="w-24 h-24 bg-gold rounded-2xl flex items-center justify-center shadow-lg">
-                  <Music className="w-12 h-12 text-purple" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-serif font-bold text-gold">Now Playing</h3>
-                  <p className="text-white/60 italic">
-                    {activeAudio ? AUDIO_LIBRARY.find(t => t.id === activeAudio)?.title : 'Select a track to begin listening'}
-                  </p>
-                </div>
-              </div>
-              {activeAudio && (
-                <div className="mt-6">
-                  <audio 
-                    controls 
-                    autoPlay 
-                    className="w-full h-8 accent-gold"
-                    src={activeAudio === 1 && audioUrl ? audioUrl : AUDIO_LIBRARY.find(t => t.id === activeAudio)?.url}
-                  />
-                </div>
-              )}
-            </div>
-            <div className="divide-y divide-stone-100">
-              {AUDIO_LIBRARY.map((track) => (
-                <div 
-                  key={track.id}
-                  onClick={() => setActiveAudio(track.id)}
-                  className={`p-6 flex items-center justify-between hover:bg-pink/5 cursor-pointer transition-colors ${activeAudio === track.id ? 'bg-pink/10' : ''}`}
-                >
-                  <div className="flex items-center gap-4">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${activeAudio === track.id ? 'bg-pink text-white' : 'bg-purple/10 text-purple'}`}>
-                      {activeAudio === track.id ? <Play className="w-4 h-4 fill-white" /> : <Music className="w-4 h-4" />}
+          <div className="bg-white rounded-[2.5rem] shadow-2xl border border-stone-100 overflow-hidden">
+            <div className="p-8 md:p-12 bg-gradient-to-br from-purple via-purple-900 to-purple-950 text-white relative overflow-hidden">
+              {/* Decorative Background Record */}
+              <div className={`absolute -right-12 -top-12 w-48 h-48 border-[12px] border-white/5 rounded-full ${isPlaying ? 'animate-[spin_4s_linear_infinite]' : ''}`} />
+              
+              <div className="flex flex-col md:flex-row items-center gap-8 relative z-10">
+                {/* Record Spinner */}
+                <div className="relative shrink-0">
+                  <motion.div 
+                    animate={isPlaying ? { rotate: 360 } : { rotate: 0 }}
+                    transition={isPlaying ? { repeat: Infinity, duration: 4, ease: "linear" } : { duration: 0.5 }}
+                    className="w-32 h-32 md:w-40 md:h-40 bg-black rounded-full border-4 border-gold shadow-2xl flex items-center justify-center relative overflow-hidden"
+                  >
+                    {/* Vinyl Grooves */}
+                    <div className="absolute inset-0 opacity-30" style={{ backgroundImage: 'repeating-radial-gradient(circle, transparent, transparent 2px, #333 3px, #333 4px)' }} />
+                    <div className="w-12 h-12 bg-gold rounded-full border-4 border-purple flex items-center justify-center z-10">
+                      <div className="w-2 h-2 bg-purple rounded-full" />
                     </div>
-                    <div>
-                      <h4 className="font-serif font-bold text-purple">{track.title}</h4>
-                      <p className="text-xs text-slate-400 uppercase tracking-widest">{track.artist}</p>
+                  </motion.div>
+                  {/* Needle */}
+                  <div className={`absolute -top-4 -right-4 w-16 h-16 transition-transform duration-500 origin-top-right ${isPlaying ? 'rotate-12' : 'rotate-0'}`}>
+                    <div className="w-1 h-20 bg-stone-400 rounded-full transform -rotate-45 shadow-lg" />
+                  </div>
+                </div>
+
+                <div className="text-center md:text-left space-y-4 flex-grow">
+                  <div className="space-y-1">
+                    <p className="text-gold font-serif font-bold uppercase tracking-[0.3em] text-xs">Now Playing</p>
+                    <h3 className="text-2xl md:text-4xl font-serif font-black text-white leading-tight">
+                      {audioTitle}
+                    </h3>
+                    <p className="text-gold/80 font-serif italic text-lg">{audioArtist}</p>
+                  </div>
+                  
+                  <div className="flex items-center justify-center md:justify-start gap-6">
+                    <button 
+                      onClick={toggleAudio}
+                      className="w-16 h-16 bg-gold text-purple rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform active:scale-95"
+                    >
+                      {isPlaying ? <X className="w-8 h-8" /> : <Play className="w-8 h-8 fill-purple ml-1" />}
+                    </button>
+                    <div className="flex-grow max-w-xs hidden md:block">
+                      <div className="h-1 bg-white/20 rounded-full overflow-hidden">
+                        <motion.div 
+                          animate={isPlaying ? { width: '100%' } : { width: '0%' }}
+                          transition={isPlaying ? { duration: 180, ease: "linear" } : { duration: 0 }}
+                          className="h-full bg-gold"
+                        />
+                      </div>
                     </div>
                   </div>
-                  <span className="text-xs font-mono text-slate-400">{track.duration}</span>
                 </div>
-              ))}
+              </div>
+
+              {/* Hidden Native Audio Element */}
+              <audio 
+                ref={audioRef}
+                src={audioUrl}
+                onEnded={() => setIsPlaying(false)}
+                className="hidden"
+              />
+            </div>
+
+            {/* Track Info List (Single Dynamic Item) */}
+            <div className="p-6 bg-stone-50 border-t border-stone-100">
+              <div className="flex items-center justify-between p-4 rounded-2xl bg-white shadow-sm border border-gold/20">
+                <div className="flex items-center gap-4">
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center ${isPlaying ? 'bg-pink text-white animate-pulse' : 'bg-purple/10 text-purple'}`}>
+                    {isPlaying ? <div className="flex gap-0.5 items-end h-4"><div className="w-1 bg-white animate-[bounce_0.6s_infinite]" /><div className="w-1 bg-white animate-[bounce_0.8s_infinite]" /><div className="w-1 bg-white animate-[bounce_0.7s_infinite]" /></div> : <Music className="w-5 h-5" />}
+                  </div>
+                  <div>
+                    <h4 className="font-serif font-bold text-purple text-lg">{audioTitle}</h4>
+                    <p className="text-xs text-slate-400 uppercase tracking-widest font-bold">{audioArtist}</p>
+                  </div>
+                </div>
+                <button 
+                  onClick={toggleAudio}
+                  className="text-gold hover:text-pink transition-colors"
+                >
+                  {isPlaying ? 'PAUSE' : 'PLAY'}
+                </button>
+              </div>
             </div>
           </div>
         </div>
