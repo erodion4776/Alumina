@@ -68,7 +68,7 @@ export default function App() {
     <div className="min-h-screen bg-stone-50 flex flex-col">
       <Navbar activeView={activeView} onViewChange={handleViewChange} />
       
-      <main className="flex-grow pb-32 md:pb-0">
+      <main className="flex-grow pt-20 md:pt-20">
         {renderView()}
       </main>
 

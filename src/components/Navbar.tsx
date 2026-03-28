@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Home, Heart, Users, BookOpen, Briefcase, Flower2, Gamepad2, Menu, X } from 'lucide-react';
+import { Home, Heart, Users, BookOpen, Briefcase, Flower2, Gamepad2, Menu, X, ChevronRight } from 'lucide-react';
 
 const LOGO_URL = "https://i.ibb.co/DHC0kvzR/1000773566-removebg-preview-1.png";
 
-type View = 'home' | 'solidarity' | 'directory' | 'ebook' | 'business' | 'memorial' | 'games' | 'exco';
+type View = 'home' | 'solidarity' | 'directory' | 'ebook' | 'business' | 'memorial' | 'games' | 'exco' | 'story';
 
 interface NavbarProps {
   activeView: View;
@@ -12,156 +12,133 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ activeView, onViewChange }) => {
-  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const primaryNavItems = [
-    { id: 'home', label: 'Home', icon: <Home className="w-6 h-6" /> },
-    { id: 'ebook', label: 'Yearbook', icon: <BookOpen className="w-6 h-6" /> },
-    { id: 'solidarity', label: 'Solidarity', icon: <Heart className="w-6 h-6" /> },
-    { id: 'games', label: 'Games', icon: <Gamepad2 className="w-6 h-6" /> },
+  const desktopNavItems = [
+    { id: 'home', label: 'Home', icon: <Home className="w-4 h-4" /> },
+    { id: 'ebook', label: 'Yearbook', icon: <BookOpen className="w-4 h-4" /> },
+    { id: 'solidarity', label: 'Solidarity', icon: <Heart className="w-4 h-4" /> },
+    { id: 'games', label: 'Games', icon: <Gamepad2 className="w-4 h-4" /> },
   ];
 
-  const secondaryNavItems = [
-    { id: 'exco', label: 'Leadership', icon: <Users className="w-8 h-8" />, description: 'EXCO Members' },
-    { id: 'directory', label: 'Directory', icon: <Users className="w-8 h-8" />, description: 'Alumni Network' },
-    { id: 'business', label: 'Business', icon: <Briefcase className="w-8 h-8" />, description: 'Marketplace' },
-    { id: 'memorial', label: 'Memorial', icon: <Flower2 className="w-8 h-8" />, description: 'In Loving Memory' },
+  const mobileNavItems = [
+    { id: 'home', label: 'Home', icon: <Home className="w-5 h-5" /> },
+    { id: 'ebook', label: 'Digital Yearbook (E-Book)', icon: <BookOpen className="w-5 h-5" /> },
+    { id: 'solidarity', label: 'Solidarity Hub (Live/Audio)', icon: <Heart className="w-5 h-5" /> },
+    { id: 'games', label: 'Game Center (All 7 Games)', icon: <Gamepad2 className="w-5 h-5" /> },
+    { id: 'exco', label: 'Leadership (EXCO)', icon: <Users className="w-5 h-5" /> },
+    { id: 'directory', label: 'Alumni Directory', icon: <Users className="w-5 h-5" /> },
+    { id: 'business', label: 'Business Marketplace', icon: <Briefcase className="w-5 h-5" /> },
+    { id: 'memorial', label: 'In Loving Memory (Memorial)', icon: <Flower2 className="w-5 h-5" /> },
   ];
 
-  const allNavItems = [
-    ...primaryNavItems,
-    ...secondaryNavItems
-  ];
-
-  const handleSecondaryClick = (view: View) => {
+  const handleNavClick = (view: View) => {
     onViewChange(view);
-    setIsMoreMenuOpen(false);
+    setIsMobileMenuOpen(false);
   };
 
   return (
     <>
-      {/* Desktop Top Navbar (Keep as is for desktop) */}
-      <nav className="hidden md:flex sticky top-0 z-[100] bg-purple w-full h-20 items-center justify-between px-8 shadow-xl border-b border-gold/20">
-        <div className="flex items-center gap-4 cursor-pointer" onClick={() => onViewChange('home')}>
-          <img src={LOGO_URL} alt="UDOSA Logo" className="h-12 object-contain" referrerPolicy="no-referrer" />
-          <div className="hidden lg:block">
-            <h1 className="text-gold font-serif font-bold text-xl tracking-tighter">UDOSA 04 Connect</h1>
-            <p className="text-white/60 text-[10px] uppercase tracking-widest leading-none">Alumni Portal</p>
-          </div>
+      {/* Sticky Top Navbar */}
+      <nav className="fixed top-0 left-0 right-0 z-[100] bg-purple h-20 flex items-center justify-between px-6 md:px-12 shadow-2xl border-b border-gold/20">
+        {/* Left Side: Logo and Title */}
+        <div className="flex items-center gap-3 cursor-pointer" onClick={() => handleNavClick('home')}>
+          <img src={LOGO_URL} alt="UDOSA Logo" className="h-10 md:h-12 object-contain" referrerPolicy="no-referrer" />
+          <h1 className="text-gold font-serif font-bold text-lg md:text-2xl tracking-tight">UDOSA 04</h1>
         </div>
 
-        <div className="flex items-center gap-1 lg:gap-4">
-          {allNavItems.map((item) => (
+        {/* Right Side: Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-6">
+          {desktopNavItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => onViewChange(item.id as View)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+              onClick={() => handleNavClick(item.id as View)}
+              className={`text-sm font-bold uppercase tracking-widest transition-all duration-300 flex items-center gap-2 px-3 py-2 rounded-lg ${
                 activeView === item.id
-                  ? 'bg-gold text-purple shadow-lg scale-105'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
+                  ? 'text-gold bg-white/10'
+                  : 'text-white/70 hover:text-pink hover:bg-white/5'
               }`}
             >
-              {React.cloneElement(item.icon as React.ReactElement, { className: "w-4 h-4" })}
-              <span className="hidden xl:inline">{item.label}</span>
+              {item.icon}
+              {item.label}
             </button>
           ))}
         </div>
-      </nav>
 
-      {/* Mobile Top Branding */}
-      <div className="md:hidden sticky top-0 z-[100] bg-purple w-full h-16 flex items-center justify-center shadow-lg border-b border-gold/20">
-        <img 
-          src={LOGO_URL} 
-          alt="UDOSA Logo" 
-          className="h-10 object-contain cursor-pointer" 
-          referrerPolicy="no-referrer" 
-          onClick={() => onViewChange('home')}
-        />
-      </div>
-
-      {/* Mobile Bottom Nav */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-purple-900/90 backdrop-blur-md border-t border-gold/30 px-4 pt-3 pb-8 flex justify-around items-center shadow-[0_-10px_30px_rgba(0,0,0,0.3)]">
-        {primaryNavItems.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => onViewChange(item.id as View)}
-            className={`flex flex-col items-center gap-1 transition-all duration-300 ${
-              activeView === item.id ? 'text-gold scale-110' : 'text-white/60'
-            }`}
-          >
-            <div className={`p-1.5 rounded-xl transition-colors ${activeView === item.id ? 'bg-gold/10' : ''}`}>
-              {React.cloneElement(item.icon as React.ReactElement, { className: "w-5 h-5" })}
-            </div>
-            <span className="text-[10px] font-bold uppercase tracking-widest">{item.label}</span>
-            {activeView === item.id && (
-              <motion.div
-                layoutId="activeTab"
-                className="w-1.5 h-1.5 bg-pink rounded-full mt-0.5 shadow-[0_0_8px_rgba(255,105,180,0.8)]"
-              />
-            )}
-          </button>
-        ))}
-        
-        {/* MORE Button */}
-        <button
-          onClick={() => setIsMoreMenuOpen(true)}
-          className={`flex flex-col items-center gap-1 transition-all duration-300 ${
-            isMoreMenuOpen ? 'text-gold scale-110' : 'text-white/60'
-          }`}
+        {/* Right Side: Mobile Hamburger */}
+        <button 
+          className="md:hidden text-gold p-2 hover:bg-white/10 rounded-full transition-colors"
+          onClick={() => setIsMobileMenuOpen(true)}
         >
-          <div className="p-1.5 rounded-xl">
-            <Menu className="w-5 h-5" />
-          </div>
-          <span className="text-[10px] font-bold uppercase tracking-widest">More</span>
+          <Menu className="w-8 h-8" />
         </button>
       </nav>
 
-      {/* More Menu Overlay */}
+      {/* Mobile Navigation Drawer */}
       <AnimatePresence>
-        {isMoreMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: '100%' }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[200] bg-purple-950/95 backdrop-blur-2xl flex flex-col p-8 overflow-y-auto"
-          >
-            <div className="flex justify-between items-center mb-8 shrink-0">
-              <div>
-                <h2 className="text-gold font-serif font-bold text-3xl">Explore</h2>
-                <p className="text-white/60 text-sm font-serif italic">UDOSA 04 Alumni Portal</p>
-              </div>
-              <button 
-                onClick={() => setIsMoreMenuOpen(false)}
-                className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="fixed inset-0 z-[150] bg-black/60 backdrop-blur-sm md:hidden"
+            />
 
-            <div className="grid grid-cols-2 gap-4 md:gap-6 mb-12">
-              {secondaryNavItems.map((item) => (
-                <motion.button
-                  key={item.id}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => handleSecondaryClick(item.id as View)}
-                  className="flex flex-col items-center p-4 md:p-6 rounded-3xl bg-white/5 border border-gold/20 hover:bg-white/10 transition-colors group"
+            {/* Drawer */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 z-[200] w-[85%] max-w-sm bg-purple shadow-2xl md:hidden flex flex-col"
+            >
+              {/* Drawer Header */}
+              <div className="p-6 border-b border-gold/20 flex justify-between items-center bg-purple-900/50">
+                <div className="flex items-center gap-2">
+                  <img src={LOGO_URL} alt="UDOSA Logo" className="h-8 object-contain" referrerPolicy="no-referrer" />
+                  <span className="text-gold font-serif font-bold text-xl">Menu</span>
+                </div>
+                <button 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 text-gold hover:bg-white/10 rounded-full transition-colors"
                 >
-                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-gold flex items-center justify-center mb-3 md:mb-4 group-hover:bg-gold group-hover:text-purple transition-all duration-300">
-                    {React.cloneElement(item.icon as React.ReactElement, { className: "w-6 h-6 md:w-8 md:h-8 text-gold group-hover:text-purple" })}
-                  </div>
-                  <span className="text-white font-serif font-bold text-xs md:text-sm uppercase tracking-widest mb-1">{item.label}</span>
-                  <span className="text-white/40 text-[8px] md:text-[10px] uppercase tracking-tighter">{item.description}</span>
-                </motion.button>
-              ))}
-            </div>
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
 
-            <div className="mt-auto text-center pb-12 shrink-0">
-              <img src={LOGO_URL} alt="UDOSA Logo" className="h-12 md:h-16 mx-auto mb-4 opacity-50 grayscale" referrerPolicy="no-referrer" />
-              <p className="text-white/20 text-[10px] uppercase tracking-[0.3em]">Unity and Progress</p>
-            </div>
-          </motion.div>
+              {/* Drawer Links */}
+              <div className="flex-grow overflow-y-auto py-4">
+                {mobileNavItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id as View)}
+                    className={`w-full flex items-center justify-between px-6 py-4 transition-all duration-300 group ${
+                      activeView === item.id 
+                        ? 'bg-gold/10 text-gold' 
+                        : 'text-white/80 hover:text-pink hover:bg-white/5'
+                    }`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className={`p-2 rounded-lg ${activeView === item.id ? 'bg-gold text-purple' : 'bg-white/5 text-gold group-hover:bg-pink group-hover:text-white transition-colors'}`}>
+                        {item.icon}
+                      </div>
+                      <span className="font-bold uppercase tracking-widest text-sm">{item.label}</span>
+                    </div>
+                    <ChevronRight className={`w-4 h-4 transition-transform ${activeView === item.id ? 'translate-x-1' : 'opacity-0 group-hover:opacity-100 group-hover:translate-x-1'}`} />
+                  </button>
+                ))}
+              </div>
+
+              {/* Drawer Footer */}
+              <div className="p-8 border-t border-gold/20 text-center bg-purple-900/30">
+                <p className="text-white/30 text-[10px] uppercase tracking-[0.3em] mb-2">Unity and Progress</p>
+                <p className="text-gold/40 text-[8px] uppercase tracking-widest">UDOSA Class of 2004</p>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
