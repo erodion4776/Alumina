@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Trophy, Share2, RotateCcw, ChevronLeft, Car, Zap } from 'lucide-react';
+import { WhatsAppGateway } from './WhatsAppGateway';
 
 interface UDOSARacerProps {
   onBack: () => void;
@@ -21,6 +22,8 @@ export const UDOSARacer: React.FC<UDOSARacerProps> = ({ onBack }) => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [isPaused, setIsPaused] = useState(true);
   const [highScore, setHighScore] = useState(() => Number(localStorage.getItem('udosa04_racer_highscore') || 0));
+  const [hasAnnounced, setHasAnnounced] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const gameState = useRef({
     playerX: ROAD_WIDTH / 2 - CAR_WIDTH / 2,
@@ -263,6 +266,19 @@ export const UDOSARacer: React.FC<UDOSARacerProps> = ({ onBack }) => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 flex flex-col items-center">
+      {!hasAnnounced && (
+        <div className="fixed inset-0 z-[100] bg-purple/95 backdrop-blur-xl flex items-center justify-center p-4">
+          <div className="bg-white rounded-[2.5rem] p-8 max-w-sm w-full text-center shadow-2xl border-4 border-gold">
+            <h2 className="text-3xl font-serif font-black text-purple uppercase tracking-tighter mb-2">UDOSA Highway</h2>
+            <p className="text-pink font-serif italic mb-8">Avoid the hurdles, collect the caps, and reconnect the legacy!</p>
+            <WhatsAppGateway 
+              gameName="UDOSA Highway" 
+              type="pre" 
+              onComplete={() => setHasAnnounced(true)} 
+            />
+          </div>
+        </div>
+      )}
       <div className="w-full flex justify-between items-center mb-6">
         <button 
           onClick={onBack}
@@ -307,7 +323,15 @@ export const UDOSARacer: React.FC<UDOSARacerProps> = ({ onBack }) => {
         )}
 
         <AnimatePresence>
-          {isGameOver && (
+          {isGameOver && !hasSubmitted && (
+            <WhatsAppGateway 
+              gameName="UDOSA Highway" 
+              score={`${Math.floor(gameState.current.distance)} KM`} 
+              type="post" 
+              onComplete={() => setHasSubmitted(true)} 
+            />
+          )}
+          {isGameOver && hasSubmitted && (
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -335,16 +359,19 @@ export const UDOSARacer: React.FC<UDOSARacerProps> = ({ onBack }) => {
 
                 <div className="space-y-3">
                   <button 
-                    onClick={resetGame}
+                    onClick={() => {
+                      setHasSubmitted(false);
+                      resetGame();
+                    }}
                     className="w-full bg-purple text-white py-4 rounded-xl font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-pink transition-colors"
                   >
                     <RotateCcw className="w-4 h-4" /> Try Again
                   </button>
                   <button 
-                    onClick={shareOnWhatsApp}
+                    onClick={onBack}
                     className="w-full border-2 border-purple text-purple py-4 rounded-xl font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-purple hover:text-white transition-all"
                   >
-                    <Share2 className="w-4 h-4" /> Share Journey
+                    Back to Hub
                   </button>
                 </div>
               </div>

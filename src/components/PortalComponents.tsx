@@ -2,6 +2,11 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { AdComponent } from './AdComponent';
 import { UDOSARacer } from './UDOSARacer';
+import { TruthOrDare } from './TruthOrDare';
+import { WhatsAppGateway } from './WhatsAppGateway';
+import { TriviaMaster } from './TriviaMaster';
+import { WallBreaker } from './WallBreaker';
+import { Game2048 } from './Game2048';
 import { 
   RotateCw,
   Newspaper, 
@@ -31,7 +36,8 @@ import {
   Share2,
   Puzzle,
   RotateCcw,
-  Car
+  Car,
+  MessageCircle
 } from 'lucide-react';
 import { 
   LATEST_NEWS, 
@@ -1008,7 +1014,7 @@ export const Memorial = () => {
 // --- Our Story Section ---
 // --- Games Hub Section ---
 export const GamesHub = () => {
-  const [activeGame, setActiveGame] = useState<'hub' | 'snake' | 'puzzle' | 'racer'>('hub');
+  const [activeGame, setActiveGame] = useState<'hub' | 'snake' | 'puzzle' | 'racer' | 'truthordare' | 'trivia' | 'wallbreaker' | '2048'>('hub');
 
   if (activeGame === 'snake') {
     return <LegacySnake onBack={() => setActiveGame('hub')} />;
@@ -1020,6 +1026,22 @@ export const GamesHub = () => {
 
   if (activeGame === 'racer') {
     return <UDOSARacer onBack={() => setActiveGame('hub')} />;
+  }
+
+  if (activeGame === 'truthordare') {
+    return <TruthOrDare onBack={() => setActiveGame('hub')} />;
+  }
+
+  if (activeGame === 'trivia') {
+    return <TriviaMaster onBack={() => setActiveGame('hub')} />;
+  }
+
+  if (activeGame === 'wallbreaker') {
+    return <WallBreaker onBack={() => setActiveGame('hub')} />;
+  }
+
+  if (activeGame === '2048') {
+    return <Game2048 onBack={() => setActiveGame('hub')} />;
   }
 
   return (
@@ -1034,18 +1056,19 @@ export const GamesHub = () => {
         {/* Trivia Master Card */}
         <motion.div 
           whileHover={{ y: -10 }}
-          className="bg-white/40 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group opacity-80"
+          onClick={() => setActiveGame('trivia')}
+          className="bg-gradient-to-br from-purple to-gold rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group cursor-pointer"
         >
-          <div className="absolute top-0 right-0 p-4">
-            <span className="bg-purple/10 text-purple text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Coming Soon</span>
+          <div className="absolute -right-10 -bottom-10 opacity-10 group-hover:scale-110 transition-transform duration-700">
+            <Trophy className="w-48 h-48 text-white" />
           </div>
-          <div className="w-16 h-16 bg-purple/10 rounded-2xl flex items-center justify-center mb-6">
-            <Trophy className="w-8 h-8 text-purple" />
+          <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+            <Trophy className="w-8 h-8 text-white" />
           </div>
-          <h3 className="text-2xl font-serif font-bold text-purple mb-2">Trivia Master</h3>
-          <p className="text-slate-500 font-serif italic text-sm mb-6">Test your knowledge of UDSS and the Class of 2004.</p>
-          <button disabled className="w-full py-3 rounded-xl border-2 border-purple/20 text-purple/40 font-bold uppercase tracking-widest text-xs">
-            Locked
+          <h3 className="text-2xl font-serif font-bold text-white mb-2">Trivia Master</h3>
+          <p className="text-white/80 font-serif italic text-sm mb-6">Test your knowledge of UDSS and the Class of 2004.</p>
+          <button className="w-full py-3 bg-white text-purple rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-gold transition-colors">
+            Play Now
           </button>
         </motion.div>
 
@@ -1105,6 +1128,63 @@ export const GamesHub = () => {
             Play Now
           </button>
         </motion.div>
+
+        {/* Wall Breaker Card */}
+        <motion.div 
+          whileHover={{ y: -10 }}
+          onClick={() => setActiveGame('wallbreaker')}
+          className="bg-gradient-to-br from-pink to-purple rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group cursor-pointer"
+        >
+          <div className="absolute -right-10 -bottom-10 opacity-10 group-hover:scale-110 transition-transform duration-700">
+            <ShieldCheck className="w-48 h-48 text-white" />
+          </div>
+          <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+            <ShieldCheck className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-2xl font-serif font-bold text-white mb-2">Wall Breaker</h3>
+          <p className="text-white/80 font-serif italic text-sm mb-6">Clear the hurdles of life in this brick-breaking classic.</p>
+          <button className="w-full py-3 bg-gold text-purple rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-white transition-colors">
+            Play Now
+          </button>
+        </motion.div>
+
+        {/* 2048 Card */}
+        <motion.div 
+          whileHover={{ y: -10 }}
+          onClick={() => setActiveGame('2048')}
+          className="bg-gradient-to-br from-gold via-pink to-purple rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group cursor-pointer"
+        >
+          <div className="absolute -right-10 -bottom-10 opacity-10 group-hover:scale-110 transition-transform duration-700">
+            <Trophy className="w-48 h-48 text-white" />
+          </div>
+          <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+            <Trophy className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-2xl font-serif font-bold text-white mb-2">2048: Grad Rank</h3>
+          <p className="text-white/80 font-serif italic text-sm mb-6">Merge your way to the top of the graduation rank.</p>
+          <button className="w-full py-3 bg-white text-purple rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-gold transition-colors">
+            Play Now
+          </button>
+        </motion.div>
+
+        {/* Truth or Dare Card (Game 7) */}
+        <motion.div 
+          whileHover={{ y: -10 }}
+          onClick={() => setActiveGame('truthordare')}
+          className="bg-gradient-to-br from-purple via-pink to-gold rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group cursor-pointer"
+        >
+          <div className="absolute -right-10 -bottom-10 opacity-10 group-hover:scale-110 transition-transform duration-700">
+            <MessageCircle className="w-48 h-48 text-white" />
+          </div>
+          <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+            <MessageCircle className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-2xl font-serif font-bold text-white mb-2">Truth or Dare</h3>
+          <p className="text-white/80 font-serif italic text-sm mb-6">The Social Finale: Relive memories and challenge friends.</p>
+          <button className="w-full py-3 bg-white text-pink rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-gold hover:text-purple transition-colors">
+            Play Now
+          </button>
+        </motion.div>
       </div>
     </div>
   );
@@ -1123,6 +1203,8 @@ export const LegacySnake = ({ onBack }: { onBack: () => void }) => {
   const [highScore, setHighScore] = useState(() => Number(localStorage.getItem('udosa04_snake_highscore') || 0));
   const [isPaused, setIsPaused] = useState(true);
   const [speed, setSpeed] = useState(INITIAL_SPEED);
+  const [hasAnnounced, setHasAnnounced] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const gameLoop = useRef<NodeJS.Timeout | null>(null);
 
@@ -1236,6 +1318,19 @@ export const LegacySnake = ({ onBack }: { onBack: () => void }) => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-8 flex flex-col items-center">
+      {!hasAnnounced && (
+        <div className="fixed inset-0 z-[100] bg-purple/95 backdrop-blur-xl flex items-center justify-center p-4">
+          <div className="bg-white rounded-[2.5rem] p-8 max-w-sm w-full text-center shadow-2xl border-4 border-gold">
+            <h2 className="text-3xl font-serif font-black text-purple uppercase tracking-tighter mb-2">Legacy Snake</h2>
+            <p className="text-pink font-serif italic mb-8">Grow the legacy as you collect 20-year badges.</p>
+            <WhatsAppGateway 
+              gameName="Legacy Snake" 
+              type="pre" 
+              onComplete={() => setHasAnnounced(true)} 
+            />
+          </div>
+        </div>
+      )}
       {/* Header */}
       <div className="w-full flex justify-between items-center">
         <button 
@@ -1323,7 +1418,15 @@ export const LegacySnake = ({ onBack }: { onBack: () => void }) => {
 
         {/* Game Over Overlay */}
         <AnimatePresence>
-          {isGameOver && (
+          {isGameOver && !hasSubmitted && (
+            <WhatsAppGateway 
+              gameName="Legacy Snake" 
+              score={`${score} Years of Growth`} 
+              type="post" 
+              onComplete={() => setHasSubmitted(true)} 
+            />
+          )}
+          {isGameOver && hasSubmitted && (
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -1341,10 +1444,10 @@ export const LegacySnake = ({ onBack }: { onBack: () => void }) => {
                   Try Again
                 </button>
                 <button 
-                  onClick={shareScore}
+                  onClick={onBack}
                   className="w-full bg-white text-purple py-3 rounded-xl font-bold uppercase tracking-widest text-xs shadow-lg flex items-center justify-center gap-2 hover:bg-gold transition-all"
                 >
-                  <Share2 className="w-4 h-4" /> Brag to the Group
+                  Back to Hub
                 </button>
               </div>
             </motion.div>
@@ -1406,6 +1509,8 @@ export const LegendPuzzle = ({ onBack }: { onBack: () => void }) => {
   const [moves, setMoves] = useState(0);
   const [isSolved, setIsSolved] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [hasAnnounced, setHasAnnounced] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const currentLegend = GALLERY_PHOTOS[level % GALLERY_PHOTOS.length];
 
@@ -1474,6 +1579,19 @@ export const LegendPuzzle = ({ onBack }: { onBack: () => void }) => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-8 flex flex-col items-center">
+      {!hasAnnounced && (
+        <div className="fixed inset-0 z-[100] bg-purple/95 backdrop-blur-xl flex items-center justify-center p-4">
+          <div className="bg-white rounded-[2.5rem] p-8 max-w-sm w-full text-center shadow-2xl border-4 border-gold">
+            <h2 className="text-3xl font-serif font-black text-purple uppercase tracking-tighter mb-2">Legend Puzzle</h2>
+            <p className="text-pink font-serif italic mb-8">Reconnect the legends of '04 in this sliding challenge.</p>
+            <WhatsAppGateway 
+              gameName="Legend Puzzle" 
+              type="pre" 
+              onComplete={() => setHasAnnounced(true)} 
+            />
+          </div>
+        </div>
+      )}
       {/* Header */}
       <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4">
         <button 
@@ -1538,7 +1656,15 @@ export const LegendPuzzle = ({ onBack }: { onBack: () => void }) => {
 
       {/* Success Modal */}
       <AnimatePresence>
-        {showSuccess && (
+        {showSuccess && !hasSubmitted && (
+          <WhatsAppGateway 
+            gameName="Legend Puzzle" 
+            score={`${moves} Moves: Legend Reconnected`} 
+            type="post" 
+            onComplete={() => setHasSubmitted(true)} 
+          />
+        )}
+        {showSuccess && hasSubmitted && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -1570,16 +1696,20 @@ export const LegendPuzzle = ({ onBack }: { onBack: () => void }) => {
 
               <div className="flex flex-col gap-3">
                 <button 
-                  onClick={nextLevel}
+                  onClick={() => {
+                    setHasSubmitted(false);
+                    setShowSuccess(false);
+                    nextLevel();
+                  }}
                   className="w-full bg-purple text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-xs shadow-lg hover:bg-pink transition-all flex items-center justify-center gap-2"
                 >
                   Next Level <ChevronRight className="w-4 h-4" />
                 </button>
                 <button 
-                  onClick={shareResult}
+                  onClick={onBack}
                   className="w-full bg-white border-2 border-purple text-purple py-4 rounded-2xl font-bold uppercase tracking-widest text-xs shadow-lg flex items-center justify-center gap-2 hover:bg-gold hover:border-gold transition-all"
                 >
-                  <Share2 className="w-4 h-4" /> Brag on WhatsApp
+                  Back to Hub
                 </button>
               </div>
             </motion.div>
