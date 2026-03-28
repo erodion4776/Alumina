@@ -7,8 +7,9 @@ export const GalleryItem: React.FC<{
   number: number; 
   name: string; 
   objectPosition?: string;
+  objectFit?: "object-cover" | "object-contain";
   onNavigate?: () => void;
-}> = ({ src, number, name, objectPosition = "object-top", onNavigate }) => {
+}> = ({ src, number, name, objectPosition = "object-top", objectFit = "object-cover", onNavigate }) => {
   const [revealed, setRevealed] = useState(false);
   return (
     <div 
@@ -18,12 +19,14 @@ export const GalleryItem: React.FC<{
         if (onNavigate) onNavigate();
       }}
     >
-      <img 
-        src={src} 
-        alt={`UDOSA Face ${number}`} 
-        className={`w-full h-full object-cover ${objectPosition}`}
-        referrerPolicy="no-referrer"
-      />
+      <div className={`w-full h-full ${objectFit === 'object-contain' ? 'bg-purple-50/50' : ''}`}>
+        <img 
+          src={src} 
+          alt={`UDOSA Face ${number}`} 
+          className={`w-full h-full ${objectFit} ${objectPosition}`}
+          referrerPolicy="no-referrer"
+        />
+      </div>
       <div className="absolute bottom-2 right-2 bg-gold text-purple w-8 h-8 rounded-full flex items-center justify-center font-black text-sm shadow-md z-10 border border-purple/20">
         {number}
       </div>

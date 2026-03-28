@@ -1183,9 +1183,21 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
       </div>
 
       <div className="grid grid-cols-3 gap-4 flex-grow overflow-hidden">
-        {GALLERY_PHOTOS.slice(0, 6).map((photo, i) => (
-          <GalleryItem key={i} src={photo.src} number={i + 1} name={photo.name} onNavigate={() => goToPage?.(25)} />
-        ))}
+        {GALLERY_PHOTOS.slice(0, 6).map((photo, i) => {
+          const number = i + 1;
+          const fit = number === 4 ? "object-contain" : "object-cover";
+          return (
+            <GalleryItem 
+              key={i} 
+              src={photo.src} 
+              number={number} 
+              name={photo.name} 
+              objectFit={fit}
+              objectPosition="object-top"
+              onNavigate={() => goToPage?.(25)} 
+            />
+          );
+        })}
       </div>
     </div>
     <Footer text="UDOSA 04 | 20 Years of Transformation" />
@@ -1203,7 +1215,13 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
     <div className="p-8 flex-grow overflow-hidden flex flex-col">
       <div className="grid grid-cols-3 gap-4 flex-grow overflow-hidden">
         {GALLERY_PHOTOS.slice(6, 12).map((photo, i) => (
-          <GalleryItem key={i + 6} src={photo.src} number={i + 7} name={photo.name} onNavigate={() => goToPage?.(25)} />
+          <GalleryItem 
+            key={i + 6} 
+            src={photo.src} 
+            number={i + 7} 
+            name={photo.name} 
+            onNavigate={() => goToPage?.(25)} 
+          />
         ))}
       </div>
     </div>
@@ -1223,17 +1241,15 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
       <div className="grid grid-cols-3 gap-4 flex-grow overflow-hidden">
         {GALLERY_PHOTOS.slice(12, 21).map((photo, i) => {
           const number = i + 13;
-          let position = "object-top";
-          if (number === 15) position = "object-center";
-          if (number === 17) position = "object-top";
-          if (number === 18) position = "object-top";
+          const fit = number === 18 ? "object-contain" : "object-cover";
           return (
             <GalleryItem 
               key={i + 12} 
               src={photo.src} 
               number={number} 
               name={photo.name} 
-              objectPosition={position}
+              objectFit={fit}
+              objectPosition="object-top"
               onNavigate={() => goToPage?.(25)}
             />
           );
@@ -1258,11 +1274,11 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
       <div className="absolute inset-8 bg-white/80 backdrop-blur-md rounded-3xl border border-white/20 z-0 shadow-2xl" />
       
       <div className="relative z-10 flex-grow overflow-hidden flex flex-col p-6">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-3 flex-grow overflow-hidden content-start">
+        <div className="grid grid-cols-3 gap-x-6 gap-y-3 flex-grow overflow-hidden content-start">
           {WHO_IS_WHO_ANSWERS.map((name, i) => (
             <div key={i} className="flex items-center gap-3 py-1.5 border-b border-purple/5">
               <span className="text-gold font-black text-sm w-6 shrink-0">{i + 1}.</span>
-              <p className="text-[13px] font-serif font-bold text-purple truncate">{name}</p>
+              <p className="text-[11px] font-serif font-bold text-purple truncate">{name}</p>
             </div>
           ))}
         </div>
