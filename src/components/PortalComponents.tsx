@@ -790,7 +790,8 @@ export const LeadershipDirectory = () => {
       role: "Treasurer", 
       image: "https://i.ibb.co/6Qn7YDL/IMG-20260328-WA0006.jpg",
       gender: "male",
-      level: "member"
+      level: "member",
+      objectPosition: "object-[center_90%]"
     },
     { 
       name: "ISOKEN AIGBOMIAN", 
@@ -819,7 +820,7 @@ export const LeadershipDirectory = () => {
             <img 
               src={member.image} 
               alt={member.name} 
-              className="w-full h-full rounded-full object-cover object-top"
+              className={`w-full h-full rounded-full object-cover ${member.objectPosition || 'object-top'}`}
               referrerPolicy="no-referrer"
             />
           ) : (

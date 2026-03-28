@@ -332,16 +332,16 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
             { name: "OSAS AGBONLAHOR", role: "Wellness & Welfare Officer", image: "https://i.ibb.co/QtzyXF9/701-C2184-7-B61-4-C1-F-8936-61-A51-BF08405.jpg" },
             { name: "OSARENOMA AIGBANGBEE", role: "Supporting Member", image: "https://i.ibb.co/GQ0cBV8N/1716787836207.jpg" },
             { name: "UZOMA EDOZIE", role: "Secretary General", image: "https://i.ibb.co/33NZJxN/IMG-20260328-WA0007.jpg" },
-            { name: "CHUKUNEDUM RAPHAEL EWULUJE", role: "Treasurer", image: "https://i.ibb.co/6Qn7YDL/IMG-20260328-WA0006.jpg" },
+            { name: "CHUKUNEDUM RAPHAEL EWULUJE", role: "Treasurer", image: "https://i.ibb.co/6Qn7YDL/IMG-20260328-WA0006.jpg", objectPosition: "object-[center_90%]" },
             { name: "ISOKEN AIGBOMIAN", role: "Assistant Wellness Officer", image: null },
-          ].map((member, i) => (
+          ].map((member: any, i) => (
             <div key={i} className="flex items-center gap-2 border-b border-stone-100 py-2">
               <div className="w-14 h-14 rounded-full border border-gold/30 p-0.5 shrink-0 overflow-hidden bg-purple/5">
                 {member.image ? (
                   <img 
                     src={member.image} 
                     alt={member.name} 
-                    className="w-full h-full rounded-full object-cover object-top"
+                    className={`w-full h-full rounded-full object-cover ${member.objectPosition || 'object-top'}`}
                     referrerPolicy="no-referrer"
                   />
                 ) : (
