@@ -80,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, onViewChange }) => {
       </div>
 
       {/* Mobile Bottom Nav */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-purple/95 backdrop-blur-md border-t border-gold/20 px-4 pt-3 pb-8 flex justify-around items-center shadow-[0_-10px_30px_rgba(0,0,0,0.3)]">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-purple-900/90 backdrop-blur-md border-t border-gold/30 px-4 pt-3 pb-8 flex justify-around items-center shadow-[0_-10px_30px_rgba(0,0,0,0.3)]">
         {primaryNavItems.map((item) => (
           <button
             key={item.id}
@@ -124,9 +124,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, onViewChange }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[200] bg-purple/90 backdrop-blur-2xl flex flex-col p-8"
+            className="fixed inset-0 z-[200] bg-purple-950/95 backdrop-blur-2xl flex flex-col p-8 overflow-y-auto"
           >
-            <div className="flex justify-between items-center mb-12">
+            <div className="flex justify-between items-center mb-8 shrink-0">
               <div>
                 <h2 className="text-gold font-serif font-bold text-3xl">Explore</h2>
                 <p className="text-white/60 text-sm font-serif italic">UDOSA 04 Alumni Portal</p>
@@ -139,26 +139,26 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, onViewChange }) => {
               </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4 md:gap-6 mb-12">
               {secondaryNavItems.map((item) => (
                 <motion.button
                   key={item.id}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleSecondaryClick(item.id as View)}
-                  className="flex flex-col items-center p-6 rounded-3xl bg-white/5 border border-gold/20 hover:bg-white/10 transition-colors group"
+                  className="flex flex-col items-center p-4 md:p-6 rounded-3xl bg-white/5 border border-gold/20 hover:bg-white/10 transition-colors group"
                 >
-                  <div className="w-16 h-16 rounded-full border-2 border-gold flex items-center justify-center mb-4 group-hover:bg-gold group-hover:text-purple transition-all duration-300">
-                    {React.cloneElement(item.icon as React.ReactElement, { className: "w-8 h-8 text-gold group-hover:text-purple" })}
+                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-gold flex items-center justify-center mb-3 md:mb-4 group-hover:bg-gold group-hover:text-purple transition-all duration-300">
+                    {React.cloneElement(item.icon as React.ReactElement, { className: "w-6 h-6 md:w-8 md:h-8 text-gold group-hover:text-purple" })}
                   </div>
-                  <span className="text-white font-serif font-bold text-sm uppercase tracking-widest mb-1">{item.label}</span>
-                  <span className="text-white/40 text-[10px] uppercase tracking-tighter">{item.description}</span>
+                  <span className="text-white font-serif font-bold text-xs md:text-sm uppercase tracking-widest mb-1">{item.label}</span>
+                  <span className="text-white/40 text-[8px] md:text-[10px] uppercase tracking-tighter">{item.description}</span>
                 </motion.button>
               ))}
             </div>
 
-            <div className="mt-auto text-center pb-8">
-              <img src={LOGO_URL} alt="UDOSA Logo" className="h-16 mx-auto mb-4 opacity-50 grayscale" referrerPolicy="no-referrer" />
+            <div className="mt-auto text-center pb-12 shrink-0">
+              <img src={LOGO_URL} alt="UDOSA Logo" className="h-12 md:h-16 mx-auto mb-4 opacity-50 grayscale" referrerPolicy="no-referrer" />
               <p className="text-white/20 text-[10px] uppercase tracking-[0.3em]">Unity and Progress</p>
             </div>
           </motion.div>
