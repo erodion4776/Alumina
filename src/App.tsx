@@ -11,9 +11,9 @@ import { SolidarityHub } from './components/PortalComponents';
 import { Directory } from './components/PortalComponents';
 import { EBookReader } from './components/EBookReader';
 import { BusinessMarketplace } from './components/PortalComponents';
-import { Memorial, OurStory, GamesHub } from './components/PortalComponents';
+import { Memorial, OurStory, GamesHub, LeadershipDirectory } from './components/PortalComponents';
 
-type View = 'home' | 'solidarity' | 'directory' | 'ebook' | 'business' | 'memorial' | 'story' | 'games';
+type View = 'home' | 'solidarity' | 'directory' | 'ebook' | 'business' | 'memorial' | 'story' | 'games' | 'exco';
 
 export default function App() {
   const [activeView, setActiveView] = useState<View>('home');
@@ -57,6 +57,8 @@ export default function App() {
         return <Memorial />;
       case 'games':
         return <GamesHub />;
+      case 'exco':
+        return <LeadershipDirectory />;
       default:
         return <Home onViewChange={setActiveView} />;
     }

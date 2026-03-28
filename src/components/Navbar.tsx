@@ -4,7 +4,7 @@ import { Home, Heart, Users, BookOpen, Briefcase, Flower2, Gamepad2 } from 'luci
 
 const LOGO_URL = "https://i.ibb.co/DHC0kvzR/1000773566-removebg-preview-1.png";
 
-type View = 'home' | 'solidarity' | 'directory' | 'ebook' | 'business' | 'memorial' | 'games';
+type View = 'home' | 'solidarity' | 'directory' | 'ebook' | 'business' | 'memorial' | 'games' | 'exco';
 
 interface NavbarProps {
   activeView: View;
@@ -16,6 +16,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, onViewChange }) => {
     { id: 'home', label: 'Home', icon: <Home className="w-5 h-5" /> },
     { id: 'solidarity', label: 'Solidarity Hub', icon: <Heart className="w-5 h-5" /> },
     { id: 'directory', label: 'Directory', icon: <Users className="w-5 h-5" /> },
+    { id: 'exco', label: 'Leadership', icon: <Users className="w-5 h-5" /> },
     { id: 'ebook', label: 'E-Book', icon: <BookOpen className="w-5 h-5" /> },
     { id: 'business', label: 'Business', icon: <Briefcase className="w-5 h-5" /> },
     { id: 'memorial', label: 'Memorial', icon: <Flower2 className="w-5 h-5" /> },

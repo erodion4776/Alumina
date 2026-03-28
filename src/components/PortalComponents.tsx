@@ -733,6 +733,110 @@ export const Directory = () => {
   );
 };
 
+// --- Leadership Directory (EXCO) ---
+export const LeadershipDirectory = () => {
+  const EXCO_MEMBERS = [
+    { name: "OWEN OJO", role: "President", isExecutive: true },
+    { name: "OSARIEMWEN AGBONWANEGBE", role: "Vice President", isExecutive: true },
+    { name: "UZOMA EDOZIE", role: "Secretary General", isExecutive: false },
+    { name: "CHUKUNEDUM RAPHAEL EWULUJE", role: "Treasurer", isExecutive: false },
+    { name: "OGHALE OVUAKPORIE-UVO", role: "Financial Secretary", isExecutive: false },
+    { name: "OCHUKO EBIKEBINA NEE AKPOBASA", role: "PRO", isExecutive: false },
+    { name: "CYNTHIA AZOR NEE OBASI", role: "PRO (Diaspora)", isExecutive: false },
+    { name: "OSAS AGBONLAHOR", role: "Wellness & Welfare Officer", isExecutive: false },
+    { name: "ISOKEN AIGBOMIAN", role: "Assistant Wellness & Welfare Officer", isExecutive: false },
+    { name: "OSARENOMA OSAYOMWANBO", role: "Support Officer", isExecutive: false },
+    { name: "IRENE OGBEIDE", role: "Assistant Support Officer", isExecutive: false },
+  ];
+
+  const executiveLeaders = EXCO_MEMBERS.filter(m => m.isExecutive);
+  const committeeMembers = EXCO_MEMBERS.filter(m => !m.isExecutive);
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">
+      <div className="text-center space-y-4">
+        <h2 className="text-4xl md:text-6xl font-serif font-black text-purple uppercase tracking-tighter">
+          The <span className="text-gold">Custodians</span> of the <span className="text-pink">UDOSA 04</span> Legacy
+        </h2>
+        <p className="text-slate-500 max-w-2xl mx-auto font-serif italic text-lg">
+          Meet the dedicated team working tirelessly to reconnect, rebuild, and move our alumni network forward.
+        </p>
+        <div className="w-32 h-1.5 bg-gold mx-auto rounded-full" />
+      </div>
+
+      {/* Executive Leadership Row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {executiveLeaders.map((member, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: i * 0.1 }}
+            className="relative group"
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-gold via-pink to-purple rounded-[3rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+            <div className="relative bg-white/80 backdrop-blur-xl p-8 rounded-[3rem] border-2 border-gold/50 shadow-2xl flex flex-col items-center text-center space-y-6">
+              <div className="w-40 h-40 rounded-full border-4 border-gold p-1.5 shadow-2xl overflow-hidden bg-purple/5">
+                <div className="w-full h-full rounded-full bg-purple/10 flex items-center justify-center">
+                  <Users className="w-16 h-16 text-purple/20" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-2xl font-serif font-black text-purple tracking-tight">{member.name}</h3>
+                <p className="text-pink font-bold uppercase tracking-[0.2em] text-sm">{member.role}</p>
+              </div>
+              <div className="pt-4 border-t border-gold/20 w-full flex justify-center gap-4">
+                <div className="w-8 h-8 rounded-full bg-purple/5 flex items-center justify-center text-purple/40">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <div className="w-8 h-8 rounded-full bg-purple/5 flex items-center justify-center text-purple/40">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Committee Members Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {committeeMembers.map((member, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 + i * 0.05 }}
+            className="bg-white/40 backdrop-blur-md p-6 rounded-[2rem] border border-gold/30 shadow-lg hover:shadow-2xl hover:border-pink/30 transition-all group flex items-center gap-6"
+          >
+            <div className="w-20 h-20 rounded-full border-2 border-gold p-1 shrink-0 group-hover:scale-105 transition-transform bg-white/50">
+              <div className="w-full h-full rounded-full bg-purple/5 flex items-center justify-center">
+                <Users className="w-8 h-8 text-purple/10" />
+              </div>
+            </div>
+            <div className="space-y-1">
+              <h4 className="font-serif font-black text-purple text-base leading-tight">{member.name}</h4>
+              <p className="text-pink font-bold text-[10px] uppercase tracking-widest leading-tight">{member.role}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Footer Note */}
+      <div className="text-center pt-12">
+        <div className="inline-block p-6 bg-purple text-white rounded-[2rem] shadow-2xl border-2 border-gold/30 max-w-2xl">
+          <p className="font-serif italic text-lg leading-relaxed">
+            "Leadership is not about being in charge. It is about taking care of those in your charge."
+          </p>
+          <div className="mt-4 flex items-center justify-center gap-2 text-gold font-bold uppercase tracking-widest text-xs">
+            <ShieldCheck className="w-4 h-4" />
+            <span>UDOSA 04 Executive Committee</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // --- Business Marketplace ---
 export const BusinessMarketplace = () => (
   <div className="max-w-7xl mx-auto px-4 py-12 min-h-[70vh] flex flex-col items-center justify-center space-y-12">

@@ -41,19 +41,20 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
       {[
         { title: "The Chairman's Address", page: "03", icon: <Award className="w-5 h-5" /> },
         { title: "Editor's Perspective", page: "04", icon: <BookOpen className="w-5 h-5" /> },
-        { title: "The Importance and Benefits of Karate", page: "06", icon: <Award className="w-5 h-5" /> },
-        { title: "The Dark Side of Processed Sugar", page: "09", icon: <Activity className="w-5 h-5" /> },
-        { title: "The UDOSA 04 Mind Gym", page: "14", icon: <Brain className="w-5 h-5" /> },
-        { title: "UDOSA 04 Challenge", page: "16", icon: <Search className="w-5 h-5" /> },
-        { title: "UDOSA 04 Careers", page: "17", icon: <Briefcase className="w-5 h-5" /> },
-        { title: "The Power of Connection", page: "18", icon: <Heart className="w-5 h-5" /> },
-        { title: "Finding Peace Amidst Storms", page: "20", icon: <Sun className="w-5 h-5" /> },
-        { title: "Unlock Your Earning Potential", page: "22", icon: <Briefcase className="w-5 h-5" /> },
-        { title: "WHO’S WHO? Face Challenge", page: "24", icon: <Camera className="w-5 h-5" /> },
-        { title: "The Reveal: Answer Key", page: "27", icon: <Search className="w-5 h-5" /> },
-        { title: "Two Decades: A Retrospective", page: "28", icon: <Users className="w-5 h-5" /> },
-        { title: "Moments of Solidarity", page: "29", icon: <Heart className="w-5 h-5" /> },
-        { title: "UDOSA 04 Marketplace", page: "32", icon: <Briefcase className="w-5 h-5" /> },
+        { title: "UDOSA '04 Executive Committee", page: "06", icon: <Users className="w-5 h-5" /> },
+        { title: "The Importance and Benefits of Karate", page: "07", icon: <Award className="w-5 h-5" /> },
+        { title: "The Dark Side of Processed Sugar", page: "10", icon: <Activity className="w-5 h-5" /> },
+        { title: "The UDOSA 04 Mind Gym", page: "15", icon: <Brain className="w-5 h-5" /> },
+        { title: "UDOSA 04 Challenge", page: "17", icon: <Search className="w-5 h-5" /> },
+        { title: "UDOSA 04 Careers", page: "18", icon: <Briefcase className="w-5 h-5" /> },
+        { title: "The Power of Connection", page: "19", icon: <Heart className="w-5 h-5" /> },
+        { title: "Finding Peace Amidst Storms", page: "21", icon: <Sun className="w-5 h-5" /> },
+        { title: "Unlock Your Earning Potential", page: "23", icon: <Briefcase className="w-5 h-5" /> },
+        { title: "WHO’S WHO? Face Challenge", page: "25", icon: <Camera className="w-5 h-5" /> },
+        { title: "The Reveal: Answer Key", page: "28", icon: <Search className="w-5 h-5" /> },
+        { title: "Two Decades: A Retrospective", page: "29", icon: <Users className="w-5 h-5" /> },
+        { title: "Moments of Solidarity", page: "30", icon: <Heart className="w-5 h-5" /> },
+        { title: "UDOSA 04 Marketplace", page: "33", icon: <Briefcase className="w-5 h-5" /> },
       ].map((item, i) => (
         <div key={i} className="flex items-center group cursor-default">
           <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -277,6 +278,72 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
     </div>
   </Page>,
 
+  // 6. Meet the EXCO - Page 6
+  <Page className="bg-white relative overflow-hidden">
+    {/* Decorative Background */}
+    <div className="absolute top-0 right-0 w-64 h-64 bg-purple/5 rounded-full -mr-32 -mt-32 blur-3xl" />
+    <div className="absolute bottom-0 left-0 w-64 h-64 bg-pink/5 rounded-full -ml-32 -mb-32 blur-3xl" />
+    
+    <div className="relative z-10 flex flex-col h-full">
+      <div className="mb-8 text-center">
+        <h2 className="text-4xl font-serif font-black text-purple tracking-tighter uppercase mb-2">
+          UDOSA '04 <span className="text-gold">Executive</span> Committee
+        </h2>
+        <div className="w-24 h-1 bg-gold mx-auto rounded-full" />
+        <p className="text-pink font-serif italic text-sm mt-2">The Custodians of Our Legacy</p>
+      </div>
+
+      <div className="space-y-6 flex-grow overflow-hidden">
+        {/* Executive Leaders */}
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            { name: "OWEN OJO", role: "President" },
+            { name: "OSARIEMWEN AGBONWANEGBE", role: "Vice President" }
+          ].map((leader, i) => (
+            <div key={i} className="bg-purple p-4 rounded-2xl border-2 border-gold/50 shadow-lg text-center">
+              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-3 border border-gold/30">
+                <Users className="w-8 h-8 text-gold" />
+              </div>
+              <h3 className="text-gold font-serif font-black text-base leading-tight">{leader.name}</h3>
+              <p className="text-white/70 text-[10px] uppercase tracking-widest font-bold mt-1 italic">{leader.role}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Committee Members Grid */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+          {[
+            { name: "UZOMA EDOZIE", role: "Secretary General" },
+            { name: "CHUKUNEDUM RAPHAEL EWULUJE", role: "Treasurer" },
+            { name: "OGHALE OVUAKPORIE-UVO", role: "Financial Secretary" },
+            { name: "OCHUKO EBIKEBINA NEE AKPOBASA", role: "PRO" },
+            { name: "CYNTHIA AZOR NEE OBASI", role: "PRO (Diaspora)" },
+            { name: "OSAS AGBONLAHOR", role: "Wellness & Welfare Officer" },
+            { name: "ISOKEN AIGBOMIAN", role: "Assistant Wellness & Welfare Officer" },
+            { name: "OSARENOMA OSAYOMWANBO", role: "Support Officer" },
+            { name: "IRENE OGBEIDE", role: "Assistant Support Officer" },
+          ].map((member, i) => (
+            <div key={i} className="flex items-center gap-3 border-b border-stone-100 pb-2">
+              <div className="w-2 h-2 rounded-full bg-gold shrink-0" />
+              <div className="flex flex-col">
+                <span className="text-purple font-serif font-black text-[13px] leading-tight">{member.name}</span>
+                <span className="text-pink font-serif italic text-[10px] leading-tight">{member.role}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-auto pt-6 text-center">
+        <div className="p-4 bg-purple/5 rounded-2xl border border-gold/20">
+          <p className="text-purple font-serif italic text-sm leading-relaxed">
+            "Committed to service, unity, and the progress of every UDOSA 04 member."
+          </p>
+        </div>
+      </div>
+    </div>
+  </Page>,
+
   // 5. Karate Article - Page 1
   <Page>
     <div className="flex flex-col h-full">
@@ -391,10 +458,10 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
       </div>
 
       {/* Meet the Author Box */}
-      <div className="mt-auto p-6 bg-purple rounded-[2rem] border-2 border-gold/30 flex items-center gap-6 shadow-[0_0_15px_rgba(219,39,119,0.15)] relative overflow-hidden">
-        <div className="absolute -top-10 -right-10 w-32 h-32 bg-pink/5 rounded-full blur-2xl" />
+      <div className="mt-auto p-8 bg-purple rounded-[2.5rem] border-2 border-gold/40 flex items-center gap-8 shadow-[0_0_25px_rgba(219,39,119,0.25)] relative overflow-hidden">
+        <div className="absolute -top-10 -right-10 w-40 h-40 bg-pink/10 rounded-full blur-3xl" />
         
-        <div className="w-28 h-28 rounded-full border-[3px] border-gold p-1 shrink-0 shadow-xl">
+        <div className="w-32 h-32 rounded-full border-[3px] border-gold p-1 shrink-0 shadow-2xl">
           <div className="w-full h-full rounded-full bg-slate-800 overflow-hidden">
             <img 
               src="https://i.ibb.co/PGnzvkgv/IMG-20260323-WA0019.jpg" 
@@ -405,17 +472,20 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
           </div>
         </div>
         <div className="flex-grow">
-          <h4 className="text-gold font-serif font-bold text-xs uppercase tracking-[0.2em] mb-2">Meet the Author</h4>
-          <div className="space-y-1">
-            <p className="text-white font-serif font-black text-lg leading-none">Ehima Oziegbe</p>
-            <p className="text-pink font-serif text-[10px] uppercase tracking-wider font-bold">Second-Degree Black Belt, NKA, SKI</p>
-            <p className="text-white/70 text-[12px] leading-snug font-serif italic mt-2">
+          <h4 className="text-gold font-serif font-bold text-[10px] uppercase tracking-[0.3em] mb-3 opacity-80">Meet the Author</h4>
+          <div className="space-y-2">
+            <div>
+              <p className="text-white font-serif font-black text-2xl leading-none">Ehima Oziegbe</p>
+              <p className="text-pink font-serif text-[11px] uppercase tracking-widest font-bold mt-1">Second-Degree Black Belt, NKA, SKI</p>
+            </div>
+            <p className="text-white/80 text-[13px] leading-relaxed font-serif italic">
               Ehima is dedicated to the transformative power of karate, inspiring others through this timeless martial art.
             </p>
             {/* Official Sign-off */}
-            <div className="pt-3 flex flex-col items-start opacity-60">
-              <div className="w-24 h-px bg-gold/40 mb-1" />
-              <p className="text-[8px] text-gold uppercase tracking-[0.3em] font-serif italic">Official Sign-off</p>
+            <div className="pt-4 flex flex-col items-start">
+              <p className="font-[var(--font-handwriting)] text-3xl text-gold/80 mb-0 leading-none">Ehima Oziegbe</p>
+              <div className="w-32 h-px bg-gold/30 mt-1" />
+              <p className="text-[9px] text-gold/50 uppercase tracking-[0.4em] font-serif mt-1">Official Sign-off</p>
             </div>
           </div>
         </div>
