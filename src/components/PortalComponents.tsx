@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { AdComponent } from './AdComponent';
+import { UDOSARacer } from './UDOSARacer';
 import { 
   RotateCw,
   Newspaper, 
@@ -29,7 +30,8 @@ import {
   Trophy,
   Share2,
   Puzzle,
-  RotateCcw
+  RotateCcw,
+  Car
 } from 'lucide-react';
 import { 
   LATEST_NEWS, 
@@ -1006,7 +1008,7 @@ export const Memorial = () => {
 // --- Our Story Section ---
 // --- Games Hub Section ---
 export const GamesHub = () => {
-  const [activeGame, setActiveGame] = useState<'hub' | 'snake' | 'puzzle'>('hub');
+  const [activeGame, setActiveGame] = useState<'hub' | 'snake' | 'puzzle' | 'racer'>('hub');
 
   if (activeGame === 'snake') {
     return <LegacySnake onBack={() => setActiveGame('hub')} />;
@@ -1014,6 +1016,10 @@ export const GamesHub = () => {
 
   if (activeGame === 'puzzle') {
     return <LegendPuzzle onBack={() => setActiveGame('hub')} />;
+  }
+
+  if (activeGame === 'racer') {
+    return <UDOSARacer onBack={() => setActiveGame('hub')} />;
   }
 
   return (
@@ -1077,6 +1083,25 @@ export const GamesHub = () => {
           <h3 className="text-2xl font-serif font-bold text-white mb-2">Legend Puzzle</h3>
           <p className="text-white/80 font-serif italic text-sm mb-6">Reconnect the legends of '04 in this sliding challenge.</p>
           <button className="w-full py-3 bg-pink text-white rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-pink transition-colors">
+            Play Now
+          </button>
+        </motion.div>
+
+        {/* UDOSA Racer Card */}
+        <motion.div 
+          whileHover={{ y: -10 }}
+          onClick={() => setActiveGame('racer')}
+          className="bg-gradient-to-br from-purple via-[#3b0764] to-gold rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group cursor-pointer"
+        >
+          <div className="absolute -right-10 -bottom-10 opacity-10 group-hover:scale-110 transition-transform duration-700">
+            <Car className="w-48 h-48 text-white" />
+          </div>
+          <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+            <Car className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-2xl font-serif font-bold text-white mb-2">UDOSA Racer</h3>
+          <p className="text-white/80 font-serif italic text-sm mb-6">Conquer the hurdles on the great UDOSA 04 Highway.</p>
+          <button className="w-full py-3 bg-white text-purple rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-gold transition-colors">
             Play Now
           </button>
         </motion.div>
