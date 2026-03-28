@@ -287,47 +287,72 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
     <div className="relative z-10 flex flex-col h-full">
       <div className="mb-8 text-center">
         <h2 className="text-4xl font-serif font-black text-purple tracking-tighter uppercase mb-2">
-          UDOSA '04 <span className="text-gold">Executive</span> Committee
+          THE <span className="text-gold">LEADERSHIP</span> TEAM
         </h2>
         <div className="w-24 h-1 bg-gold mx-auto rounded-full" />
-        <p className="text-pink font-serif italic text-sm mt-2">The Custodians of Our Legacy</p>
+        <p className="text-pink font-serif italic text-sm mt-2">UDOSA '04 Executive Committee</p>
       </div>
 
       <div className="space-y-6 flex-grow overflow-hidden">
         {/* Executive Leaders */}
         <div className="grid grid-cols-2 gap-4">
           {[
-            { name: "OWEN OJO", role: "President" },
-            { name: "OSARIEMWEN AGBONWANEGBE", role: "Vice President" }
+            { 
+              name: "OWEN OJO", 
+              role: "President", 
+              image: "https://i.ibb.co/JwwLbzy4/IMG-20250204-WA0000.jpg" 
+            },
+            { 
+              name: "OSARIEMWEN AGBONWANEGBE", 
+              role: "Vice President", 
+              image: "https://i.ibb.co/9m7JjMsH/toige-37.jpg" 
+            }
           ].map((leader, i) => (
             <div key={i} className="bg-purple p-4 rounded-2xl border-2 border-gold/50 shadow-lg text-center">
-              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-3 border border-gold/30">
-                <Users className="w-8 h-8 text-gold" />
+              <div className="w-20 h-20 rounded-full border-2 border-gold p-0.5 mx-auto mb-3 overflow-hidden bg-white/10">
+                <img 
+                  src={leader.image} 
+                  alt={leader.name} 
+                  className="w-full h-full rounded-full object-cover object-top"
+                  referrerPolicy="no-referrer"
+                />
               </div>
-              <h3 className="text-gold font-serif font-black text-base leading-tight">{leader.name}</h3>
+              <h3 className="text-gold font-serif font-black text-base leading-tight uppercase">{leader.name}</h3>
               <p className="text-white/70 text-[10px] uppercase tracking-widest font-bold mt-1 italic">{leader.role}</p>
             </div>
           ))}
         </div>
 
         {/* Committee Members Grid */}
-        <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+        <div className="grid grid-cols-1 gap-y-3">
           {[
-            { name: "UZOMA EDOZIE", role: "Secretary General" },
-            { name: "CHUKUNEDUM RAPHAEL EWULUJE", role: "Treasurer" },
-            { name: "OGHALE OVUAKPORIE-UVO", role: "Financial Secretary" },
-            { name: "OCHUKO EBIKEBINA NEE AKPOBASA", role: "PRO" },
-            { name: "CYNTHIA AZOR NEE OBASI", role: "PRO (Diaspora)" },
-            { name: "OSAS AGBONLAHOR", role: "Wellness & Welfare Officer" },
-            { name: "ISOKEN AIGBOMIAN", role: "Assistant Wellness & Welfare Officer" },
-            { name: "OSARENOMA OSAYOMWANBO", role: "Support Officer" },
-            { name: "IRENE OGBEIDE", role: "Assistant Support Officer" },
+            { name: "CYNTHIA AZOR", role: "PRO (Diaspora)", image: "https://i.ibb.co/whnmmhpF/Screenshot-20250208-100512-Facebook.png" },
+            { name: "OCHUKO EBIKEBINA NEE AKPOBASA", role: "PRO", image: "https://i.ibb.co/v4vZ7hDF/IMG-20250321-WA0074.jpg" },
+            { name: "OGHALE OVUAKPORIE-UVO", role: "Financial Secretary", image: "https://i.ibb.co/5d1VcQh/IMG-20250306-WA0054-2.jpg" },
+            { name: "OSAS AGBONLAHOR", role: "Wellness & Welfare Officer", image: "https://i.ibb.co/Dfn2SbBx/IMG-20250308-101418-4.jpg" },
+            { name: "OSARENOMA AIGBANGBEE", role: "Supporting Member", image: "https://i.ibb.co/GQ0cBV8N/1716787836207.jpg" },
+            { name: "UZOMA EDOZIE", role: "Secretary General", image: null },
+            { name: "CHUKUNEDUM RAPHAEL EWULUJE", role: "Treasurer", image: null },
+            { name: "ISOKEN AIGBOMIAN", role: "Assistant Wellness Officer", image: null },
           ].map((member, i) => (
-            <div key={i} className="flex items-center gap-3 border-b border-stone-100 pb-2">
-              <div className="w-2 h-2 rounded-full bg-gold shrink-0" />
+            <div key={i} className="flex items-center gap-4 border-b border-stone-100 pb-2">
+              <div className="w-12 h-12 rounded-full border border-gold/30 p-0.5 shrink-0 overflow-hidden bg-purple/5">
+                {member.image ? (
+                  <img 
+                    src={member.image} 
+                    alt={member.name} 
+                    className="w-full h-full rounded-full object-cover object-top"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="w-full h-full rounded-full bg-purple/10 flex items-center justify-center">
+                    <Users className="w-6 h-6 text-purple/20" />
+                  </div>
+                )}
+              </div>
               <div className="flex flex-col">
-                <span className="text-purple font-serif font-black text-[13px] leading-tight">{member.name}</span>
-                <span className="text-pink font-serif italic text-[10px] leading-tight">{member.role}</span>
+                <span className="text-purple font-serif font-black text-[14px] leading-tight uppercase">{member.name}</span>
+                <span className="text-pink font-serif italic text-[11px] leading-tight">{member.role}</span>
               </div>
             </div>
           ))}
