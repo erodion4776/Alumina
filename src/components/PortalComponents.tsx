@@ -445,6 +445,8 @@ export const SolidarityHub = () => {
   const [audioUrl, setAudioUrl] = useState(() => localStorage.getItem('udosa04_audio_url') || "");
   const [tempLiveUrl, setTempLiveUrl] = useState(liveStreamUrl);
   const [tempAudioUrl, setTempAudioUrl] = useState(audioUrl);
+  const [showToast, setShowToast] = useState(false);
+  const [testVideoId, setTestVideoId] = useState<string | null>(null);
 
   const handleAdminLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -462,14 +464,27 @@ export const SolidarityHub = () => {
     localStorage.setItem('udosa04_live_url', tempLiveUrl);
     localStorage.setItem('udosa04_audio_url', tempAudioUrl);
     setShowAdminPanel(false);
-    alert("Links updated successfully!");
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
   };
 
-  // Helper to extract YouTube ID
+  // Smart URL Parser (The Fix)
   const getYouTubeId = (url: string) => {
+    if (!url) return null;
+    // Handle various YouTube URL formats
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     const match = url.match(regExp);
     return (match && match[2].length === 11) ? match[2] : null;
+  };
+
+  const handleTestLink = () => {
+    const id = getYouTubeId(tempLiveUrl);
+    if (id) {
+      setTestVideoId(id);
+    } else {
+      alert("Invalid YouTube URL. Please check the link.");
+      setTestVideoId(null);
+    }
   };
 
   const youtubeId = getYouTubeId(liveStreamUrl);
@@ -485,6 +500,21 @@ export const SolidarityHub = () => {
         <Settings className="w-5 h-5" />
       </button>
 
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {showToast && (
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            className="fixed top-24 left-1/2 -translate-x-1/2 z-[200] bg-green-500 text-white px-8 py-3 rounded-full font-bold shadow-2xl flex items-center gap-3"
+          >
+            <CheckCircle className="w-5 h-5" />
+            <span>Stream Live!</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Admin Panel Modal */}
       <AnimatePresence>
         {showAdminPanel && (
@@ -499,6 +529,7 @@ export const SolidarityHub = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               className="max-w-md w-full bg-white p-8 rounded-[2rem] shadow-2xl space-y-6 relative"
+              onClick={(e) => e.stopPropagation()}
             >
               <button 
                 onClick={() => setShowAdminPanel(false)}
@@ -528,13 +559,33 @@ export const SolidarityHub = () => {
                   
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Live Stream (YouTube Link)</label>
-                    <input 
-                      type="text" 
-                      value={tempLiveUrl}
-                      onChange={(e) => setTempLiveUrl(e.target.value)}
-                      placeholder="Paste YouTube Link"
-                      className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-purple outline-none text-sm"
-                    />
+                    <div className="flex gap-2">
+                      <input 
+                        type="text" 
+                        value={tempLiveUrl}
+                        onChange={(e) => setTempLiveUrl(e.target.value)}
+                        placeholder="Paste YouTube Link"
+                        className="flex-grow px-4 py-3 rounded-xl border border-stone-200 focus:border-purple outline-none text-sm"
+                      />
+                      <button 
+                        onClick={handleTestLink}
+                        className="bg-purple/10 text-purple px-4 py-3 rounded-xl font-bold text-xs hover:bg-purple/20 transition-colors"
+                      >
+                        Test
+                      </button>
+                    </div>
+                    {testVideoId && (
+                      <div className="mt-2 aspect-video rounded-xl overflow-hidden border-2 border-green-500">
+                        <iframe 
+                          className="w-full h-full"
+                          src={`https://www.youtube.com/embed/${testVideoId}`}
+                          title="Test Preview"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        />
+                      </div>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -582,14 +633,14 @@ export const SolidarityHub = () => {
             <Play className="text-purple w-6 h-6 fill-purple" />
             <h2 className="text-2xl font-serif font-bold text-purple uppercase tracking-widest">Live Stream</h2>
           </div>
-          <div className="aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl relative group">
+          <div className="w-full aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl relative group">
             {youtubeId ? (
               <iframe 
                 className="w-full h-full"
                 src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`}
                 title="Live Stream"
                 frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               />
             ) : (
