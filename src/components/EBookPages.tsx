@@ -293,7 +293,7 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
         <p className="text-pink font-serif italic text-sm mt-2">UDOSA '04 Executive Committee</p>
       </div>
 
-      <div className="space-y-6 flex-grow overflow-hidden">
+      <div className="space-y-4 flex-grow overflow-hidden">
         {/* Executive Leaders */}
         <div className="grid grid-cols-2 gap-4">
           {[
@@ -308,8 +308,8 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
               image: "https://i.ibb.co/9m7JjMsH/toige-37.jpg" 
             }
           ].map((leader, i) => (
-            <div key={i} className="bg-purple p-4 rounded-2xl border-2 border-gold/50 shadow-lg text-center">
-              <div className="w-20 h-20 rounded-full border-2 border-gold p-0.5 mx-auto mb-3 overflow-hidden bg-white/10">
+            <div key={i} className="bg-purple p-3 rounded-2xl border-2 border-gold/50 shadow-lg text-center">
+              <div className="w-16 h-16 rounded-full border-2 border-gold p-0.5 mx-auto mb-2 overflow-hidden bg-white/10">
                 <img 
                   src={leader.image} 
                   alt={leader.name} 
@@ -317,25 +317,25 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <h3 className="text-gold font-serif font-black text-base leading-tight uppercase">{leader.name}</h3>
-              <p className="text-white/70 text-[10px] uppercase tracking-widest font-bold mt-1 italic">{leader.role}</p>
+              <h3 className="text-gold font-serif font-black text-sm leading-tight uppercase">{leader.name}</h3>
+              <p className="text-white/70 text-[9px] uppercase tracking-widest font-bold mt-1 italic">{leader.role}</p>
             </div>
           ))}
         </div>
 
         {/* Committee Members Grid */}
-        <div className="grid grid-cols-1 gap-y-3">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2">
           {[
             { name: "CYNTHIA AZOR", role: "PRO (Diaspora)", image: "https://i.ibb.co/whnmmhpF/Screenshot-20250208-100512-Facebook.png" },
             { name: "OCHUKO EBIKEBINA NEE AKPOBASA", role: "PRO", image: "https://i.ibb.co/v4vZ7hDF/IMG-20250321-WA0074.jpg" },
             { name: "OGHALE OVUAKPORIE-UVO", role: "Financial Secretary", image: "https://i.ibb.co/5d1VcQh/IMG-20250306-WA0054-2.jpg" },
-            { name: "OSAS AGBONLAHOR", role: "Wellness & Welfare Officer", image: "https://i.ibb.co/Dfn2SbBx/IMG-20250308-101418-4.jpg" },
+            { name: "OSAS AGBONLAHOR", role: "Wellness & Welfare Officer", image: "https://i.ibb.co/QtzyXF9/701-C2184-7-B61-4-C1-F-8936-61-A51-BF08405.jpg" },
             { name: "OSARENOMA AIGBANGBEE", role: "Supporting Member", image: "https://i.ibb.co/GQ0cBV8N/1716787836207.jpg" },
             { name: "UZOMA EDOZIE", role: "Secretary General", image: null },
             { name: "CHUKUNEDUM RAPHAEL EWULUJE", role: "Treasurer", image: null },
             { name: "ISOKEN AIGBOMIAN", role: "Assistant Wellness Officer", image: null },
           ].map((member, i) => (
-            <div key={i} className="flex items-center gap-4 border-b border-stone-100 pb-2">
+            <div key={i} className="flex items-center gap-2 border-b border-stone-100 pb-1">
               <div className="w-12 h-12 rounded-full border border-gold/30 p-0.5 shrink-0 overflow-hidden bg-purple/5">
                 {member.image ? (
                   <img 
@@ -350,9 +350,9 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
                   </div>
                 )}
               </div>
-              <div className="flex flex-col">
-                <span className="text-purple font-serif font-black text-[14px] leading-tight uppercase">{member.name}</span>
-                <span className="text-pink font-serif italic text-[11px] leading-tight">{member.role}</span>
+              <div className="flex flex-col min-w-0">
+                <span className="text-purple font-serif font-black text-[13px] leading-tight uppercase truncate">{member.name}</span>
+                <span className="text-pink font-serif italic text-[11px] leading-tight truncate">{member.role}</span>
               </div>
             </div>
           ))}

@@ -769,7 +769,7 @@ export const LeadershipDirectory = () => {
     { 
       name: "OSAS AGBONLAHOR", 
       role: "Wellness & Welfare Officer", 
-      image: "https://i.ibb.co/Dfn2SbBx/IMG-20250308-101418-4.jpg",
+      image: "https://i.ibb.co/QtzyXF9/701-C2184-7-B61-4-C1-F-8936-61-A51-BF08405.jpg",
       level: "member"
     },
     { 
