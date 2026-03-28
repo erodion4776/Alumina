@@ -53,9 +53,7 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
         { title: "The Reveal: Answer Key", page: "27", icon: <Search className="w-5 h-5" /> },
         { title: "Two Decades: A Retrospective", page: "28", icon: <Users className="w-5 h-5" /> },
         { title: "Moments of Solidarity", page: "29", icon: <Heart className="w-5 h-5" /> },
-        { title: "Class of 2004 Directory", page: "32", icon: <Users className="w-5 h-5" /> },
-        { title: "Throwback Gallery", page: "33", icon: <Camera className="w-5 h-5" /> },
-        { title: "Alumni Business Directory", page: "34", icon: <Briefcase className="w-5 h-5" /> },
+        { title: "Alumni Business Directory", page: "32", icon: <Briefcase className="w-5 h-5" /> },
       ].map((item, i) => (
         <div key={i} className="flex items-center group cursor-default">
           <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -1535,99 +1533,7 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
     <Footer text="UDOSA 04 | Stronger Together" />
   </div>,
 
-  // 31. Class Directory
-  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always">
-    <div className="bg-purple w-full h-24 flex items-center justify-center px-8 shrink-0 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
-      <img src={LOGO_URL} alt="UDOSA Logo" className="h-10 object-contain mr-6 relative z-10" referrerPolicy="no-referrer" />
-      <h2 className="text-2xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
-        Class <span className="text-gold italic">Directory</span>
-      </h2>
-    </div>
-
-    <div className="p-10 flex-grow overflow-hidden flex flex-col">
-      <div className="mb-8 text-center">
-        <h3 className="text-2xl font-serif font-bold text-purple uppercase tracking-widest">UDOSA 04 Alumni Network</h3>
-        <p className="text-pink font-serif italic text-base">Connecting the Class of 2004 across the globe.</p>
-        <div className="w-20 h-1 bg-gold mx-auto mt-2" />
-      </div>
-
-      <div className="grid grid-cols-3 gap-x-8 gap-y-4 flex-grow overflow-hidden">
-        {[
-          "Abudu, Osas", "Aghedo, Osas", "Aigbe, Osas", "Aikhionbare, Osas", "Akinyemi, Osas",
-          "Alile, Osas", "Amadasun, Osas", "Anenih, Osas", "Arasomwan, Osas", "Asuen, Osas",
-          "Atu, Osas", "Azikiwe, Ifeoma", "Bazuaye, Osas", "Eboigbe, Osas", "Edokpolo, Osas",
-          "Eghobamien, Osas", "Eguakun, Osas", "Ehanire, Osas", "Ehiorobo, Osas", "Ekhator, Osas",
-          "Ekhosuehi, Osas", "Ekwueme, Osas", "Enabulele, Osas", "Enahoro, Osas", "Erhabor, Osas",
-          "Ewere, Osas", "Igbinedion, Osas", "Igbinoba, Osas", "Igbinosun, Osas", "Ighodaro, Osas",
-          "Imasuen, Osas", "Iredia, Osas", "Irowa, Osas", "Isibor, Osas", "Itua, Osas",
-          "Iyamu, Osas", "Izilein, Osas", "Obaseki, Osas", "Obasuyi, Osas", "Odia, Osas",
-          "Ogbeide, Irene", "Ogbemudia, Osas", "Ogbemudia, Osas", "Ogiemwonyi, Osas", "Ogiso, Osas", "Ojo, Owen",
-          "Okundaye, Osas", "Okungbowa, Osas", "Okunzuwa, Osas", "Olaye, Osas", "Omigie, Osas",
-          "Omorogbe, Osas", "Omoruyi, Osas", "Onaiwu, Osas", "Osadolor, Osas", "Osaghae, Osas",
-          "Osagie, Osas", "Osahon, Osas", "Osamwonyi, Osas", "Osarenkhoe, Osas", "Osayande, Osas",
-          "Osemwengie, Osas", "Oviawe, Osas", "Oziegbe, Ehima", "Uwaifo, Osas", "Uwoghiren, Osas"
-        ].map((name, i) => (
-          <div key={i} className="flex items-center gap-2 border-b border-stone-100 pb-1">
-            <div className="w-1.5 h-1.5 rounded-full bg-pink shrink-0" />
-            <p className="text-[13px] font-serif font-bold text-slate-800 truncate">{name}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-8 p-6 bg-purple/5 rounded-2xl border border-purple/10 text-center">
-        <p className="text-sm font-serif italic text-purple">
-          "This directory is a living document. To update your details or join the official UDOSA 04 platform, please contact the secretariat."
-        </p>
-      </div>
-    </div>
-    <Footer text="UDOSA 04 | Our Global Network" />
-  </div>,
-
-  // 32. Throwback Gallery
-  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always">
-    <div className="bg-purple w-full h-24 flex items-center justify-center px-8 shrink-0 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
-      <img src={LOGO_URL} alt="UDOSA Logo" className="h-10 object-contain mr-6 relative z-10" referrerPolicy="no-referrer" />
-      <h2 className="text-2xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
-        Throwback <span className="text-gold italic">Gallery</span>
-      </h2>
-    </div>
-
-    <div className="p-8 flex-grow overflow-hidden flex flex-col">
-      <div className="mb-6 text-center">
-        <h3 className="text-xl font-serif font-bold text-purple uppercase tracking-widest">A Trip Down Memory Lane</h3>
-        <p className="text-pink font-serif italic text-sm mt-1">Reliving the moments that defined our secondary school years.</p>
-        <div className="w-20 h-1 bg-gold mx-auto mt-2" />
-      </div>
-
-      <div className="grid grid-cols-3 gap-4 flex-grow overflow-hidden">
-        {[
-          "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=400",
-          "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=400",
-          "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=400",
-          "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=400",
-          "https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=400",
-          "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=400",
-          "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=400",
-          "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=400",
-          "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=400"
-        ].map((src, i) => (
-          <div key={i} className="relative group overflow-hidden rounded-xl border-2 border-gold/30 shadow-lg h-[180px]">
-            <img 
-              src={src} 
-              alt={`Throwback ${i + 1}`} 
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale hover:grayscale-0"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-    <Footer text="UDOSA 04 | Forever Young" />
-  </div>,
-
-  // 33. Business Showcase
+  // 31. Business Showcase
   <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always">
     <div className="bg-purple w-full h-24 flex items-center justify-center px-8 shrink-0 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
