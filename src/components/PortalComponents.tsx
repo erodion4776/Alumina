@@ -788,10 +788,10 @@ export const LeadershipDirectory = () => {
     { 
       name: "CHUKUNEDUM RAPHAEL EWULUJE", 
       role: "Treasurer", 
-      image: "https://i.ibb.co/6Qn7YDL/IMG-20260328-WA0006.jpg",
+      image: "https://i.ibb.co/V0DRQSkk/IMG-20260328-232151.jpg",
       gender: "male",
       level: "member",
-      objectPosition: "object-[center_90%]"
+      objectPosition: "object-center"
     },
     { 
       name: "ISOKEN AIGBOMIAN", 
