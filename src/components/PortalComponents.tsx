@@ -426,68 +426,21 @@ export const Home = ({ onViewChange }: { onViewChange: (view: any, page?: number
 // --- Solidarity Hub ---
 export const SolidarityHub = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [showAdminPanel, setShowAdminPanel] = useState(false);
-  const [password, setPassword] = useState("");
   
-  // Dynamic State from LocalStorage
-  const [liveStreamUrl, setLiveStreamUrl] = useState(() => localStorage.getItem('udosa04_live_url') || "");
-  const [audioUrl, setAudioUrl] = useState(() => localStorage.getItem('udosa04_audio_url') || "");
-  const [audioTitle, setAudioTitle] = useState(() => localStorage.getItem('udosa04_audio_title') || "UDSS School Anthem");
-  const [audioArtist, setAudioArtist] = useState(() => localStorage.getItem('udosa04_audio_artist') || "Class of 2004");
+  // Hardcoded Media Links
+  const liveStreamUrl = ""; // No active stream currently
+  const audioUrl = "https://videotourl.com/audio/1774739858835-f6dcaeec-c49b-4813-a55a-23aed256e3ad.mp3";
+  const audioTitle = "UDSS School Anthem";
+  const audioArtist = "Official Recording";
 
-  // Temp State for Admin Inputs
-  const [tempLiveUrl, setTempLiveUrl] = useState(liveStreamUrl);
-  const [tempAudioUrl, setTempAudioUrl] = useState(audioUrl);
-  const [tempAudioTitle, setTempAudioTitle] = useState(audioTitle);
-  const [tempAudioArtist, setTempAudioArtist] = useState(audioArtist);
-  
-  const [showToast, setShowToast] = useState(false);
-  const [testVideoId, setTestVideoId] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const handleAdminLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password === "udosa04") {
-      setIsAdmin(true);
-      setPassword("");
-    } else {
-      alert("Incorrect Password");
-    }
-  };
-
-  const handleUpdateLinks = () => {
-    setLiveStreamUrl(tempLiveUrl);
-    setAudioUrl(tempAudioUrl);
-    setAudioTitle(tempAudioTitle);
-    setAudioArtist(tempAudioArtist);
-    
-    localStorage.setItem('udosa04_live_url', tempLiveUrl);
-    localStorage.setItem('udosa04_audio_url', tempAudioUrl);
-    localStorage.setItem('udosa04_audio_title', tempAudioTitle);
-    localStorage.setItem('udosa04_audio_artist', tempAudioArtist);
-    
-    setShowAdminPanel(false);
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 3000);
-  };
-
-  // Smart URL Parser
+  // Smart URL Parser for YouTube
   const getYouTubeId = (url: string) => {
     if (!url) return null;
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     const match = url.match(regExp);
     return (match && match[2].length === 11) ? match[2] : null;
-  };
-
-  const handleTestLink = () => {
-    const id = getYouTubeId(tempLiveUrl);
-    if (id) {
-      setTestVideoId(id);
-    } else {
-      alert("Invalid YouTube URL. Please check the link.");
-      setTestVideoId(null);
-    }
   };
 
   const toggleAudio = () => {
@@ -505,168 +458,6 @@ export const SolidarityHub = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 space-y-16 relative">
-      {/* Admin Toggle */}
-      <button 
-        onClick={() => setShowAdminPanel(true)}
-        className="absolute top-4 right-4 p-2 text-purple/20 hover:text-purple transition-colors z-50"
-        title="Admin Settings"
-      >
-        <Settings className="w-5 h-5" />
-      </button>
-
-      {/* Toast Notification */}
-      <AnimatePresence>
-        {showToast && (
-          <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
-            className="fixed top-24 left-1/2 -translate-x-1/2 z-[200] bg-green-500 text-white px-8 py-3 rounded-full font-bold shadow-2xl flex items-center gap-3"
-          >
-            <CheckCircle className="w-5 h-5" />
-            <span>Stream Live!</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Admin Panel Modal */}
-      <AnimatePresence>
-        {showAdminPanel && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-purple/80 backdrop-blur-sm"
-            onClick={() => setShowAdminPanel(false)}
-          >
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="max-w-lg w-full bg-white p-8 rounded-[2.5rem] shadow-2xl space-y-6 relative max-h-[90vh] overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button 
-                onClick={() => setShowAdminPanel(false)}
-                className="absolute top-6 right-6 text-slate-400 hover:text-purple"
-              >
-                <X className="w-6 h-6" />
-              </button>
-
-              {!isAdmin ? (
-                <form onSubmit={handleAdminLogin} className="space-y-4">
-                  <h3 className="text-2xl font-serif font-bold text-purple">Admin Access</h3>
-                  <p className="text-slate-500 text-sm">Enter password to manage links.</p>
-                  <input 
-                    type="password" 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter Password"
-                    className="w-full px-5 py-4 rounded-2xl border border-stone-200 focus:border-purple outline-none text-lg"
-                  />
-                  <button type="submit" className="w-full bg-purple text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-sm hover:bg-pink transition-colors">
-                    Login
-                  </button>
-                </form>
-              ) : (
-                <div className="space-y-8">
-                  <h3 className="text-2xl font-serif font-bold text-purple border-b border-gold/20 pb-2">Solidarity Controller</h3>
-                  
-                  {/* Video Section */}
-                  <div className="space-y-4">
-                    <h4 className="text-pink font-bold text-xs uppercase tracking-[0.2em]">Video Section</h4>
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Live Stream (YouTube Link)</label>
-                      <div className="flex gap-2">
-                        <input 
-                          type="text" 
-                          value={tempLiveUrl}
-                          onChange={(e) => setTempLiveUrl(e.target.value)}
-                          placeholder="Paste YouTube Link"
-                          className="flex-grow px-4 py-4 rounded-xl border border-stone-200 focus:border-purple outline-none text-base"
-                        />
-                        <button 
-                          onClick={handleTestLink}
-                          className="bg-purple/10 text-purple px-6 py-4 rounded-xl font-bold text-xs hover:bg-purple/20 transition-colors"
-                        >
-                          Test
-                        </button>
-                      </div>
-                      {testVideoId && (
-                        <div className="mt-2 aspect-video rounded-2xl overflow-hidden border-2 border-green-500">
-                          <iframe 
-                            className="w-full h-full"
-                            src={`https://www.youtube.com/embed/${testVideoId}`}
-                            title="Test Preview"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Audio Section */}
-                  <div className="space-y-4">
-                    <h4 className="text-pink font-bold text-xs uppercase tracking-[0.2em]">Audio Section</h4>
-                    <div className="space-y-4">
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Audio File URL (MP3/Link)</label>
-                        <input 
-                          type="text" 
-                          value={tempAudioUrl}
-                          onChange={(e) => setTempAudioUrl(e.target.value)}
-                          placeholder="Paste Audio URL"
-                          className="w-full px-4 py-4 rounded-xl border border-stone-200 focus:border-purple outline-none text-base"
-                        />
-                      </div>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Song Title</label>
-                          <input 
-                            type="text" 
-                            value={tempAudioTitle}
-                            onChange={(e) => setTempAudioTitle(e.target.value)}
-                            placeholder="e.g. School Anthem"
-                            className="w-full px-4 py-4 rounded-xl border border-stone-200 focus:border-purple outline-none text-base"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Artist/Source</label>
-                          <input 
-                            type="text" 
-                            value={tempAudioArtist}
-                            onChange={(e) => setTempAudioArtist(e.target.value)}
-                            placeholder="e.g. Class of 2004"
-                            className="w-full px-4 py-4 rounded-xl border border-stone-200 focus:border-purple outline-none text-base"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-6 flex gap-3">
-                    <button 
-                      onClick={handleUpdateLinks}
-                      className="flex-grow bg-gold text-purple py-4 rounded-2xl font-bold uppercase tracking-widest text-sm hover:bg-purple hover:text-white transition-all shadow-lg"
-                    >
-                      Save & Update Portal
-                    </button>
-                    <button 
-                      onClick={() => setIsAdmin(false)}
-                      className="px-6 py-4 border border-stone-200 rounded-2xl text-slate-400 hover:text-red-500 transition-colors"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                </div>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       <div className="text-center space-y-4">
         <h1 className="text-4xl md:text-6xl font-serif font-black text-purple uppercase tracking-tighter">Solidarity Hub</h1>
         <p className="text-lg md:text-xl text-pink font-serif italic">Connecting hearts, voices, and memories.</p>
@@ -801,7 +592,7 @@ export const SolidarityHub = () => {
                 </div>
                 <button 
                   onClick={toggleAudio}
-                  className="text-gold hover:text-pink transition-colors"
+                  className="text-gold hover:text-pink transition-colors font-bold text-xs uppercase tracking-widest"
                 >
                   {isPlaying ? 'PAUSE' : 'PLAY'}
                 </button>
@@ -810,6 +601,41 @@ export const SolidarityHub = () => {
           </div>
         </div>
       </div>
+
+      {/* Media Contribution Guide */}
+      <section className="mt-12">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-serif font-black text-gold uppercase tracking-widest">How to Contribute Media</h2>
+          <div className="w-16 h-1 bg-pink mx-auto mt-2" />
+        </div>
+        
+        <div className="bg-white/40 backdrop-blur-md rounded-[2.5rem] p-8 md:p-12 border-2 border-pink/30 shadow-xl relative overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+            {[
+              { step: "Step 1", text: "Upload your audio (MP3) or Video (YouTube/Vimeo)." },
+              { step: "Step 2", text: "Send the direct link to the PRO or Site Admin." },
+              { step: "Step 3", text: "The content will be verified and hardcoded into the portal for the whole community to view." }
+            ].map((item, i) => (
+              <div key={i} className="space-y-4 text-center md:text-left">
+                <div className="text-pink font-black text-xl uppercase tracking-tighter">{item.step}</div>
+                <p className="text-slate-600 font-serif italic leading-relaxed">{item.text}</p>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-12 flex justify-center">
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => window.open('https://wa.me/?text=Hello%20Admin,%20I%20would%20like%20to%20contribute%20media%20to%20the%20UDOSA%2004%20Portal.', '_blank')}
+              className="bg-pink text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm shadow-lg hover:bg-purple transition-all flex items-center gap-3"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Submit Media to Admin
+            </motion.button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
