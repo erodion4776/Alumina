@@ -49,6 +49,108 @@ import {
   GALLERY_PHOTOS
 } from '../constants';
 
+// --- Animated Book Component ---
+const AnimatedBook = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div 
+      className="relative w-48 h-64 md:w-64 md:h-80 cursor-pointer" 
+      style={{ perspective: '2000px' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => setIsHovered(false)}
+    >
+      {/* Shadow that grows/shrinks */}
+      <motion.div 
+        className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[90%] h-6 bg-black/20 blur-xl rounded-full"
+        animate={{ 
+          scale: isHovered ? 1.2 : 1,
+          opacity: isHovered ? 0.4 : 0.2
+        }}
+        transition={{ duration: 0.5 }}
+      />
+
+      <motion.div 
+        className="relative w-full h-full"
+        style={{ transformStyle: 'preserve-3d' }}
+        animate={{ 
+          rotateY: isHovered ? -25 : -15,
+          rotateX: isHovered ? 5 : 0
+        }}
+        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+      >
+        {/* Back Cover */}
+        <div 
+          className="absolute inset-0 bg-purple-950 rounded-r-lg border-l-2 border-gold/20" 
+          style={{ transform: 'translateZ(-20px)' }} 
+        />
+
+        {/* Spine */}
+        <div 
+          className="absolute inset-y-0 left-0 w-[20px] bg-gradient-to-r from-purple-950 to-purple-900" 
+          style={{ transform: 'rotateY(-90deg) translateZ(10px)' }} 
+        />
+
+        {/* Page Thickness (Right Edge) */}
+        <div 
+          className="absolute inset-y-1 right-0 w-[18px] bg-stone-100 rounded-r-sm" 
+          style={{ transform: 'rotateY(90deg) translateZ(-9px)' }} 
+        />
+
+        {/* Flipping Pages */}
+        {[1, 2, 3].map((i) => (
+          <motion.div
+            key={i}
+            className="absolute inset-0 bg-stone-50 rounded-r-lg origin-left border-l border-stone-200 shadow-sm"
+            style={{ 
+              transformStyle: 'preserve-3d', 
+              backfaceVisibility: 'hidden',
+              zIndex: 10 - i 
+            }}
+            animate={{ 
+              rotateY: [0, -180, 0] 
+            }}
+            transition={{ 
+              duration: isHovered ? 1.5 : 3, 
+              repeat: Infinity, 
+              delay: i * 0.4,
+              ease: "easeInOut"
+            }}
+          >
+            {/* Page Content (Blank/Text) */}
+            <div className="p-4 opacity-10">
+              <div className="h-2 w-3/4 bg-stone-300 mb-2" />
+              <div className="h-2 w-1/2 bg-stone-300" />
+            </div>
+          </motion.div>
+        ))}
+
+        {/* Front Cover */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-br from-purple via-[#3b0764] to-pink rounded-r-lg shadow-2xl border-l-4 border-gold/30 origin-left z-20"
+          style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
+          animate={{ 
+            rotateY: isHovered ? -45 : 0 
+          }}
+          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        >
+          {/* Cover Content */}
+          <div className="h-full flex flex-col items-center justify-center p-6 text-center">
+            <img src={LOGO_URL} alt="Logo" className="h-16 md:h-24 mb-4 object-contain drop-shadow-lg" />
+            <h2 className="text-2xl md:text-4xl font-serif font-black text-gold tracking-tighter leading-none">UDOSA 04</h2>
+            <div className="w-8 h-0.5 bg-gold/50 my-3" />
+            <p className="text-[8px] md:text-[10px] text-white/80 font-serif uppercase tracking-[0.2em] leading-tight font-bold">
+              Class of 2004: <br/> Two Decades of Excellence
+            </p>
+          </div>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+};
+
 // --- Home Section ---
 export const Home = ({ onViewChange }: { onViewChange: (view: any, page?: number) => void }) => {
   const [news, setNews] = useState<any[]>([]);
@@ -171,30 +273,9 @@ export const Home = ({ onViewChange }: { onViewChange: (view: any, page?: number
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-pink/5 rounded-full -ml-32 -mb-32 blur-3xl" />
         
         <div className="flex flex-col lg:flex-row items-center gap-12 relative z-10">
-          {/* 3D Book Cover */}
-          <div className="w-full lg:w-1/3 flex justify-center" style={{ perspective: '1000px' }}>
-            <motion.div 
-              whileHover={{ rotateY: -5, scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="relative w-48 h-64 md:w-64 md:h-80 bg-gradient-to-br from-purple via-[#3b0764] to-pink rounded-r-lg shadow-[-20px_20px_50px_rgba(0,0,0,0.3)] border-l-4 border-gold/30"
-              style={{ transform: 'rotateY(-15deg)', transformStyle: 'preserve-3d' }}
-            >
-              {/* Spine */}
-              <div className="absolute inset-y-0 left-0 w-2 bg-black/20" />
-              
-              {/* Cover Content */}
-              <div className="h-full flex flex-col items-center justify-center p-6 text-center">
-                <img src={LOGO_URL} alt="Logo" className="h-16 md:h-24 mb-4 object-contain drop-shadow-lg" />
-                <h2 className="text-2xl md:text-4xl font-serif font-black text-gold tracking-tighter leading-none">UDOSA 04</h2>
-                <div className="w-8 h-0.5 bg-gold/50 my-3" />
-                <p className="text-[8px] md:text-[10px] text-white/80 font-serif uppercase tracking-[0.2em] leading-tight font-bold">
-                  Class of 2004: <br/> Two Decades of Excellence
-                </p>
-              </div>
-              
-              {/* Page edges effect */}
-              <div className="absolute inset-y-1 -right-1 w-1 bg-stone-200 rounded-r-sm" />
-            </motion.div>
+          {/* 3D Animated Book */}
+          <div className="w-full lg:w-1/3 flex justify-center">
+            <AnimatedBook />
           </div>
 
           {/* Content */}
