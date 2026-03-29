@@ -12,8 +12,9 @@ import { Directory } from './components/PortalComponents';
 import { EBookReader } from './components/EBookReader';
 import { BusinessMarketplace } from './components/PortalComponents';
 import { Memorial, OurStory, GamesHub, LeadershipDirectory } from './components/PortalComponents';
+import { Constitution } from './components/Constitution';
 
-type View = 'home' | 'solidarity' | 'directory' | 'ebook' | 'business' | 'memorial' | 'story' | 'games' | 'exco';
+type View = 'home' | 'solidarity' | 'directory' | 'ebook' | 'business' | 'memorial' | 'story' | 'games' | 'exco' | 'constitution';
 
 export default function App() {
   const [activeView, setActiveView] = useState<View>('home');
@@ -59,6 +60,8 @@ export default function App() {
         return <GamesHub />;
       case 'exco':
         return <LeadershipDirectory />;
+      case 'constitution':
+        return <Constitution />;
       default:
         return <Home onViewChange={setActiveView} />;
     }
@@ -88,6 +91,7 @@ export default function App() {
               <button onClick={() => handleViewChange('ebook')} className="hover:text-gold text-left">E-Book</button>
               <button onClick={() => handleViewChange('directory')} className="hover:text-gold text-left">Directory</button>
               <button onClick={() => handleViewChange('solidarity')} className="hover:text-gold text-left">Solidarity</button>
+              <button onClick={() => handleViewChange('constitution')} className="hover:text-gold text-left">Constitution</button>
             </div>
           </div>
           <div className="space-y-4">

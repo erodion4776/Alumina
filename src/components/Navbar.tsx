@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Home, Heart, Users, BookOpen, Briefcase, Flower2, Gamepad2, Menu, X, ChevronRight } from 'lucide-react';
+import { Home, Heart, Users, BookOpen, Briefcase, Flower2, Gamepad2, Menu, X, ChevronRight, FileText } from 'lucide-react';
 
 const LOGO_URL = "https://i.ibb.co/DHC0kvzR/1000773566-removebg-preview-1.png";
 
-type View = 'home' | 'solidarity' | 'directory' | 'ebook' | 'business' | 'memorial' | 'games' | 'exco' | 'story';
+type View = 'home' | 'solidarity' | 'directory' | 'ebook' | 'business' | 'memorial' | 'games' | 'exco' | 'story' | 'constitution';
 
 interface NavbarProps {
   activeView: View;
@@ -19,6 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, onViewChange }) => {
     { id: 'ebook', label: 'Yearbook', icon: <BookOpen className="w-4 h-4" /> },
     { id: 'solidarity', label: 'Solidarity', icon: <Heart className="w-4 h-4" /> },
     { id: 'games', label: 'Games', icon: <Gamepad2 className="w-4 h-4" /> },
+    { id: 'constitution', label: 'Constitution', icon: <FileText className="w-4 h-4" /> },
   ];
 
   const mobileNavItems = [
@@ -26,6 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, onViewChange }) => {
     { id: 'ebook', label: 'Digital Yearbook (E-Book)', icon: <BookOpen className="w-5 h-5" /> },
     { id: 'solidarity', label: 'Solidarity Hub (Live/Audio)', icon: <Heart className="w-5 h-5" /> },
     { id: 'games', label: 'Game Center (All 7 Games)', icon: <Gamepad2 className="w-5 h-5" /> },
+    { id: 'constitution', label: 'Bye-Laws & Constitution', icon: <FileText className="w-5 h-5" /> },
     { id: 'exco', label: 'Leadership (EXCO)', icon: <Users className="w-5 h-5" /> },
     { id: 'directory', label: 'Alumni Directory', icon: <Users className="w-5 h-5" /> },
     { id: 'business', label: 'Business Marketplace', icon: <Briefcase className="w-5 h-5" /> },

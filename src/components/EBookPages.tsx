@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, BookOpen, Activity, Brain, Search, Heart, Sun, Users, Camera, Briefcase, Quote, Eye, Wind, Flower2, FileText, Layout, ShieldCheck, Info, ArrowRight } from 'lucide-react';
+import { Award, BookOpen, Activity, Brain, Search, Heart, Sun, Users, Camera, Briefcase, Quote, Eye, Wind, Flower2, FileText, Layout, ShieldCheck, Info, ArrowRight, Shield, Scale, Gavel, ScrollText, Landmark } from 'lucide-react';
 import { Page, GalleryItem, Header, Footer } from './EBookComponents';
 import { LOGO_URL, WORD_SEARCH_WORDS, WORD_SEARCH_GRID, CAREERS_WORDS, CAREERS_GRID, RIDDLES, GALLERY_PHOTOS, SOLIDARITY_PHOTOS, WHO_IS_WHO_ANSWERS } from '../constants';
 
@@ -55,6 +55,7 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
         { title: "Two Decades: A Retrospective", page: "29", icon: <Users className="w-5 h-5" /> },
         { title: "Moments of Solidarity", page: "30", icon: <Heart className="w-5 h-5" /> },
         { title: "UDOSA 04 Marketplace", page: "33", icon: <Briefcase className="w-5 h-5" /> },
+        { title: "Bye-Laws & Constitution", page: "34", icon: <FileText className="w-5 h-5" /> },
       ].map((item, i) => (
         <div key={i} className="flex items-center group cursor-default">
           <div className="w-14 h-14 rounded-full bg-purple text-white flex items-center justify-center mr-8 shadow-lg shadow-purple/20">
@@ -1706,5 +1707,170 @@ export const getEBookPages = (foundWords: string[], toggleWord: (word: string) =
       </div>
     </div>
     <Footer text="UDOSA 04 | Marketplace & Growth" />
+  </div>,
+
+  // 34. Constitution - Page 1
+  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always relative">
+    {/* Watermark */}
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.05] z-0">
+      <img src={LOGO_URL} alt="" className="w-[500px] h-[500px] object-contain grayscale" referrerPolicy="no-referrer" />
+    </div>
+
+    <div className="bg-purple w-full h-20 flex items-center justify-center px-8 shrink-0 relative overflow-hidden z-10">
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
+      <h2 className="text-xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
+        Bye-Laws & <span className="text-gold uppercase">Constitution</span>
+      </h2>
+    </div>
+
+    <div className="p-12 flex-grow overflow-hidden flex flex-col relative z-10 font-serif">
+      <div className="mb-8 text-center">
+        <h3 className="text-2xl font-bold text-purple uppercase tracking-widest">Official Documentation</h3>
+        <div className="w-20 h-1 bg-gold mx-auto mt-2" />
+      </div>
+
+      <div className="space-y-6 text-[13px] leading-relaxed text-slate-800">
+        <section>
+          <h4 className="font-bold text-purple border-b border-gold/30 pb-1 mb-2">ARTICLE 1: NAME AND SUPREMACY</h4>
+          <p><strong>1.1 Name:</strong> The Association shall be known as UDOSA 04.</p>
+          <p><strong>1.2 Supremacy:</strong> This Constitution is supreme and binding on all members.</p>
+        </section>
+
+        <section>
+          <h4 className="font-bold text-purple border-b border-gold/30 pb-1 mb-2">ARTICLE 2: AIMS AND OBJECTIVES</h4>
+          <p>To foster unity, progress, and brotherhood among all members of the Class of 2004. To promote welfare and contribute to the development of our alma mater, UDSS.</p>
+        </section>
+
+        <section>
+          <h4 className="font-bold text-purple border-b border-gold/30 pb-1 mb-2">ARTICLE 3: MEMBERSHIP</h4>
+          <p>Open to all students who were part of the 2004 graduating set of UDSS. Financial members are those who have paid all prescribed dues and levies.</p>
+        </section>
+
+        <section>
+          <h4 className="font-bold text-purple border-b border-gold/30 pb-1 mb-2">ARTICLE 4: THE EXECUTIVE COMMITTEE (EXCO)</h4>
+          <p>The Association shall be administered by an Executive Committee comprising the President, Vice President, Secretary General, Financial Secretary, Treasurer, PRO, Welfare Officer, and Provost.</p>
+        </section>
+      </div>
+    </div>
+    <Footer text="UDOSA 04 | Official Constitution" />
+  </div>,
+
+  // 35. Constitution - Page 2
+  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always relative">
+    {/* Watermark */}
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.05] z-0">
+      <img src={LOGO_URL} alt="" className="w-[500px] h-[500px] object-contain grayscale" referrerPolicy="no-referrer" />
+    </div>
+
+    <div className="bg-purple w-full h-20 flex items-center justify-center px-8 shrink-0 relative overflow-hidden z-10">
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
+      <h2 className="text-xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
+        Bye-Laws & <span className="text-gold uppercase">Constitution</span>
+      </h2>
+    </div>
+
+    <div className="p-12 flex-grow overflow-hidden flex flex-col relative z-10 font-serif">
+      <div className="space-y-6 text-[13px] leading-relaxed text-slate-800">
+        <section>
+          <h4 className="font-bold text-purple border-b border-gold/30 pb-1 mb-2">ARTICLE 5: FUNCTIONS OF EXECUTIVE OFFICERS</h4>
+          <div className="space-y-3">
+            <p><strong>5.1 President:</strong> Head of the Association, presides over all meetings, and provides strategic leadership.</p>
+            <p><strong>5.2 PRO:</strong> Responsible for the Association's image, publicity, and communication with members.</p>
+            <p><strong>5.3 Treasurer:</strong> Custodian of funds, manages bank accounts, and disburses funds as approved.</p>
+            <p><strong>5.4 Financial Secretary:</strong> Keeps records of all financial transactions and prepares reports.</p>
+            <p><strong>5.5 Secretary General:</strong> Handles correspondence, keeps minutes, and maintains records.</p>
+            <p><strong>5.6 Tenure:</strong> Officers serve a term of two (2) years, eligible for re-election for one additional term only.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+    <Footer text="UDOSA 04 | Official Constitution" />
+  </div>,
+
+  // 36. Constitution - Page 3
+  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always relative">
+    {/* Watermark */}
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.05] z-0">
+      <img src={LOGO_URL} alt="" className="w-[500px] h-[500px] object-contain grayscale" referrerPolicy="no-referrer" />
+    </div>
+
+    <div className="bg-purple w-full h-20 flex items-center justify-center px-8 shrink-0 relative overflow-hidden z-10">
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
+      <h2 className="text-xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
+        Bye-Laws & <span className="text-gold uppercase">Constitution</span>
+      </h2>
+    </div>
+
+    <div className="p-12 flex-grow overflow-hidden flex flex-col relative z-10 font-serif">
+      <div className="space-y-6 text-[13px] leading-relaxed text-slate-800">
+        <section>
+          <h4 className="font-bold text-purple border-b border-gold/30 pb-1 mb-2">ARTICLE 6: FINANCE</h4>
+          <p>Funds derived from dues, levies, and donations. Bank accounts require two signatories for withdrawals (one must be the Treasurer).</p>
+        </section>
+
+        <section>
+          <h4 className="font-bold text-purple border-b border-gold/30 pb-1 mb-2">ARTICLE 7: WELFARE</h4>
+          <p>Support for members during bereavement, weddings, childbirth, and critical health challenges as defined in the Welfare Policy.</p>
+        </section>
+
+        <section>
+          <h4 className="font-bold text-purple border-b border-gold/30 pb-1 mb-2">ARTICLE 8: DISCIPLINE</h4>
+          <p>Members violating the Constitution or bringing the Association into disrepute face disciplinary action, including fines or suspension.</p>
+        </section>
+
+        <section>
+          <h4 className="font-bold text-purple border-b border-gold/30 pb-1 mb-2">ARTICLE 9: MEETINGS</h4>
+          <p>General Meetings held periodically. Emergency meetings convened by the President or by request. Quorum is 15 financial members.</p>
+        </section>
+      </div>
+    </div>
+    <Footer text="UDOSA 04 | Official Constitution" />
+  </div>,
+
+  // 37. Constitution - Page 4
+  <div className="page-a4 overflow-hidden flex flex-col mx-auto bg-white shadow-2xl print:m-0 print:shadow-none print:page-break-after-always relative">
+    {/* Watermark */}
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.05] z-0">
+      <img src={LOGO_URL} alt="" className="w-[500px] h-[500px] object-contain grayscale" referrerPolicy="no-referrer" />
+    </div>
+
+    <div className="bg-purple w-full h-20 flex items-center justify-center px-8 shrink-0 relative overflow-hidden z-10">
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple via-purple/90 to-purple opacity-50" />
+      <h2 className="text-xl font-serif font-black tracking-[0.2em] relative z-10 text-white uppercase">
+        Bye-Laws & <span className="text-gold uppercase">Constitution</span>
+      </h2>
+    </div>
+
+    <div className="p-12 flex-grow overflow-hidden flex flex-col relative z-10 font-serif">
+      <div className="space-y-6 text-[13px] leading-relaxed text-slate-800">
+        <section>
+          <h4 className="font-bold text-purple border-b border-gold/30 pb-1 mb-2">ARTICLE 10: AMENDMENT</h4>
+          <p>Requires two-thirds majority vote of financial members present at a General Meeting with 30 days prior notice.</p>
+        </section>
+
+        <section>
+          <h4 className="font-bold text-purple border-b border-gold/30 pb-1 mb-2">ARTICLE 11: DISSOLUTION</h4>
+          <p>Assets donated to UDSS or a charitable organization after settlement of all liabilities.</p>
+        </section>
+
+        <section>
+          <h4 className="font-bold text-purple border-b border-gold/30 pb-1 mb-2">ARTICLE 12: MISCELLANEOUS</h4>
+          <p>Matters not covered shall be decided by the House in the spirit of unity and progress.</p>
+        </section>
+
+        <section>
+          <h4 className="font-bold text-purple border-b border-gold/30 pb-1 mb-2">ARTICLE 13: ADOPTION</h4>
+          <p>Formally adopted by the General House of UDOSA Class of 2004.</p>
+        </section>
+
+        <div className="mt-12 p-6 border-2 border-dashed border-gold/30 rounded-xl bg-gold/5">
+          <p className="text-center font-bold text-purple uppercase tracking-widest text-xs mb-4">Prepared By:</p>
+          <p className="text-center text-lg font-bold text-purple mb-4">Cynthia Uzoma Edozie</p>
+          <div className="w-48 h-px bg-slate-300 mx-auto mb-2" />
+          <p className="text-center text-[10px] text-slate-400 uppercase tracking-widest">Legal Committee / Secretariat</p>
+        </div>
+      </div>
+    </div>
+    <Footer text="UDOSA 04 | Official Constitution" />
   </div>
 ];
