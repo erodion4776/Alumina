@@ -53,84 +53,80 @@ import {
 const YearbookAnimation = () => {
   const pages = [
     {
-      type: 'cover',
-      content: (
-        <div className="page-content cover-content h-full flex flex-col items-center justify-center p-8 text-center">
-          <img src="https://i.ibb.co/DHC0kvzR/1000773566-removebg-preview-1.png" alt="Logo" className="h-24 md:h-32 mb-6 object-contain drop-shadow-2xl" />
-          <h2 className="text-4xl md:text-5xl font-serif font-black text-gold tracking-tighter leading-none mb-2">UDOSA 04</h2>
-          <div className="w-16 h-1 bg-gold/50 my-4" />
-          <p className="text-sm md:text-lg text-gold font-serif uppercase tracking-[0.3em] leading-tight font-bold">
-            20th Anniversary Yearbook
-          </p>
-        </div>
-      )
-    },
-    {
       title: "Chairman's Address",
       image: "https://i.ibb.co/JwwLbzy4/IMG-20250204-WA0000.jpg",
-      text: "A message of legacy and excellence from our Chairman."
+      caption: "A message of legacy and excellence",
     },
     {
       title: "The Art of Karate",
-      image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&q=80&w=1200",
-      text: "Ehima Oziegbe on the discipline and benefits of Karate."
+      image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&q=80&w=600",
+      caption: "Discipline, strength, and honour",
     },
     {
-      title: "Solidarity",
+      title: "Moments of Solidarity",
       image: "https://i.ibb.co/dsXybKG4/IMG-20260323-WA0020.jpg",
-      text: "Standing together as one family, through every season."
+      caption: "Standing together as one family",
     },
     {
-      title: "Memorial",
+      title: "In Loving Memory",
       image: "https://i.ibb.co/5X5B0rhc/IMG-20260323-WA0018.jpg",
-      text: "Lighting a candle for those who live forever in our hearts."
-    }
+      caption: "Those who live forever in our hearts",
+    },
   ];
 
   return (
-    <div className="book-container">
+    <div className="book-container" style={{ perspective: '1200px' }}>
       <div className="book">
-        <div className="book-spine"></div>
-        <div className="book-shadow"></div>
-        
-        {/* Stack of static pages for depth */}
-        <div className="pages">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="page-static"></div>
-          ))}
+        {/* Spine */}
+        <div className="book-spine">
+          <span className="book-spine-text">UDOSA 04 · 2004</span>
         </div>
 
-        {/* Flipping Pages with Bending Effect */}
-        {pages.map((page, pageIdx) => (
-          <div key={pageIdx} className={`flips flip-page-${pageIdx + 1}`}>
-            <div className="flip flip1">
-              <div className="flip flip2">
-                <div className="flip flip3">
-                  <div className="flip flip4">
-                    <div className="flip flip5">
-                      <div className="flip flip6">
-                        <div className="flip flip7">
-                          {page.type === 'cover' ? (
-                            page.content
-                          ) : (
-                            <div className="page-content relative">
-                              <img src={page.image} alt={page.title} className="page-image" referrerPolicy="no-referrer" />
-                              <div className="page-overlay"></div>
-                              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-purple/90 to-transparent text-white">
-                                <h3 className="text-xl font-serif font-bold text-gold">{page.title}</h3>
-                                <p className="text-[10px] uppercase tracking-widest opacity-80 mt-1">{page.text}</p>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        {/* Page thickness illusion */}
+        <div className="book-pages-stack" />
+
+        {/* Cover — always visible beneath the flipping pages */}
+        <div className="book-cover">
+          <img
+            src="https://i.ibb.co/DHC0kvzR/1000773566-removebg-preview-1.png"
+            alt="UDOSA Logo"
+            style={{ height: '72px', objectFit: 'contain', marginBottom: '12px', filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.4))' }}
+            referrerPolicy="no-referrer"
+          />
+          <div className="book-cover-gold-bar" />
+          <h2 style={{ color: '#D4AF37', fontFamily: '"Playfair Display", serif', fontSize: '18px', fontWeight: 900, letterSpacing: '-0.02em', lineHeight: 1, margin: '0 0 4px', textTransform: 'uppercase' }}>
+            UDOSA 04
+          </h2>
+          <div className="book-cover-gold-bar" />
+          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.25em', marginTop: '8px', fontFamily: '"Playfair Display", serif' }}>
+            20th Anniversary
+          </p>
+        </div>
+
+        {/* Flipping pages — front shows the image, back is plain cream */}
+        {pages.map((page, i) => (
+          <div key={i} className="book-flip-wrapper">
+            {/* Front of the page — photo */}
+            <div className="book-flip-front">
+              <div className="book-page-content">
+                <img src={page.image} alt={page.title} referrerPolicy="no-referrer" />
+                <div className="book-page-overlay" />
+                <div className="book-page-caption">
+                  <h3>{page.title}</h3>
+                  <p>{page.caption}</p>
                 </div>
               </div>
             </div>
+
+            {/* Back of the page — blank cream */}
+            <div className="book-flip-back">
+              <div style={{ width: '100%', height: '100%', background: '#fffaf0', borderRight: '1px solid rgba(212,175,55,0.2)' }} />
+            </div>
           </div>
         ))}
+
+        {/* Ground shadow */}
+        <div className="book-shadow-ground" />
       </div>
     </div>
   );
