@@ -49,104 +49,89 @@ import {
   GALLERY_PHOTOS
 } from '../constants';
 
-// --- Animated Book Component ---
-const AnimatedBook = () => {
-  const [isHovered, setIsHovered] = useState(false);
+// --- 3D Animated Yearbook Component ---
+const YearbookAnimation = () => {
+  const pages = [
+    {
+      type: 'cover',
+      content: (
+        <div className="page-content cover-content h-full flex flex-col items-center justify-center p-8 text-center">
+          <img src="https://i.ibb.co/DHC0kvzR/1000773566-removebg-preview-1.png" alt="Logo" className="h-24 md:h-32 mb-6 object-contain drop-shadow-2xl" />
+          <h2 className="text-4xl md:text-5xl font-serif font-black text-gold tracking-tighter leading-none mb-2">UDOSA 04</h2>
+          <div className="w-16 h-1 bg-gold/50 my-4" />
+          <p className="text-sm md:text-lg text-gold font-serif uppercase tracking-[0.3em] leading-tight font-bold">
+            20th Anniversary Yearbook
+          </p>
+        </div>
+      )
+    },
+    {
+      title: "Chairman's Address",
+      image: "https://i.ibb.co/JwwLbzy4/IMG-20250204-WA0000.jpg",
+      text: "A message of legacy and excellence from our Chairman."
+    },
+    {
+      title: "The Art of Karate",
+      image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&q=80&w=1200",
+      text: "Ehima Oziegbe on the discipline and benefits of Karate."
+    },
+    {
+      title: "Solidarity",
+      image: "https://i.ibb.co/dsXybKG4/IMG-20260323-WA0020.jpg",
+      text: "Standing together as one family, through every season."
+    },
+    {
+      title: "Memorial",
+      image: "https://i.ibb.co/5X5B0rhc/IMG-20260323-WA0018.jpg",
+      text: "Lighting a candle for those who live forever in our hearts."
+    }
+  ];
 
   return (
-    <div 
-      className="relative w-48 h-64 md:w-64 md:h-80 cursor-pointer" 
-      style={{ perspective: '2000px' }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onTouchStart={() => setIsHovered(true)}
-      onTouchEnd={() => setIsHovered(false)}
-    >
-      {/* Shadow that grows/shrinks */}
-      <motion.div 
-        className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[90%] h-6 bg-black/20 blur-xl rounded-full"
-        animate={{ 
-          scale: isHovered ? 1.2 : 1,
-          opacity: isHovered ? 0.4 : 0.2
-        }}
-        transition={{ duration: 0.5 }}
-      />
+    <div className="book-container">
+      <div className="book">
+        <div className="book-spine"></div>
+        <div className="book-shadow"></div>
+        
+        {/* Stack of static pages for depth */}
+        <div className="pages">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="page-static"></div>
+          ))}
+        </div>
 
-      <motion.div 
-        className="relative w-full h-full"
-        style={{ transformStyle: 'preserve-3d' }}
-        animate={{ 
-          rotateY: isHovered ? -25 : -15,
-          rotateX: isHovered ? 5 : 0
-        }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      >
-        {/* Back Cover */}
-        <div 
-          className="absolute inset-0 bg-purple-950 rounded-r-lg border-l-2 border-gold/20" 
-          style={{ transform: 'translateZ(-20px)' }} 
-        />
-
-        {/* Spine */}
-        <div 
-          className="absolute inset-y-0 left-0 w-[20px] bg-gradient-to-r from-purple-950 to-purple-900" 
-          style={{ transform: 'rotateY(-90deg) translateZ(10px)' }} 
-        />
-
-        {/* Page Thickness (Right Edge) */}
-        <div 
-          className="absolute inset-y-1 right-0 w-[18px] bg-stone-100 rounded-r-sm" 
-          style={{ transform: 'rotateY(90deg) translateZ(-9px)' }} 
-        />
-
-        {/* Flipping Pages */}
-        {[1, 2, 3].map((i) => (
-          <motion.div
-            key={i}
-            className="absolute inset-0 bg-stone-50 rounded-r-lg origin-left border-l border-stone-200 shadow-sm"
-            style={{ 
-              transformStyle: 'preserve-3d', 
-              backfaceVisibility: 'hidden',
-              zIndex: 10 - i 
-            }}
-            animate={{ 
-              rotateY: [0, -180, 0] 
-            }}
-            transition={{ 
-              duration: isHovered ? 1.5 : 3, 
-              repeat: Infinity, 
-              delay: i * 0.4,
-              ease: "easeInOut"
-            }}
-          >
-            {/* Page Content (Blank/Text) */}
-            <div className="p-4 opacity-10">
-              <div className="h-2 w-3/4 bg-stone-300 mb-2" />
-              <div className="h-2 w-1/2 bg-stone-300" />
+        {/* Flipping Pages with Bending Effect */}
+        {pages.map((page, pageIdx) => (
+          <div key={pageIdx} className={`flips flip-page-${pageIdx + 1}`}>
+            <div className="flip flip1">
+              <div className="flip flip2">
+                <div className="flip flip3">
+                  <div className="flip flip4">
+                    <div className="flip flip5">
+                      <div className="flip flip6">
+                        <div className="flip flip7">
+                          {page.type === 'cover' ? (
+                            page.content
+                          ) : (
+                            <div className="page-content relative">
+                              <img src={page.image} alt={page.title} className="page-image" referrerPolicy="no-referrer" />
+                              <div className="page-overlay"></div>
+                              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-purple/90 to-transparent text-white">
+                                <h3 className="text-xl font-serif font-bold text-gold">{page.title}</h3>
+                                <p className="text-[10px] uppercase tracking-widest opacity-80 mt-1">{page.text}</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </motion.div>
-        ))}
-
-        {/* Front Cover */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-purple via-[#3b0764] to-pink rounded-r-lg shadow-2xl border-l-4 border-gold/30 origin-left z-20"
-          style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
-          animate={{ 
-            rotateY: isHovered ? -45 : 0 
-          }}
-          transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        >
-          {/* Cover Content */}
-          <div className="h-full flex flex-col items-center justify-center p-6 text-center">
-            <img src={LOGO_URL} alt="Logo" className="h-16 md:h-24 mb-4 object-contain drop-shadow-lg" />
-            <h2 className="text-2xl md:text-4xl font-serif font-black text-gold tracking-tighter leading-none">UDOSA 04</h2>
-            <div className="w-8 h-0.5 bg-gold/50 my-3" />
-            <p className="text-[8px] md:text-[10px] text-white/80 font-serif uppercase tracking-[0.2em] leading-tight font-bold">
-              Class of 2004: <br/> Two Decades of Excellence
-            </p>
           </div>
-        </motion.div>
-      </motion.div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -275,7 +260,7 @@ export const Home = ({ onViewChange }: { onViewChange: (view: any, page?: number
         <div className="flex flex-col lg:flex-row items-center gap-12 relative z-10">
           {/* 3D Animated Book */}
           <div className="w-full lg:w-1/3 flex justify-center">
-            <AnimatedBook />
+            <YearbookAnimation />
           </div>
 
           {/* Content */}
