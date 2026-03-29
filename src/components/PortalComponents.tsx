@@ -49,84 +49,16 @@ import {
   GALLERY_PHOTOS
 } from '../constants';
 
-// --- 3D Animated Yearbook Component ---
+// --- Static 3D Yearbook Component ---
 const YearbookAnimation = () => {
-  const pages = [
-    {
-      title: "Chairman's Address",
-      image: "https://i.ibb.co/JwwLbzy4/IMG-20250204-WA0000.jpg",
-      caption: "A message of legacy and excellence",
-    },
-    {
-      title: "The Art of Karate",
-      image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&q=80&w=600",
-      caption: "Discipline, strength, and honour",
-    },
-    {
-      title: "Moments of Solidarity",
-      image: "https://i.ibb.co/dsXybKG4/IMG-20260323-WA0020.jpg",
-      caption: "Standing together as one family",
-    },
-    {
-      title: "In Loving Memory",
-      image: "https://i.ibb.co/5X5B0rhc/IMG-20260323-WA0018.jpg",
-      caption: "Those who live forever in our hearts",
-    },
-  ];
-
   return (
-    <div className="book-container" style={{ perspective: '1200px' }}>
-      <div className="book">
-        {/* Spine */}
-        <div className="book-spine">
-          <span className="book-spine-text">UDOSA 04 · 2004</span>
-        </div>
-
-        {/* Page thickness illusion */}
-        <div className="book-pages-stack" />
-
-        {/* Cover — always visible beneath the flipping pages */}
-        <div className="book-cover">
-          <img
-            src="https://i.ibb.co/DHC0kvzR/1000773566-removebg-preview-1.png"
-            alt="UDOSA Logo"
-            style={{ height: '72px', objectFit: 'contain', marginBottom: '12px', filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.4))' }}
-            referrerPolicy="no-referrer"
-          />
-          <div className="book-cover-gold-bar" />
-          <h2 style={{ color: '#D4AF37', fontFamily: '"Playfair Display", serif', fontSize: '18px', fontWeight: 900, letterSpacing: '-0.02em', lineHeight: 1, margin: '0 0 4px', textTransform: 'uppercase' }}>
-            UDOSA 04
-          </h2>
-          <div className="book-cover-gold-bar" />
-          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.25em', marginTop: '8px', fontFamily: '"Playfair Display", serif' }}>
-            20th Anniversary
-          </p>
-        </div>
-
-        {/* Flipping pages — front shows the image, back is plain cream */}
-        {pages.map((page, i) => (
-          <div key={i} className="book-flip-wrapper">
-            {/* Front of the page — photo */}
-            <div className="book-flip-front">
-              <div className="book-page-content">
-                <img src={page.image} alt={page.title} referrerPolicy="no-referrer" />
-                <div className="book-page-overlay" />
-                <div className="book-page-caption">
-                  <h3>{page.title}</h3>
-                  <p>{page.caption}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Back of the page — blank cream */}
-            <div className="book-flip-back">
-              <div style={{ width: '100%', height: '100%', background: '#fffaf0', borderRight: '1px solid rgba(212,175,55,0.2)' }} />
-            </div>
-          </div>
-        ))}
-
-        {/* Ground shadow */}
-        <div className="book-shadow-ground" />
+    <div className="static-book-container">
+      <div className="static-book">
+        <img 
+          src="https://i.ibb.co/9kYSm2hV/Screenshot-20260329-145436.jpg" 
+          alt="UDOSA 04 Yearbook Cover" 
+          referrerPolicy="no-referrer"
+        />
       </div>
     </div>
   );
@@ -276,14 +208,8 @@ export const Home = ({ onViewChange }: { onViewChange: (view: any, page?: number
                 onClick={() => onViewChange('ebook')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative overflow-hidden bg-gold text-purple px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm shadow-[0_10px_30px_rgba(212,175,55,0.4)] group"
+                className="relative overflow-hidden bg-gold text-purple px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs md:text-sm shadow-[0_10px_30px_rgba(212,175,55,0.4)] group pulse-gold"
               >
-                {/* Shimmer effect */}
-                <motion.div 
-                  animate={{ x: ['-100%', '200%'] }}
-                  transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
-                />
                 <span className="relative z-10">Open the Yearbook</span>
               </motion.button>
             </div>
